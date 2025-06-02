@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+            xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            x:Class="Soditech.IntelPrev.Mobile.Views.Preventions.PreventionStatisticInfosView"
+            xmlns:base="clr-namespace:Soditech.IntelPrev.Mobile.ViewModels.Base;assembly=Soditech.IntelPrev.Mobile"
+            base:ViewManager.AutoWireViewModel="True"
+            xmlns:viewModel="clr-namespace:Soditech.IntelPrev.Mobile.ViewModels.Preventions"
+            x:DataType="viewModel:PreventionStatisticInfosViewModel"
+            BackgroundColor="#efe4b0"
+            Title="Statistiques">
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IconOverride="back.png" IsVisible="True" IsEnabled="True" />
+    </Shell.BackButtonBehavior>
+
+    <ContentPage.Content>
+        <Grid RowDefinitions="Auto, *" Padding="20">
+            <!-- Header Section -->
+            <VerticalStackLayout Grid.Row="0" Spacing="15" VerticalOptions="Start">
+                <Label Text="Les statistiques de prévention"
+                       FontSize="26"
+                       FontAttributes="Bold"
+                       TextColor="#333"
+                       TextTransform="Uppercase"
+                       HorizontalOptions="Center" />
+                <Label Text="Sélectionnez une catégorie pour explorer les données."
+                       FontSize="16"
+                       TextColor="#666"
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center" />
+            </VerticalStackLayout>
+
+            <!-- Button Section -->
+            <VerticalStackLayout Grid.Row="1" Spacing="20" VerticalOptions="CenterAndExpand">
+                <!-- Prevention Statistics Button -->
+                <Border BackgroundColor="White" Stroke="#ccc" StrokeThickness="2" Padding="15" >
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToDevViewCommand}" />
+                    </Border.GestureRecognizers>
+                    <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+                        <Image Source="icon_statistics.png" WidthRequest="30" HeightRequest="30" />
+                        <Label Text="Statistique prévention"
+                               FontSize="18"
+                               TextColor="#333"
+                               VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                </Border>
+
+                <!-- Fire Safety Button -->
+                <Border BackgroundColor="White" Stroke="#ccc" StrokeThickness="2" Padding="15" >
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToDevViewCommand}" />
+                    </Border.GestureRecognizers>
+                    <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+                        <Image Source="icon_fire_safety.png" WidthRequest="30" HeightRequest="30" />
+                        <Label Text="Statistique sécurité incendie"
+                               FontSize="18"
+                               TextColor="#333"
+                               VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                </Border>
+
+                <!-- Alerts Button -->
+                <Border BackgroundColor="White" Stroke="#ccc" StrokeThickness="2" Padding="15" >
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToDevViewCommand}" />
+                    </Border.GestureRecognizers>
+                    <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+                        <Image Source="icon_alerts.png" WidthRequest="30" HeightRequest="30" />
+                        <Label Text="Statistique alertes"
+                               FontSize="18"
+                               TextColor="#333"
+                               VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

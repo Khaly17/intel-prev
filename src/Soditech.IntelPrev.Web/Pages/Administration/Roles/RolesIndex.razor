@@ -1,0 +1,163 @@
+@page "/roles"
+@attribute [Authorize(Roles = "Admin, Super Admin")]
+
+@using Microsoft.AspNetCore.Authorization
+@using Soditech.IntelPrev.Users.Shared.Enums
+@using Soditech.IntelPrev.Users.Shared.Roles
+@using Soditech.IntelPrev.Users.Shared.Users
+@using Soditech.IntelPrev.Web.Components.Widgets.Alerts
+@using Soditech.IntelPrev.Web.Components.Widgets
+@using Soditech.IntelPrev.Web.Components.Widgets.Tables
+@using Syncfusion.Blazor.Grids
+@using Soditech.IntelPrev.Web.Components.Widgets.Dialogs
+
+ <AlertComponent 
+            Message="@_alertMessage" 
+            AlertType="@_alertType" 
+            IsVisible="@_isAddRoleVisible" />
+
+@if (IsLoadingRoles)
+{
+    <Spinner />
+}
+else
+{
+    <GenericGrid TItem="RoleResult"
+                 Items="@_roles"
+                 ToolbarItems="@ToolbarItems"
+                 PageCount="@_pageCount"
+                 PageSize="@_pageSize"
+                 CurrentPage="@_currentPage"
+                 TotalCount="@_totalCount"
+                 GridTitle="Roles"
+                 DisplayTitle="true"
+                 DisplayPageSize="false"
+                 DisplayPagination="true"
+                 Columns="@Columns"
+                 DisplaySpinnerOnLoading="@_isLoading"
+                 addButton="OpenAddRoleDialog"
+                 OnDelete="ShowDeleteRoleModal" 
+                 @ref="@Grid"
+                 DisplayActionsBtn="true">
+        <GridSelectionSettings Type="SelectionType.Single"></GridSelectionSettings>
+        <GridEvents RowSelected="GetSelectedRole" TValue="RoleResult"></GridEvents>
+    </GenericGrid>
+}
+
+
+
+<AlertComponent 
+    Message="@_alertMessage"
+    AlertType="@_alertType"
+    IsVisible="@_isAlertVisible" />
+
+@if (!string.IsNullOrEmpty(SelectedRoleId))
+{
+    @if (IsLoadingUsers)
+    {
+        <Spinner />
+    }
+    else
+    {
+        <div class="mt-5">
+            <GenericGrid TItem="UserResult"
+                 Items="@_selectedUsers"
+                 ToolbarItems="@ToolbarItems"
+                 DisplayTitle="true"
+                 GridTitle="@RoleUsersTittle"
+                 addButton="OpenAssignUserDialog"
+                 PageCount="@_userPageCount"
+                 PageSize="@_userPageSize"
+                 CurrentPage="@_userCurrentPage"
+                 TotalCount="@_userTotalCount"
+                 Columns="@UsersColumns"
+                 DisplayPagination="true"
+                 DisplaySpinnerOnLoading="@IsLoadingUsers"
+                 CustomBtnIconCss="fa fa-refresh"
+                 CustomBtnLabel="@unassignLabel"
+                 OnCustomAction="ShowDetails" />
+        </div>
+    }
+}
+
+<GenericDialog TItem="RoleResult"
+               IsVisible="@IsCreatedRole"
+               HeaderTitle="@CreateRoleLabel"
+               SaveCallback="SaveRole"
+               CancelCallback="HideModals">
+            <div class="form-group">
+                <label for="role-scope">Select Scope:</label>
+                <select id="role-scope" class="form-control" @bind="SelectedRoleScope">
+                    @foreach (var scope in Enum.GetValues(typeof(RoleScope)))
+                    {
+                        <option value="@scope">@scope</option>
+                    }
+                </select>
+
+                <label for="role-name">Rôle:</label>
+                <input type="text" id="role-name" class="form-control" @bind="Role.Name" />
+
+                <label for="role-description"> Description:</label>
+                <input type="text" id="role-description" class="form-control" @bind="Role.Description" />
+            </div>
+</GenericDialog>
+
+<GenericDialog TItem="RoleResult"
+               IsVisible="@IsAssignUserModalVisible"
+               HeaderTitle="@AffectLabel"
+               SaveCallback="AssignUserToRole"
+               CancelCallback="HideModals">
+    <div class="form-group">
+        @* @if (SelectedRoleScope == "Site") *@
+        @* { *@
+        @*     <label for="siteId">Sites:</label> *@
+        @*     <select id="siteId" class="form-control" @bind="SelectedSiteId"> *@
+        @*         <option value="">Selectionner un Site</option> *@
+        @*         @foreach (var site in _sites) *@
+        @*         { *@
+        @*             <option value="@site.Id">@site.Name</option> *@
+        @*         } *@
+        @*     </select> *@
+        @* } *@
+        <label for="userId">Users:</label>
+        <select id="userId" class="form-control" @bind="SelectedUserId">
+            <option value="">Selectionner un Utilisateur</option>
+            @foreach (var user in _filteredUsers)
+            {
+                <option value="@user.Id">@user.FirstName @user.LastName</option>
+            }
+        </select>
+    </div>
+</GenericDialog>
+<GenericConfirmDialog IsVisible="@_isConfirmModalVisible"
+                      OnConfirm="ConfirmUnAssignAsync"
+                      OnCancel="HideConfirmModal" 
+                      HeaderLabel="@_headerConfirmLabel"
+                      Message="@_confirmMessage"
+                      ConfirmLabel="@_confirmLabel" />
+
+<GenericConfirmDialog IsVisible="@_isDeleteModalVisible"
+                      OnConfirm="DeleteRole"
+                      OnCancel="HideConfirmModal"
+                      HeaderLabel="@_headerDeleteLabel"
+                      Message="@_deleteMessage"
+                      ConfirmLabel="@_deleteLabel" />
+
+
+<style>
+    .others-title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .assign {
+        padding: 10px 15px;
+        font-size: 14px;
+        display: inline-block;
+        margin-bottom: 10px;
+        margin-right: 30px;
+    }
+
+</style>

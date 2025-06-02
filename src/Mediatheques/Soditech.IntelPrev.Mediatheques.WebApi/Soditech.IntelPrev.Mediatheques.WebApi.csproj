@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Azure.Identity" Version="1.13.0" />
+        <PackageReference Include="FastEndpoints" Version="5.28.0" />
+        <PackageReference Include="FastEndpoints.Swagger" Version="5.28.0" />
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.7" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.8">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="8.0.1" />
+        <PackageReference Include="Sensor6ty.WebapiCore" Version="1.0.1" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Soditech.IntelPrev.Mediatheques.Application\Soditech.IntelPrev.Mediatheques.Application.csproj" />
+      <ProjectReference Include="..\Soditech.IntelPrev.Mediatheques.Persistence\Soditech.IntelPrev.Mediatheques.Persistence.csproj" />
+    </ItemGroup>
+    
+</Project>

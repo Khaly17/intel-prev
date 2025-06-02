@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:components="clr-namespace:Soditech.IntelPrev.Mobile.Views.Components.Carousel"
+             x:Class="Soditech.IntelPrev.Mobile.Views.SampleCarouselPage"
+             Title="Sample Carousel">
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IconOverride="back.png" IsVisible="True" IsEnabled="True" />
+    </Shell.BackButtonBehavior>
+
+    <VerticalStackLayout Spacing="10" Padding="20">
+        <Label 
+            Text="Sample Carousel Page"
+            FontSize="24"
+            FontAttributes="Bold"
+            HorizontalOptions="Center" />
+            
+        <Frame HeightRequest="300" Padding="0" HasShadow="True" CornerRadius="10">
+            <components:CarouselComponent
+                ItemsSource="{Binding CarouselItems}"
+                Position="0"
+                CurrentItemChangedCommand="{Binding CarouselItemChangedCommand}"/>
+        </Frame>
+        
+        <Label 
+            Text="{Binding CurrentImageName}" 
+            FontSize="18"
+            HorizontalOptions="Center" />
+            
+        <Button 
+            Text="Back"
+            Command="{Binding GoBackCommand}"
+            HorizontalOptions="Center"
+            Margin="0,20,0,0" />
+    </VerticalStackLayout>
+</ContentPage>

@@ -1,0 +1,14 @@
+﻿@page "/tenants/edit/{TenantId}"
+@attribute [Authorize(Roles = "Admin, Super Admin")]
+
+@using Microsoft.AspNetCore.Authorization
+
+@using Soditech.IntelPrev.Web.Components.Administrations;
+
+<AddOrEditTenant
+    NewTenant="tenant"
+    Title="@title"
+    SuccessMessage="@successMessage"
+    ErrorMessage="@errorMessage"
+    OnTenantCreated="UpdateTenant"
+    />

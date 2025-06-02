@@ -1,0 +1,17 @@
+﻿@typeparam TItem
+@using Syncfusion.Blazor.Charts
+
+<SfChart Palettes="@Palettes">
+    <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category"></ChartPrimaryXAxis>
+    <ChartPrimaryYAxis Minimum="0"></ChartPrimaryYAxis>
+    <ChartEvents OnPointRender="PointRenderEvent"></ChartEvents>
+    <ChartSeriesCollection>
+        <ChartSeries DataSource="@DataSource"
+                     XName="@XName"
+                     YName="@YName"
+                     Type="ChartSeriesType.Column">
+            <ChartCornerRadius TopLeft="5" TopRight="5"></ChartCornerRadius>
+        </ChartSeries>
+    </ChartSeriesCollection>
+    <ChartTooltipSettings Enable="true"></ChartTooltipSettings>
+</SfChart>

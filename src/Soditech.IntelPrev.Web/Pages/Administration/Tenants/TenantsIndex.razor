@@ -1,0 +1,59 @@
+@page "/tenants"
+@attribute [Authorize(Roles = "Admin, Super Admin")]
+
+@using Microsoft.AspNetCore.Authorization
+
+@using Soditech.IntelPrev.Users.Shared.Tenants
+@using Soditech.IntelPrev.Users.Shared.Users
+@using Soditech.IntelPrev.Web.Components.Widgets
+@using Soditech.IntelPrev.Web.Components.Widgets.Tables
+@using Soditech.IntelPrev.Web.Components.Widgets.Alerts
+@using Soditech.IntelPrev.Web.Components.Widgets.Dialogs
+@using Soditech.IntelPrev.Web.Components.Administrations;
+@using Syncfusion.Blazor.Grids
+
+
+<GenericGrid
+TItem="TenantResult"
+Items="@Tenants"
+GridTitle="Structure"
+ToolbarItems="@ToolbarItems"
+DisplayTitle="true"
+PageCount="@PageCount"
+PageSize="@PageSize"
+addButton="@AddTenant"
+OnEdit="@GoToEdit"
+CustomBtnLabel="Désactiver|Activer"
+OnCustomAction="@DisableTenantTrigger"
+OnDelete="@DeleteTenantTrigger"
+Columns="@Columns"
+@ref="@Grid"
+DisplaySpinnerOnLoading="IsLoading">
+
+        <GridSelectionSettings Type="SelectionType.Single"></GridSelectionSettings>
+        <GridEvents RowSelected="GetSelectedTenant" TValue="TenantResult"></GridEvents>
+    <AlertComponent Message="@_alertMessage" AlertType="@_alertType" IsVisible="@_isAlertVisible" />
+
+</GenericGrid>
+
+
+<GenericConfirmDialog HeaderLabel="Déactivation de la structure" ConfirmLabel="Désactiver"
+Message="Voulez-vous vraiment désactiver cette structure ?"
+IsVisible="@_isDisableTenantModalVisible" OnConfirm="DisableTenantAsync" OnCancel="HideDisableTenantModal" />
+
+
+<GenericConfirmDialog HeaderLabel="Suppression de la structure" IsVisible="@_isDeleteModalVisible"
+OnConfirm="DeleteTenantAsync" OnCancel="HideDeleteModal" />
+
+@if (!string.IsNullOrEmpty(SelectedTenantId))
+{
+    @if (IsLoadingUsers)
+    {
+        <Spinner />
+    }
+    else
+    {
+        <UsersList Users="Users" />
+
+    }
+}

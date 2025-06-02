@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Soditech.IntelPrev.Mobile.Views.Components.SelectableListView"
+             x:Name="RootView">
+    <Grid RowDefinitions="250,*" RowSpacing="0">
+        <!-- Main Message Box - blue header with title -->
+        <Grid Grid.Row="0" RowDefinitions="3*,*" BackgroundColor="{StaticResource Primary}" Padding="20,0">
+            <StackLayout VerticalOptions="Center">
+                <Label Text="{Binding MainMessage, Source={x:Reference RootView}}"
+                       TextColor="White"
+                       FontSize="32"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       VerticalOptions="CenterAndExpand"
+                       HorizontalOptions="Center"/>
+
+            </StackLayout>
+
+            <!-- Sub Message - description below header -->
+            <Label Grid.Row="1"
+                Text="{Binding SubMessage, Source={x:Reference RootView}}"
+                TextColor="White"
+                FontSize="14"
+                HorizontalTextAlignment="Center"
+                Margin="0,10"
+                VerticalOptions="EndAndExpand"/>
+        </Grid>
+
+
+        <!-- Item List Section -->
+        <Grid Grid.Row="2" Padding="0,0">
+            <!-- Busy Indicator -->
+            <ActivityIndicator IsVisible="{Binding IsBusy, Source={x:Reference RootView}}"
+                               IsRunning="{Binding IsBusy, Source={x:Reference RootView}}"
+                               Color="{StaticResource Primary}"
+                               VerticalOptions="Start"
+                               Margin="0,20"
+                               HeightRequest="40"
+                               WidthRequest="40"
+                               HorizontalOptions="Center" />
+
+            <!-- The CollectionView with ItemTapped handling instead of selection -->
+            <CollectionView x:Name="ItemsCollectionView"
+                            ItemsSource="{Binding ItemsSource, Source={x:Reference RootView}}"
+                             SelectionMode="{Binding IsSelectable, Source={x:Reference RootView}, Converter={StaticResource BoolToSelectionModeConverter}}"
+                            SelectionChangedCommand="{Binding SelectionChangedCommand, Source={x:Reference RootView}}"
+                            SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference ItemsCollectionView}}"
+                            SelectedItem="{Binding SelectedItem, Source={x:Reference RootView}, Mode=TwoWay}"
+                            ItemTemplate="{Binding ItemTemplate, Source={x:Reference RootView}}"
+                            IsVisible="{Binding IsNotBusy, Source={x:Reference RootView}}">
+
+                <!-- EmptyView -->
+                <CollectionView.EmptyView>
+                    <VerticalStackLayout Spacing="10"
+                                         HorizontalOptions="Center"
+                                         VerticalOptions="Start"
+                                         Margin="0,20">
+                        <Label Text="Aucun élément disponible"
+                               FontSize="16"
+                               TextColor="#757575"
+                               HorizontalOptions="Center"/>
+                    </VerticalStackLayout>
+                </CollectionView.EmptyView>
+            </CollectionView>
+        </Grid>
+    </Grid>
+</ContentView>

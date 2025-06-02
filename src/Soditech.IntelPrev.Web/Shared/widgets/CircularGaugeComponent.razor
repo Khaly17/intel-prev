@@ -1,0 +1,50 @@
+﻿@using Syncfusion.Blazor.CircularGauge
+
+<SfCircularGauge MoveToCenter="true" CenterY="75%" CenterX="50%" Width="100%">
+    <CircularGaugeAxes>
+        <CircularGaugeAxis StartAngle="-90" EndAngle="90" Minimum="0" Maximum="100" Radius="180">
+            <CircularGaugeTooltipSettings ShowAtMousePosition="false" Enable="true"></CircularGaugeTooltipSettings>
+            <CircularGaugeAxisLabelStyle Format="{value}%" Position="Position.Inside">
+            </CircularGaugeAxisLabelStyle>
+            <CircularGaugeAxisMajorTicks Interval="10"></CircularGaugeAxisMajorTicks>
+            <CircularGaugeAnnotations>
+                <CircularGaugeAnnotation Angle="250" ZIndex="1">
+                    <ContentTemplate>
+                        <div style="font-size: 12px; font-family: inherit; color: #000;">
+                            <span>OK: @OkValue</span>
+                        </div>
+                    </ContentTemplate>
+                </CircularGaugeAnnotation>
+
+                <CircularGaugeAnnotation Angle="110" ZIndex="1">
+                    <ContentTemplate>
+                        <div style="font-size: 12px; font-family: inherit; color: #000;">
+                            <span>Nc: @NcValue</span>
+                        </div>
+                    </ContentTemplate>
+                </CircularGaugeAnnotation>
+
+                <CircularGaugeAnnotation Angle="0" Radius="30%" ZIndex="1" Content="@FormattedValue">
+                    <CircularGaugeAnnotationTextStyle Size="30px" Color="#000" FontFamily="inherit" />
+                </CircularGaugeAnnotation>
+            </CircularGaugeAnnotations>
+            <CircularGaugeRanges>
+                <CircularGaugeRange Position="PointerRangePosition.Outside">
+                    <CircularGaugeRange StartWidth="40" EndWidth="40" Start="0" End="100" Color="rgb(196, 53, 40)" Position="PointerRangePosition.Outside">
+                        <CircularGaugePointers>
+                            <CircularGaugePointer Value="@Value" Radius="100%" Color="#000" PointerWidth="6">
+                                <CircularGaugeCap Radius="0" />
+                                <CircularGaugeNeedleTail Length="4%" Color="#000" />
+                                <CircularGaugePointerAnimation Enable="false" Duration="900" />
+                            </CircularGaugePointer>
+
+                            <CircularGaugePointer Color="#003f88" PointerWidth="40"
+                                                  Position="PointerRangePosition.Outside"
+                                                  Value="@Value" Type="PointerType.RangeBar" />
+                        </CircularGaugePointers>
+                    </CircularGaugeRange>
+                </CircularGaugeRange>
+            </CircularGaugeRanges>
+        </CircularGaugeAxis>
+    </CircularGaugeAxes>
+</SfCircularGauge>

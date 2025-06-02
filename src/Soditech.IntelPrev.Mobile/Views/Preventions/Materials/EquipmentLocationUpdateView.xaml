@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Soditech.IntelPrev.Mobile.Views.Preventions.Materials.EquipmentLocationUpdateView"
+             xmlns:base="clr-namespace:Soditech.IntelPrev.Mobile.ViewModels.Base;assembly=Soditech.IntelPrev.Mobile"
+             xmlns:behaviors="using:Soditech.IntelPrev.Mobile.Behaviors"
+             base:ViewManager.AutoWireViewModel="True"
+             xmlns:viewModel="clr-namespace:Soditech.IntelPrev.Mobile.ViewModels.Preventions.Materials"
+             x:DataType="viewModel:EquipmentLocationUpdateViewModel"
+             Title="Localisation de l'équipement">
+    <ContentPage.Content>
+        
+    </ContentPage.Content>
+</ContentPage>

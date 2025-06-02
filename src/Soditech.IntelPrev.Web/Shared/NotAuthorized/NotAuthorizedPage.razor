@@ -1,0 +1,72 @@
+@layout MainLayout
+
+<div class="notauthorized-container">
+    <div class="notauthorized-box">
+        <h1>403</h1>
+        <h2>Accès non autorisé</h2>
+        <p>Vous n'avez pas les permissions nécessaires pour accéder à cette page.</p>
+        <a class="home-btn" href="/">Retour à l'accueil</a>
+    </div>
+</div>
+
+<style>
+    .notauthorized-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .notauthorized-box {
+        max-width: 500px;
+        padding: 40px;
+    }
+
+    .notauthorized-box h1 {
+        font-size: 5rem;
+        margin: 0;
+        color: #e94560;
+    }
+
+    .notauthorized-box h2 {
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+        color: #1a1a2e;
+    }
+
+    .notauthorized-box p {
+        color: #555;
+        font-size: 1rem;
+        margin-bottom: 30px;
+    }
+
+    .home-btn {
+        background-color: #003f88;
+        color: white;
+        padding: 12px 25px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+    }
+
+    @* .home-btn:hover {
+        background-color: #1a1a2e;
+    } *@
+
+    @@media (max-width: 600px) {
+        .notauthorized-box h1 {
+            font-size: 4rem;
+        }
+
+        .notauthorized-box h2 {
+            font-size: 1.4rem;
+        }
+
+        .notauthorized-box p {
+            font-size: 0.95rem;
+        }
+    }
+</style>

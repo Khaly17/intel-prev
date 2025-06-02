@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <UserSecretsId>6f0684c6-269f-4880-89cd-eda3ccf57b3a</UserSecretsId>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="7.2.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Mediatheques\Soditech.IntelPrev.Mediatheques.WebApi\Soditech.IntelPrev.Mediatheques.WebApi.csproj" />
+      <ProjectReference Include="..\Soditech.IntelPrev.Notifications\Soditech.IntelPrev.NotificationHubs.WebApi\Soditech.IntelPrev.NotificationHubs.WebApi.csproj" />
+      <ProjectReference Include="..\Soditech.IntelPrev.Preventions\Soditech.IntelPrev.Preventions.WebApi\Soditech.IntelPrev.Preventions.WebApi.csproj" />
+      <ProjectReference Include="..\Soditech.IntelPrev.Reports\Soditech.IntelPrev.Reports.WebApi\Soditech.IntelPrev.Reports.WebApi.csproj" />
+      <ProjectReference Include="..\Users\Soditech.IntelPrev.Users.WebApi\Soditech.IntelPrev.Users.WebApi.csproj" />
+    </ItemGroup>
+
+</Project>

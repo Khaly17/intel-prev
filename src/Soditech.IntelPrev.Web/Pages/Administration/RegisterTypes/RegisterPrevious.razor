@@ -1,0 +1,12 @@
+﻿@page "/previous"
+
+@using Soditech.IntelPrev.Web.Components.Administrations.Registers
+
+@if (_isLoading)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <RegisterPreviewComponent RegisterType="_registerTypeTest" />
+}

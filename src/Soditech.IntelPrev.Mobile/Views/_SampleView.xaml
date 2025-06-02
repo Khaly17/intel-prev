@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Soditech.IntelPrev.Mobile.Views._SampleView"
+    xmlns:base="clr-namespace:Soditech.IntelPrev.Mobile.ViewModels.Base;assembly=Soditech.IntelPrev.Mobile"
+    xmlns:behaviors="using:Soditech.IntelPrev.Mobile.Behaviors"
+    base:ViewManager.AutoWireViewModel="True"
+    xmlns:viewModel="clr-namespace:Soditech.IntelPrev.Mobile.ViewModels"
+    x:DataType="viewModel:_SampleViewModel"
+    Title="This is sample empty page for IntelPrev! With a label and an entry.">
+    
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IconOverride="back.png" IsVisible="True" IsEnabled="True" />
+    </Shell.BackButtonBehavior>
+
+    <ContentPage.Content>
+        <VerticalStackLayout>
+            <Label Text="sample empty page"
+                   VerticalOptions="CenterAndExpand" 
+                   HorizontalOptions="CenterAndExpand" />
+            <Label Text="{Binding Text}"></Label>
+            <Entry Text="{Binding Text, Mode=TwoWay}"></Entry>
+        </VerticalStackLayout>
+    </ContentPage.Content>
+    <ContentPage.Behaviors>
+        <behaviors:EventHandlerBehavior EventName="Appearing">
+            <behaviors:ActionCollection>
+                <behaviors:InvokeCommandAction Command="{Binding PageAppearingCommand}" />
+            </behaviors:ActionCollection>
+        </behaviors:EventHandlerBehavior>
+    </ContentPage.Behaviors>
+</ContentPage>

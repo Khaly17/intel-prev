@@ -1,0 +1,173 @@
+﻿@using Syncfusion.Blazor.Grids
+@using Syncfusion.Blazor.Inputs
+@using Syncfusion.Blazor.Buttons
+@using Syncfusion.Blazor.Spinner
+@using Syncfusion.Blazor.Navigations
+
+@typeparam TItem
+
+
+<div class="card-border">
+    <div class="card-header main-header">
+        @if (DisplayTitle)
+        {
+            <h4 class="f-left">@GridTitle</h4>
+        }
+        <div>
+            <content>
+                @ChildContent
+            </content>
+        </div>
+        <div class="f-right">
+            @if (CustomSearch == true)
+            {
+                <form class="d-flex justify-content-end" @onsubmit="SearchMethod">
+                    <SfTextBox @bind-Value="@TextValue" Placeholder="Search" Width="200px" CssClass="me-2"></SfTextBox>
+                    <SfButton class="search-button" IsPrimary="true" Content="Search"></SfButton>
+                </form>
+            }
+        </div>
+
+    </div>
+
+
+
+    <div class="row">
+
+
+
+        <div>
+            <SfGrid @ref="GenGrid" DataSource="@Items" AllowPaging="false" AllowSorting="true" AllowFiltering="false" EnableHover="@Enablehover"
+                    Toolbar="@ToolbarItems" Width="100%">
+
+                <GridEvents OnToolbarClick="ToolbarClickHandler" TValue="TItem"></GridEvents>
+                <GridColumns>
+                    <SfSpinner @bind-Visible="@DisplaySpinnerOnLoading"></SfSpinner>
+
+                    @foreach (var column in Columns)
+                    {
+                        <GridColumn Format="@column.Format" Field="@column.Field" HeaderText="@column.HeaderText" TextAlign="TextAlign.Left" Width="@column.Width">
+                            <Template>
+                                @if (column.HtmlContent != null)
+                                {
+                                    @column.HtmlContent((TItem)context)
+                                }
+                                else
+                                {
+                                    // span tag to display the value
+                                    <span>@context.GetType().GetProperty(column.Field).GetValue(context)</span>
+                                }
+
+                            </Template>
+                        </GridColumn>
+                    }
+                    @if (DisplayActionsBtn)
+                    {
+                        <GridColumn Freeze="FreezeDirection.Right" HeaderText="Actions" Width="150" TextAlign="TextAlign.Center">
+                            <Template>
+                                <div class="d-flex justify-content-center">
+                                    @if (DetailAction != null)
+                                    {
+                                        <SfButton Content="Détail" @onclick="() => DetailAction((TItem)context)" IsPrimary="true" IconCss="fa fa-eye"/>
+
+                                    }
+
+                                    @if (OnCustomAction.HasDelegate)
+                                    {
+                                        <SfButton Content="@CustomBtnLabel" @onclick="@(() => OnCustomAction.InvokeAsync((TItem)context))" IsPrimary="true" IconCss="fa fa-refresh"/>
+                                    }
+
+                                </div>
+
+
+                            </Template>
+                        </GridColumn>
+                    }
+                </GridColumns>
+                <GridEvents QueryCellInfo="@Callback" OnActionComplete="@Onactioncomplete" TValue="TItem"></GridEvents>
+                <GridSearchSettings></GridSearchSettings>
+
+            </SfGrid>
+            @if(DisplayPagination){
+                <SfPager
+                    PageSizeChanged="PchangedEvent"
+                    NumericItemsCount=3
+                    ShowAllInPageSizes="false"
+                    PageSizes="new List<int>() { 10, 20, 30, 40, 50, 70, 100 }"
+                    PageSize="@PageSize"
+                    TotalItemsCount="@TotalCount"
+                    CurrentPage="@CurrentPage"
+                    PageChanged="@OnPageChanged">
+                </SfPager>
+            }
+
+
+        </div>
+    </div>
+</div>
+<style>
+
+    .search-button {
+        background-color: #fff;
+        color: #003f88;
+        border: none;
+        padding: 4px 12px;
+        border-radius: 5px;
+        font-size:14px;
+        cursor: pointer;
+        transition: background-color 0.3s, box-shadow 0.3s;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .search-button:hover {
+        background-color: #f1f1f1;
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+    }
+    .e-btn:hover {
+        background: #162042;
+        color: white;
+    }
+    .card-border{
+        border-top: 7px solid rgb(196, 53, 40);
+        margin: 20px;
+        /*min-height: 100vh;*/
+    }
+
+    /* display element of `.card-header` as two column left and right */
+    .main-header {
+        display: flex;
+        justify-content: space-between;
+        margin: 10px 2px;
+        color: white;
+    }
+
+    /* display element of `.card-header` as two column left and right */
+    .f-right {
+        float: right;
+    }
+
+    /* display element of `.card-header` as two column left and right */
+    .f-left {
+        float: left;
+    }
+    
+
+    .e-btn.e-primary, .e-css.e-btn.e-primary {
+        background-color: #FFFFFF;
+        border-color: #FFFFFF;
+        color: black;
+    }
+
+    .e-grid .e-table {
+        background-color: #fff;
+    }
+    .e-btn.e-primary:hover{
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
+        color: #ffffff;
+    }
+    .e-btn.e-primary:focus
+    {
+        background: #FFFFFF;
+        color: black;
+    }
+</style>

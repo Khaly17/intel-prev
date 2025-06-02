@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModel="clr-namespace:Soditech.IntelPrev.Mobile.ViewModels.Account"
+             x:Class="Soditech.IntelPrev.Mobile.Views.Account.PinVerificationView"
+             x:DataType="viewModel:PinVerificationViewModel"
+             
+             Shell.ForegroundColor="White"
+             Shell.TitleColor="White"
+             BackgroundColor="White">
+
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IconOverride="back.png" IsVisible="True" IsEnabled="True" />
+    </Shell.BackButtonBehavior>
+    
+    <ContentPage.BindingContext>
+        <viewModel:PinVerificationViewModel />
+    </ContentPage.BindingContext>
+
+    <VerticalStackLayout Padding="30,80,30,30" Spacing="30">
+
+        <Label Text="Pour des raisons de sécurité,"
+               FontSize="18"
+               TextColor="Black"
+               HorizontalOptions="Center" />
+
+        <Label Text="Veuillez saisir votre code PIN"
+               FontSize="16"
+               TextColor="Gray"
+               HorizontalOptions="Center" />
+
+        <Entry Placeholder="Code PIN"
+               Text="{Binding CurrentPin}"
+               Keyboard="Numeric"
+               IsPassword="True"
+               MaxLength="4"
+               FontSize="24"
+               BackgroundColor="#F0F0F0"
+               HeightRequest="50"
+               HorizontalOptions="FillAndExpand" />
+
+        <Label Text="{Binding ErrorMessage}"
+               TextColor="Red"
+               FontSize="13"
+               IsVisible="{Binding ErrorMessage , Converter={StaticResource IsStringNotNullOrEmptyConverter}}"  />
+
+        <Button Text="Valider"
+                Command="{Binding ValidatePinCommand}"
+                FontSize="16"
+                TextColor="White"
+                BackgroundColor="{StaticResource Primary}"
+                HeightRequest="50"
+                CornerRadius="10"
+                HorizontalOptions="FillAndExpand" />
+
+
+        <ActivityIndicator
+                        IsRunning="{Binding IsBusy}"
+                        IsVisible="{Binding IsBusy}"
+                        Color="{StaticResource Primary}"
+                        HeightRequest="30"
+                        WidthRequest="30"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center" />
+    </VerticalStackLayout>
+</ContentPage>

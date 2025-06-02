@@ -1,0 +1,238 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Soditech.IntelPrev.Mobile.Views.MainView"
+             xmlns:viewModel="clr-namespace:Soditech.IntelPrev.Mobile.ViewModels"
+             xmlns:carousel="clr-namespace:Syncfusion.Maui.Carousel;assembly=Syncfusion.Maui.Carousel"
+             xmlns:components="clr-namespace:Soditech.IntelPrev.Mobile.Views.Components.Carousel"
+             xmlns:behaviors="clr-namespace:Soditech.IntelPrev.Mobile.Behaviors"
+             Title="Accueil">
+
+
+    <ContentPage.BindingContext>
+        <viewModel:MainViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <Grid Padding="0" Margin="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <components:CarouselComponent
+                ItemsSource="{Binding CarouselItems}"
+                Position="0"
+                CurrentItemChangedCommand="{Binding CarouselItemChangedCommand}"/>
+
+
+            <!-- Buttons Section -->
+            <Grid Grid.Row="1" ColumnSpacing="10" RowSpacing="10" Padding="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Button 1 -->
+                <Border Grid.Row="0" Grid.Column="0" BackgroundColor="{StaticResource PureWhite}" Padding="0">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="15"/>
+                    </Border.StrokeShape>
+                    <Border.Shadow>
+                        <Shadow Opacity="0.2" />
+                    </Border.Shadow>
+                    <VerticalStackLayout Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
+                        <Image Source="assurance.png" HeightRequest="40" />
+                        <Label Text="Prévention" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                    </VerticalStackLayout>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding PreventionsViewCommand}" />
+                    </Border.GestureRecognizers>
+                </Border>
+
+                <!-- Button 2 -->
+                <Border Grid.Row="0" Grid.Column="1" BackgroundColor="{StaticResource PureWhite}" Padding="0">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="15"/>
+                    </Border.StrokeShape>
+                    <Border.Shadow>
+                        <Shadow Opacity="0.2" />
+                    </Border.Shadow>
+                    <VerticalStackLayout Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
+                        <Image Source="prevention_dincendies.png" HeightRequest="40" />
+                        <Label Text="Incendie " FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                    </VerticalStackLayout>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToIncendieViewCommand}"  />
+                    </Border.GestureRecognizers>
+                </Border>
+
+                <!-- Button 3 -->
+                <Border Grid.Row="0" Grid.Column="2" BackgroundColor="{StaticResource PureWhite}" Padding="0">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="15"/>
+                    </Border.StrokeShape>
+                    <Border.Shadow>
+                        <Shadow Opacity="0.2" />
+                    </Border.Shadow>
+                    <VerticalStackLayout Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
+                        <Image Source="chequier.png" HeightRequest="40" />
+                        <Label Text="Signaler" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                    </VerticalStackLayout>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToCreateReportCommand}" />
+                    </Border.GestureRecognizers>
+                </Border>
+
+                <!-- Button 4 -->
+                <Border Grid.Row="1" Grid.Column="0" BackgroundColor="{StaticResource PureWhite}" Padding="0">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="15"/>
+                    </Border.StrokeShape>
+                    <Border.Shadow>
+                        <Shadow Opacity="0.2" />
+                    </Border.Shadow>
+                    <VerticalStackLayout Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
+                        <Image Source="papier_juridique.png" HeightRequest="40" />
+                        <Label Text="Documents légaux" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                    </VerticalStackLayout>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToDocumentCommand}" />
+                    </Border.GestureRecognizers>
+                </Border>
+
+                <!-- Button 5 -->
+                <Border Grid.Row="1" Grid.Column="1" BackgroundColor="{StaticResource PureWhite}" Padding="0">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="15"/>
+                    </Border.StrokeShape>
+                    <Border.Shadow>
+                        <Shadow Opacity="0.2" />
+                    </Border.Shadow>
+                    <VerticalStackLayout Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
+                        <Image Source="alerte.png" HeightRequest="40" />
+                        <Label Text="Alertes" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                    </VerticalStackLayout>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToAlertsListPageCommand}" />
+                    </Border.GestureRecognizers>
+                </Border>
+
+                <!-- Button 6 -->
+                <Border Grid.Row="1" Grid.Column="2" BackgroundColor="{StaticResource PureWhite}" Padding="0">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="15"/>
+                    </Border.StrokeShape>
+                    <Border.Shadow>
+                        <Shadow Opacity="0.2" />
+                    </Border.Shadow>
+                    <VerticalStackLayout Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
+                        <Image Source="gps.png" HeightRequest="40" />
+                        <Label Text="GPS" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                    </VerticalStackLayout>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToGpsPageCommand}" />
+                    </Border.GestureRecognizers>
+                </Border>
+
+                <!-- Button 7 -->
+                <Border Grid.Row="2" Grid.Column="0" BackgroundColor="{StaticResource PureWhite}" Padding="0">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="15"/>
+                    </Border.StrokeShape>
+                    <Border.Shadow>
+                        <Shadow Opacity="0.2" />
+                    </Border.Shadow>
+                    <VerticalStackLayout Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
+                        <Image Source="tutoriels_videos.png" HeightRequest="40" />
+                        <Label Text="Tutos" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                    </VerticalStackLayout>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToTutosCommand}" />
+                    </Border.GestureRecognizers>
+                </Border>
+
+                <!-- Button 8 -->
+                <Border Grid.Row="2" Grid.Column="1" BackgroundColor="{StaticResource PureWhite}" Padding="0">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="15"/>
+                    </Border.StrokeShape>
+                    <Border.Shadow>
+                        <Shadow Opacity="0.2" />
+                    </Border.Shadow>
+
+                    <VerticalStackLayout Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
+                        <Image Source="professionnel.png" HeightRequest="40" />
+                        <Label Text="Pro-Prev" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                    </VerticalStackLayout>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToProPrevHomePageCommand}" />
+                    </Border.GestureRecognizers>
+                </Border>
+
+                <!-- Button 9 -->
+                <Border Grid.Row="2" Grid.Column="2" BackgroundColor="{StaticResource PureWhite}" Padding="0">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="15"/>
+                    </Border.StrokeShape>
+                    <Border.Shadow>
+                        <Shadow Opacity="0.2" />
+                    </Border.Shadow>
+                    <VerticalStackLayout Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
+                        <Image Source="parametres.png" HeightRequest="40" />
+                        <Label Text="Settings" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                    </VerticalStackLayout>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToSettingsCommand}" />
+                    </Border.GestureRecognizers>
+                </Border>
+
+                <!-- Button 10 -->
+                <Border Grid.Row="3" Grid.Column="0" BackgroundColor="{StaticResource PureWhite}" Padding="0">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="15"/>
+                    </Border.StrokeShape>
+                    <Border.Shadow>
+                        <Shadow Opacity="0.2" />
+                    </Border.Shadow>
+                    <VerticalStackLayout Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
+                        <Image Source="appel_d_urgence.png" HeightRequest="40" />
+                        <Label Text="Pompier" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                    </VerticalStackLayout>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer  Command="{Binding CallFirefighterCommand}" />
+                    </Border.GestureRecognizers>
+                </Border>
+
+                <!-- Button 11 -->
+                <Border Grid.Row="3" Grid.Column="2" BackgroundColor="{StaticResource PureWhite}" Padding="0">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="15"/>
+                    </Border.StrokeShape>
+                    <Border.Shadow>
+                        <Shadow Opacity="0.2" />
+                    </Border.Shadow>
+                    <VerticalStackLayout Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
+                        <Image Source="appel_police.png" HeightRequest="40" />
+                        <Label Text="Police" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                    </VerticalStackLayout>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding CallPoliceCommand}" />
+                    </Border.GestureRecognizers>
+                </Border>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+    <ContentPage.Behaviors>
+        <behaviors:EventHandlerBehavior EventName="Appearing">
+            <behaviors:ActionCollection>
+                <behaviors:InvokeCommandAction Command="{Binding PageAppearingCommand}" />
+            </behaviors:ActionCollection>
+        </behaviors:EventHandlerBehavior>
+    </ContentPage.Behaviors>
+</ContentPage>

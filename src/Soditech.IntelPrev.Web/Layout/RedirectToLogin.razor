@@ -1,0 +1,8 @@
+﻿@code {    
+    protected override void OnInitialized()
+    {
+        Navigation.NavigateTo(!Navigation.Uri.Contains("login")
+            ? $"/login?returnUrl={Uri.EscapeDataString(Navigation.Uri.Replace(Navigation.BaseUri, ""))}"
+            : $"/{Navigation.Uri.Replace(Navigation.BaseUri, "")}");
+    }
+}

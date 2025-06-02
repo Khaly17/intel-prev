@@ -1,0 +1,87 @@
+﻿@page "/agenda"
+@attribute [Authorize(Roles = "Admin, Super Admin")]
+
+@using Microsoft.AspNetCore.Authorization
+@using Soditech.IntelPrev.Preventions.Shared.Events
+@using Syncfusion.Blazor.Schedule
+@using Syncfusion.Blazor.Calendars
+@using Syncfusion.Blazor.DropDowns
+@using Syncfusion.Blazor.Inputs
+
+<SfSchedule TValue="EventResult" Height="1000px" @bind-SelectedDate="@CurrentDate">
+    <ScheduleEvents TValue="EventResult" ActionCompleted="OnActionCompleted"></ScheduleEvents>
+    <ScheduleEventSettings DataSource="@DataSource">
+        <Template>
+            @{
+                var eventData = context as EventResult;
+                <div>
+                    <div><strong>@eventData?.Name</strong></div> 
+                    <div>@eventData?.StartTime.ToString("dd/MM/yyyy HH:mm") - @eventData?.EndTime.ToString("HH:mm")</div>
+                    <div>@eventData?.Description</div> 
+                </div>
+            }
+        </Template>
+    </ScheduleEventSettings>
+    <ScheduleTemplates>
+        <EditorTemplate>
+            @if (context is EventResult eventResult)
+            {
+                <table class="custom-event-editor" width="100%" cellpadding="5">
+                    <tbody>
+                        <tr>
+                            <td class="e-textlabel">Titre</td>
+                            <td colspan="4">
+                                <SfTextBox @bind-Value="eventResult.Name"></SfTextBox>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="e-textlabel">Organisateur</td>
+                            <td colspan="4">
+                                @if (Organizers != null && Organizers.Any())
+                                {
+                                    <SfDropDownList ID="EventType" DataSource="@Organizers" Placeholder="Choisissez un organisateur" @bind-Value="eventResult.OrganizerId">
+                                        <DropDownListFieldSettings Value="Id" Text="FirstName"></DropDownListFieldSettings>
+                                    </SfDropDownList>
+                                }
+                                else
+                                {
+                                    <p>Aucun organisateur disponible.</p>
+                                }
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="e-textlabel">Du</td>
+                            <td colspan="4">
+                                <SfDateTimePicker @bind-Value="eventResult.StartTime"></SfDateTimePicker>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="e-textlabel">à</td>
+                            <td colspan="4">
+                                <SfDateTimePicker @bind-Value="eventResult.EndTime"></SfDateTimePicker>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="e-textlabel">Description</td>
+                            <td colspan="4">
+                                <SfTextBox Multiline="true" @bind-Value="eventResult.Description"></SfTextBox>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <p>L'événement n'a pas été trouvé.</p>
+            }
+        </EditorTemplate>
+    </ScheduleTemplates>
+
+    <ScheduleViews>
+        <ScheduleView Option="View.Day" DisplayName="Jour"></ScheduleView>
+        <ScheduleView Option="View.Week" DisplayName="Semaine"></ScheduleView>
+        <ScheduleView Option="View.WorkWeek" DisplayName="Semaine de travail"></ScheduleView>
+        <ScheduleView Option="View.Month" DisplayName="Mois"></ScheduleView>
+        <ScheduleView Option="View.Agenda" DisplayName="Agenda"></ScheduleView>
+    </ScheduleViews>
+</SfSchedule>

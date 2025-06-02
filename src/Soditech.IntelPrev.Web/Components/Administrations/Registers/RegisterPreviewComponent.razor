@@ -1,0 +1,162 @@
+@using Soditech.IntelPrev.Reports.Shared.Enums
+@using Soditech.IntelPrev.Reports.Shared.RegisterFieldGroups
+@using Soditech.IntelPrev.Reports.Shared.RegisterFields
+
+<div class="row" style="margin-left: 0; margin-right: 0;">
+    <div class="col-md-12 mt-0" style="padding: 0;">
+        <div class="row">
+            <div class="col-md-9 mx-auto">
+                <div class="card total-visits-browse-area">
+                    @if (_report != default!)
+                    {
+                        <EditForm Model="@_report">
+                            <DataAnnotationsValidator />
+                            <ValidationSummary />
+
+                            <div class="card-header" style="margin: 0; padding: 10px;">
+                                <h5 style="margin: 0;">Aperçu : @_report.Title</h5>
+                            </div>
+                            <div class="card-body">
+                                <p>@RegisterType.Description</p>
+
+                                <!-- Affichage des éléments triés -->
+                                @foreach (var item in _report.GetSortedFieldsAndGroups)
+                                {
+                                    @switch (item)
+                                    {
+                                        case CreateReportFieldGroupCommand group:
+                                            {
+                                                <div class="group-section">
+                                                    <h5>@group.Name</h5>
+                                                    <p>@group.Description</p>
+                                                    <div class="fields-container">
+                                                        @foreach (var field in group.CreateReportFieldsCommand)
+                                                        {
+                                                            <div class="form-group row mb-3 mt-4">
+                                                                <label class="control-label col-md-2 mb-1">@field.Name</label>
+                                                                <div class="col-md-10">
+                                                                    @switch (Enum.Parse<FieldType>(field.FieldType))
+                                                                    {
+                                                                        case FieldType.Text:
+                                                                            <InputText class="form-control" @bind-Value="@_textTest" />
+                                                                            break;
+                                                                        case FieldType.Date:
+                                                                            <InputDate class="form-control" @bind-Value="@_dateTest" />
+                                                                            break;
+                                                                        case FieldType.Number:
+                                                                            <InputNumber class="form-control" @bind-Value="@_numberTest" />
+                                                                            break;
+                                                                        case FieldType.Boolean:
+                                                                            <InputCheckbox class="form-check-input" @bind-Value="@_booleanTest" />
+                                                                            break;
+                                                                        default:
+                                                                            <p>Type de champ inconnu</p>
+                                                                            break;
+                                                                    }
+                                                                    @if (!string.IsNullOrEmpty(field.Description))
+                                                                    {
+                                                                        <small class="form-text text-muted">@field.Description</small>
+                                                                    }
+                                                                </div>
+                                                            </div>
+                                                        }
+                                                    </div>
+                                                </div>
+                                                break;
+                                            }
+                                        case CreateReportFieldCommand field:
+                                            {
+                                                <div class="form-group row mb-3 mt-4">
+                                                    <label class="control-label col-md-2 mb-1">@field.Name</label>
+                                                    <div class="col-md-10">
+                                                        @switch (Enum.Parse<FieldType>(field.FieldType))
+                                                        {
+                                                            case FieldType.Text:
+                                                                <InputText class="form-control" @bind-Value="@_textTest" />
+                                                                break;
+                                                            case FieldType.Date:
+                                                                <InputDate class="form-control" @bind-Value="@_dateTest" />
+                                                                break;
+                                                            case FieldType.Number:
+                                                                <InputNumber class="form-control" @bind-Value="@_numberTest" />
+                                                                break;
+                                                            case FieldType.Boolean:
+                                                                <InputCheckbox class="form-check-input" @bind-Value="@_booleanTest" />
+                                                                break;
+                                                            default:
+                                                                <p>Type de champ inconnu</p>
+                                                                break;
+                                                        }
+                                                        @if (!string.IsNullOrEmpty(field.Description))
+                                                        {
+                                                            <small class="form-text text-muted">@field.Description</small>
+                                                        }
+                                                    </div>
+                                                </div>
+                                                break;
+                                            }
+                                    }
+                                }
+                            </div>
+                        </EditForm>
+                    }
+                    else
+                    {
+                        <p>Chargement des données...</p>
+                    }
+
+                    <div class="d-flex justify-content-end gap-2">
+                        <button 
+                            class="btn btn-secondary"
+                                @onclick="ToPrevious"
+                                style="background-color: rgb(196, 53, 40);">
+                            Precedent
+                        </button>
+                        <button 
+                            class="btn btn-success" 
+                            @onclick="SaveRegister" 
+                            style="background-color: #003f88;"
+                        >
+                            @saveBtnLabel
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .total-visits-browse-area {
+        background: white;
+        margin-top: 10px;
+        padding: 20px;
+        border-top: 7px solid rgb(196, 53, 40);
+        box-shadow: 0 5px 5px rgba(0, 0, 0, 0.10);
+    }
+
+    .group-section {
+        margin-bottom: 20px;
+    }
+
+    .fields-container {
+        padding-left: 15px;
+    }
+
+    .form-group {
+        margin-bottom: 1rem;
+    }
+
+    .form-control {
+        height: 40px;
+        border-radius: 0;
+    }
+
+    .form-check-input {
+        margin-top: 0.3rem;
+    }
+
+    .form-text {
+        margin-top: 0.25rem;
+    }
+</style>

@@ -1,0 +1,14 @@
+﻿@using Syncfusion.Blazor.Charts
+
+<SfAccumulationChart >
+    <AccumulationChartSeriesCollection>
+        <AccumulationChartSeries 
+            DataSource="@PieChartData"
+            XName="Label"
+            YName="Value">
+
+        </AccumulationChartSeries>
+    </AccumulationChartSeriesCollection>
+    <AccumulationChartTooltipSettings Enable="true"></AccumulationChartTooltipSettings>
+    <AccumulationChartLegendSettings Visible="true"></AccumulationChartLegendSettings>
+</SfAccumulationChart>

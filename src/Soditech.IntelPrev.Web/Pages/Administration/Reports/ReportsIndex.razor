@@ -1,0 +1,25 @@
+﻿@page "/report-details"
+
+@using Soditech.IntelPrev.Reports.Shared.Reports
+@using Soditech.IntelPrev.Users.Shared.Users
+@using Soditech.IntelPrev.Web.Components.Widgets.Tables
+@using Soditech.IntelPrev.Web.Components.Widgets.Alerts
+@using Soditech.IntelPrev.Web.Components.Widgets.Dialogs
+
+<GenericGrid TItem="@ReportResult"
+             Items="@ReportList"
+             GridTitle="Signalements"
+             ToolbarItems="@ToolbarItems"
+             DisplayTitle="true"
+             PageCount="@PageCount"
+             PageSize="@PageSize"
+             DetailAction="GoToDetails"
+             Columns="@Columns"
+             DisplaySpinnerOnLoading="IsLoading">
+
+    <AlertComponent Message="@_alertMessage" AlertType="@_alertType" IsVisible="@_isAlertVisible" />
+
+</GenericGrid>
+
+<GenericConfirmDialog HeaderLabel="Suppression du rapport" IsVisible="@_isDeleteModalVisible"
+                      OnConfirm="DeleteReportAsync" OnCancel="HideDeleteModal" />

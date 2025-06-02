@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:core="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
+             x:Class="Soditech.IntelPrev.Mobile.Views.Alerts.AlertsListView"
+             xmlns:behaviors="using:Soditech.IntelPrev.Mobile.Behaviors"
+             xmlns:viewModel="clr-namespace:Soditech.IntelPrev.Mobile.ViewModels.Alerts"
+             xmlns:enums="clr-namespace:Soditech.IntelPrev.Reports.Shared.Enums;assembly=Soditech.IntelPrev.Reports.Shared"
+             xmlns:components="clr-namespace:Soditech.IntelPrev.Mobile.Views.Components"
+             x:DataType="viewModel:AlertsListViewModel"
+             Shell.TitleColor="White"
+             Shell.ForegroundColor="White"
+             Title="Alerter">
+    <ContentPage.BindingContext>
+        <viewModel:AlertsListViewModel/>
+    </ContentPage.BindingContext>
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IconOverride="back.png" IsVisible="True" IsEnabled="True" />
+    </Shell.BackButtonBehavior>
+
+    <ContentPage.Resources>
+        <DataTemplate x:DataType="viewModel:AlertTypeItem" x:Key="AlertItemTemplate">
+            <Border Padding="10" Margin="0,0" StrokeThickness="1" Stroke="#E0E0E0">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="0" />
+                </Border.StrokeShape>
+                <Grid ColumnSpacing="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Alert icon based on type -->
+                    <Image Grid.Column="0" Margin="5"
+                           Source="{Binding Icon}"
+                           WidthRequest="32" HeightRequest="32"/>
+
+                    <!-- Alert text details -->
+                    <VerticalStackLayout Grid.Column="1" Spacing="2" VerticalOptions="Center">
+                        <Label Text="{Binding Title}" FontAttributes="Bold" FontSize="16" TextTransform="Uppercase"/>
+                        <Label Text="{Binding Description}" FontSize="14" LineBreakMode="WordWrap" TextColor="#757575"/>
+                    </VerticalStackLayout>
+
+                    <!-- Chevron indicator -->
+                    <Image Grid.Column="2"
+                           Source="chevron_right.png"
+                           HeightRequest="14"
+                           WidthRequest="14"
+                           VerticalOptions="Center"/>
+                </Grid>
+            </Border>
+        </DataTemplate>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <components:SelectableListView
+            MainMessage="Veuillez sélectionner une alerte"
+            SubMessage="Choisir le type d'alerte avant de localiser l'incident"
+            ItemsSource="{Binding AlertTypes}"
+            SelectedItem="{Binding SelectedAlertType}"
+            SelectionChangedCommand="{Binding SelectionChangedCommand}"
+            ItemTemplate="{StaticResource AlertItemTemplate}"
+            IsBusy="{Binding IsBusy}"/>
+    </ContentPage.Content>
+
+    <ContentPage.Behaviors>
+        <behaviors:EventHandlerBehavior EventName="Appearing">
+            <behaviors:ActionCollection>
+                <behaviors:InvokeCommandAction Command="{Binding PageAppearingCommand}" />
+            </behaviors:ActionCollection>
+        </behaviors:EventHandlerBehavior>
+    </ContentPage.Behaviors>
+</ContentPage>

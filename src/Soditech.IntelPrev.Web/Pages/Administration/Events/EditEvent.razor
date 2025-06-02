@@ -1,0 +1,13 @@
+﻿@page "/events/edit/{eventId}"
+@attribute [Authorize(Roles = "Admin, Super Admin")]
+
+@using Microsoft.AspNetCore.Authorization
+@using Soditech.IntelPrev.Web.Components.Administrations;
+
+<AddOrEditEvent
+    NewEvent="@eventItem"
+    Title="@title"
+    SuccessMessage="@successMessage"
+    ErrorMessage="@errorMessage"
+    OnEventCreated="@UpdateEvent"
+/>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Soditech.IntelPrev.Mobile.Views.Gps.EquipmentTypeSelectionView"
+             xmlns:viewModel="clr-namespace:Soditech.IntelPrev.Mobile.ViewModels.Gps"
+             xmlns:components="clr-namespace:Soditech.IntelPrev.Mobile.Views.Components"
+             xmlns:behaviors="using:Soditech.IntelPrev.Mobile.Behaviors"
+             x:DataType="viewModel:EquipmentTypeSelectionViewModel"
+             Title="Mise à jour des positions">
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IconOverride="back.png" IsVisible="True" IsEnabled="True" />
+    </Shell.BackButtonBehavior>
+
+    <ContentPage.BindingContext>
+        <viewModel:EquipmentTypeSelectionViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <DataTemplate x:Key="EquipmentTypeItemTemplate" x:DataType="viewModel:EquipmentTypeItem">
+            <Border Padding="10" Margin="0,6" StrokeThickness="1" Stroke="#E0E0E0">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="8" />
+                </Border.StrokeShape>
+                <Grid ColumnSpacing="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0" Margin="5" 
+                           Source="{Binding Icon}" 
+                           WidthRequest="32" 
+                           HeightRequest="32"/>
+                    <VerticalStackLayout Grid.Column="1" Spacing="2" VerticalOptions="Center">
+                        <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="16" TextTransform="Uppercase"/>
+                        <Label Text="{Binding Description}" FontSize="14" LineBreakMode="WordWrap" TextColor="#757575"/>
+                    </VerticalStackLayout>
+                    <Image Grid.Column="2"
+                           Source="chevron_right.png"
+                           HeightRequest="14"
+                           WidthRequest="14"
+                           VerticalOptions="Center"/>
+                </Grid>
+            </Border>
+        </DataTemplate>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <components:SelectableListView
+            MainMessage="Types d'équipements"
+            SubMessage="Sélectionnez le type d'équipement à ajouter"
+            ItemsSource="{Binding EquipmentTypes}"
+            SelectedItem="{Binding SelectedEquipmentType}"
+            SelectionChangedCommand="{Binding SelectionChangedCommand}"
+            ItemTemplate="{StaticResource EquipmentTypeItemTemplate}"
+            IsBusy="{Binding IsBusy}"/>
+    </ContentPage.Content>
+
+    <ContentPage.Behaviors>
+        <behaviors:EventHandlerBehavior EventName="Appearing">
+            <behaviors:ActionCollection>
+                <behaviors:InvokeCommandAction Command="{Binding PageAppearingCommand}" />
+            </behaviors:ActionCollection>
+        </behaviors:EventHandlerBehavior>
+    </ContentPage.Behaviors>
+</ContentPage>

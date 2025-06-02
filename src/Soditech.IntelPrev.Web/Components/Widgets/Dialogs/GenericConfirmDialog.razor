@@ -1,0 +1,21 @@
+﻿@using Syncfusion.Blazor.Popups
+@using Syncfusion.Blazor.Buttons
+
+<SfDialog @bind-Visible="IsVisible" Width="300px" IsModal="true" Header="@HeaderLabel" ShowCloseIcon="true">
+    <DialogTemplates>
+        <Content>
+            <p>@Message</p>
+        </Content>
+        <FooterTemplate>
+            <SfButton CssClass="custom-btn-danger" @onclick="OnConfirm">
+                @* <i class="fas fa-trash-alt"></i>  *@
+                @ConfirmLabel
+            </SfButton>
+            <SfButton CssClass="custom-btn-secondary" @onclick="OnCancel">
+                @* <i class="fas fa-times"></i>  *@
+                @CancelLabel
+            </SfButton>
+        </FooterTemplate>
+    </DialogTemplates>
+</SfDialog>
+

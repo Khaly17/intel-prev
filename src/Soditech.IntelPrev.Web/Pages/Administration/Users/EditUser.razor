@@ -1,0 +1,15 @@
+﻿@page "/users/edit/{UserId}"
+@attribute [Authorize(Roles = "Admin, Super Admin")]
+
+@using Microsoft.AspNetCore.Authorization
+@using Soditech.IntelPrev.Web.Components.Administrations;
+
+
+<AddOrEditUser NewUser="user"
+               Title="@title"
+               Roles="_roles"
+               Tenants="_tenants"
+               ErrorMessage="@errorMessage"
+               SuccessMessage="@successMessage"
+               OnUserCreated="UpdateUser" />
+

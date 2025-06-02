@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:viewModels="clr-namespace:Soditech.IntelPrev.Mobile.ViewModels.Incendie"
+             xmlns:behaviors="clr-namespace:Soditech.IntelPrev.Mobile.Behaviors"
+             x:Class="Soditech.IntelPrev.Mobile.Views.Incendie.FireInstructionsView"
+             x:DataType="viewModels:FireInstructionsViewModel"
+             BackgroundColor="#f5f5f5"
+             Title="{Binding OverviewTitle}">
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IconOverride="back.png" IsVisible="True" IsEnabled="True" />
+    </Shell.BackButtonBehavior>
+    <ContentPage.Content>
+        <ScrollView>
+            <FlexLayout Direction="Column"
+                     JustifyContent="Start"
+                     AlignItems="Stretch"
+                     Padding="20"
+                     Wrap="NoWrap">
+
+                <!-- Header Section with improved layout -->
+                <HorizontalStackLayout HorizontalOptions="Center">
+                    <Label Text="Recommendations et conseils"
+                           HorizontalTextAlignment="Center"
+                          Style="{StaticResource HeaderStyle}"
+                          SemanticProperties.Hint="Titre principal"/>
+                </HorizontalStackLayout>
+
+                <!-- What are Fire Safety Instructions -->
+                <toolkit:Expander IsExpanded="True" FlexLayout.Basis="Auto" Margin="0,10,0,10">
+                    <toolkit:Expander.Header>
+                        <Grid>
+                            <Border Background="{StaticResource Gray100}">
+                                <Label Text="Les consignes de sécurité incendie C'est quoi ?"
+                                      Style="{StaticResource SubheaderStyle}"
+                                      HorizontalTextAlignment="Center"
+                                      SemanticProperties.Hint="Section d'explication"/>
+                            </Border>
+                        </Grid>
+                    </toolkit:Expander.Header>
+                    <Border Style="{StaticResource CardStyle}">
+                        <Label Style="{StaticResource BodyStyle}">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="La notion de 'consigne de sécurité à appliquer en cas de départ de feu' désigne :" />
+                                    <Span Text="&#x0a;• les instructions qui doivent être mises en œuvre et qui sont propres à chaque bâtiment" />
+                                    <Span Text="&#x0a;• l'affichage de ces règles dans les parties visibles des bâtiments" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </Border>
+                </toolkit:Expander>
+
+                <!-- Safety Instructions Requirements -->
+                <toolkit:Expander IsExpanded="True" FlexLayout.Basis="Auto" Margin="0,0,0,10">
+                    <toolkit:Expander.Header>
+                        <Grid>
+                            <Border Background="{StaticResource Gray100}">
+                                <Label Text="Quelles sont les consignes de sécurité incendie ?"
+                                      Style="{StaticResource SubheaderStyle}"
+                                      HorizontalTextAlignment="Center"
+                                      SemanticProperties.Hint="Section des exigences"/>
+                            </Border>
+                        </Grid>
+                    </toolkit:Expander.Header>
+                    <Border Style="{StaticResource CardStyle}">
+                        <Label Style="{StaticResource BodyStyle}">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="La norme prévoit que des panneaux de consigne de sécurité incendie soient affichés :" />
+                                    <Span Text="&#x0a;&#x0a;• à chaque étage d'un bâtiment" />
+                                    <Span Text="&#x0a;• à proximité immédiate des escaliers ou ascenseurs" />
+                                    <Span Text="&#x0a;• sur la porte d'escalier" />
+                                    <Span Text="&#x0a;• à défaut à tout endroit où ils pourront être lus facilement" />
+                                    <Span Text="&#x0a;&#x0a;Chaque étage d'un bâtiment ou unité de travail doit avoir ses consignes de sécurité incendie. Elle doit prendre en compte la spécificité du lieu d'exercice ou de travail." />
+                                    <Span Text="&#x0a;&#x0a;En cas de modification du lieu ou des techniques de travail, les consignes doivent être mises à jour." />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </Border>
+                </toolkit:Expander>
+
+                <!-- Custom Site Instructions -->
+                <toolkit:Expander IsExpanded="True" FlexLayout.Basis="Auto" Margin="0,0,0,10">
+                    <toolkit:Expander.Header>
+                        <Grid>
+                            <Border Background="{StaticResource Gray100}">
+                                <Label Text="Consignes spécifiques du site"
+                                      Style="{StaticResource SubheaderStyle}"
+                                      HorizontalTextAlignment="Center"
+                                      SemanticProperties.Hint="Section des consignes personnalisées"/>
+                            </Border>
+                        </Grid>
+                    </toolkit:Expander.Header>
+                    <Border Style="{StaticResource CardStyle}">
+                        <VerticalStackLayout>
+                            <!-- Loading indicator -->
+                            <ActivityIndicator IsRunning="{Binding IsBusy}"
+                                               IsVisible="{Binding IsBusy}"/>
+
+                            <!-- Custom instructions content -->
+                            <Label Style="{StaticResource BodyStyle}"
+                                   Text="{Binding CustomInstructions}"
+                                   IsVisible="{Binding IsNotBusy}">
+                                <Label.Triggers>
+                                    <DataTrigger TargetType="Label"
+                                                 Binding="{Binding CustomInstructions, Converter={StaticResource IsStringNotNullOrEmptyConverter}}"
+                                                 Value="True">
+                                        <Setter Property="Text" Value="Aucune consigne personnalisée n'est disponible pour le moment." />
+                                    </DataTrigger>
+                                </Label.Triggers>
+                            </Label>
+                        </VerticalStackLayout>
+                    </Border>
+                </toolkit:Expander>
+
+            </FlexLayout>
+        </ScrollView>
+    </ContentPage.Content>
+
+    <ContentPage.Behaviors>
+        <behaviors:EventHandlerBehavior EventName="Appearing">
+            <behaviors:ActionCollection>
+                <behaviors:InvokeCommandAction Command="{Binding PageAppearingCommand}" />
+            </behaviors:ActionCollection>
+        </behaviors:EventHandlerBehavior>
+    </ContentPage.Behaviors>
+</ContentPage>

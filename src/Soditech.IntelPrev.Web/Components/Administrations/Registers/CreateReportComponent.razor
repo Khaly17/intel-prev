@@ -1,0 +1,90 @@
+@using Soditech.IntelPrev.Reports.Shared.Enums
+@using Soditech.IntelPrev.Reports.Shared.RegisterFieldGroups
+@using Soditech.IntelPrev.Reports.Shared.RegisterFields
+
+@if(_isBusy)
+{
+    <div>Loading...</div>
+}
+else
+{
+    <EditForm Model="@CreateReport" OnValidSubmit="CreateReportAsync">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+        <div>
+            <div Spacing="5">
+                <Label>CreateReport.Title</Label>
+                <Label>@CreateReport.Description</Label>
+            </div>
+            @foreach (var item in CreateReport.GetSortedFieldsAndGroups)
+            {
+                switch (item)
+                {
+                    case CreateReportFieldCommand createReportFieldCommand:
+                        @:<!-- For Simple field -->
+                        <div>
+                            <Label>@createReportFieldCommand.Name</Label>
+                            <Label>@createReportFieldCommand.Description</Label>
+                        </div>
+                        <div Grid.Row="1">
+                            @switch(Enum.Parse<FieldType>(createReportFieldCommand.FieldType))
+                            {
+                                case FieldType.Text:
+                                    <input type="text"  value="@createReportFieldCommand.Value"/>
+                                    break;
+                                case FieldType.Boolean:
+                                    <input type="checkbox"  value="@createReportFieldCommand.Value"/>
+                                    break;
+                                case FieldType.Date:
+                                    <input type="date"  value="@createReportFieldCommand.Value"/>
+                                    break;
+                                case FieldType.Number:
+                                    <input type="number"  value="@createReportFieldCommand.Value"/>
+                                    break;
+                                default:
+                                    throw new ArgumentOutOfRangeException();
+                            }
+                        </div>
+                        break;
+                    case CreateReportFieldGroupCommand createReportFieldGroupCommand:
+                    {
+                        @:<!-- For field group -->
+                        <Label>@createReportFieldGroupCommand.Name</Label>
+                        <Label>@createReportFieldGroupCommand.Name</Label>
+                    
+                        foreach(var field in createReportFieldGroupCommand.CreateReportFieldsCommand)
+                        {
+                            <div>
+                                <Label>@field.Name</Label>
+                                <Label>@field.Description</Label>
+                            </div>
+                            <div Grid.Row="1">
+                                @switch(Enum.Parse<FieldType>(field.FieldType))
+                                {
+                                    case FieldType.Text:
+                                        <input  value="@field.Value"/>
+                                        break;
+                                    case FieldType.Boolean:
+                                        <input type="checkbox"  value="@field.Value"/>
+                                        break;
+                                    case FieldType.Date:
+                                        <input type="date"  value="@field.Value"/>
+                                        break;
+                                    case FieldType.Number:
+                                        <input type="number"  value="@field.Value"/>
+                                        break;
+                                    default:
+                                        throw new ArgumentOutOfRangeException();
+                                }
+                            </div>
+                        }
+
+                        break;
+                    }
+                }
+            }
+
+            <input type="button" value="Soumettre" @onclick="@CreateReportAsync" />
+        </div>
+    </EditForm>
+}

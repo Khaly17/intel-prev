@@ -1,0 +1,36 @@
+﻿@model Soditech.IntelPrev.Users.Application.Helpers.Models.WelcomeTemplateMailModel
+
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue à Bord !</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; }
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+        h1 { color: #333; }
+        p { margin: 10px 0; }
+        .footer { margin-top: 20px; font-size: 0.9em; color: #666; }
+    </style>
+</head>
+<body>
+    <div class="container">
+            <h1>Bienvenue, @Model.FullName !</h1>
+        <p>Nous sommes ravis de vous accueillir sur notre plateforme.</p>
+        <p>Voici vos informations de connexion :</p>
+        <ul>
+            <li><strong>Nom d'utilisateur :</strong> @Model.UserName </li>
+                <li><strong>Mot de passe :</strong> @Model.Password </li>
+        </ul>
+        <p>Pour vous connecter, veuillez cliquer sur le lien ci-dessous :</p>
+        <p><a href="@Model.Url">Se connecter</a></p>
+      
+        <div class="footer">
+            <p>Merci de faire partie de notre communauté !</p>
+                <p>L'équipe de @Model.ApplicationName</p>
+        </div>
+    </div>
+</body>
+</html>

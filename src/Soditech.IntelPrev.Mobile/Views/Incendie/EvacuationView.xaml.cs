@@ -1,0 +1,17 @@
+using Soditech.IntelPrev.Mobile.ViewModels.Incendie;
+
+namespace Soditech.IntelPrev.Mobile.Views.Incendie;
+
+public partial class EvacuationView : ContentPage
+{
+    public EvacuationView()
+    {
+        InitializeComponent();
+        BindingContext = new EvacuationViewModel(
+            beforeEvacuationInfo: "",
+            fireStartInfo: "",
+            evacuationTeam: "",
+            evacuationProcedure: "",
+            importantNotes: "");
+    }
+}

@@ -1,0 +1,30 @@
+﻿@page "/medicalcontacts"
+
+@attribute [Authorize(Roles = "Admin, Super Admin")]
+
+@using Microsoft.AspNetCore.Authorization
+@using Soditech.IntelPrev.Preventions.Shared.MedicalContacts
+@using Soditech.IntelPrev.Users.Shared.Users
+@using Soditech.IntelPrev.Web.Components.Widgets.Tables
+@using Soditech.IntelPrev.Web.Components.Widgets.Alerts
+@using Soditech.IntelPrev.Web.Components.Widgets.Dialogs
+
+<GenericGrid TItem="@MedicalContactResult"
+             Items="@MedicalContacts"
+             GridTitle="Contact médicale"
+             ToolbarItems="@ToolbarItems"
+             DisplayTitle="true"
+             PageCount="@PageCount"
+             PageSize="@PageSize"
+             addButton="@AddMedicalContact"
+             OnEdit="@GoToEdit"
+             OnDelete="@DeleteMedicalContactTrigger"
+             Columns="@Columns"
+             DisplaySpinnerOnLoading="IsLoading">
+
+    <AlertComponent Message="@_alertMessage" AlertType="@_alertType" IsVisible="@_isAlertVisible" />
+
+</GenericGrid>
+
+<GenericConfirmDialog HeaderLabel="Suppression du contact médicale" IsVisible="@_isDeleteModalVisible"
+                      OnConfirm="DeleteMedicalContactAsync" OnCancel="HideDeleteModal" />

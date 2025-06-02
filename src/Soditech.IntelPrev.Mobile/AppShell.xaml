@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="Soditech.IntelPrev.Mobile.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Soditech.IntelPrev.Mobile.Views"
+    xmlns:viewModels="clr-namespace:Soditech.IntelPrev.Mobile"
+    xmlns:account="clr-namespace:Soditech.IntelPrev.Mobile.Views.Account"
+    FlyoutBehavior="Flyout"
+    x:DataType="viewModels:AppShellViewModel"
+    TitleColor="White"
+    FlyoutWidth="280"
+    ForegroundColor="White"
+    FlyoutHeaderBehavior="Fixed">
+
+    <!-- ViewModel binding -->
+    <Shell.BindingContext>
+        <viewModels:AppShellViewModel />
+    </Shell.BindingContext>
+
+    <!-- Shell styling resources -->
+    <Shell.Resources>
+        <ResourceDictionary>
+            <!-- Base styling for Shell items -->
+            <Style x:Key="BaseStyle" TargetType="Element">
+                <Setter Property="Shell.BackgroundColor" Value="{StaticResource Primary}" />
+                <Setter Property="Shell.TitleColor" Value="{StaticResource PureWhite}" />
+                <Setter Property="Shell.DisabledColor" Value="{StaticResource LightGray}" />
+                <Setter Property="Shell.UnselectedColor" Value="{StaticResource Gray300}" />
+            </Style>
+            <Style TargetType="ShellContent" BasedOn="{StaticResource BaseStyle}" />
+
+            <!-- Flyout item styling -->
+            <Style TargetType="FlyoutItem">
+                <Setter Property="Shell.BackgroundColor" Value="Transparent" />
+                <Setter Property="Shell.TitleColor" Value="{StaticResource CharcoalGray}" />
+            </Style>
+        </ResourceDictionary>
+    </Shell.Resources>
+
+    <!-- Header: Show only the user's name in a large, centered label -->
+    <Shell.FlyoutHeader>
+        <Grid Padding="0" HeightRequest="400" BackgroundColor="{StaticResource Primary}">
+            <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                <!-- Large Username -->
+                <Label Text="{Binding UserName}"
+                       FontSize="24"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center" />
+            </VerticalStackLayout>
+        </Grid>
+    </Shell.FlyoutHeader>
+
+    <Shell.FlyoutBackground>
+        
+        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="{StaticResource Primary}" Offset="0.0" />
+            <GradientStop Color="{StaticResource PureWhite}" Offset="1.0" />
+        </LinearGradientBrush>
+    </Shell.FlyoutBackground>
+
+    <!-- Here we define the content of the flyout.
+         1) Login is still hidden by default (FlyoutBehavior="Disabled").
+         2) Add “Profil utilisateur” item (with gear icon) as a visible menu item.
+    -->
+
+    <!-- Hidden Login View -->
+    <ShellContent
+        Title="Login"
+        ContentTemplate="{DataTemplate account:LoginView}"
+        Route="LoginView"
+        Shell.NavBarIsVisible="False"
+        Shell.TabBarIsVisible="False"
+        Shell.FlyoutBehavior="Disabled"
+        Shell.FlyoutItemIsVisible="False" />
+    <!-- Main content pages in the Flyout (e.g. Accueil) -->
+    <ShellContent
+        Title="Accueil"
+        Icon="building_icon.png"
+        ContentTemplate="{DataTemplate local:MainView}"
+        Route="MainView"
+        Shell.FlyoutItemIsVisible="False"/>
+
+
+    <MenuItem IconImageSource="settings.jpg" Text="Profil utilisateur" 
+              Command="{Binding GoToUserProfileCommand}" />
+
+    <Shell.FlyoutFooter>
+        <Grid BackgroundColor="Transparent" Padding="10" ColumnSpacing="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Déconnexion button with lock icon -->
+            <Button Grid.Column="0"
+                    Text="Déconnexion"
+                    ImageSource="lock.png"
+                    Command="{Binding LogoutCommand}"
+                    Clicked="HandleLogoutAsync"
+                    TextColor="{StaticResource CharcoalGray}"
+                    BackgroundColor="Transparent"
+                    FontAttributes="Bold"
+                    HeightRequest="40"
+                    HorizontalOptions="Start"
+                    Margin="0,0,10,0" />
+
+            <!-- Version label on the right -->
+            <Label Grid.Column="1"
+                   FontSize="12"
+                   VerticalOptions="Center"
+                   HorizontalOptions="End"
+                   TextColor="{StaticResource CharcoalGray}">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="v" FontAttributes="Bold" />
+                        <Span Text="{Binding AppVersion}" FontAttributes="Bold" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </Grid>
+    </Shell.FlyoutFooter>
+
+</Shell>

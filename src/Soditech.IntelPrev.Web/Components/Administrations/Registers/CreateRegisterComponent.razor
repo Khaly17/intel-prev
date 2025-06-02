@@ -1,0 +1,205 @@
+@using Soditech.IntelPrev.Reports.Shared.Enums
+
+<EditForm Model="@RegisterTypeResult">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="card mb-4">
+                    <div class="card-header bg-light">
+                        <h3 class="card-title">Informations du type de register</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="name">Nom du type de register</label>
+                            <InputText id="name" @bind-Value="@RegisterTypeResult.Name" class="form-control" />
+                            <ValidationMessage For="@(() => RegisterTypeResult.Name)" />
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <InputText id="description" @bind-Value="@RegisterTypeResult.Description" class="form-control" />
+                            <ValidationMessage For="@(() => RegisterTypeResult.Description)" />
+                        </div>
+                        <div class="form-group form-check">
+                            <InputCheckbox id="isActive" @bind-Value="@RegisterTypeResult.IsActive" class="form-check-input" />
+                            <label class="form-check-label" for="isActive">Actif</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                        <h4 class="card-title">Groupes de Champs</h4>
+                        <button class="btn btn-primary" @onclick="AddNewGroup">
+                            <i class="fas fa-plus"></i> Ajouter un Groupe de Champs
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        @foreach (var group in RegisterTypeResult.RegisterFieldGroups)
+                        {
+                            <div class="accordion mb-3">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-@group.Id">
+                                            @group.Name
+                                        </button>
+                                    </h2>
+                                    <div id="collapse-@group.Id" class="accordion-collapse collapse show">
+                                        <div class="accordion-body">
+                                            <div class="form-group">
+                                                <label>Nom</label>
+                                                <InputText @bind-Value="@group.Name" class="form-control" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Description</label>
+                                                <InputText @bind-Value="@group.Description" class="form-control" />
+                                            </div>
+                                            <h5>Champs dans ce groupe</h5>
+                                            @foreach (var field in group.RegisterFields)
+                                            {
+                                                <div class="form-group">
+                                                    <label>Nom</label>
+                                                    <InputText @bind-Value="@field.Name" class="form-control" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Description</label>
+                                                    <InputText @bind-Value="@field.Description" class="form-control" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Type de données</label>
+                                                    <InputSelect class="form-control" @bind-Value="@field.FieldType">
+                                                        @foreach (var type in Enum.GetValues<FieldType>())
+                                                        {
+                                                            <option value="@type">@type</option>
+                                                        }
+                                                    </InputSelect>
+                                                </div>
+                                                <div class="form-group form-check">
+                                                    <InputCheckbox @bind-Value="@field.IsRequired" class="form-check-input" />
+                                                    <label class="form-check-label">Requis</label>
+                                                </div>
+                                            }
+                                            <button class="btn btn-primary" @onclick="() => AddNewFieldToGroup(group)">
+                                                <i class="fas fa-plus"></i> Ajouter un Champ
+                                            </button>
+                                            <button class="btn btn-danger" @onclick="() => RemoveGroup(group)">
+                                                <i class="fas fa-trash"></i> Supprimer le groupe
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                        <h4 class="card-title">Champs indépendants</h4>
+                        <button class="btn btn-primary" @onclick="AddNewField">
+                            <i class="fas fa-plus"></i> Ajouter un Champ
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        @foreach (var field in RegisterTypeResult.RegisterFields)
+                        {
+                            <div class="form-group">
+                                <label>Nom</label>
+                                <InputText @bind-Value="@field.Name" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label>Description</label>
+                                <InputText @bind-Value="@field.Description" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label>Type de données</label>
+                                <InputSelect class="form-control" @bind-Value="@field.FieldType">
+                                    @foreach (var type in Enum.GetValues<FieldType>())
+                                    {
+                                        <option value="@type">@type</option>
+                                    }
+                                </InputSelect>
+                            </div>
+                            <div class="form-group form-check">
+                                <InputCheckbox @bind-Value="@field.IsRequired" class="form-check-input" />
+                                <label class="form-check-label">Requis</label>
+                            </div>
+                            <button class="btn btn-danger" @onclick="() => RemoveField(field)">
+                                <i class="fas fa-trash"></i> Supprimer le champ
+                            </button>
+                        }
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-end gap-2">
+                    <button class="btn btn-success" @onclick="ToggleIsCreating">
+                        <i class="fas fa-check"></i> Continuer
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</EditForm>
+
+<style>
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-control {
+        height: 40px;
+        border-radius: 5px;
+    }
+
+    .form-check-input {
+        margin-top: 0.3rem;
+    }
+
+    .btn {
+        margin-top: 10px;
+    }
+
+    .card {
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-header {
+        background-color: #f8f9fa;
+        border-bottom: 1px solid #e9ecef;
+    }
+
+    .accordion-button {
+        background-color: #f8f9fa;
+    }
+
+    .accordion-item {
+        border: 1px solid #e9ecef;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+
+    .total-visits-browse-area {
+        background: white;
+        margin-top: 10px;
+        padding: 20px;
+        border-top: 7px solid rgb(196, 53, 40);
+        box-shadow: 0 5px 5px rgba(0, 0, 0, 0.10);
+    }
+
+    h3, h4, h5 {
+        margin-top: 20px;
+        color: #333;
+        font-size: 0.95rem;
+    }
+
+    label {
+        font-size: 0.85rem;
+    }
+
+    .d-flex.justify-content-end.gap-2 {
+        gap: 10px;
+    }
+</style>

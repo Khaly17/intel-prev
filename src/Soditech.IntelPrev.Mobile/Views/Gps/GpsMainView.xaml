@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Soditech.IntelPrev.Mobile.Views.Gps.GpsMainView"
+             xmlns:viewModel="clr-namespace:Soditech.IntelPrev.Mobile.ViewModels.Gps"
+             xmlns:components="clr-namespace:Soditech.IntelPrev.Mobile.Views.Components"
+             xmlns:behaviors="using:Soditech.IntelPrev.Mobile.Behaviors"
+             x:DataType="viewModel:GpsMainViewModel"
+             Shell.TitleColor="White"
+             Shell.ForegroundColor="White"
+             Title="Équipements de sécurité">
+             
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IconOverride="back.png" IsVisible="True" IsEnabled="True" />
+    </Shell.BackButtonBehavior>
+    
+    <ContentPage.BindingContext>
+        <viewModel:GpsMainViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <DataTemplate x:Key="EquipmentItemTemplate" x:DataType="viewModel:EquipmentItem">
+            <Border Padding="10" Margin="0,6" StrokeThickness="1" Stroke="#E0E0E0">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="8" />
+                </Border.StrokeShape>
+                <Grid ColumnSpacing="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0" Margin="5"
+                           Source="{Binding Icon}"
+                           WidthRequest="32"
+                           HeightRequest="32"/>
+                    <VerticalStackLayout Grid.Column="1" Spacing="2" VerticalOptions="Center">
+                        <Label Text="{Binding Title}" FontAttributes="Bold" FontSize="16" TextTransform="Uppercase"/>
+                        <Label Text="{Binding Description}" FontSize="14" LineBreakMode="WordWrap" TextColor="#757575"/>
+                    </VerticalStackLayout>
+                    <Image Grid.Column="2"
+                           Source="chevron_right.png"
+                           HeightRequest="14"
+                           WidthRequest="14"
+                           VerticalOptions="Center"/>
+                </Grid>
+            </Border>
+        </DataTemplate>
+    </ContentPage.Resources>
+
+    <Grid>
+        <!-- Main equipment list view -->
+        <components:SelectableListView
+            MainMessage="Selectionnez le type d'equipement  pour savoir son emplacement "
+            SubMessage="Le button definir la posion permet de mettre à jour la position d'un equipement"
+            ItemsSource="{Binding EquipmentItems}"
+            SelectedItem="{Binding SelectedEquipment}"
+            SelectionChangedCommand="{Binding EquipmentSelectionCommand}"
+            ItemTemplate="{StaticResource EquipmentItemTemplate}"
+            IsBusy="{Binding IsBusy}"/>
+
+        <!-- Add equipment button -->
+        <Border BackgroundColor="#4A90E2"
+                Stroke="#CCCCCC"
+                StrokeThickness="1"
+                Margin="20,0,20,20"
+                VerticalOptions="End">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="8"/>
+            </Border.StrokeShape>
+            <Border.Shadow>
+                <Shadow Brush="Black"
+                        Offset="0,1"
+                        Opacity="0.2"
+                        Radius="3"/>
+            </Border.Shadow>
+            <Grid Padding="10" ColumnDefinitions="*, Auto, *">
+                <VerticalStackLayout Grid.Column="1"
+                             Margin="0"
+                             Spacing="4"
+                             HorizontalOptions="Center">
+                    <Label Text="Définir la position des équipements"
+                       FontSize="16"
+                       HorizontalTextAlignment="Center"
+                       FontAttributes="Bold"
+                       TextColor="White"/>
+                    <Label Text="Cliquez ici pour ajouter de nouvelles positions"
+                       FontSize="14"
+                       HorizontalTextAlignment="Center"
+                       TextColor="WhiteSmoke"/>
+                </VerticalStackLayout>
+            </Grid>
+            <Border.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding GoToAddEquipmentCommandCommand}"/>
+            </Border.GestureRecognizers>
+        </Border>
+    </Grid>
+
+    <ContentPage.Behaviors>
+        <behaviors:EventHandlerBehavior EventName="Appearing">
+            <behaviors:ActionCollection>
+                <behaviors:InvokeCommandAction Command="{Binding PageAppearingCommand}" />
+            </behaviors:ActionCollection>
+        </behaviors:EventHandlerBehavior>
+    </ContentPage.Behaviors>
+</ContentPage>

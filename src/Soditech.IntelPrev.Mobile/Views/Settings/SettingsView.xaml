@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Soditech.IntelPrev.Mobile.Views.Settings.SettingsView"
+             xmlns:base="clr-namespace:Soditech.IntelPrev.Mobile.ViewModels.Base;assembly=Soditech.IntelPrev.Mobile"
+             xmlns:behaviors="clr-namespace:Soditech.IntelPrev.Mobile.Behaviors"
+             xmlns:converters="clr-namespace:Soditech.IntelPrev.Mobile.Converters"
+             base:ViewManager.AutoWireViewModel="True"
+             xmlns:viewModel="clr-namespace:Soditech.IntelPrev.Mobile.ViewModels.Settings"
+             x:DataType="viewModel:SettingsViewModel"
+             Title="Permissions de l'application"
+             Shell.ForegroundColor="White"
+             Shell.TitleColor="White"
+             BackgroundColor="White">
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IconOverride="back.png" IsVisible="True" IsEnabled="True" />
+    </Shell.BackButtonBehavior>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!-- Converters -->
+            <converters:InvertedBoolConverter x:Key="InvertedBoolConverter"/>
+
+            <!-- Header style -->
+            <Style x:Key="PageTitleStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="28"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="TextColor" Value="#333333"/>
+                <Setter Property="Margin" Value="0,0,0,24"/>
+            </Style>
+
+            <!-- App name style -->
+            <Style x:Key="AppNameStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="TextColor" Value="#333333"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="Margin" Value="0,8,0,24"/>
+            </Style>
+
+            <!-- Section header style -->
+            <Style x:Key="SectionHeaderStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="TextColor" Value="#94602F"/>
+                <Setter Property="Margin" Value="0,16,0,8"/>
+            </Style>
+
+            <!-- Permission item style -->
+            <Style x:Key="PermissionItemStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="TextColor" Value="#333333"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+            </Style>
+
+            <!-- Permission details style -->
+            <Style x:Key="PermissionDetailsStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="13"/>
+                <Setter Property="TextColor" Value="#666666"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid Padding="20" RowSpacing="0">
+                <VerticalStackLayout Spacing="4">
+
+                    <!-- Allowed Permissions Section -->
+                    <Label Text="Autorisé"
+                           Style="{StaticResource SectionHeaderStyle}"/>
+
+                    <!-- Location Permission - Only visible if permission is granted -->
+                    <Grid ColumnDefinitions="Auto,*,Auto"
+                          RowDefinitions="Auto,Auto"
+                          Margin="0,8,0,12">
+                        <Border Grid.RowSpan="2"
+                                StrokeShape="RoundRectangle 8"
+                                BackgroundColor="#FFF5EE"
+                                Padding="4"
+                                WidthRequest="32"
+                                HeightRequest="32"
+                                VerticalOptions="Start"
+                                Margin="0,4,16,0">
+                            <Label Text="📍"
+                                   FontSize="16"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"/>
+                        </Border>
+
+                        <Label Grid.Column="1"
+                               Text="Localisation"
+                               Style="{StaticResource PermissionItemStyle}"/>
+
+                        <Label Grid.Column="1" Grid.Row="1"
+                               Text="{Binding LocationLastAccessed}"
+                               Style="{StaticResource PermissionDetailsStyle}"/>
+                    </Grid>
+
+                    <!-- Nearby Devices Permission -->
+                    <Grid ColumnDefinitions="Auto,*,Auto"
+                          RowDefinitions="Auto,Auto"
+                          Margin="0,8,0,12">
+                        <Border Grid.RowSpan="2"
+                                StrokeShape="RoundRectangle 8"
+                                BackgroundColor="#FFF5EE"
+                                Padding="4"
+                                WidthRequest="32"
+                                HeightRequest="32"
+                                VerticalOptions="Start"
+                                Margin="0,4,16,0">
+                            <Label Text="⚡"
+                                   FontSize="16"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"/>
+                        </Border>
+
+                        <Label Grid.Column="1"
+                               Text="Appareils à proximité"
+                               Style="{StaticResource PermissionItemStyle}"/>
+
+                        <Label Grid.Column="1" Grid.Row="1"
+                               Text="{Binding NearbyDevicesLastAccessed}"
+                               Style="{StaticResource PermissionDetailsStyle}"/>
+                    </Grid>
+
+                    <!-- Not Allowed Permissions Section -->
+                    <Label Text="Non autorisé"
+                           Style="{StaticResource SectionHeaderStyle}"/>
+
+                    <!-- Camera Permission -->
+                    <Grid ColumnDefinitions="Auto,*,Auto"
+                          RowDefinitions="Auto,Auto"
+                          Margin="0,8,0,12">
+                        <Border Grid.RowSpan="2"
+                                StrokeShape="RoundRectangle 8"
+                                BackgroundColor="#FFF5EE"
+                                Padding="4"
+                                WidthRequest="32"
+                                HeightRequest="32"
+                                VerticalOptions="Start"
+                                Margin="0,4,16,0">
+                            <Label Text="📷"
+                                   FontSize="16"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"/>
+                        </Border>
+
+                        <Label Grid.Column="1"
+                               Text="Caméra"
+                               Style="{StaticResource PermissionItemStyle}"/>
+                    </Grid>
+
+                    <!-- Unused App Settings Section -->
+                    <Label Text="Paramètres d'application inutilisés"
+                           Style="{StaticResource SectionHeaderStyle}"/>
+
+                    <!-- Pause App Activity Option -->
+                    <Label Text="Suspendre l'activité de l'application si"
+                           Margin="0,12,0,20"
+                           FontSize="16"
+                           TextColor="#333333"/>
+
+                    <!-- Additional settings from original can be added here -->
+                    <Border StrokeShape="RoundRectangle 8"
+                           Stroke="#E5E5E5"
+                           Padding="16"
+                           Margin="0,0,0,20">
+                        <VerticalStackLayout Spacing="16">
+                            <Label Text="Paramètres supplémentaires"
+                                   FontSize="16"
+                                   FontAttributes="Bold"
+                                   TextColor="#333333"/>
+
+                            <!-- Localization Toggle -->
+                            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+                                <Label Text="Activer la géolocalisation"
+                                       FontSize="16"
+                                       TextColor="#333333"
+                                       VerticalOptions="Center"/>
+
+                                <Switch Grid.Column="1"
+                                        IsToggled="{Binding IsGeoLocationEnabled}"/>
+                            </Grid>
+
+                            <!-- Notifications Toggle -->
+                            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+                                <Label Text="Activer les notifications"
+                                       FontSize="16"
+                                       TextColor="#333333"
+                                       VerticalOptions="Center"/>
+
+                                <Switch Grid.Column="1"
+                                        IsToggled="{Binding AreNotificationsEnabled}"/>
+                            </Grid>
+
+                            <!-- Language Selection -->
+                            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+                                <Label Text="Langue"
+                                       FontSize="16"
+                                       TextColor="#333333"
+                                       VerticalOptions="Center"/>
+
+                                <Border Grid.Column="1"
+                                        Stroke="#E0E0E0"
+                                        StrokeThickness="1"
+                                        StrokeShape="RoundRectangle 8,8,8,8">
+                                    <Picker Title="Sélectionner"
+                                            ItemsSource="{Binding AvailableLanguages}"
+                                            SelectedItem="{Binding SelectedLanguage}"
+                                            WidthRequest="120"
+                                            Margin="8,0"
+                                            BackgroundColor="Transparent"/>
+                                </Border>
+                            </Grid>
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <!-- Reset Button -->
+                    <Button Text="Réinitialiser les paramètres"
+                            Command="{Binding ResetSettingsCommand}"
+                            BackgroundColor="{StaticResource Primary}"
+                            TextColor="White"
+                            FontSize="16"
+                            CornerRadius="8"
+                            HeightRequest="44"
+                            Margin="0,0,0,20"/>
+                </VerticalStackLayout>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

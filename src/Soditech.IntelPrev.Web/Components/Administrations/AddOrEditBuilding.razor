@@ -1,0 +1,269 @@
+﻿@attribute [Authorize(Roles = "Admin, Super Admin")]
+@using Microsoft.AspNetCore.Authorization
+@using Soditech.IntelPrev.Prevensions.Shared.Enums
+@using Blazored.FluentValidation
+
+<div class="row" style="margin-left: 0; margin-right: 0;">
+    <div class="col-md-12 mt-0" style="padding: 0;">
+        <div class="row">
+            <div class="col-md-9 mx-auto">
+                <div class="card total-visits-browse-area">
+                    <div class="card-header" style="margin: 0; padding: 10px;">
+                        <h5 style="margin: 0;">@Title</h5>
+                    </div>
+
+                    <EditForm Model="@NewBuilding" OnValidSubmit="CreateBuilding">
+                        <FluentValidationValidator />
+
+                        @if (!string.IsNullOrEmpty(SuccessMessage))
+                        {
+                            <div class="alert alert-success" role="alert">
+                                @SuccessMessage
+                            </div>
+                        }
+
+                        @if (!string.IsNullOrEmpty(ErrorMessage))
+                        {
+                            <div class="alert alert-danger" role="alert">
+                                @ErrorMessage
+                            </div>
+                        }
+
+                        <div class="form-group row mb-8 mt-4" style="margin-left: 15px;">
+                            <label class="control-label col-md-2 mb-1">Nom du bâtiment</label>
+                            <div class="col-md-10" style="border-radius: 0;">
+                                <InputText class="form-control" style="height: 40px; border-radius: 0;" @bind-Value="NewBuilding.Name" />
+                                <ValidationMessage For="@(() => NewBuilding.Name)" />
+                            </div>
+                        </div>
+                        <div class="form-group row mb-8 mt-4" style="margin-left: 15px;">
+                            <label class="control-label col-md-2 mb-1">Adresse du bâtiment</label>
+                            <div class="col-md-10" style="border-radius: 0;">
+                                <InputText class="form-control" style="height: 40px; border-radius: 0;" @bind-Value="NewBuilding.Address" />
+                                <ValidationMessage For="@(() => NewBuilding.Address)" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-8 mt-4" style="margin-left: 15px;">
+                            <label class="control-label col-md-2 mb-1">Description</label>
+                            <div class="col-md-10" style="border-radius: 0;">
+                                <InputText class="form-control" style="height: 40px; border-radius: 0;" @bind-Value="NewBuilding.Description" />
+                                <ValidationMessage For="@(() => NewBuilding.Description)" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-8 mt-4" style="margin-left: 15px;">
+                            <label class="control-label col-md-2 mb-1">Nombre d'etage</label>
+                            <div class="col-md-10" style="border-radius: 0;">
+                                <InputNumber class="form-control" style="height: 40px; border-radius: 0;"
+                                    @bind-Value="NewBuilding.NumberOfFloors" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-8 mt-4" style="margin-left: 15px;">
+                            <div class="col-md-6">
+                                <label class="control-label mb-1">Présence de DAE</label>
+                                <div class="" style="border-radius: 0;">
+                                    <InputCheckbox class="form-check-input" @bind-Value="NewBuilding.HasDAE" />
+                                    <ValidationMessage For="@(() => NewBuilding.HasDAE)" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="control-label mb-1">Présence de kits de premiers secours</label>
+                                <div class="" style="border-radius: 0;">
+                                    <InputCheckbox class="form-check-input" @bind-Value="NewBuilding.HasFirstAidKits" />
+                                    <ValidationMessage For="@(() => NewBuilding.HasFirstAidKits)" />
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="card mb-4">
+                            <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                                <h4 class="card-title">Etages</h4>
+                                <button type="button" class="btn btn-primary" @onclick="AddFloor">
+                                    <i class="fas fa-plus"></i> Ajouter un étage
+                                </button>
+                            </div>
+
+                            <div class="card-body">
+                                @if (NewBuilding.Floors != null)
+                                {
+                                    @foreach (var floor in NewBuilding.Floors)
+                                    {
+                                                <div class="accordion mb-3">
+                                                    <div class="accordion-item">
+                                                        <h2 class="accordion-header">
+                                                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-@floor.Id">
+                                                                @floor.Number
+                                                            </button>
+                                                        </h2>
+                                                        <div id="collapse-@floor.Id" class="accordion-collapse collapse show">
+                                                            <div class="accordion-body">
+                                                                <div class="form-group">
+                                                                    <label>Numéro d'étage</label>
+                                                                    <InputNumber @bind-Value="@floor.Number" class="form-control" />
+                                                                    <ValidationMessage For="@(() => floor.Number)"/>
+                                                                </div>
+                                                                <h5>Equipements</h5>
+                                                                @foreach (var equipment in floor.Equipments)
+                                                                {
+                                                                        <div class="form-group">
+                                                                            <label>Nom</label>
+                                                                            <InputText @bind-Value="@equipment.Name" class="form-control" />
+                                                                            <ValidationMessage For="@(() => equipment.Name)" />
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label>Description</label>
+                                                                            <InputText @bind-Value="@equipment.Description"
+                                                                                class="form-control" />
+                                                                            <ValidationMessage For="@(() => equipment.Description)" />
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label>Type d'équipement</label>
+                                                                            <InputSelect class="form-control" @bind-Value="@equipment.Type">
+                                                                                @foreach (var type in Enum.GetValues<EquipmentType>())
+                                                                                {
+                                                                                    <option value="@type">@type</option>
+                                                                                }
+                                                                            </InputSelect>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label>Date de la dernière inspection</label>
+                                                                            <InputDate @bind-Value="@equipment.LastInspectionDate" class="form-control" />
+                                                                            <ValidationMessage For="@(() => equipment.LastInspectionDate)"/>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label>Date de la prochaine inspection</label>
+                                                                            <InputDate @bind-Value="@equipment.NextInspectionDate"
+                                                                                class="form-control" />
+                                                                            <ValidationMessage For="@(() => equipment.NextInspectionDate)" />
+                                                                        </div>
+
+                                                                        <button type="button" class="btn btn-danger"
+                                                                            @onclick="() => RemoveEquipment(floor, equipment)">
+                                                                            <i class="fas fa-trash"></i> Supprimer l'équipement
+                                                                        </button>
+                                                                }
+                                                                <button type="button" class="btn btn-primary" @onclick="() => AddEquipmentOnFloor(floor)">
+                                                                    <i class="fas fa-plus"></i> Ajouter un équipement
+                                                                </button>
+                                                        
+                                                                <button type="button" class="btn btn-danger"
+                                                                        @onclick="() => RemoveFloor(floor)">
+                                                                    <i class="fas fa-trash"></i> Supprimer l'étage
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        }
+                               }
+                            </div>
+                        </div>
+
+                        <div class="card mb-4">
+                            <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                                <h4 class="card-title">Equipements</h4>
+                                <button type="button" class="btn btn-primary" @onclick="AddEquipmentOnBuilding">
+                                    <i class="fas fa-plus"></i> Ajouter un équipement
+                                </button>
+                            </div>
+
+                            <div class="card-body">
+                                @foreach (var equipment in NewBuilding.Equipments)
+                                {
+                                    <div class="accordion mb-3">
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header">
+                                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                                    data-bs-target="#collapse-@equipment.Id">
+                                                    @equipment.Name
+                                                </button>
+                                            </h2>
+                                            <div id="collapse-@equipment.Id" class="accordion-collapse collapse show">
+                                                <div class="accordion-body">
+                                                    <div class="form-group">
+                                                        <label>Nom</label>
+                                                        <InputText @bind-Value="@equipment.Name" class="form-control" />
+                                                        <ValidationMessage For="@(() => equipment.Name)" />
+                                                </div>
+                                                        <div class="form-group">
+                                                            <label>Description</label>
+                                                            <InputText @bind-Value="@equipment.Description" class="form-control" />
+                                                            <ValidationMessage For="@(() => equipment.Description)"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Type d'équipement</label>
+                                                            <InputSelect class="form-control" @bind-Value="@equipment.Type">
+                                                            @foreach (var type in Enum.GetValues<EquipmentType>())
+                                                            {
+                                                                            <option value="@type">@type</option>
+                                                            }
+                                                            </InputSelect>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Date de la dernière inspection</label>
+                                                        <InputDate @bind-Value="@equipment.LastInspectionDate"
+                                                            class="form-control" />
+                                                        <ValidationMessage For="@(() => equipment.LastInspectionDate)" />
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label>Date de la prochaine inspection</label>
+                                                            <InputDate @bind-Value="@equipment.NextInspectionDate"
+                                                                class="form-control" />
+                                                            <ValidationMessage For="@(() => equipment.NextInspectionDate)" />
+                                                        </div>
+
+                                                        <button type="button" class="btn btn-danger" @onclick="() => RemoveEquipment(equipment)">
+                                                            <i class="fas fa-trash"></i> Supprimer l'étage
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                }
+                            </div>
+                        </div>
+
+                        
+
+                        <div class="d-flex justify-content-end" style="margin-top: 20px; padding-right: 15px;">
+                            <div class="d-flex gap-2">
+                                <a href="/buildings" class="btn btn-primary" style=" background-color: rgb(196, 53, 40);">
+                                    Retour
+                                </a>
+
+                                <button type="submit" class="btn btn-primary" style="background-color: #003f88; ">
+                                    Sauvegarder
+                                </button>
+                            </div>
+                        </div>
+                    </EditForm>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .custom-input {
+        border: 0.5px solid #003f88;
+        border-radius: 1px;
+    }
+
+    .total-visits-browse-area {
+        background: white;
+        margin-top: 10px;
+        padding: 20px;
+        border-top: 7px solid rgb(196, 53, 40);
+        box-shadow: 0 5px 5px rgba(0, 0, 0, 0.10);
+    }
+    
+    .floor-section {
+        border: 1px solid #003f88;
+        padding: 10px;
+        margin-top: 10px;
+    }
+</style>

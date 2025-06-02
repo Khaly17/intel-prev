@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewPartiels="clr-namespace:Soditech.IntelPrev.Mobile.ViewPartiels"
+             x:Class="Soditech.IntelPrev.Mobile.ViewPartiels.SampleHeaderBoxView"
+             x:DataType="viewPartiels:SampleHeaderBoxView">
+    <ContentView.Content>
+      <Border Padding="0" Margin="0" BackgroundColor="#6FB4F5" StrokeThickness="0">
+          <Border.Shadow>
+              <Shadow Opacity="0.2" />
+          </Border.Shadow>
+          <StackLayout VerticalOptions="End">
+
+              <Label Text="{Binding Instruction}" HorizontalOptions="Center" />
+
+              <BoxView   
+                  Color="#c43528"  
+                  Margin="0"                   
+                  HeightRequest="3"  
+                  VerticalOptions="End"
+                  HorizontalOptions="Fill" />
+          </StackLayout>
+      </Border>
+
+    </ContentView.Content>
+</ContentView>

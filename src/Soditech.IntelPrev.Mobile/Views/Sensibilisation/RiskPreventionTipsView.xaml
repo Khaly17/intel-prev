@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:Soditech.IntelPrev.Mobile.ViewModels.Sensibilisation"
+             xmlns:model="clr-namespace:Soditech.IntelPrev.Mobile.Models"
+             xmlns:behaviors="clr-namespace:Soditech.IntelPrev.Mobile.Behaviors"
+             x:Class="Soditech.IntelPrev.Mobile.Views.Sensibilisation.RiskPreventionTipsView"
+             x:DataType="viewModels:RiskPreventionViewModel"
+             BackgroundColor="#F5F5F5"
+             Title="Conseils de Prévention">
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IconOverride="back.png" IsVisible="True" IsEnabled="True" />
+    </Shell.BackButtonBehavior>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <VerticalStackLayout Spacing="20" Padding="20">
+                <!-- Page Header -->
+                <Label Text="Documents de Prévention"
+                       FontSize="24"
+                       FontAttributes="Bold"
+                       TextColor="#333"
+                       HorizontalTextAlignment="Center" />
+
+                <CollectionView ItemsSource="{Binding PreventionTopics}"
+                              SelectionMode="None">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="model:PreventionTopic">
+                            <Border BackgroundColor="#FFFFFF"
+                                    Padding="15"
+                                    StrokeThickness="1"
+                                    Stroke="#E0E0E0"
+                                    Margin="0,0,0,15">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="10" />
+                                </Border.StrokeShape>
+                                <Border.Shadow>
+                                    <Shadow Brush="#000000" Opacity="0.1" />
+                                </Border.Shadow>
+                                <VerticalStackLayout>
+                                    <Label Text="{Binding Title}"
+                                           FontSize="16"
+                                           FontAttributes="Bold"
+                                           TextColor="#333"
+                                           HorizontalTextAlignment="Center" />
+                                    <Button Text="Open"
+                                            BackgroundColor="{StaticResource Primary}"
+                                            TextColor="White"
+                                            FontAttributes="Bold"
+                                            CornerRadius="20"
+                                            HorizontalOptions="Center"
+                                            Margin="15"
+                                            Command="{Binding Source={RelativeSource AncestorType={Type viewModels:RiskPreventionViewModel}}, Path=OpenDocumentCommand}"
+                                            CommandParameter="{Binding DocumentPath}" />
+                                </VerticalStackLayout>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+
+    <ContentPage.Behaviors>
+        <behaviors:EventHandlerBehavior EventName="Appearing">
+            <behaviors:ActionCollection>
+                <behaviors:InvokeCommandAction Command="{Binding PageAppearingCommand}" />
+            </behaviors:ActionCollection>
+        </behaviors:EventHandlerBehavior>
+    </ContentPage.Behaviors>
+</ContentPage>

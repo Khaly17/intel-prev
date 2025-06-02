@@ -1,0 +1,40 @@
+﻿@page "/proprev/protocol"
+
+@using Soditech.IntelPrev.Web.Components.Widgets
+
+<div class="editor-container">
+
+    @if (!string.IsNullOrEmpty(successMessage))
+    {
+        <div class="alert alert-success">
+            @successMessage
+        </div>
+    }
+    @if (!string.IsNullOrEmpty(errorMessage))
+    {
+        <div class="alert alert-danger">
+            @errorMessage
+        </div>
+    }
+    <TextEditorComponent Value="@_value" ValueChanged="OnValueChanged" />
+    <button @onclick="SaveContent" class="btn btn-primary btn-add" disabled="@IsSaving">
+        @AddBtnLabel
+    </button>
+</div>
+
+<style>
+    .editor-container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px; 
+    }
+
+    .btn-add {
+        align-self: flex-end;
+        background-color: #003f88;
+    }
+
+    .alert {
+        margin-top: 10px;
+    }
+</style>

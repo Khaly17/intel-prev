@@ -1,0 +1,13 @@
+﻿@page "/committeemembers/add"
+@attribute [Authorize(Roles = "Admin, Super Admin")]
+
+@using Microsoft.AspNetCore.Authorization
+@using Soditech.IntelPrev.Web.Components.Administrations;
+
+<AddOrEditCommitteeMember
+    NewCommitteeMember="NewCommitteeMember"
+    Roles="_roles"
+    ErrorMessage="@errorMessage"
+    SuccessMessage="@successMessage"
+    OnCommitteeMemberCreated="CreateCommitteeMember"
+/>

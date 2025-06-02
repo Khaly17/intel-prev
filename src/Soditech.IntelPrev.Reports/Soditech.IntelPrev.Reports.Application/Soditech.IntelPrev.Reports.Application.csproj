@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="8.0.1" />
+        <PackageReference Include="Sensor6ty.Application" Version="1.0.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Soditech.IntelPrev.Preventions\Soditech.IntelPrev.Preventions.Shared\Soditech.IntelPrev.Preventions.Shared.csproj" />
+      <ProjectReference Include="..\..\Users\Soditech.IntelPrev.Users.Shared\Soditech.IntelPrev.Users.Shared.csproj" />
+      <ProjectReference Include="..\Soditech.IntelPrev.Reports.Persistence\Soditech.IntelPrev.Reports.Persistence.csproj" />
+    </ItemGroup>
+
+</Project>

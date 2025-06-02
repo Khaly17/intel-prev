@@ -1,0 +1,87 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    overflow-x: hidden;
+}
+.e-grid .e-headercell {
+    font-weight: var(--header-font-weight);
+    background-color: #FFFFFF !important;
+}
+.e-grid .e-headercell:hover {
+    background-color: #f4f4f4 !important
+}
+
+.e-dialog {
+    border-radius: var(--title-border-radius);
+    box-shadow: var(--title-shadow);
+}
+
+.btn {
+    margin-right: 5px;
+    padding: 8px 16px;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color var(--transition-duration) ease, color var(--transition-duration) ease;
+}
+
+.custom-btn-primary {
+    background-color: var(--primary-color);
+    color: var(--primary-text-color);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all var(--transition-duration) ease;
+}
+.custom-btn-primary:hover {
+    background-color: var(--primary-hover-color);
+    color: var(--highlight-color);
+}
+
+.custom-btn-danger {
+    background-color: var(--danger-color);
+    color: var(--primary-text-color);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all var(--transition-duration) ease;
+}
+.custom-btn-danger:hover {
+    background-color: var(--danger-hover-color);
+    color: var(--primary-text-color);
+}
+
+.custom-title {
+    font-family: var(--title-font-family), serif;
+    font-size: var(--title-font-size);
+    font-weight: var(--title-font-weight);
+    color: var(--primary-color);
+    text-align: center;
+    padding: var(--title-padding);
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    border-radius: var(--title-border-radius);
+    box-shadow: var(--title-shadow);
+    margin-bottom: var(--title-margin-bottom);
+    letter-spacing: var(--title-letter-spacing);
+    text-transform: uppercase;
+    transition: all var(--transition-duration) ease;
+}
+
+.custom-title:hover {
+    background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
+    color: var(--text-color);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.sidebar-menu .first-menu .list-group-item .icon::before{
+    background-image: linear-gradient(to bottom, #003f88, #003f88) !important;
+} 
+
+.bg-linear{
+    background-image: linear-gradient(to bottom, #003f88, #003f88) !important;
+}
+
+.total-visits-browse-area{
+    margin: 20px;
+    padding: 0;
+}

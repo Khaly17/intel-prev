@@ -1,0 +1,31 @@
+﻿@page "/registers"
+
+@attribute [Authorize(Roles = "Admin, Super Admin")]
+
+@using Microsoft.AspNetCore.Authorization
+
+@using Soditech.IntelPrev.Reports.Shared.RegisterTypes
+@using Soditech.IntelPrev.Web.Components.Widgets.Tables
+@using Soditech.IntelPrev.Web.Components.Widgets.Alerts
+@using Soditech.IntelPrev.Web.Components.Widgets.Dialogs
+
+<GenericGrid TItem="@RegisterTypeResult"
+             Items="@Registers"
+             GridTitle="Types de Registres"
+             ToolbarItems="@ToolbarItems"
+             DisplayTitle="true"
+             PageCount="@PageCount"
+             PageSize="@PageSize"
+             addButton="@AddRegister"
+             OnEdit="@GoToEdit"
+             OnDelete="@DeleteRegisterTrigger"
+             Columns="@Columns"
+             DisplaySpinnerOnLoading="IsLoading">
+
+    <AlertComponent Message="@_alertMessage" AlertType="@_alertType" IsVisible="@_isAlertVisible" />
+
+</GenericGrid>
+
+<GenericConfirmDialog HeaderLabel="Suppression de registre" IsVisible="@_isDeleteModalVisible"
+                      OnConfirm="DeleteRegisterAsync" OnCancel="HideDeleteModal"
+                      Message="Voulez-vous vraiment supprimer ce type de registre ?" />

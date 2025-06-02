@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:maps="http://schemas.microsoft.com/dotnet/2021/maui/maps"
+             xmlns:behaviors="using:Soditech.IntelPrev.Mobile.Behaviors"
+             x:Class="Soditech.IntelPrev.Mobile.Views.Gps.MaterialLocationView"
+             base:ViewManager.AutoWireViewModel="True"
+             xmlns:viewModel="clr-namespace:Soditech.IntelPrev.Mobile.ViewModels.Gps"
+             xmlns:base="clr-namespace:Soditech.IntelPrev.Mobile.ViewModels.Base"
+             x:DataType="viewModel:MaterialLocationViewModel"
+             Title="{Binding PageTitle}">
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IconOverride="back.png" IsVisible="True" IsEnabled="True" />
+    </Shell.BackButtonBehavior>
+
+    <Grid>
+        <!-- Loading Indicator -->
+        <ActivityIndicator IsVisible="{Binding IsBusy}"
+                          IsRunning="{Binding IsBusy}"
+                          HorizontalOptions="Center"
+                          VerticalOptions="Center"
+                          Color="{StaticResource Primary}"/>
+
+        <!-- Map View -->
+        <maps:Map x:Name="LocationMap"
+                 IsVisible="{Binding IsNotBusy}"
+                 IsShowingUser="True"
+                 ItemsSource="{Binding MapPins}">
+            <maps:Map.ItemTemplate>
+                <DataTemplate>
+                    <maps:Pin x:DataType="maps:Pin" Location="{Binding Location}"
+                              Address="{Binding Address}"
+                              Type="Place" 
+                              Label="{Binding Label}" />
+                </DataTemplate>
+            </maps:Map.ItemTemplate>
+        </maps:Map>
+
+    </Grid>
+    <ContentPage.Behaviors>
+        <behaviors:EventHandlerBehavior EventName="Appearing">
+            <behaviors:ActionCollection>
+                <behaviors:InvokeCommandAction Command="{Binding PageAppearingCommand}" />
+            </behaviors:ActionCollection>
+        </behaviors:EventHandlerBehavior>
+    </ContentPage.Behaviors>
+</ContentPage>

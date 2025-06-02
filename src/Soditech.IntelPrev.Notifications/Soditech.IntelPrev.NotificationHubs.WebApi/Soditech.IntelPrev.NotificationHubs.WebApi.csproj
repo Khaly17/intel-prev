@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>ac669d4d-340b-43f5-89f7-a97dc30fb10d</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Azure.NotificationHubs" Version="4.2.0" />
+    <PackageReference Include="FastEndpoints" Version="5.28.0" />
+    <PackageReference Include="FastEndpoints.Swagger" Version="5.28.0" />
+    <PackageReference Include="Sensor6ty.WebapiCore" Version="1.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Soditech.IntelPrev.NotificationHubs.Application\Soditech.IntelPrev.NotificationHubs.Application.csproj" />
+  </ItemGroup>
+
+</Project>

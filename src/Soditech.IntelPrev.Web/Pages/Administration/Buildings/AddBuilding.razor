@@ -1,0 +1,13 @@
+﻿@page "/buildings/add"
+@attribute [Authorize(Roles = "Admin, Super Admin")]
+
+@using Microsoft.AspNetCore.Authorization
+@using Soditech.IntelPrev.Web.Components.Administrations;
+
+<AddOrEditBuilding
+    NewBuilding="@NewBuilding"
+    Title="@title"
+    SuccessMessage="@successMessage"
+    ErrorMessage="@errorMessage"
+    OnBuildingCreated="@CreateBuilding"
+/>

@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Soditech.IntelPrev.Mobile.Views.DevView"
+             Title="Dev Page">
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IconOverride="back.png" IsVisible="True" IsEnabled="True" />
+    </Shell.BackButtonBehavior>
+
+    <ContentPage.Content>
+        <Grid BackgroundColor="#ffffff" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="20">
+                <!-- Icône -->
+                <Image Source="work_in_progress.jpg"
+                       WidthRequest="120" HeightRequest="120"
+                       Aspect="AspectFit"/>
+
+                <!-- Message -->
+                <Label Text="Cette page est en phase de développement."
+                       FontSize="24"
+                       FontAttributes="Bold"
+                       TextColor="#333333"
+                       HorizontalTextAlignment="Center"/>
+
+                <!-- Sous-texte -->
+                <Label Text="Nous travaillons dur pour donner vie à cette fonctionnalité. Veuillez revenir plus tard."
+                       FontSize="16"
+                       TextColor="#555555"
+                       HorizontalTextAlignment="Center"
+                       Margin="20,0"/>
+
+                <!-- Bouton Retour -->
+                <Button Text="Retour"
+				BackgroundColor="{StaticResource Primary}"
+				TextColor="White"
+				CornerRadius="0"
+				Clicked="OnBackButtonClicked"/>
+            </VerticalStackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

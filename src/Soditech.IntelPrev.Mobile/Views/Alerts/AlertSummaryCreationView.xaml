@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Soditech.IntelPrev.Mobile.Views.Alerts.AlertSummaryCreationView"
+             base:ViewManager.AutoWireViewModel="True"
+             Title="Résumé de l'alerte"
+             xmlns:viewModel="clr-namespace:Soditech.IntelPrev.Mobile.ViewModels.Alerts"
+             xmlns:base="clr-namespace:Soditech.IntelPrev.Mobile.ViewModels.Base"
+             x:DataType="viewModel:AlertSummaryCreationViewModel">
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IconOverride="back.png" IsVisible="True" IsEnabled="True" />
+    </Shell.BackButtonBehavior>
+    <ContentPage.Content>
+        <Grid RowDefinitions="*, Auto">
+            <!-- Scrollable Content Area -->
+            <ScrollView Grid.Row="0">
+                <VerticalStackLayout Padding="20" Spacing="15">
+                    <!-- Alert Summary Card -->
+                    <Border Padding="15" BackgroundColor="WhiteSmoke">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="10"/>
+                        </Border.StrokeShape>
+                        <VerticalStackLayout Spacing="10">
+                            <Label Text="Détails de l'alerte"
+                                   FontSize="20"
+                                   FontAttributes="Bold"
+                                   TextColor="Black"/>
+
+                            <BoxView HeightRequest="1"
+                                    Color="LightGray"
+                                    HorizontalOptions="Fill"/>
+
+                            <!-- Alert Type -->
+                            <VerticalStackLayout Spacing="5">
+                                <Label Text="Type d'alerte"
+                                       FontAttributes="Bold"/>
+                                <Label Text="{Binding AlertTypeName}"/>
+                            </VerticalStackLayout>
+
+                            <!-- Building -->
+                            <VerticalStackLayout Spacing="5">
+                                <Label Text="Bâtiment"
+                                       FontAttributes="Bold"/>
+                                <Label Text="{Binding BuildingName}"/>
+                            </VerticalStackLayout>
+
+                            <!-- Floor -->
+                            <VerticalStackLayout Spacing="5"
+                                               IsVisible="{Binding HasFloor}">
+                                <Label Text="Étage"
+                                       FontAttributes="Bold"/>
+                                <Label Text="{Binding FloorNumber}"/>
+                            </VerticalStackLayout>
+
+                            <!-- Location -->
+                            <VerticalStackLayout Spacing="5">
+                                <Label Text="Coordonnées GPS"
+                                       FontAttributes="Bold"/>
+                                <Label Text="{Binding LocationDetails}"/>
+                            </VerticalStackLayout>
+                        </VerticalStackLayout>
+                    </Border>
+                </VerticalStackLayout>
+            </ScrollView>
+
+            <VerticalStackLayout 
+                Grid.Row="2"
+                BackgroundColor="White"
+                Padding="0,10,0,0"
+                                 >
+                <Button Text="Confirmer"
+                        HeightRequest="50"
+                        TextColor="{StaticResource Background}"
+                        FontAttributes="Bold"
+                        TextTransform="Uppercase"
+                        CornerRadius="0"
+                        BackgroundColor="{StaticResource Primary}"
+                        Command="{Binding CreateAlertCommand}"/>
+            </VerticalStackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,29 @@
+﻿@page "/campaigns"
+@attribute [Authorize(Roles = "Admin, Super Admin")]
+
+@using Microsoft.AspNetCore.Authorization
+@using Soditech.IntelPrev.Preventions.Shared.Campaigns
+@using Soditech.IntelPrev.Web.Components.Widgets.Alerts
+@using Soditech.IntelPrev.Web.Components.Widgets.Dialogs
+@using Soditech.IntelPrev.Web.Components.Widgets.Tables
+
+<GenericGrid TItem="@CampaignResult"
+             Items="@CampaignResults"
+             GridTitle="Campagnes"
+             ToolbarItems="@ToolbarItems"
+             DisplayTitle="true"
+             PageCount="@PageCount"
+             PageSize="@PageSize"
+             addButton="@AddCampaign"
+             OnDelete="@DeleteCampaign"
+             OnEdit="@GoToEdit"
+             Columns="@Columns"
+             DisplaySpinnerOnLoading="IsLoading">
+
+    <AlertComponent Message="@_alertMessage" AlertType="@_alertType" IsVisible="@_isAlertVisible" />
+
+</GenericGrid>
+
+
+<GenericConfirmDialog HeaderLabel="Suppression de la structure" IsVisible="@_isDeleteModalVisible"
+                      OnConfirm="DeleteCampaignAsync" OnCancel="HideDeleteModal" />

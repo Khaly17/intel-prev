@@ -1,0 +1,21 @@
+using FastEndpoints;
+using MediatR;
+using Sensor6ty.Results;
+using Soditech.IntelPrev.Reports.Shared;
+using Soditech.IntelPrev.Reports.Shared.ReportDatas;
+
+namespace Soditech.IntelPrev.Reports.WebApi.Endpoints.ReportDatas;
+
+[HttpPost(ReportRoutes.ReportDatas.Create)]
+[Tags("ReportDatas")]
+public class CreateReportDataEndpoint(IServiceProvider serviceProvider): Endpoint<CreateReportDataCommand, TResult<ReportDataResult>>
+{
+    private readonly IMediator _mediator = serviceProvider.GetRequiredService<IMediator>();
+    
+    public override async Task<TResult<ReportDataResult>> HandleAsync(CreateReportDataCommand request, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(request, cancellationToken);
+        await SendAsync(result, cancellation: cancellationToken);
+        return result;
+    }
+}

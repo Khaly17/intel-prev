@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:base="clr-namespace:Soditech.IntelPrev.Mobile.ViewModels.Base;assembly=Soditech.IntelPrev.Mobile"
+             xmlns:behaviors="using:Soditech.IntelPrev.Mobile.Behaviors"
+             x:Class="Soditech.IntelPrev.Mobile.Views.Reports.CreateReportView"
+             base:ViewManager.AutoWireViewModel="True"
+             xmlns:viewModel="clr-namespace:Soditech.IntelPrev.Mobile.ViewModels.Reports"
+             xmlns:registerField="clr-namespace:Soditech.IntelPrev.Reports.Shared.RegisterFields;assembly=Soditech.IntelPrev.Reports.Shared"
+             xmlns:converters="clr-namespace:Soditech.IntelPrev.Mobile.Converters"
+             Shell.TitleColor="{StaticResource Background}"
+             x:DataType="viewModel:CreateReportViewModel"
+             Shell.ForegroundColor="{ StaticResource Background}"
+             Title="Signaler">
+
+    <ContentPage.Resources>
+        <!-- Removed ExpandCollapseIconConverter -->
+
+        <!-- DataTemplates for each field type -->
+        <DataTemplate x:Key="TextFieldTemplate" x:DataType="registerField:CreateReportFieldCommand">
+            <Border Padding="10" Margin="0,5"
+                    StrokeThickness="{Binding IsRequired, Converter={StaticResource BoolToIntConverter}}"
+                    Stroke="{Binding IsRequiredAndNotFilled, Converter={StaticResource RequiredFieldBorderColorConverter}}">
+                <VerticalStackLayout Spacing="5">
+                    <Grid ColumnDefinitions="*, Auto">
+                        <Label Grid.Column="0" Text="{Binding Name}" FontAttributes="Bold" FontSize="14" />
+                        <Label Grid.Column="1" Text="*" TextColor="Red" FontAttributes="Bold" IsVisible="{Binding IsRequired}" FontSize="16" />
+                    </Grid>
+                    <Label Text="{Binding Description}" FontSize="12" TextColor="Gray" IsVisible="{Binding Description, Converter={StaticResource IsStringNotNullOrWhiteSpaceConverter}}" />
+                    <Entry Text="{Binding Value}" Placeholder="Saisissez du texte" Margin="0,5,0,0" />
+                    <Label Text="Ce champ est obligatoire" TextColor="Red" FontSize="12" IsVisible="{Binding IsRequiredAndNotFilled}" />
+                </VerticalStackLayout>
+            </Border>
+        </DataTemplate>
+
+        <DataTemplate x:Key="BooleanFieldTemplate" x:DataType="registerField:CreateReportFieldCommand">
+            <Border Padding="10" Margin="0,5"
+                    StrokeThickness="{Binding IsRequired, Converter={StaticResource BoolToIntConverter}}"
+                    Stroke="{Binding IsRequiredAndNotFilled, Converter={StaticResource RequiredFieldBorderColorConverter}}">
+                <VerticalStackLayout Spacing="5">
+                    <Grid ColumnDefinitions="*, Auto">
+                        <Label Grid.Column="0" Text="{Binding Name}" FontAttributes="Bold" FontSize="14" />
+                        <Label Grid.Column="1" Text="*" TextColor="Red" FontAttributes="Bold" IsVisible="{Binding IsRequired}" FontSize="16" />
+                    </Grid>
+                    <Label Text="{Binding Description}" FontSize="12" TextColor="Gray" IsVisible="{Binding Description, Converter={StaticResource IsStringNotNullOrWhiteSpaceConverter}}" />
+                    <Grid ColumnDefinitions="*, Auto" Margin="0,5,0,0">
+                        <Switch Grid.Column="1" IsToggled="{Binding Value}" VerticalOptions="Center" />
+                    </Grid>
+                    <Label Text="Ce champ est obligatoire" TextColor="Red" FontSize="12" IsVisible="{Binding IsRequiredAndNotFilled}" />
+                </VerticalStackLayout>
+            </Border>
+        </DataTemplate>
+
+        <DataTemplate x:Key="DateFieldTemplate" x:DataType="registerField:CreateReportFieldCommand">
+            <Border Padding="10" Margin="0,5"
+                    StrokeThickness="{Binding IsRequired, Converter={StaticResource BoolToIntConverter}}"
+                    Stroke="{Binding IsRequiredAndNotFilled, Converter={StaticResource RequiredFieldBorderColorConverter}}">
+                <VerticalStackLayout Spacing="5">
+                    <Grid ColumnDefinitions="*, Auto">
+                        <Label Grid.Column="0" Text="{Binding Name}" FontAttributes="Bold" FontSize="14" />
+                        <Label Grid.Column="1" Text="*" TextColor="Red" FontAttributes="Bold" IsVisible="{Binding IsRequired}" FontSize="16" />
+                    </Grid>
+                    <Label Text="{Binding Description}" FontSize="12" TextColor="Gray" IsVisible="{Binding Description, Converter={StaticResource IsStringNotNullOrWhiteSpaceConverter}}" />
+                    <DatePicker Date="{Binding Value}" Margin="0,5,0,0" />
+                    <Label Text="Ce champ est obligatoire" TextColor="Red" FontSize="12" IsVisible="{Binding IsRequiredAndNotFilled}" />
+                </VerticalStackLayout>
+            </Border>
+        </DataTemplate>
+
+        <DataTemplate x:Key="NumberFieldTemplate" x:DataType="registerField:CreateReportFieldCommand">
+            <Border Padding="10" Margin="0,5"
+                    StrokeThickness="{Binding IsRequired, Converter={StaticResource BoolToIntConverter}}"
+                    Stroke="{Binding IsRequiredAndNotFilled, Converter={StaticResource RequiredFieldBorderColorConverter}}">
+                <VerticalStackLayout Spacing="5">
+                    <Grid ColumnDefinitions="*, Auto">
+                        <Label Grid.Column="0" Text="{Binding Name}" FontAttributes="Bold" FontSize="14" />
+                        <Label Grid.Column="1" Text="*" TextColor="Red" FontAttributes="Bold" IsVisible="{Binding IsRequired}" FontSize="16" />
+                    </Grid>
+                    <Label Text="{Binding Description}" FontSize="12" TextColor="Gray" IsVisible="{Binding Description, Converter={StaticResource IsStringNotNullOrWhiteSpaceConverter}}" />
+                    <Entry Text="{Binding Value}" Keyboard="Numeric" Placeholder="Saisissez un nombre" Margin="0,5,0,0" />
+                    <Label Text="Ce champ est obligatoire" TextColor="Red" FontSize="12" IsVisible="{Binding IsRequiredAndNotFilled}" />
+                </VerticalStackLayout>
+            </Border>
+        </DataTemplate>
+
+        <!-- Configure the FieldTemplateSelector -->
+        <converters:FieldTemplateSelector x:Key="FieldSelector"
+                                          TextFieldTemplate="{StaticResource TextFieldTemplate}"
+                                          BooleanFieldTemplate="{StaticResource BooleanFieldTemplate}"
+                                          DateFieldTemplate="{StaticResource DateFieldTemplate}"
+                                          NumberFieldTemplate="{StaticResource NumberFieldTemplate}" />
+        <converters:IsStringNotNullOrWhiteSpaceConverter x:Key="IsStringNotNullOrWhiteSpaceConverter"/>
+        <converters:BoolToIntConverter x:Key="BoolToIntConverter"/>
+        <converters:RequiredFieldBorderColorConverter x:Key="RequiredFieldBorderColorConverter"/>
+
+    </ContentPage.Resources>
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IconOverride="back.png" IsVisible="True" IsEnabled="True" Command="{Binding PreviousPageCommand}" />
+    </Shell.BackButtonBehavior>
+
+    <ContentPage.Behaviors>
+        <behaviors:EventHandlerBehavior EventName="Appearing">
+            <behaviors:ActionCollection>
+                <behaviors:InvokeCommandAction Command="{Binding PageAppearingCommand}" />
+            </behaviors:ActionCollection>
+        </behaviors:EventHandlerBehavior>
+    </ContentPage.Behaviors>
+
+    <Grid RowDefinitions="Auto, *, Auto">
+        <!-- Header with Progress -->
+        <VerticalStackLayout Grid.Row="0" Padding="20,15" BackgroundColor="White" Spacing="10">
+            <!-- Progress Steps -->
+            <HorizontalStackLayout Spacing="5" HorizontalOptions="Center">
+                <Label Text="1. Choisir le type"
+                       TextColor="{Binding Step1Color}"
+                       FontAttributes="{Binding Step1FontAttributes}"
+                       FontSize="14"/>
+                <Label Text=">"
+                       TextColor="Gray"
+                       FontSize="14"/>
+                <Label Text="2. Remplir les champs"
+                       TextColor="{Binding Step2Color}"
+                       FontAttributes="{Binding Step2FontAttributes}"
+                       FontSize="14"/>
+                <Label Text=">"
+                       TextColor="Gray"
+                       FontSize="14"/>
+                <Label Text="3. Valider"
+                       TextColor="{Binding Step3Color}"
+                       FontAttributes="{Binding Step3FontAttributes}"
+                       FontSize="14"/>
+            </HorizontalStackLayout>
+
+            <!-- Progress Bar -->
+            <ProgressBar Progress="{Binding Progress}"
+                         ProgressColor="#007bff"
+                         HeightRequest="5"/>
+
+            <!-- Title and Section Number -->
+            <Grid ColumnDefinitions="*, Auto">
+                <Label Grid.Column="0" Text="{Binding CreateReport.Title}"
+                       FontSize="22" FontAttributes="Bold" />
+                <Label Grid.Column="1"
+                       Text="{Binding CurrentPageDisplay}"
+                       FontSize="14"
+                       TextColor="#007bff"
+                       VerticalOptions="Center"/>
+            </Grid>
+
+        </VerticalStackLayout>
+
+        <!-- Loading indicator -->
+        <ActivityIndicator Grid.Row="1"
+                           IsRunning="{Binding IsBusy}"
+                           IsVisible="{Binding IsBusy}"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"/>
+
+        <!-- Main Content -->
+        <ScrollView Grid.Row="1" IsVisible="{Binding IsNotBusy}">
+            <VerticalStackLayout Padding="20" Spacing="15">
+                <!-- Show only the current section instead of all sections -->
+                <CollectionView ItemsSource="{Binding VisibleSections}"
+                                SelectionMode="None"
+                                x:DataType="viewModel:CreateReportViewModel">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="viewModel:SectionViewModel">
+                            <!-- Section content remains the same -->
+                            <Border Padding="16" Margin="0,8" BackgroundColor="White">
+                                <VerticalStackLayout Spacing="12">
+                                    <!-- Section Header (Expand/Collapse removed) -->
+                                    <Grid>
+                                        <!-- Removed TapGestureRecognizer -->
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <!-- Removed Auto column for icon -->
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Text="{Binding Title}"
+                                               FontAttributes="Bold"
+                                               FontSize="16"
+                                               TextColor="#333333"
+                                               VerticalOptions="Center"/>
+
+                                        <!-- Removed Expand/Collapse Image -->
+
+                                    </Grid>
+                                    <!-- Removed BoxView Separator -->
+
+                                    <!-- Section Fields (Always Visible) -->
+                                    <CollectionView ItemsSource="{Binding Fields}"
+                                                    IsVisible="True"
+                                                    SelectionMode="None"
+                                                    ItemTemplate="{StaticResource FieldSelector}">
+                                        <!-- Use the DataTemplateSelector -->
+                                        <!-- ItemTemplate is now handled by the FieldSelector -->
+                                    </CollectionView>
+                                </VerticalStackLayout>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <!-- Spacer for bottom buttons -->
+                <BoxView HeightRequest="60" Background="{StaticResource Background}" />
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Bottom Action Bar -->
+        <Grid Grid.Row="2"
+              BackgroundColor="White"
+              Padding="0,10,0,0">
+
+            <Button
+                    Text="{Binding NextButtonText}"
+                    Command="{Binding NextPageCommand}"
+                    FontSize="16"
+                    TextColor="White"
+                    BackgroundColor="{StaticResource Primary}"
+                    CornerRadius="0"
+                    HeightRequest="50"
+                    />
+        </Grid>
+    </Grid>
+</ContentPage>

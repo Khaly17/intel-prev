@@ -1,0 +1,31 @@
+﻿@page "/documents"
+@attribute [Authorize(Roles = "Admin, Super Admin")]
+
+@using Microsoft.AspNetCore.Authorization
+@using Soditech.IntelPrev.Mediatheques.Shared.Documents
+@using Soditech.IntelPrev.Web.Components.Widgets.Alerts
+@using Soditech.IntelPrev.Web.Components.Widgets.Dialogs
+@using Soditech.IntelPrev.Web.Components.Widgets.Tables
+
+<GenericGrid
+    TItem="@DocumentResult"
+    Items="@Documents"
+    GridTitle="Documents"
+    ToolbarItems="@ToolbarItems"
+    DisplayTitle="true"
+    PageCount="@PageCount"
+    PageSize="@PageSize"
+    addButton="@AddDocument"
+    OnDelete="@DeleteDocument"
+    OnEdit="@GoToEdit"
+    Columns="@Columns"
+    DisplaySpinnerOnLoading="IsLoading">
+
+    <AlertComponent Message="@_alertMessage" AlertType="@_alertType" IsVisible="@_isAlertVisible" />
+
+</GenericGrid>
+
+
+<GenericConfirmDialog HeaderLabel="Suppression de la structure" IsVisible="@_isDeleteModalVisible"
+                      OnConfirm="DeleteDocumentAsync" OnCancel="HideDeleteModal" />
+

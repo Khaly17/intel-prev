@@ -1,0 +1,232 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Soditech.IntelPrev.Mobile.Views.ProPrev.ProPrevHomeView"
+             xmlns:viewModel="clr-namespace:Soditech.IntelPrev.Mobile.ViewModels.ProPrev"
+             xmlns:components="clr-namespace:Soditech.IntelPrev.Mobile.Views.Components.Carousel"
+             x:DataType="viewModel:ProPrevHomeViewModel"
+             Title="Pro-Prev">
+    <ContentPage.BindingContext>
+        <viewModel:ProPrevHomeViewModel/>
+    </ContentPage.BindingContext>
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IconOverride="back.png" IsVisible="True" IsEnabled="True" />
+    </Shell.BackButtonBehavior>
+    <ContentPage.Content>
+        <Grid Padding="0" Margin="-1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+
+                    <components:CarouselComponent
+                        ItemsSource="{Binding CarouselItems}"
+                        Position="0"
+                        CurrentItemChangedCommand="{Binding CarouselItemChangedCommand}"/>
+
+
+            <Grid Grid.Row="1" ColumnSpacing="10" RowSpacing="10" Padding="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Button 1 -->
+                <Border Grid.Row="0" Grid.Column="0" BackgroundColor="#FFFFFF" Padding="0">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="15"/>
+                    </Border.StrokeShape>
+                    <Border.Shadow>
+                        <Shadow Opacity="0.2" />
+                    </Border.Shadow>
+                    <VerticalStackLayout Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
+                        <Image Source="protocole_d_analyse.png" HeightRequest="40" />
+                        <Label Text="Protocole d'analyse" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                    </VerticalStackLayout>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToRiskAnalysisProtocolCommand}"/>
+                    </Border.GestureRecognizers>
+                </Border>
+
+                <!-- Button 2 -->
+                <Border Grid.Row="0" Grid.Column="1" BackgroundColor="#FFFFFF" Padding="0">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="15"/>
+                    </Border.StrokeShape>
+                    <Border.Shadow>
+                        <Shadow Opacity="0.2" />
+                    </Border.Shadow>
+                    <VerticalStackLayout Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
+                        <Image Source="outils_d_analyses.png" HeightRequest="40" />
+                        <Label Text="Outils d'analyses" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                    </VerticalStackLayout>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToAnalysisToolsCommand}"  />
+                    </Border.GestureRecognizers>
+                </Border>
+
+                <!-- Button 3 -->
+                <Border Grid.Row="0" Grid.Column="2" BackgroundColor="#FFFFFF" Padding="0">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="15"/>
+                    </Border.StrokeShape>
+                    <Border.Shadow>
+                        <Shadow Opacity="0.2" />
+                    </Border.Shadow>
+                    <VerticalStackLayout Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
+                        <Image Source="suivi_des_actions.png" HeightRequest="40" />
+                        <Label Text="Suivi des actions" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                    </VerticalStackLayout>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToActionTrackingCommand}" />
+                    </Border.GestureRecognizers>
+                </Border>
+
+                <!-- Button 4 -->
+                <Border Grid.Row="1" Grid.Column="0" BackgroundColor="#FFFFFF" Padding="0">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="15"/>
+                    </Border.StrokeShape>
+                    <Border.Shadow>
+                        <Shadow Opacity="0.2" />
+                    </Border.Shadow>
+                    <VerticalStackLayout Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
+                        <Image Source="visite_des_sites.png" HeightRequest="40" />
+                        <Label Text="Visite des sites" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                    </VerticalStackLayout>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToSiteVisiteCommand}" />
+                    </Border.GestureRecognizers>
+                </Border>
+
+                <!-- Button 5 -->
+                <Border Grid.Row="1" Grid.Column="1" BackgroundColor="#FFFFFF" Padding="0">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="15"/>
+                    </Border.StrokeShape>
+                    <Border.Shadow>
+                        <Shadow Opacity="0.2" />
+                    </Border.Shadow>
+                    <VerticalStackLayout Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
+                        <Image Source="agenda_du_cse.png" HeightRequest="40" />
+                        <Label Text="Agenda du CSE" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                    </VerticalStackLayout>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToAgendaCSECommand}" />
+                    </Border.GestureRecognizers>
+                </Border>
+
+                <!-- Button 6 -->
+                <Border Grid.Row="1" Grid.Column="2" BackgroundColor="#FFFFFF" Padding="0">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="15"/>
+                    </Border.StrokeShape>
+                    <Border.Shadow>
+                        <Shadow Opacity="0.2" />
+                    </Border.Shadow>
+                    <VerticalStackLayout Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
+                        <Image Source="quart_d_heures.png" HeightRequest="40" />
+                        <Label Text="&#xbc; d'heures sécurité" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                    </VerticalStackLayout>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToSecurityMeetingCommand}" />
+                    </Border.GestureRecognizers>
+                </Border>
+
+                <!-- Button 7 -->
+                <Border Grid.Row="2" Grid.Column="0" BackgroundColor="#FFFFFF" Padding="0">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="15"/>
+                    </Border.StrokeShape>
+                    <Border.Shadow>
+                        <Shadow Opacity="0.2" />
+                    </Border.Shadow>
+                    <VerticalStackLayout Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
+                        <Image Source="controles_des_epi.png" HeightRequest="40" />
+                        <Label Text="Contrôles epi" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                    </VerticalStackLayout>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToEPIControlCommand}" />
+                    </Border.GestureRecognizers>
+                </Border>
+
+                <!-- Button 8 -->
+                <Border Grid.Row="2" Grid.Column="1" BackgroundColor="#FFFFFF" Padding="0">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="15"/>
+                    </Border.StrokeShape>
+                    <Border.Shadow>
+                        <Shadow Opacity="0.2" />
+                    </Border.Shadow>
+
+                    <VerticalStackLayout Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
+                        <Image Source="fiche_de_donnees_de_securite.png" HeightRequest="30" />
+                        <Label Text="Fiches de donnees et de sécurité (FDS)" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                    </VerticalStackLayout>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToFDSCommand}" />
+                    </Border.GestureRecognizers>
+                </Border>
+
+                <!-- Button 9 -->
+                <Border Grid.Row="2" Grid.Column="2" BackgroundColor="#FFFFFF" Padding="0">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="15"/>
+                    </Border.StrokeShape>
+                    <Border.Shadow>
+                        <Shadow Opacity="0.2" />
+                    </Border.Shadow>
+                    <VerticalStackLayout Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
+                        <Image Source="premiers_secours.png" HeightRequest="40" />
+                        <Label Text="Premiers secours" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                    </VerticalStackLayout>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToFirstAidCommand}" />
+                    </Border.GestureRecognizers>
+                </Border>
+
+                <!-- Button 10 -->
+                <Border Grid.Row="3" Grid.Column="0" BackgroundColor="#FFFFFF" Padding="0">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="15"/>
+                    </Border.StrokeShape>
+                    <Border.Shadow>
+                        <Shadow Opacity="0.2" />
+                    </Border.Shadow>
+                    <VerticalStackLayout Padding="0" HorizontalOptions="Fill" VerticalOptions="Center">
+                        <Image Source="formation_en_sante_et_securite.png" HeightRequest="30" />
+                        <Label Text="Formation en sante et sécurité au travail" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                    </VerticalStackLayout>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer  Command="{Binding GoToTrainingCommand}" />
+                    </Border.GestureRecognizers>
+                </Border>
+
+                <!-- Button 11 -->
+                <Border Grid.Row="3" Grid.Column="2" BackgroundColor="#FFFFFF" Padding="0">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="15"/>
+                    </Border.StrokeShape>
+                    <Border.Shadow>
+                        <Shadow Opacity="0.2" />
+                    </Border.Shadow>
+                    <VerticalStackLayout Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
+                        <Image Source="ma_bibliotheque.png" HeightRequest="40" />
+                        <Label Text="Ma bibliothèque" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                    </VerticalStackLayout>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToMyLibraryCommand}" />
+                    </Border.GestureRecognizers>
+                </Border>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

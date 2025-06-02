@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModel="clr-namespace:Soditech.IntelPrev.Mobile.ViewModels.Account"
+             xmlns:components="clr-namespace:Soditech.IntelPrev.Mobile.Views.Components"
+             xmlns:behaviors="clr-namespace:Soditech.IntelPrev.Mobile.Behaviors"
+             x:Class="Soditech.IntelPrev.Mobile.Views.Account.ProfileView"
+             x:DataType="viewModel:ProfileViewModel"
+                  
+             Shell.ForegroundColor="White"
+             Shell.TitleColor="White"
+             BackgroundColor="White">
+
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IconOverride="back.png" IsVisible="True" IsEnabled="True" Command="{Binding GoHomeCommand }" />
+    </Shell.BackButtonBehavior>
+ 
+    <ContentPage.BindingContext>
+        <viewModel:ProfileViewModel />
+    </ContentPage.BindingContext>
+
+    <components:ConfirmationScreenView
+        MainMessage="{Binding ProfileTitle}"
+        SubMessage="{Binding ProfileSubtitle}"
+        PrimaryButtonText="{Binding ChangePinText}"
+        SecondaryButtonText="{Binding LogoutText}"
+        PrimaryButtonCommand="{Binding GoToPinVerificationCommand}"
+        SecondaryButtonCommand="{Binding LogoutCommand}"
+        HeaderBackgroundColor="{StaticResource Primary}" />
+
+    <ContentPage.Behaviors>
+        <behaviors:EventHandlerBehavior EventName="Appearing">
+            <behaviors:ActionCollection>
+                <behaviors:InvokeCommandAction Command="{Binding PageAppearingCommand}" />
+            </behaviors:ActionCollection>
+        </behaviors:EventHandlerBehavior>
+    </ContentPage.Behaviors>
+</ContentPage>
+

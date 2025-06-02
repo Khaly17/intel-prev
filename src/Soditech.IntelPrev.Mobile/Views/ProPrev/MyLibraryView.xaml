@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="Soditech.IntelPrev.Mobile.Views.ProPrev.MyLibraryView"
+             xmlns:base="clr-namespace:Soditech.IntelPrev.Mobile.ViewModels.Base;assembly=Soditech.IntelPrev.Mobile"
+             base:ViewManager.AutoWireViewModel="True"
+             xmlns:behaviors="using:Soditech.IntelPrev.Mobile.Behaviors"
+             xmlns:viewModel="clr-namespace:Soditech.IntelPrev.Mobile.ViewModels.ProPrev"
+             x:DataType="viewModel:MyLibraryViewModel"
+             Title="Ma Bibliothèque"
+             BackgroundColor="#f5f5f5">
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IconOverride="back.png" IsVisible="True" IsEnabled="True" />
+    </Shell.BackButtonBehavior>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <FlexLayout Direction="Column"
+                      JustifyContent="Start"
+                      AlignItems="Stretch"
+                      Padding="20"
+                      Wrap="NoWrap">
+
+                <!-- Header Section with improved layout -->
+                <HorizontalStackLayout HorizontalOptions="Center">
+                    <Label Text="Description bibliothèque"
+                           HorizontalTextAlignment="Center"
+                           Style="{StaticResource HeaderStyle}"
+                           SemanticProperties.Hint="Titre principal"/>
+                </HorizontalStackLayout>
+
+                <!-- Definition Section -->
+
+                <Grid>
+                    <Border Background="{StaticResource Gray100}">
+                        <Label Text="Aperçu"
+                                       Style="{StaticResource SubheaderStyle}"
+                                       HorizontalTextAlignment="Center"
+                                       SemanticProperties.Hint="Section de bibliothèque"/>
+                    </Border>
+                </Grid>
+                <Border Style="{StaticResource CardStyle}">
+                    <VerticalStackLayout Spacing="15">
+                        <!-- Loading Indicator -->
+                        <ActivityIndicator IsVisible="{Binding IsBusy}"
+                                              IsRunning="{Binding IsBusy}" />
+
+                        <WebView IsVisible="{Binding IsNotBusy}" HeightRequest="300">
+                            <WebView.Source>
+                                <HtmlWebViewSource Html="{Binding DefinitionText}" />
+                            </WebView.Source>
+                        </WebView>
+                    </VerticalStackLayout>
+                </Border>
+            </FlexLayout>
+        </ScrollView>
+    </ContentPage.Content>
+
+    <ContentPage.Behaviors>
+        <behaviors:EventHandlerBehavior EventName="Appearing">
+            <behaviors:ActionCollection>
+                <behaviors:InvokeCommandAction Command="{Binding PageAppearingCommand}" />
+            </behaviors:ActionCollection>
+        </behaviors:EventHandlerBehavior>
+    </ContentPage.Behaviors>
+</ContentPage>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Soditech.IntelPrev.Mobile.Views.Alerts.BuildingSelectionView"
+             xmlns:behaviors="using:Soditech.IntelPrev.Mobile.Behaviors"
+             xmlns:viewModel="clr-namespace:Soditech.IntelPrev.Mobile.ViewModels.Alerts"
+             xmlns:buildings="clr-namespace:Soditech.IntelPrev.Preventions.Shared.Buildings;assembly=Soditech.IntelPrev.Preventions.Shared"
+             xmlns:floors="clr-namespace:Soditech.IntelPrev.Preventions.Shared.Floors;assembly=Soditech.IntelPrev.Preventions.Shared"
+             xmlns:components="clr-namespace:Soditech.IntelPrev.Mobile.Views.Components"
+             x:DataType="viewModel:BuildingSelectionViewModel"
+             Shell.TitleColor="White"
+             Shell.ForegroundColor="White"
+             Title="{Binding Title}">
+
+    <ContentPage.BindingContext>
+        <viewModel:BuildingSelectionViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <!-- Building Item Template -->
+        <DataTemplate x:Key="BuildingItemTemplate" x:DataType="buildings:BuildingResult">
+            <Border BackgroundColor="White"
+                    Stroke="#E0E0E0"
+                    StrokeThickness="1"
+                    Padding="15"
+                    Margin="0,0">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="0"/>
+                </Border.StrokeShape>
+                <Grid ColumnDefinitions="Auto,*,Auto"
+                        ColumnSpacing="10">
+                    <Image Grid.Column="0"
+                           Source="building_icon.png"
+                           HeightRequest="32"
+                           WidthRequest="32"
+                           VerticalOptions="Center"/>
+
+                    <VerticalStackLayout Grid.Column="1"
+                            Spacing="2"
+                            VerticalOptions="Center">
+                        <Label Text="{Binding Name}"
+                               FontAttributes="Bold"
+                               FontSize="16"
+                               TextColor="Black"/>
+                        <Label Text="{Binding Address}"
+                               FontSize="14"
+                               TextColor="#757575"
+                               IsVisible="{Binding Address, Converter={StaticResource IsStringNotNullOrEmptyConverter}}"/>
+                    </VerticalStackLayout>
+
+                    <Image Grid.Column="2"
+                           Source="chevron_right.png"
+                           HeightRequest="14"
+                           WidthRequest="14"
+                           VerticalOptions="Center"/>
+                </Grid>
+            </Border>
+        </DataTemplate>
+
+        <!-- Floor Item Template -->
+        <DataTemplate x:Key="FloorItemTemplate" x:DataType="floors:FloorResult">
+            <Border Padding="10" Margin="0,0" StrokeThickness="1" Stroke="#E0E0E0">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="0" />
+                </Border.StrokeShape>
+                <Grid ColumnSpacing="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0" Margin="5" Source="floor.jpg" WidthRequest="32" HeightRequest="32"/>
+                    <VerticalStackLayout Grid.Column="1" Spacing="2" VerticalOptions="Center">
+                        <Label Text="{Binding Number, StringFormat='Étage {0}'}" FontAttributes="Bold" FontSize="16" TextTransform="Uppercase"/>
+                        <Label Text="{Binding BuildingName}" FontSize="14" LineBreakMode="WordWrap" TextColor="#757575"/>
+                    </VerticalStackLayout>
+                    <Image Grid.Column="2"
+                        Source="chevron_right.png"
+                        HeightRequest="14"
+                        WidthRequest="14"
+                        VerticalOptions="Center"/>
+                </Grid>
+            </Border>
+        </DataTemplate>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid>
+            <!-- Building Selection View -->
+            <components:SelectableListView x:Name="BuildingView"
+                IsVisible="{Binding IsFloorSelection, Converter={StaticResource InvertedBoolConverter}}"
+                MainMessage="{Binding MainMessage}"
+                SubMessage="{Binding PageInstruction}"
+                ItemsSource="{Binding BuildingList}"
+                SelectedItem="{Binding Building}"
+                ItemTemplate="{StaticResource BuildingItemTemplate}"
+                IsBusy="{Binding IsBusy}"/>
+
+            <!-- Floor Selection View -->
+            <components:SelectableListView x:Name="FloorView"
+                IsVisible="{Binding IsFloorSelection}"
+                MainMessage="{Binding Title}"
+                SubMessage="{Binding PageInstruction}"
+                ItemsSource="{Binding FloorList}"
+                SelectedItem="{Binding Floor}"
+                ItemTemplate="{StaticResource FloorItemTemplate}"
+                IsBusy="{Binding IsBusy}"/>
+        </Grid>
+    </ContentPage.Content>
+
+    <ContentPage.Behaviors>
+        <behaviors:EventHandlerBehavior EventName="Appearing">
+            <behaviors:ActionCollection>
+                <behaviors:InvokeCommandAction Command="{Binding PageAppearingCommand}" />
+            </behaviors:ActionCollection>
+        </behaviors:EventHandlerBehavior>
+    </ContentPage.Behaviors>
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior Command="{Binding BackCommand}"
+                            IconOverride="back.png" />
+    </Shell.BackButtonBehavior>
+
+</ContentPage>

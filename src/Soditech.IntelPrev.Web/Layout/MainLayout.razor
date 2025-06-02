@@ -1,0 +1,106 @@
+﻿@using Soditech.IntelPrev.Web.Shared.Headers
+@using Soditech.IntelPrev.Web.Shared.SideBars
+@using Soditech.IntelPrev.Web.Shared
+
+@inherits LayoutComponentBase
+
+<AuthorizeView>
+    <Authorized>
+        <Header @bind-OnToggledSidebar="@SidebarToggle">
+        </Header>
+        <div class="home-section">
+            <div class="main-content">
+                @Body
+                <SideBar @bind-SidebarToggle="@SidebarToggle">
+                </SideBar>
+            </div>
+        </div>
+        <_LayoutScripts/>
+    </Authorized>
+    <NotAuthorized>
+        <RedirectToLogin />
+    </NotAuthorized>
+</AuthorizeView>
+
+@code
+{
+    public bool SidebarToggle { get; set; } = true;
+}
+
+<style>
+
+    .title {
+        font-size: 20px;
+    }
+
+    .e-switch-wrapper .e-switch-on {
+        background-color: #003f88;
+
+    }
+    .e-switch-wrapper:hover .e-switch-inner.e-switch-active .e-switch-on {
+        background-color: #003f88;
+    }
+    
+
+    .main > div {
+        padding: 0 !important;
+    }
+
+    .main-container {
+        display: flex;
+    }
+
+    .home-section {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        padding-left: 2px;
+        padding-right: 2px;
+        transition: padding-left 0.3s ease;
+        background-color: #f2f7fb;
+
+    }
+
+    .e-sidebar-open .home-section {
+        padding-left: 0px; 
+        margin-left: 250px;
+    }
+
+    .main-content {
+        padding: 10px;
+        padding-top: 30px; /* Add space for the hamburger menu */
+        flex-grow: 1;
+        margin-top: 50px;
+        min-height: 100vh;
+    }
+
+    .hamburger-menu {
+        position: absolute;
+        top: 22px;
+        left: 22px;
+        font-size: 24px;
+        cursor: pointer;
+        color: #333;
+    }
+
+    .home-section{
+        margin-left:0px;
+    }
+    
+    .e-content-animation{
+        margin-left:0px;
+    }
+    
+    .e-sidebar.e-close {
+        display: none;
+    }
+    
+    .e-sidebar.e-open {
+        display: block;
+    }
+    
+    .dock {
+        margin-bottom: 55px;
+    }
+
+</style>

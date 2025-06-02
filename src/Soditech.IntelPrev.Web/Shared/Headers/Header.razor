@@ -1,0 +1,190 @@
+
+@using Syncfusion.Blazor.Buttons
+
+<header>
+    <div class="header-left">
+        <a href="/">
+            <div class="title d-flex justify-content-center">
+                <img src="assets/images/soditech-logo.png" alt="main-logo" width="40">
+            </div>
+        </a>
+
+        <div class="toggle-btn ms-5">
+            <SfSwitch CssClass="e-small btn-info" @bind-Checked="OnToggledSidebar" TChecked="bool" ValueChange="OnValueChange"></SfSwitch>
+        </div>
+
+        <div class="fullscreen-btn ms-5" @onclick="ToggleFullscreen">
+            <i class="fas fa-expand" id="fullscreen-icon"></i>
+        </div>
+    </div>
+
+    <div class="header-right">
+        <div class="user-section d-flex align-items-center">
+
+            <div class="notifications me-3" @onclick="ToggleNotifications">
+                <i class="fas fa-bell"></i>
+                <span class="notification-count" style="@GetNotificationCountStyle()">@Notifications.Count</span>
+                <div class="notification-menu" style="@GetNotificationStyle()">
+                    @if (Notifications.Count() == 0)
+                    {
+                        <div class="notification-item">Aucune notification</div>
+                    }
+                    else
+                    {
+                        @foreach (var notification in Notifications)
+                        {
+                            <div class="notification-item" @onclick="() => RemoveNotification(notification)">@notification</div>
+                        }
+                    }
+                </div>
+            </div>
+
+            <div class="user-info" @onclick="ToggleDropdown">
+                <div class="user-details">
+                    <div class="user-fullname">@FullName</div>
+                        @if (!string.IsNullOrWhiteSpace(TenantName))
+                        {
+                            <div class="user-tenant">@TenantName</div>
+                        }
+                    </div>
+                <div class="user-initials">@GetInitials()</div>
+
+                <div class="dropdown-menu" style="@GetDropdownStyle()">
+                    <div class="logout-btn" @onclick="Logout">
+                        <i class="fas fa-sign-out-alt"></i> Se déconnecter
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</header>
+
+<style>
+    header {
+    background-color: #003f88;
+    padding: 10px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    font-family: quicksand, sans-serif;
+    align-items: center;
+    margin-bottom: 5px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.header-left,
+.header-right,
+.user-section {
+    display: flex;
+    align-items: center;
+}
+
+.toggle-btn, .fullscreen-btn {
+    cursor: pointer;
+    color: #ffffff !important;
+    margin-right: 15px;
+}
+
+.notifications {
+    position: relative;
+    cursor: pointer;
+    color: #fff;
+}
+
+.notification-count {
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 10px;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    display: none;
+}
+
+.notification-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    width: 200px;
+    z-index: 1000;
+    padding: 10px;
+    max-height: 200px; 
+    overflow-y: auto;
+}
+
+.notification-item {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    color: #000;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    color: #ffffff !important;
+    margin-right: 15px;
+}
+
+.user-details {
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+    color: #ffffff;
+    text-align: right;
+}
+
+.user-fullname {
+    font-weight: bold;
+}
+
+.user-tenant {
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+.user-initials {
+    background-color: #ffffff;
+    color: #003f88;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 14px;
+    text-transform: uppercase;
+    margin-left: 10px;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    width: 150px;
+    z-index: 1000;
+    padding: 10px;
+}
+
+*.e-small.e-switch-wrapper {
+    background-color: #003f88;
+}
+
+</style>

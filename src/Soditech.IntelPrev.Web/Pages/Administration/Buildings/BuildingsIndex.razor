@@ -1,0 +1,29 @@
+﻿@page "/buildings"
+@attribute [Authorize(Roles = "Admin, Super Admin")]
+
+@using Microsoft.AspNetCore.Authorization
+
+@using Soditech.IntelPrev.Preventions.Shared.Buildings
+@using Soditech.IntelPrev.Web.Components.Widgets.Tables
+@using Soditech.IntelPrev.Web.Components.Widgets.Alerts
+@using Soditech.IntelPrev.Web.Components.Widgets.Dialogs
+
+<GenericGrid TItem="@BuildingResult"
+             Items="@BuildingList"
+             GridTitle="Batiments"
+             ToolbarItems="@ToolbarItems"
+             DisplayTitle="true"
+             PageCount="@PageCount"
+             PageSize="@PageSize"
+             addButton="@AddBuiling"
+             OnEdit="@GoToEdit"
+             OnDelete="@DeleteBuildingTrigger"
+             Columns="@Columns"
+             DisplaySpinnerOnLoading="IsLoading">
+
+    <AlertComponent Message="@_alertMessage" AlertType="@_alertType" IsVisible="@_isAlertVisible" />
+
+</GenericGrid>
+
+<GenericConfirmDialog HeaderLabel="Suppression du batiment" IsVisible="@_isDeleteModalVisible"
+                      OnConfirm="DeleteBuildingAsync" OnCancel="HideDeleteModal" />

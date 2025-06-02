@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:tutoriels="clr-namespace:Soditech.IntelPrev.Mobile.ViewModels.Tutoriels"
+             x:Class="Soditech.IntelPrev.Mobile.Views.Tutoriels.VideoPlayerView"
+             Shell.TitleColor="White"
+             Shell.ForegroundColor="White"
+             Title="{Binding Title}">
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IconOverride="back.png" IsVisible="True" IsEnabled="True" />
+    </Shell.BackButtonBehavior>
+
+    <ContentPage.BindingContext>
+        <tutoriels:VideoPlayerViewModel />
+    </ContentPage.BindingContext>
+    <StackLayout>
+        <toolkit:MediaElement x:Name="mediaElement"
+                      Source="{Binding VideoSource}"
+                      ShouldAutoPlay="True"
+                      ShouldShowPlaybackControls="True"
+                      HeightRequest="250"
+                      WidthRequest="350"
+                      VerticalOptions="Center" />
+    </StackLayout>
+</ContentPage>

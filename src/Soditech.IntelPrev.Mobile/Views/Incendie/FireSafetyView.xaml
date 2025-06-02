@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+            x:Class="Soditech.IntelPrev.Mobile.Views.Incendie.FireSafetyView"
+            xmlns:viewModels="clr-namespace:Soditech.IntelPrev.Mobile.ViewModels.Incendie"
+            xmlns:behaviors="clr-namespace:Soditech.IntelPrev.Mobile.Behaviors"
+            x:DataType="viewModels:FireSafetyViewModel"
+            BackgroundColor="#f5f5f5"
+            Title="Sécurité Incendie">
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IconOverride="back.png" IsVisible="True" IsEnabled="True" />
+    </Shell.BackButtonBehavior>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <FlexLayout Direction="Column"
+                     JustifyContent="Start"
+                     AlignItems="Stretch"
+                     Padding="20"
+                     Wrap="NoWrap">
+
+                <!-- Header Section with improved layout -->
+                <HorizontalStackLayout HorizontalOptions="Center">
+                    <Label Text="Informations générales"
+                           HorizontalTextAlignment="Center"
+                          Style="{StaticResource HeaderStyle}"
+                          SemanticProperties.Hint="Titre principal"/>
+                </HorizontalStackLayout>
+
+                <!-- Overview Section with expandable content -->
+                <toolkit:Expander IsExpanded="True" FlexLayout.Basis="Auto" Margin="0,10,0,10">
+                    <toolkit:Expander.Header>
+                        <Grid>
+                            <Border Background="{StaticResource Gray100}">
+                                <Label Text="Aperçu"
+                                      Style="{StaticResource SubheaderStyle}"
+                                      HorizontalTextAlignment="Center"
+                                      SemanticProperties.Hint="Section d'aperçu"/>
+                            </Border>
+                        </Grid>
+                    </toolkit:Expander.Header>
+                    <Border Style="{StaticResource CardStyle}">
+                        <VerticalStackLayout>
+                            <!-- Collapsed preview text -->
+                            <Label Style="{StaticResource BodyPreviewStyle}"
+                                  IsVisible="{Binding IsOverviewCollapsed}"
+                                  SemanticProperties.Hint="Aperçu de la description de la sécurité incendie">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{Binding FireSafetyDescription}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+
+                            <!-- Expanded full text -->
+                            <Label Style="{StaticResource BodyStyle}"
+                                  IsVisible="{Binding IsOverviewExpanded}"
+                                  SemanticProperties.Hint="Description complète de la sécurité incendie">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{Binding FireSafetyDescription}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+
+                            <!-- Toggle button -->
+                            <Button Text="{Binding OverviewToggleText}"
+                                   Command="{Binding ToggleOverviewCommand}"
+                                   Style="{StaticResource VoirPlusStyle}"
+                                   SemanticProperties.Hint="Bouton pour voir plus ou moins de texte"/>
+                        </VerticalStackLayout>
+                    </Border>
+                </toolkit:Expander>
+
+                <!-- Safety Principles Section with expandable content -->
+                <toolkit:Expander IsExpanded="True" FlexLayout.Basis="Auto" Margin="0,0,0,10">
+                    <toolkit:Expander.Header>
+                        <Grid>
+                            <Border Background="{StaticResource Gray100}">
+                                <Label Text="Principes de la sécurité"
+                                      Style="{StaticResource SubheaderStyle}"
+                                      HorizontalTextAlignment="Center"
+                                      SemanticProperties.Hint="Section des principes"/>
+                            </Border>
+                        </Grid>
+                    </toolkit:Expander.Header>
+                    <Border Style="{StaticResource CardStyle}">
+                        <VerticalStackLayout>
+                            <!-- Collapsed preview text -->
+                            <Label Style="{StaticResource BodyPreviewStyle}"
+                                  IsVisible="{Binding IsPrinciplesCollapsed}"
+                                  SemanticProperties.Hint="Aperçu des principes de la sécurité incendie">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{Binding SafetyPrinciples}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+
+                            <!-- Expanded full text -->
+                            <Label Style="{StaticResource BodyStyle}"
+                                  IsVisible="{Binding IsPrinciplesExpanded}"
+                                  SemanticProperties.Hint="Principes complets de la sécurité incendie">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{Binding SafetyPrinciples}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+
+                            <!-- Toggle button -->
+                            <Button Text="{Binding PrinciplesToggleText}"
+                                   Command="{Binding TogglePrinciplesCommand}"
+                                   Style="{StaticResource VoirPlusStyle}"
+                                   SemanticProperties.Hint="Bouton pour voir plus ou moins de texte"/>
+                        </VerticalStackLayout>
+                    </Border>
+                </toolkit:Expander>
+
+                <!-- Safety Causes Section with expandable content -->
+                <toolkit:Expander IsExpanded="True" FlexLayout.Basis="Auto" Margin="0,0,0,10">
+                    <toolkit:Expander.Header>
+                        <Grid>
+                            <Border Background="{StaticResource Gray100}">
+                                <Label Text="Causes de la sécurité"
+                                      Style="{StaticResource SubheaderStyle}"
+                                      HorizontalTextAlignment="Center"
+                                      SemanticProperties.Hint="Section des causes"/>
+                            </Border>
+                        </Grid>
+                    </toolkit:Expander.Header>
+                    <Border Style="{StaticResource CardStyle}">
+                        <VerticalStackLayout>
+                            <!-- Collapsed preview text -->
+                            <Label Style="{StaticResource BodyPreviewStyle}"
+                                  IsVisible="{Binding IsCausesCollapsed}"
+                                  SemanticProperties.Hint="Aperçu des causes d'incendie">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{Binding SafetyCauses}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+
+                            <!-- Expanded full text -->
+                            <Label Style="{StaticResource BodyStyle}"
+                                  IsVisible="{Binding IsCausesExpanded}"
+                                  SemanticProperties.Hint="Causes complètes d'incendie">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{Binding SafetyCauses}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+
+                            <!-- Toggle button -->
+                            <Button Text="{Binding CausesToggleText}"
+                                   Command="{Binding ToggleCausesCommand}"
+                                   Style="{StaticResource VoirPlusStyle}"
+                                   SemanticProperties.Hint="Bouton pour voir plus ou moins de texte"/>
+                        </VerticalStackLayout>
+                    </Border>
+                </toolkit:Expander>
+
+            </FlexLayout>
+        </ScrollView>
+    </ContentPage.Content>
+
+    <ContentPage.Behaviors>
+        <behaviors:EventHandlerBehavior EventName="Appearing">
+            <behaviors:ActionCollection>
+                <behaviors:InvokeCommandAction Command="{Binding PageAppearingCommand}" />
+            </behaviors:ActionCollection>
+        </behaviors:EventHandlerBehavior>
+    </ContentPage.Behaviors>
+</ContentPage>

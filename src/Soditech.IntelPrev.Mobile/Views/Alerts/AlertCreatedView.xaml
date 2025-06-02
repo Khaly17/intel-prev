@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:base="clr-namespace:Soditech.IntelPrev.Mobile.ViewModels.Base"
+             xmlns:behaviors="using:Soditech.IntelPrev.Mobile.Behaviors"
+             xmlns:viewPartiels="clr-namespace:Soditech.IntelPrev.Mobile.ViewPartiels"
+             base:ViewManager.AutoWireViewModel="True"
+             x:Class="Soditech.IntelPrev.Mobile.Views.Alerts.AlertCreatedView"
+             xmlns:viewModel="clr-namespace:Soditech.IntelPrev.Mobile.ViewModels.Alerts"
+             xmlns:components="clr-namespace:Soditech.IntelPrev.Mobile.Views.Components"
+             x:DataType="viewModel:AlertCreatedViewModel"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{StaticResource Background}"
+             Title="">
+    <!-- Use the new reusable component -->
+    <components:ConfirmationScreenView
+        MainMessage="{Binding SuccessMessage}"
+        SubMessage="{Binding PromptMessage}"
+        PrimaryButtonText="{Binding PrimaryActionText}"
+        SecondaryButtonText="{Binding SecondaryActionText}"
+        PrimaryButtonCommand="{Binding CreateNewAlertCommand}"
+        SecondaryButtonCommand="{Binding ToGoHomeCommand}"
+        HeaderBackgroundColor="{StaticResource Primary}" />
+
+    <ContentPage.Behaviors>
+        <behaviors:EventHandlerBehavior EventName="Appearing">
+            <behaviors:ActionCollection>
+                <behaviors:InvokeCommandAction Command="{Binding PageAppearingCommand}" />
+            </behaviors:ActionCollection>
+        </behaviors:EventHandlerBehavior>
+    </ContentPage.Behaviors>
+</ContentPage>

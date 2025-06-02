@@ -1,0 +1,14 @@
+﻿@page "/events/add"
+@attribute [Authorize(Roles = "Admin, Super Admin")]
+
+@using Microsoft.AspNetCore.Authorization
+@using Soditech.IntelPrev.Web.Components.Administrations;
+
+<AddOrEditEvent
+    NewEvent="@NewEvent"
+    CommitteeMemberResults="@CommitteeMembers"
+    Title="@title"
+    SuccessMessage="@successMessage"
+    ErrorMessage="@errorMessage"
+    OnEventCreated="@CreateEvent"
+/>

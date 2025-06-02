@@ -1,0 +1,107 @@
+﻿@* @attribute [Authorize(Roles = "Admin, Super Admin")] *@
+
+@* @using Microsoft.AspNetCore.Components.Forms *@
+@* @using Microsoft.AspNetCore.Authorization *@
+@* @using Soditech.IntelPrev.Preventions.Shared.Equipments *@
+
+@* <div class="row" style="margin-left: 0; margin-right: 0;"> *@
+@*     <div class="col-md-12 mt-0" style="padding: 0;"> *@
+@*         <div class="row"> *@
+@*             <div class="col-md-9 mx-auto"> *@
+@*                 <div class="card total-visits-browse-area"> *@
+@*                     <div class="card-header" style="margin: 0; padding: 10px;"> *@
+@*                         <h5 style="margin: 0;">@Title</h5> *@
+@*                     </div> *@
+
+@*                     <EditForm Model="@NewEquipment" OnValidSubmit="CreateEquipment"> *@
+@*                         <DataAnnotationsValidator /> *@
+@*                         <ValidationSummary /> *@
+
+@*                         @if (!string.IsNullOrEmpty(SuccessMessage)) *@
+@*                         { *@
+@*                             <div class="alert alert-success" role="alert"> *@
+@*                                 @SuccessMessage *@
+@*                             </div> *@
+@*                         } *@
+
+@*                         @if (!string.IsNullOrEmpty(ErrorMessage)) *@
+@*                         { *@
+@*                             <div class="alert alert-danger" role="alert"> *@
+@*                                 @ErrorMessage *@
+@*                             </div> *@
+@*                         } *@
+
+@*                         <div class="form-group row mb-8 mt-4" style="margin-left: 15px;"> *@
+@*                             <label class="control-label col-md-2 mb-1">Nom de l'équipement</label> *@
+@*                             <div class="col-md-10" style="border-radius: 0;"> *@
+@*                                 <InputText class="form-control" style="height: 40px; border-radius: 0;" *@
+@*                                            @bind-Value="NewEquipment.Name" /> *@
+@*                                 <ValidationMessage For="@(() => NewEquipment.Name)" /> *@
+@*                             </div> *@
+@*                         </div> *@
+
+@*                         <div class="form-group row mb-8 mt-4" style="margin-left: 15px;"> *@
+@*                             <label class="control-label col-md-2 mb-1">Description</label> *@
+@*                             <div class="col-md-10" style="border-radius: 0;"> *@
+@*                                 <InputText class="form-control" style="height: 40px; border-radius: 0;" *@
+@*                                            @bind-Value="NewEquipment.Description" /> *@
+@*                                 <ValidationMessage For="@(() => NewEquipment.Description)" /> *@
+@*                             </div> *@
+@*                         </div> *@
+
+@*                         <div class="form-group row mb-8 mt-4" style="margin-left: 15px;"> *@
+@*                             <label class="control-label col-md-2 mb-1">Type</label> *@
+@*                             <div class="col-md-10" style="border-radius: 0;"> *@
+@*                                 <InputText class="form-control" style="height: 40px; border-radius: 0;" *@
+@*                                            @bind-Value="NewEquipment.Type" /> *@
+@*                                 <ValidationMessage For="@(() => NewEquipment.Type)" /> *@
+@*                             </div> *@
+@*                         </div> *@
+
+@*                         <div class="form-group row mb-8 mt-4" style="margin-left: 15px;"> *@
+@*                             <label class="control-label col-md-2 mb-1">Lieu</label> *@
+@*                             <div class="col-md-10" style="border-radius: 0;"> *@
+@*                                 <InputText class="form-control" style="height: 40px; border-radius: 0;" *@
+@*                                            @bind-Value="NewEquipment.Location" /> *@
+@*                                 <ValidationMessage For="@(() => NewEquipment.Location)" /> *@
+@*                             </div> *@
+@*                         </div> *@
+
+@*                         <div class="form-group row mb-8 mt-4" style="margin-left: 15px;"> *@
+@*                             <label class="control-label col-md-2 mb-1">Dernière inspection</label> *@
+@*                             <div class="col-md-10" style="border-radius: 0;"> *@
+@*                                 <InputDate class="form-control" style="height: 40px; border-radius: 0;" *@
+@*                                            @bind-Value="NewEquipment.LastInspectionDate" /> *@
+@*                                 <ValidationMessage For="@(() => NewEquipment.LastInspectionDate)" /> *@
+@*                             </div> *@
+@*                         </div> *@
+
+@*                         <div class="form-group row mb-8 mt-4" style="margin-left: 15px;"> *@
+@*                             <label class="control-label col-md-2 mb-1">Prochaine inspection</label> *@
+@*                             <div class="col-md-10" style="border-radius: 0;"> *@
+@*                                 <InputDate class="form-control" style="height: 40px; border-radius: 0;" *@
+@*                                            @bind-Value="NewEquipment.NextInspectionDate" /> *@
+@*                                 <ValidationMessage For="@(() => NewEquipment.NextInspectionDate)" /> *@
+@*                             </div> *@
+@*                         </div> *@
+@*                     </EditForm> *@
+@*                 </div> *@
+@*             </div> *@
+@*         </div> *@
+@*     </div> *@
+@* </div> *@
+
+@* <style> *@
+@*     .custom-input { *@
+@*         border: 0.5px solid rgba(0, 0, 0, 0.3); *@
+@*         border-radius: 1px; *@
+@*     } *@
+
+@*     .total-visits-browse-area { *@
+@*         background: white; *@
+@*         margin-top: 10px; *@
+@*         padding: 20px; *@
+@*         border-top: 7px solid rgb(196, 53, 40); *@
+@*         box-shadow: 0 5px 5px rgba(0, 0, 0, 0.10); *@
+@*     } *@
+@* </style> *@

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:syncfusion="clr-namespace:Syncfusion.Maui.PdfViewer;assembly=Syncfusion.Maui.PdfViewer"
+             xmlns:viewModels="clr-namespace:Soditech.IntelPrev.Mobile.ViewModels.Sensibilisation"
+             x:Class="Soditech.IntelPrev.Mobile.Views.Sensibilisation.PdfViewerView"
+             xmlns:base="clr-namespace:Soditech.IntelPrev.Mobile.ViewModels.Base;assembly=Soditech.IntelPrev.Mobile"
+             base:ViewManager.AutoWireViewModel="True"
+             Title="PDF Viewer">
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IconOverride="back.png" IsVisible="True" IsEnabled="True" />
+    </Shell.BackButtonBehavior>
+
+    <ContentPage.BindingContext>
+        <viewModels:RiskPreventionViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <VerticalStackLayout>
+            <syncfusion:SfPdfViewer x:Name="pdfviewer"
+                HeightRequest="530"
+                DocumentSource="{Binding PdfDocumentStream}">
+            </syncfusion:SfPdfViewer>
+        </VerticalStackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,125 @@
+﻿@attribute [Authorize(Roles = "Admin, Super Admin")]
+
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.AspNetCore.Authorization
+@using Soditech.IntelPrev.Preventions.Shared.Events
+
+<div class="row" style="margin-left: 0; margin-right: 0;">
+    <div class="col-md-12 mt-0" style="padding: 0;">
+        <div class="row">
+            <div class="col-md-9 mx-auto">
+                <div class="card total-visits-browse-area">
+                    <div class="card-header" style="margin: 0; padding: 10px;">
+                        <h5 style="margin: 0;">@Title</h5>
+                    </div>
+
+                    <EditForm Model="@NewEvent" OnValidSubmit="CreateEvent">
+                        <DataAnnotationsValidator />
+                        <ValidationSummary />
+
+                        @if (!string.IsNullOrEmpty(SuccessMessage))
+                        {
+                            <div class="alert alert-success" role="alert">
+                                @SuccessMessage
+                            </div>
+                        }
+
+                        @if (!string.IsNullOrEmpty(ErrorMessage))
+                        {
+                            <div class="alert alert-danger" role="alert">
+                                @ErrorMessage
+                            </div>
+                        }
+
+                        <div class="form-group row mb-8 mt-4" style="margin-left: 15px;">
+                            <label class="control-label col-md-2 mb-1">Nom de l'agenda</label>
+                            <div class="col-md-10" style="border-radius: 0;">
+                                <InputText class="form-control" style="height: 40px; border-radius: 0;"
+                                           @bind-Value="NewEvent.Name" />
+                                <ValidationMessage For="@(() => NewEvent.Name)" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-8 mt-4" style="margin-left: 15px;">
+                            <label class="control-label col-md-2 mb-1">Description</label>
+                            <div class="col-md-10" style="border-radius: 0;">
+                                <InputText class="form-control" style="height: 40px; border-radius: 0;"
+                                           @bind-Value="NewEvent.Description" />
+                                <ValidationMessage For="@(() => NewEvent.Description)" />
+                            </div>
+                        </div>
+                        
+
+                        <div class="form-group row mb-8 mt-4" style="margin-left: 15px;">
+                            <label class="control-label col-md-2 mb-1">Organisateur</label>
+                            <div class="col-md-10" style="border-radius: 0;">
+                                <InputSelect class="form-control" style="height: 40px; border-radius: 0;" @bind-Value="NewEvent.OrganizerId">
+                                    @foreach (var member in CommitteeMemberResults)
+                                    {
+                                        <option value="@member.Id">@member.FirstName @member.LastName</option>
+                                    }
+                                </InputSelect>
+                                <ValidationMessage For="@(() => NewEvent.OrganizerId)" />
+                            </div>
+                        </div>
+                        <div class="form-group row mb-8 mt-4" style="margin-left: 15px;">
+                            <label class="control-label col-md-2 mb-1">Date de début</label>
+                            <div class="col-md-10" style="border-radius: 0;">
+                                <InputDate class="form-control" style="height: 40px; border-radius: 0;"
+                                           @bind-Value="NewEvent.StartDate" />
+                                <ValidationMessage For="@(() => NewEvent.StartDate)" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-8 mt-4" style="margin-left: 15px;">
+                            <label class="control-label col-md-2 mb-1">Date de fin</label>
+                            <div class="col-md-10" style="border-radius: 0;">
+                                <InputDate class="form-control" style="height: 40px; border-radius: 0;"
+                                           @bind-Value="NewEvent.EndDate" />
+                                <ValidationMessage For="@(() => NewEvent.EndDate)" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-8 mt-4" style="margin-left: 15px;">
+                            <label class="control-label col-md-2 mb-1">Lieu</label>
+                            <div class="col-md-10" style="border-radius: 0;">
+                                <InputText class="form-control" style="height: 40px; border-radius: 0;"
+                                           @bind-Value="NewEvent.Location" />
+                                <ValidationMessage For="@(() => NewEvent.Location)" />
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-end" style="margin-top: 20px; padding-right: 15px;">
+                            <div class="d-flex gap-2">
+                                <a href="/events" class="btn btn-primary"
+                                   style="height: 40px; background-color: rgb(196, 53, 40); border-radius: 0;">
+                                    Retour
+                                </a>
+
+                                <button type="submit" class="btn btn-primary"
+                                        style="height: 40px; background-color: #003f88; border-color: #003f88; border-radius: 0;">
+                                    Sauvegarder
+                                </button>
+                            </div>
+                        </div>
+                    </EditForm>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .custom-input {
+        border: 0.5px solid rgba(0, 0, 0, 0.3);
+        border-radius: 1px;
+    }
+
+    .total-visits-browse-area {
+        background: white;
+        margin-top: 10px;
+        padding: 20px;
+        border-top: 7px solid rgb(196, 53, 40);
+        box-shadow: 0 5px 5px rgba(0, 0, 0, 0.10);
+    }
+</style>

@@ -1,0 +1,32 @@
+:root {
+    /* Couleurs principales */
+    --primary-color: #003f88; 
+    --primary-hover-color: #162042;
+    --secondary-color: #ffc107; 
+    --secondary-hover-color: #6c757d;
+    --primary-text-color: #fff;
+    --danger-color: #ff4d4d;
+    --danger-hover-color: #cc0000;
+    --highlight-color: rgb(196, 53, 40); 
+    --background-color: #f9f9f9;
+    --text-color: #fff;
+    /* Typographie et texte */
+    --header-font-weight: bold;
+    --title-font-family: 'Arial', sans-serif;
+    --title-font-size: 28px;
+    --title-font-weight: bold;
+    --font-size-medium: 16px;
+    /* Espacement et bordure */
+    --border-radius: 50px;
+    --title-padding: 10px;
+    --title-border-radius: 10px;
+    --title-margin-bottom: 20px;
+    --title-letter-spacing: 1px;
+    --padding-small: 5px;
+    --padding-medium: 10px;
+    --padding-large: 20px;
+    /* Ombres et transitions */
+    --title-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    --box-shadow: 0 0 5px 0 rgba(43, 43, 43, 0.1), 0 11px 6px -7px rgba(43, 43, 43, 0.1);
+    --transition-duration: 0.3s;
+}

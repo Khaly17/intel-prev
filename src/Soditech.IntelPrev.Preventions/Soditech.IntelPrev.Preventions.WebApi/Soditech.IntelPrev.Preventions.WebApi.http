@@ -1,0 +1,6 @@
+@Soditech.IntelPrev.Preventions.WebApi_HostAddress = http://localhost:5149
+
+GET {{Soditech.IntelPrev.Preventions.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

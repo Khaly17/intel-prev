@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Border
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Soditech.IntelPrev.Mobile.Controls.ThemedCard"
+    BackgroundColor="{StaticResource Background}"
+    Stroke="{StaticResource Border}"
+    StrokeThickness="1"
+    StrokeShape="{RoundRectangle CornerRadius=12}"
+    Padding="16"
+    Margin="0,0,0,16">
+    <Border.Shadow>
+        <Shadow Brush="{StaticResource Black}" Opacity="0.5" Radius="8" Offset="0,2" />
+    </Border.Shadow>
+</Border>

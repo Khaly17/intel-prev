@@ -1,0 +1,30 @@
+﻿@page "/committeemembers"
+@attribute [Authorize(Roles = "Admin, Super Admin")]
+
+@using Microsoft.AspNetCore.Authorization
+@using Soditech.IntelPrev.Preventions.Shared.CommitteeMembers
+@using Soditech.IntelPrev.Web.Components.Widgets.Tables
+@using Soditech.IntelPrev.Web.Components.Widgets.Alerts
+@using Soditech.IntelPrev.Web.Components.Widgets.Dialogs
+
+<GenericGrid TItem="@CommitteeMemberResult"
+             Items="@CommitteeMembers"
+             GridTitle="Membres du Comité"
+             ToolbarItems="@ToolbarItems"
+             DisplayTitle="true"
+             PageCount="@PageCount"
+             PageSize="@PageSize"
+             addButton="@AddCommitteeMember"
+             OnEdit="@GoToEdit"
+             CustomBtnLabel="Supprimer"
+             OnCustomAction="@DeleteCommitteeMemberTrigger"
+             Columns="@Columns"
+             DisplaySpinnerOnLoading="IsLoading">
+
+    <AlertComponent Message="@_alertMessage" AlertType="@_alertType" IsVisible="@_isAlertVisible" />
+
+</GenericGrid>
+
+<GenericConfirmDialog HeaderLabel="Suppression de membre du comité" ConfirmLabel="Supprimer"
+                      Message="Voulez-vous vraiment supprimer ce membre du comité ?"
+                      IsVisible="@_isDeleteModalVisible" OnConfirm="DeleteCommitteeMemberAsync" OnCancel="HideDeleteModal" />

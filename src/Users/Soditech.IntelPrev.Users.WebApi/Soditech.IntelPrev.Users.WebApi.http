@@ -1,0 +1,41 @@
+@Soditech.IntelPrev.Users.WebApi_HostAddress = http://localhost:5150
+# declare a variable for token
+@token = eyJhbGciOiJSUzI1NiIsImtpZCI6IjQ5OUJFMUNDNTNENTkyRkUxQTNGOEQ4NjRFQUFGQTA0Qjg1M0Y3OTciLCJ4NXQiOiJTWnZoekZQVmt2NGFQNDJHVHFyNkJMaFQ5NWMiLCJ0eXAiOiJhdCtqd3QifQ.eyJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo3MjAyLyIsImV4cCI6MTczNjcwOTMyMCwiaWF0IjoxNzM2NjIyOTIwLCJqdGkiOiJiYjBmZDRjMi1mNDcwLTRmMzgtYmI5Zi1lMTM3MzNlZWQ4ODkiLCJzdWIiOiI5MWY5MTU1Yy0zYzU4LTQ2YjktOTA3Mi0wOGRkMmI1MWY4MmMiLCJ1c2VybmFtZSI6Im1nQGFpNHNlbnNlLmNvbSIsImVtYWlsIjoibWdAYWk0c2Vuc2UuY29tIiwiQXNwTmV0LklkZW50aXR5LlNlY3VyaXR5U3RhbXAiOiJZSTU2RDdNNFozV1NNUlJKUk9FQlQ0SDRaNU5YT1dFUiIsImFtciI6InB3ZCIsIm9pX3Byc3QiOiJJbnRlbFByZXZfQmxhem9yIiwiY2xpZW50X2lkIjoiSW50ZWxQcmV2X0JsYXpvciIsIm9pX3Rrbl9pZCI6IjYyNTA3NWE1LWU1ZjgtNGUzZi05Y2U2LTJlNDExYzZhN2JlMSJ9.gXIYD7-aiwPexvuHjz8X-cDZwecijUz3q9KvOmpP-QUCAMkutcr3mBgHVLEpmHRCNh5U3RuhtahVAOxo-ww-nbaPYSTLVTwzopPXV0Rqd_Hrp5nCFP6aiiywWq25nP17srBUNn0dBRe1lIVkqojTPWFwS3wjamiNSE4yU7SG1qYXHkUelmKLaAKh84zn-gdLkOCcCHpSUXJEHO5LWsE83BTU3EDXymjsyBV-buVe-ZFer-TMtz26OBhyW_oAUdqKCwpBfs3B1FDCUelOw6VEJkYzd-FBqjXeGrvboru5BEG0ZK-yRYuirSDEEN8ATj4zfN6mIGS4Y4y9ljSSYumuzg
+
+
+GET {{Soditech.IntelPrev.Users.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+###
+
+POST https://localhost:7160/api/account/login
+Content-Type: application/json
+
+{
+  "email": "mg@ai4sense.com",
+  "password": "123456"
+}
+
+###
+
+# register user 
+POST https://localhost:7160/register
+Content-Type: application/json
+
+{
+  "email": "mg@ai4sense.com",
+  "password": "123456",
+  "confirmPassword": "123456"
+}
+
+###
+
+# disable tenant
+POST https://localhost:7202/api/tenants/d2edbe43-a233-4c5a-9b48-0001ee6243c8/disable
+# add Authorization header with Bearer token
+Authorization: Bearer {{token}}
+
+Content-Type: application/json
+
+{
+  "id": "d2edbe43-a233-4c5a-9b48-0001ee6243c8"
+}

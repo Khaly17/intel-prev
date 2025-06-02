@@ -1,0 +1,20 @@
+﻿@using Syncfusion.Blazor.Popups
+@using Syncfusion.Blazor.Buttons
+@typeparam TItem
+
+<SfDialog @bind-Visible="@IsVisible" Width="400px" IsModal="true" Header="@HeaderTitle" ShowCloseIcon="false">
+
+    <DialogTemplates>
+        <Content>
+            @ChildContent
+        </Content>
+        <FooterTemplate>
+            <SfButton CssClass="custom-btn-primary" @onclick="Save">
+                <i class="fas fa-save"></i> Save
+            </SfButton>
+            <SfButton CssClass="custom-btn-secondary" @onclick="Cancel">
+                <i class="fas fa-times"></i> Cancel
+            </SfButton>
+        </FooterTemplate>
+    </DialogTemplates>
+</SfDialog>

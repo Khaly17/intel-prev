@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:carousel="clr-namespace:Syncfusion.Maui.Carousel;assembly=Syncfusion.Maui.Carousel"
+             x:Class="Soditech.IntelPrev.Mobile.Views.Components.Carousel.CarouselComponent">
+
+    <Grid RowDefinitions="*,Auto">
+        <CarouselView x:Name="carouselView"
+                      IndicatorView="indicatorView"
+                      CurrentItemChanged="CarouselView_OnCurrentItemChanged">
+            <CarouselView.EmptyView>
+                <ContentView>
+                    <StackLayout HorizontalOptions="CenterAndExpand"
+                                VerticalOptions="CenterAndExpand">
+                        <Label Text="Pas de contenu à montrer Ici."
+                              Margin="10,25,10,10"
+                              FontAttributes="Bold"
+                              FontSize="18"
+                              HorizontalOptions="Fill"
+                              HorizontalTextAlignment="Center" />
+                        <Label Text="Try a broader filter?"
+                              FontAttributes="Italic"
+                              FontSize="12"
+                              HorizontalOptions="Fill"
+                              HorizontalTextAlignment="Center" />
+                    </StackLayout>
+                </ContentView>
+            </CarouselView.EmptyView>
+            <CarouselView.ItemTemplate>
+                <DataTemplate x:DataType="carousel:SfCarouselItem">
+                    <VerticalStackLayout>
+                        <Image Source="{Binding ImageName}"
+                              Aspect="AspectFit"
+                              />
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+        <BoxView
+                Color="{StaticResource Secondary}"
+                Margin="0"
+                HeightRequest="3"
+                VerticalOptions="End"
+                HorizontalOptions="Fill" />
+        <IndicatorView x:Name="indicatorView"
+                    IndicatorColor="{StaticResource Secondary}"
+                    SelectedIndicatorColor="Black"
+                    HorizontalOptions="Center"
+                    VerticalOptions="End"
+                    HeightRequest="10"
+                    Margin="5"
+                    IndicatorsShape="Circle"
+                    IndicatorSize="8"
+                    Grid.Row="2" />
+    </Grid>
+</ContentView>

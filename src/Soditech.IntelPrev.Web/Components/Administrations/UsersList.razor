@@ -1,0 +1,33 @@
+﻿@using Soditech.IntelPrev.Users.Shared.Users
+@using Soditech.IntelPrev.Web.Components.Widgets.Tables
+@using Soditech.IntelPrev.Web.Components.Widgets.Alerts
+@using Soditech.IntelPrev.Web.Components.Widgets.Dialogs
+
+
+<GenericGrid TItem="@UserResult"
+             Items="@Users"
+             GridTitle="Utilisateurs"
+             ToolbarItems="@ToolbarItems"
+             DisplayTitle="true"
+             PageCount="@PageCount"
+             PageSize="@PageSize"
+             addButton="@AddUser"
+             OnEdit="@GoToEdit"
+             CustomBtnLabel="Mot de passe"
+             OnCustomAction="@ResetPasswordTrigger"
+             OnDelete="@DeleteUserTrigger"
+             Columns="@Columns"
+             DisplaySpinnerOnLoading="IsLoading">
+
+    <AlertComponent Message="@_alertMessage" AlertType="@_alertType" IsVisible="@_isAlertVisible" />
+
+</GenericGrid>
+
+
+<GenericConfirmDialog HeaderLabel="Réinitialiser le mot de passe" ConfirmLabel="Réinitialiser"
+                      Message="Voulez-vous vraiment réinitialiser le mot de passe de cet utilisateur ?"
+                      IsVisible="@_isResetPasswordModalVisible" OnConfirm="ResetPasswordAsync" OnCancel="HideResetPasswordModal" />
+
+
+<GenericConfirmDialog HeaderLabel="Suppression d'utilisateur" IsVisible="@_isDeleteModalVisible"
+                      OnConfirm="DeleteUserAsync" OnCancel="HideDeleteModal" />

@@ -1,0 +1,20 @@
+﻿@page "/registers/edit/{registerId}"
+@attribute [Authorize(Roles = "Admin, Super Admin")]
+
+@using Microsoft.AspNetCore.Authorization
+@using Soditech.IntelPrev.Web.Components.Administrations.Registers
+
+@if (!_isCreating){    
+    <CreateRegisterComponent 
+        OnIsCreatingChanged="HandleIsCreatingChanged"
+        RegisterTypeResult="@RegisterTypeResult"
+        />
+}
+else
+{
+    <RegisterPreviewComponent 
+        OnIsCreatingChanged="HandleIsCreatingChanged"
+        RegisterType="@RegisterTypeResult"
+        OnSaveChanged="UpdateRegister"
+        saveBtnLabel="@saveBtnLabel"/>
+}

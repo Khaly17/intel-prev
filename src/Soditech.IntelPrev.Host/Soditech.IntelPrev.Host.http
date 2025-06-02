@@ -1,0 +1,29 @@
+@Soditech.IntelPrev.Host_HostAddress = http://localhost:7202
+
+GET {{Soditech.IntelPrev.Host_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+
+POST https://localhost:7202/api/account/login
+Content-Type: application/json
+
+{
+  "email": "mg@ai4sense.com",
+  "password": "123456",
+  "tenantName": "ai4sense",
+  "scope": "offline_access"
+}
+
+###
+
+POST https://intelprevbackend.sensor6ty.com/api/account/register
+Content-Type: application/json
+
+{
+  "email": "mg@ai4sense.com",
+  "password": "123456",
+  "scope": "offline_access"
+}
+
+###

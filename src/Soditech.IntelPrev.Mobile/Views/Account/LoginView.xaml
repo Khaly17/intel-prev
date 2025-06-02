@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:DataType="viewModel:LoginViewModel"
+             xmlns:behaviors="clr-namespace:Soditech.IntelPrev.Mobile.Behaviors"
+             xmlns:core="http://schemas.syncfusion.com/maui"
+             xmlns:viewModel="clr-namespace:Soditech.IntelPrev.Mobile.ViewModels.Account"
+             Shell.TabBarIsVisible="False"
+             Shell.NavBarIsVisible="False"
+             x:Class="Soditech.IntelPrev.Mobile.Views.Account.LoginView">
+    <ContentPage.BindingContext>
+        <viewModel:LoginViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid RowDefinitions="Auto,*,Auto">
+
+            <BoxView HeightRequest="3" BackgroundColor="{StaticResource Secondary}" HorizontalOptions="FillAndExpand" />
+
+            <ScrollView Grid.Row="1">
+                <VerticalStackLayout Padding="30,60,30,30" Spacing="20">
+
+                    <Label Text="Bienvenue sur l'application Intel'Prev"
+                       FontSize="16"
+                       FontAttributes="Bold"
+                       TextColor="{StaticResource Primary}"
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center" />
+
+                    <Label Text="Veuillez vous identifier avec les informations reçues par mail."
+                       FontSize="14"
+                       TextColor="{StaticResource CharcoalGray}"
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center" />
+
+                    <Entry Placeholder="Nom d'utilisateur"
+                       FontSize="14"
+                       Text="{Binding Username}"
+                       PlaceholderColor="Gray"
+                       TextColor="{StaticResource CharcoalGray}"
+                       BackgroundColor="#F5F5F5"
+                       HeightRequest="48"
+                       Margin="0,20,0,0"
+                       ClearButtonVisibility="WhileEditing"
+                       Keyboard="Text" />
+
+                    <Grid ColumnDefinitions="*,Auto" HeightRequest="48">
+                        <Entry Placeholder="Mot de passe"
+                           Text="{Binding Password}"
+                           IsPassword="True"
+                           FontSize="14"
+                           PlaceholderColor="Gray"
+                           TextColor="Black"
+                           BackgroundColor="#F5F5F5"
+                           ClearButtonVisibility="WhileEditing"
+                           Keyboard="Numeric" />
+                    </Grid>
+
+                    <Label
+                        Text="{Binding ErrorMessage}"
+                        TextColor="Red"
+                        FontSize="13"
+                        HorizontalOptions="Center"
+                        IsVisible="{Binding ErrorMessage, Converter={StaticResource IsStringNotNullOrEmptyConverter}}"/>
+                    
+                    <Label Text="Mot de passe oublié"
+                       TextColor="{StaticResource Primary}"
+                       FontSize="14"
+                       HorizontalOptions="End"
+                       Margin="0,0,0,-10">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding NavigateToForgotPasswordCommand}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+
+                    <Button Text="Connexion"
+                        Command="{Binding LoginCommand}"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        TextColor="White"
+                        BackgroundColor="{StaticResource Primary}"
+                        HeightRequest="50"
+                        CornerRadius="10"
+                        HorizontalOptions="FillAndExpand"
+                        Margin="0,10,0,0" />
+
+                    <ActivityIndicator
+                        IsRunning="{Binding IsBusy}"
+                        IsVisible="{Binding IsBusy}"
+                        Color="{StaticResource Primary}"
+                        HeightRequest="30"
+                        WidthRequest="30"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center" />
+
+                </VerticalStackLayout>
+            </ScrollView>
+
+            <BoxView Grid.Row="2" HeightRequest="3" BackgroundColor="{StaticResource Secondary}" HorizontalOptions="FillAndExpand" />
+
+        </Grid>
+
+    </ContentPage.Content>
+
+    <ContentPage.Behaviors>
+        <behaviors:EventHandlerBehavior EventName="Appearing">
+            <behaviors:ActionCollection>
+                <behaviors:InvokeCommandAction Command="{Binding PageAppearingCommand}" />
+            </behaviors:ActionCollection>
+        </behaviors:EventHandlerBehavior>
+    </ContentPage.Behaviors>
+</ContentPage>

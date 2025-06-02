@@ -1,0 +1,171 @@
+﻿@using Syncfusion.Blazor.Grids
+@using Syncfusion.Blazor.Buttons
+@using Syncfusion.Blazor.Spinner
+@typeparam TItem
+@inherits SfGrid<TItem>
+
+
+<div class="card-border">
+    <div class="card-header main-header">
+        @if (DisplayTitle)
+        {
+            <h4 class="f-left">@GridTitle</h4>
+        }
+        <div class="f-right">
+            @if (addButton.HasDelegate)
+            {
+                <SfButton @onclick="@addButton" IsPrimary="true" Content="+ Ajouter un nouveau  "/>
+            }
+        </div>
+    </div>
+    
+
+    <content>
+        @CustomChildContent
+    </content>
+    
+    <div class="grid-container">
+
+        <SfGrid @ref="GenGrid" DataSource="@Items"
+                AllowPaging="@DisplayPagination" AllowTextWrap="true"
+                AllowSorting="true" AllowPdfExport="true" AllowExcelExport="true" 
+                PrintMode="PrintMode.AllPages" RowHeight="50"
+                AllowFiltering="false" EnableHover="@EnableHover"
+                Toolbar="@ToolbarItems">
+
+            <GridEvents OnToolbarClick="ToolbarClickHandler" TValue="TItem"></GridEvents>
+            <GridColumns>
+                <SfSpinner @bind-Visible="@DisplaySpinnerOnLoading"></SfSpinner>
+                
+                <content>
+                    @ChildContent
+                </content>
+
+                @foreach (var column in Columns)
+                {
+                    <GridColumn DisplayAsCheckBox="@column.DisplayAsCheckBox" Format="@column.Format" Field="@column.Field" HeaderText="@column.HeaderText" TextAlign="TextAlign.Left" Width="@column.Width"></GridColumn>
+                }
+
+                @if (DisplayActionsBtn)
+                {
+                    <GridColumn HeaderText="Actions" 
+                                Width="@ActionBtnWidth" 
+                                AllowSorting="false" 
+                                AllowReordering="false"
+                                AllowResizing="false" 
+                                HeaderTextAlign="TextAlign.Center"
+                                TextAlign="TextAlign.Right">
+                        <Template>
+                            <div class="justify-content-between">
+                                @if (DetailAction != null)
+                                {
+                                    <SfButton Content="Détail" @onclick="() => DetailAction((TItem)context)" IsPrimary="true" IconCss="fa fa-eye"/>
+                                }
+
+                                @if (OnEdit.HasDelegate)
+                                {
+                                    <SfButton Content="Editer" @onclick="@(() => OnEdit.InvokeAsync((TItem)context))" IsPrimary="true" IconCss="fa fa-edit"/>
+                                }
+
+                                @if (OnCustomAction.HasDelegate)
+                                {
+                                    <SfButton Content="@CustomBtnLabel" @onclick="@(() => OnCustomAction.InvokeAsync((TItem)context))" IsPrimary="true" IconCss="@CustomBtnIconCss" />
+                                }
+
+                                @if (OnDelete.HasDelegate)
+                                {
+                                    <SfButton Content="Supprimer" @onclick="() => OnDelete.InvokeAsync((TItem)context)" IsPrimary="true" IconCss="fa fa-trash" CssClass="btn-danger e-danger"/>
+                                }
+                            </div>
+                        </Template>
+                    </GridColumn>
+                }
+            </GridColumns>
+            <GridPageSettings PageCount="5" PageSize="10" PageSizes="@_pagerDropdown" ></GridPageSettings>
+        </SfGrid>
+    </div>
+     
+</div>
+
+<style>
+
+    .e-btn:hover {
+        background: #162042;
+        color: white;
+    }
+    .card-border{
+        border-top: 7px solid rgb(196, 53, 40);
+        margin: 20px;
+    }
+
+    .main-header {
+        display: flex;
+        justify-content: space-between;
+        margin: 10px 2px;
+    }
+
+    .f-right {
+        float: right;
+    }
+
+    .f-left {
+        float: left;
+    }
+
+
+    .e-btn.e-primary, .e-css.e-btn.e-primary {
+        background-color: #FFFFFF;
+        border-color: #FFFFFF;
+        color: black;
+    }
+
+    .e-grid .e-table {
+        background-color: #fff;
+    }
+    
+    .e-btn.e-primary:hover{
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
+        color: #ffffff;
+    }
+    
+    .e-btn.e-primary:focus
+    {
+        background: #FFFFFF;
+        color: black;
+    }
+    
+    .grid-container {
+        overflow-x: auto; 
+        width: 100%; 
+    }
+
+    .e-grid .e-gridheader,
+    .e-grid .e-gridcontent,
+    .e-grid .e-gridpager,
+    .e-grid .e-toolbar {
+        min-width: 800px;
+        display: block; 
+    }
+    .e-grid .e-gridheader {
+        overflow-x: hidden;
+    }
+
+    .e-grid .e-gridpager {
+        overflow-x: auto;
+        position: relative;
+    }
+    .e-grid .e-toolbar {
+        overflow-x: auto;
+        position: relative;
+    }
+    @@media (max-width: 768px) {
+        .grid-container {
+            overflow-x: auto; 
+        }
+
+        .e-grid .e-gridcontent {
+            min-width: 800px;
+        }
+    }
+</style>

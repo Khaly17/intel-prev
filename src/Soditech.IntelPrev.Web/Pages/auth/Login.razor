@@ -1,0 +1,196 @@
+@page "/login"
+@layout LoginLayout
+
+<section class="login">
+    <img src="assets/images/soditech-logo.png" alt="Intel'Prev Logo" class="logo" />
+    <h2>INTEL’PREV</h2>
+    <p>Prévenir, c'est protéger !</p>
+
+    <form class="login-form" novalidate @onsubmit="HandleLogin">
+  
+        <div class="form-group">
+            <label for="username">Nom d'utilisateur</label>
+            <input 
+                type="text" 
+                id="username" 
+                placeholder="Entrez votre nom d'utilisateur" 
+                required 
+                aria-label="username"
+                @bind="Username">
+        </div>
+        <div class="form-group">
+            <label for="password">Mot de passe</label>
+            <input 
+                type="password" 
+                id="password" 
+                placeholder="Entrez votre mot de passe" 
+                required 
+                aria-label="Password"
+                @bind="Password">
+        </div>
+        <div class="form-group">
+            <button class="btn submit-btn">
+                @if (IsConnecting)
+                {
+                    <span>Connexion en cours...</span>
+                }
+                else
+                {
+                    <span>Connexion</span>
+                }
+            </button>
+            @if (!string.IsNullOrEmpty(ErrorMessage))
+            {
+                <small class="error-msg">@ErrorMessage</small>
+            }
+        </div>
+        <p>
+            <a 
+                class="forgot-password"
+                @onclick="NavigateToForgotPassword">
+                Mot de passe oublié ?
+            </a>
+        </p>
+    </form>
+</section>
+
+
+<style>
+
+.login {
+    background-color: #ffffff;
+    padding: 60px 20px;
+    text-align: center;
+    color: #1a1a2e;
+}
+
+.login .logo {
+    width: 50px; 
+    margin-bottom: 20px; 
+}
+
+.login h2 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: #1d185e;
+}
+
+.login p {
+    font-size: 1.1em;
+    margin-bottom: 40px;
+    color: #555;
+}
+
+.login-form {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus {
+    border-color: #1d185e;
+    outline: none;
+}
+
+.submit-btn {
+    padding: 12px 20px;
+    background-color: #1d185e;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.submit-btn:hover {
+    background-color: #1d185e;
+}
+
+p a {
+    color: #1d185e;
+    text-decoration: none;
+}
+
+p a:hover {
+    text-decoration: underline;
+}
+
+.submit-btn {
+    background-color: #003f88;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.submit-btn:hover {
+    opacity: 0.9;
+    color: #ffffff;
+}
+
+.submit-btn[disabled] {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.submit-btn:hover:not([disabled]) {
+    background-color: #003f88;
+}
+.forgot-password{
+    text-decoration: none; 
+    cursor: pointer;
+    color:#333 ;
+}
+.forgot-password:hover{
+    color:#e94560 ;
+    text-decoration: none; 
+}
+.error-msg {
+    color: #e94560;
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+
+.error-message {
+    color: #e94560;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+@@media (max-width: 768px) {
+    .login-form {
+        padding: 20px;
+    }
+    .account-form {
+        padding: 20px;
+    }
+}
+
+</style>

@@ -1,0 +1,149 @@
+@using Syncfusion.Blazor.Navigations
+
+<div class="main-container">
+    <SfSidebar Target=".home-section" EnableGestures="false" Type="SidebarType.Push" @ref="sidebarObj" Animate="true" Width="250px" DockSize="72px" EnableDock="false" @bind-IsOpen="SidebarToggle">
+        <ChildContent>
+
+            <div class="dock">
+                <ul>
+                    @foreach (var sidebarSection in Sections)
+                    {
+                        <li class="section_">
+                            <span class="e-text">@sidebarSection.Name</span>
+                        </li>
+                        @if (sidebarSection.IsExpanded)
+                        {
+                            @foreach (var item in sidebarSection.Items)
+                            {
+                                var isActive = IsActive(item.Url!);
+                                <li class="sidebar-item sub-item">
+                                    <a href="@item.Url" @onclick="() => SetActive(item.Url!)">
+                                        <span class="icon-container">
+                                            <i title="@item.Name" class="fas @GetFontAwesomeIcon(item.IconClass)  @(isActive ? "active" : "")"></i>
+                                        </span>
+                                        <span class="e-text @(isActive ? "active" : "")" title="@item.Name">@item.Name</span>
+                                    </a>
+                                </li>
+                            }
+                        }
+                    }
+                </ul>
+            </div>
+        </ChildContent>
+    </SfSidebar>
+
+</div>
+
+
+<style>
+    /* Sidebar styles */
+    .icon-container {
+        width: 25px;
+        text-align: center;
+        margin-right: 10px;
+        color: #bcc3cf;
+    }
+
+
+    .e-sidebar .e-text {
+        font-size: 16px;
+        color: #1d2b51;
+        font-family: quicksand, sans-serif;
+    }
+
+    .e-sidebar.e-dock.e-close span.e-text {
+        display: none;
+        color: #1d2b78;
+    }
+
+    .e-sidebar.e-dock.e-open span.e-text {
+        display: inline-block;
+        color: #1d2b78;
+    }
+
+    .e-sidebar li.sidebar-item.sub-item {
+        list-style-type: none;
+        cursor: pointer;
+    }
+
+        .e-sidebar li.sidebar-item.sub-item :hover {
+            color: rgb(196, 53, 40);
+            ;
+        }
+
+    .e-sidebar ul {
+        padding: 0;
+    }
+
+    .e-open .icon-container {
+        margin-right: 16px;
+    }
+
+    .sidebar-item {
+        text-align: center;
+        padding: 10px;
+        color: #ffffff;
+    }
+
+    .e-sidebar.e-open .sidebar-item {
+        text-align: left;
+        padding-left: 15px;
+        color: #ffffff;
+    }
+
+    .e-sidebar {
+        background: rgb(255, 255, 255);
+        overflow: auto;
+        margin-top: 70px;
+    }
+
+        .e-sidebar.e-right.e-open, .e-sidebar.e-left.e-open {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+        }
+    /*.e-sidebar li :hover{*/
+    /*    color: rgb(196, 53, 40);*/
+    /*}*/
+
+    span.e-text.active, i.active {
+        color: rgb(196, 53, 40) !important;
+    }
+
+    .section_ {
+        margin: 10px 0;
+        padding-left: 5px;
+    }
+
+    .dock {
+        margin-left: 10px;
+    }
+
+    ::-webkit-scrollbar {
+        width: 4px; /* scrollbar width */
+        height: 4px; /* scrollbar horizontal height */
+    }
+
+    /* scrollbar draggable area */
+    ::-webkit-scrollbar-thumb {
+        background-color: #fff; /* bar color */
+        border-radius: 10px; /* border radius */
+        border: 2px solid #999999; /* border scrollbar */
+        width: 5px;
+        height: 35px;
+    }
+
+    /* scrollbar track */
+    ::-webkit-scrollbar-track {
+        background: #fff; /* color of the track */
+        border-radius: 10px; /* border radius */
+    }
+
+    .sub-item a{
+        text-decoration: none;
+    }
+
+</style>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Soditech.IntelPrev.Mobile.Views.Gps.EquipmentLocationTrackerView"
+             xmlns:viewModel="clr-namespace:Soditech.IntelPrev.Mobile.ViewModels.Gps"
+             xmlns:models="clr-namespace:Soditech.IntelPrev.Preventions.Shared.Equipments;assembly=Soditech.IntelPrev.Preventions.Shared"
+             xmlns:behaviors="using:Soditech.IntelPrev.Mobile.Behaviors"
+             x:DataType="viewModel:EquipmentLocationTrackerViewModel"
+             Title="Mise à jour de position">
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IconOverride="back.png" IsVisible="True" IsEnabled="True" />
+    </Shell.BackButtonBehavior>
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="20" Padding="20">
+            <Label Text="Informations de l'équipement"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   TextColor="Black"/>
+
+            <!-- Equipment Type Display -->
+            <Border BackgroundColor="#F5F5F5"
+                    Stroke="#E0E0E0"
+                    StrokeThickness="1">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="8"/>
+                </Border.StrokeShape>
+                <VerticalStackLayout Padding="15">
+                    <Label Text="Type d'équipement"
+                           FontSize="14"
+                           TextColor="Gray"/>
+                    <Label Text="{Binding EquipmentTypeDisplay}"
+                           FontSize="16"
+                           FontAttributes="Bold"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Equipment Selection -->
+            <Border BackgroundColor="White"
+                    Stroke="#E0E0E0"
+                    StrokeThickness="1">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="8"/>
+                </Border.StrokeShape>
+                <VerticalStackLayout Padding="15" Spacing="10">
+                    <Label Text="Sélectionner l'équipement"
+                           FontSize="16"
+                           FontAttributes="Bold"/>
+                    <Picker ItemsSource="{Binding Equipments}"
+                            SelectedItem="{Binding SelectedEquipment}"
+                            Title="Sélectionner un équipement"
+                            ItemDisplayBinding="{Binding Name}" />
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Equipment Details -->
+            <Border BackgroundColor="White"
+                    Stroke="#E0E0E0"
+                    StrokeThickness="1"
+                    IsVisible="{Binding SelectedEquipment, Converter={StaticResource IsNotNullConverter}}">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="8"/>
+                </Border.StrokeShape>
+                <VerticalStackLayout Padding="15" Spacing="10">
+                    <Label Text="Détails de l'équipement"
+                           FontSize="16"
+                           FontAttributes="Bold"/>
+                    <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto" RowSpacing="10" ColumnSpacing="10">
+                        <Label Grid.Row="0" Grid.Column="0" Text="Nom:" FontAttributes="Bold"/>
+                        <Label Grid.Row="0" Grid.Column="1" Text="{Binding SelectedEquipment.Name}"/>
+                        <Label Grid.Row="1" Grid.Column="0" Text="Description:" FontAttributes="Bold"/>
+                        <Label Grid.Row="1" Grid.Column="1" Text="{Binding SelectedEquipment.Description}"/>
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Location Section -->
+            <Border BackgroundColor="White"
+                    Stroke="#E0E0E0"
+                    StrokeThickness="1">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="8"/>
+                </Border.StrokeShape>
+                <VerticalStackLayout Padding="15" Spacing="10">
+                    <Label Text="Position actuelle"
+                           FontSize="16"
+                           FontAttributes="Bold"/>
+                    <Label Text="{Binding CurrentLocationDisplay}"
+                           TextColor="Gray"/>
+                    <Button Text="Obtenir la position actuelle"
+                            Command="{Binding GetCurrentLocationCommand}"
+                            BackgroundColor="#4A90E2"
+                            TextColor="White"
+                            CornerRadius="20"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Save Button -->
+            <Button Text="Mettre à jour la position"
+                    Command="{Binding SaveLocationCommand}"
+                    IsEnabled="{Binding IsNotBusy}"
+                    BackgroundColor="#4CAF50"
+                    TextColor="White"
+                    HeightRequest="50"
+                    CornerRadius="25"/>
+
+            <ActivityIndicator IsRunning="{Binding IsBusy}"
+                             IsVisible="{Binding IsBusy}"
+                             HorizontalOptions="Center"
+                             VerticalOptions="Center"/>
+        </VerticalStackLayout>
+    </ScrollView>
+    <ContentPage.Behaviors>
+        <behaviors:EventHandlerBehavior EventName="Appearing">
+            <behaviors:ActionCollection>
+                <behaviors:InvokeCommandAction Command="{Binding PageAppearingCommand}" />
+            </behaviors:ActionCollection>
+        </behaviors:EventHandlerBehavior>
+    </ContentPage.Behaviors>
+</ContentPage>

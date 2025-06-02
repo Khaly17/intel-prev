@@ -1,0 +1,14 @@
+﻿@page "/documents/edit/{documentId}"
+@attribute [Authorize(Roles = "Admin, Super Admin")]
+
+@using Microsoft.AspNetCore.Authorization
+@using Soditech.IntelPrev.Web.Components.Administrations;
+
+<AddOrEditDocument
+    DocumentCommand = "currentDocument"
+    Title="@title"
+    ErrorMessage="@errorMessage"
+    SuccessMessage="@successMessage"
+    onCreateDocument="UpdateDocument"
+    onSeletectedFileChange="HandleFileSelected"
+    />

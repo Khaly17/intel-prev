@@ -1,0 +1,27 @@
+﻿@* @page "/equipements" *@
+
+@* @using Soditech.IntelPrev.Preventions.Shared.Equipments *@
+@* @using Soditech.IntelPrev.Users.Shared.Users *@
+@* @using Soditech.IntelPrev.Web.Components.Widgets.Tables *@
+@* @using Soditech.IntelPrev.Web.Components.Widgets.Alerts *@
+@* @using Soditech.IntelPrev.Web.Components.Widgets.Dialogs *@
+
+@* <GenericGrid TItem="@EquipmentResult" *@
+@*              Items="@EquipmentList" *@
+@*              GridTitle="Équipements" *@
+@*              ToolbarItems="@ToolbarItems" *@
+@*              DisplayTitle="true" *@
+@*              PageCount="@PageCount" *@
+@*              PageSize="@PageSize" *@
+@*              addButton="@AddEquipment" *@
+@*              OnEdit="@GoToEdit" *@
+@*              OnDelete="@DeleteEquipmentTrigger" *@
+@*              Columns="@Columns" *@
+@*              DisplaySpinnerOnLoading="IsLoading"> *@
+
+@*     <AlertComponent Message="@_alertMessage" AlertType="@_alertType" IsVisible="@_isAlertVisible" /> *@
+
+@* </GenericGrid> *@
+
+@* <GenericConfirmDialog HeaderLabel="Suppression de l'équipement" IsVisible="@_isDeleteModalVisible" *@
+@*                       OnConfirm="DeleteEquipmentAsync" OnCancel="HideDeleteModal" /> *@

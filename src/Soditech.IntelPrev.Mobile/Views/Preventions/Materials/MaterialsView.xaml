@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Soditech.IntelPrev.Mobile.Views.Preventions.Materials.MaterialsView"
+             xmlns:base="clr-namespace:Soditech.IntelPrev.Mobile.ViewModels.Base;assembly=Soditech.IntelPrev.Mobile"
+             xmlns:behaviors="using:Soditech.IntelPrev.Mobile.Behaviors"
+             base:ViewManager.AutoWireViewModel="True"
+             xmlns:viewModel="clr-namespace:Soditech.IntelPrev.Mobile.ViewModels.Preventions.Materials"
+             x:DataType="viewModel:MaterialsViewModel"
+             Title="Materiels"
+             BackgroundColor="#f5f5f5">
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IconOverride="back.png" IsVisible="True" IsEnabled="True" />
+    </Shell.BackButtonBehavior>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="CardStyle" TargetType="Border">
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="Stroke" Value="#ddd" />
+                <Setter Property="StrokeThickness" Value="1" />
+                <Setter Property="Padding" Value="15" />
+                <Setter Property="StrokeShape" Value="RoundRectangle 15" />
+                <Setter Property="Shadow" Value="10,10,10,Gray" />
+                <Setter Property="Margin" Value="8,4" />
+            </Style>
+
+            <Style x:Key="ImageContainerStyle" TargetType="Border">
+                <Setter Property="StrokeShape" Value="RoundRectangle 10" />
+                <Setter Property="Stroke" Value="Transparent" />
+                <Setter Property="HeightRequest" Value="180" />
+            </Style>
+
+            <Style x:Key="TitleStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="#2c3e50" />
+                <Setter Property="Margin" Value="0,8,0,4" />
+            </Style>
+
+            <Style x:Key="DescriptionStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="TextColor" Value="#666666" />
+                <Setter Property="LineHeight" Value="1.4" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions="Auto,*" RowSpacing="0">
+
+        <ScrollView Grid.Row="1">
+            <CollectionView ItemsSource="{Binding Materials}"
+                          Margin="12,8">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical"
+                                     ItemSpacing="12"/>
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="viewModel:MaterialItem">
+                        <Border Style="{StaticResource CardStyle}">
+                            <Grid RowDefinitions="Auto,Auto,Auto"
+                                  RowSpacing="8">
+                                <Border Grid.Row="0"
+                                        Style="{StaticResource ImageContainerStyle}">
+                                    <Image Source="{Binding ImageSource}"
+                                           Aspect="AspectFill"/>
+                                </Border>
+
+                                <Label Grid.Row="1"
+                                       Text="{Binding Title}"
+                                       Style="{StaticResource TitleStyle}"/>
+
+                                <Label Grid.Row="2"
+                                       Text="{Binding Description}"
+                                       Style="{StaticResource DescriptionStyle}"/>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ScrollView>
+    </Grid>
+
+    <ContentPage.Behaviors>
+        <behaviors:EventHandlerBehavior EventName="Appearing">
+            <behaviors:ActionCollection>
+                <behaviors:InvokeCommandAction Command="{Binding PageAppearingCommand}" />
+            </behaviors:ActionCollection>
+        </behaviors:EventHandlerBehavior>
+    </ContentPage.Behaviors>
+</ContentPage>

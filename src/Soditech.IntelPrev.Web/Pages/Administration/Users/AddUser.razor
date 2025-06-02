@@ -1,0 +1,15 @@
+﻿@attribute [Authorize(Roles = "Admin, Super Admin")]
+@page "/users/add"
+
+@using Microsoft.AspNetCore.Authorization
+@using Soditech.IntelPrev.Web.Components.Administrations;
+
+<AddOrEditUser
+    NewUser="NewUser"
+    Roles="_roles"
+    Tenants="_tenants"
+    ErrorMessage="@errorMessage"
+    SuccessMessage="@successMessage"
+    OnUserCreated="CreateUser"
+    />
+   

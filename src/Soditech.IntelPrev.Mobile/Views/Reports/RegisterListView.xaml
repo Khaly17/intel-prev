@@ -1,0 +1,70 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Soditech.IntelPrev.Mobile.Views.Reports.RegisterListView"
+             xmlns:behaviors="using:Soditech.IntelPrev.Mobile.Behaviors"
+             xmlns:viewModel="clr-namespace:Soditech.IntelPrev.Mobile.ViewModels.Reports"
+             xmlns:registerTypes="clr-namespace:Soditech.IntelPrev.Reports.Shared.RegisterTypes;assembly=Soditech.IntelPrev.Reports.Shared"
+             xmlns:components="clr-namespace:Soditech.IntelPrev.Mobile.Views.Components"
+             x:DataType="viewModel:RegisterListViewModel"
+             Shell.TitleColor="White"
+             Shell.ForegroundColor="white"
+             Title="Signaler">
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IconOverride="back.png" IsVisible="True" IsEnabled="True" />
+    </Shell.BackButtonBehavior>
+
+    <ContentPage.BindingContext>
+        <viewModel:RegisterListViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <DataTemplate x:DataType="registerTypes:RegisterTypeResult" x:Key="RegisterItemTemplate">
+            <Border Padding="10" Margin="0,0" StrokeThickness="1" Stroke="#E0E0E0">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="0" />
+                </Border.StrokeShape>
+                <Grid ColumnSpacing="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0" Margin="5" Source="report.jpg" WidthRequest="32" HeightRequest="32"/>
+                    <VerticalStackLayout Grid.Column="1" Spacing="2" VerticalOptions="Center">
+                        <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="16" TextTransform="Uppercase"/>
+                        <Label Text="{Binding Description}"
+                               IsVisible="{Binding Description, Converter={StaticResource IsStringNotNullOrEmptyConverter}}"
+                               FontSize="14"
+                               LineBreakMode="WordWrap"
+                               TextColor="#757575"/>
+                    </VerticalStackLayout>
+                    <Image Grid.Column="2"
+                           Source="chevron_right.png"
+                           HeightRequest="14"
+                           WidthRequest="14"
+                           VerticalOptions="Center"/>
+                </Grid>
+            </Border>
+        </DataTemplate>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <components:SelectableListView
+            MainMessage="Veuillez sélectionner le type de signalement"
+            SubMessage="Defilez en bas pour voir tous les signalements"
+            ItemsSource="{Binding RegisterTypes}"
+            SelectedItem="{Binding SelectedRegisterType}"
+            SelectionChangedCommand="{Binding SelectRegisterTypeCommand}"
+            ItemTemplate="{StaticResource RegisterItemTemplate}"
+            IsBusy="{Binding IsBusy}"/>
+    </ContentPage.Content>
+
+    <ContentPage.Behaviors>
+        <behaviors:EventHandlerBehavior EventName="Appearing">
+            <behaviors:ActionCollection>
+                <behaviors:InvokeCommandAction Command="{Binding PageAppearingCommand}" />
+            </behaviors:ActionCollection>
+        </behaviors:EventHandlerBehavior>
+    </ContentPage.Behaviors>
+</ContentPage>

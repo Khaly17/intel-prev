@@ -1,0 +1,31 @@
+using MediatR;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Sensor6ty.Repositories;
+using Soditech.IntelPrev.Preventions.Shared.Buildings;
+using Soditech.IntelPrev.Reports.Persistence.Models;
+
+namespace Soditech.IntelPrev.Reports.Application.Buildings.Events;
+
+public class BuildingDeletedEventHandler(IServiceProvider serviceProvider) : INotificationHandler<BuildingDeletedEvent>
+{
+    private readonly IRepository<Building> _buildingRepository = serviceProvider.GetRequiredService<IRepository<Building>>();
+    private readonly ILogger<BuildingDeletedEventHandler> _logger = serviceProvider.GetRequiredService<ILogger<BuildingDeletedEventHandler>>();
+    
+    /// <inheritdoc />
+    public async Task Handle(BuildingDeletedEvent notification, CancellationToken cancellationToken)
+    {
+        try
+        {
+            var building = await  _buildingRepository.GetAsync(notification.Id, cancellationToken);
+            if (building != null)
+            {
+                await _buildingRepository.DeleteAsync(building, cancellationToken);
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error while deleting building");
+        }
+    }
+}

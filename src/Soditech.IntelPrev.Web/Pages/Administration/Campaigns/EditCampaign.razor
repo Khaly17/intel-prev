@@ -1,0 +1,14 @@
+﻿@page "/campaigns/edit/{campaignId}"
+@attribute [Authorize(Roles = "Admin, Super Admin")]
+
+@using Microsoft.AspNetCore.Authorization
+
+@using Soditech.IntelPrev.Web.Components.Administrations;
+
+<AddOrEditCampaign
+    NewCampaign="currentCampaign"
+    Title="@title"
+    SuccessMessage="@successMessage"
+    ErrorMessage="@errorMessage"
+    OnCampaignCreated="UpdateCampaign"
+    />

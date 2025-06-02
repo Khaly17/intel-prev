@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Azure.NotificationHubs" Version="4.2.0" />
+    <PackageReference Include="Sensor6ty.Application" Version="1.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Soditech.IntelPrev.Reports\Soditech.IntelPrev.Reports.Shared\Soditech.IntelPrev.Reports.Shared.csproj" />
+    <ProjectReference Include="..\Soditech.IntelPrev.Notifications.Shared\Soditech.IntelPrev.Notifications.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

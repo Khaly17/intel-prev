@@ -1,0 +1,76 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Soditech.IntelPrev.Mobile.Views.DocumentLegauxView"
+             xmlns:viewModel="clr-namespace:Soditech.IntelPrev.Mobile.ViewModels"
+             xmlns:behaviors="using:Soditech.IntelPrev.Mobile.Behaviors"
+             xmlns:components="clr-namespace:Soditech.IntelPrev.Mobile.Views.Components"
+             x:DataType="viewModel:DocumentLegauxViewModel"
+             Shell.TitleColor="White"
+             Shell.ForegroundColor="White"
+             Title="Documents Légaux">
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IconOverride="back.png" IsVisible="True" IsEnabled="True" />
+    </Shell.BackButtonBehavior>
+
+    <ContentPage.BindingContext>
+        <viewModel:DocumentLegauxViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <DataTemplate x:DataType="viewModel:DocumentItem" x:Key="DocumentItemTemplate">
+            <Border Padding="10" Margin="0,0" StrokeThickness="1" Stroke="#E0E0E0">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="0" />
+                </Border.StrokeShape>
+                <Grid ColumnSpacing="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Document icon -->
+                    <Image Grid.Column="0" Margin="5"
+                           Source="{Binding Icon}"
+                           WidthRequest="40" HeightRequest="40"/>
+
+                    <!-- Document text details -->
+                    <VerticalStackLayout Grid.Column="1" Spacing="2" VerticalOptions="Center">
+                        <Label Text="{Binding Title}" FontAttributes="Bold" FontSize="16" TextTransform="Uppercase"/>
+                        <Label Text="{Binding Description}"
+                               FontSize="14"
+                               TextColor="#757575"
+                               LineBreakMode="TailTruncation"/>
+                    </VerticalStackLayout>
+
+                    <!-- Chevron icon -->
+                    <Image Grid.Column="2"
+                           Source="chevron_right.png"
+                           HeightRequest="15"
+                           WidthRequest="15"
+                           VerticalOptions="Center"/>
+                </Grid>
+            </Border>
+        </DataTemplate>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <components:SelectableListView
+            MainMessage="Veuillez sélectionner un document légal"
+            SubMessage="Chaque element renvoie au document concerné"
+            ItemsSource="{Binding Documents}"
+            SelectedItem="{Binding SelectedDocument}"
+            SelectionChangedCommand="{Binding SelectionChangedCommand}"
+            ItemTemplate="{StaticResource DocumentItemTemplate}"
+            IsBusy="{Binding IsBusy}"/>
+    </ContentPage.Content>
+
+    <ContentPage.Behaviors>
+        <behaviors:EventHandlerBehavior EventName="Appearing">
+            <behaviors:ActionCollection>
+                <behaviors:InvokeCommandAction Command="{Binding PageAppearingCommand}" />
+            </behaviors:ActionCollection>
+        </behaviors:EventHandlerBehavior>
+    </ContentPage.Behaviors>
+</ContentPage>
