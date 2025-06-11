@@ -18,7 +18,8 @@ public class IsStringNotNullOrWhiteSpaceConverter : IValueConverter
 
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        //TODO: Not yet implemented
+        //TODO: Note yet implemented
         throw new NotSupportedException("ConvertBack is not supported for this converter.");
+
     }
 }

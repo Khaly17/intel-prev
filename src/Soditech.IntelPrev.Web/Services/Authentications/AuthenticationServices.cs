@@ -104,8 +104,9 @@ public class AuthenticationServices(IServiceProvider serviceProvider) : IAuthent
 
     Task<TResult<WebLoginCommandResult>> IAuthenticationServices.RefreshToken(string refreshToken, CancellationToken cancellationToken)
     {
-       return Task.FromResult(TResult<WebLoginCommandResult>.Failure(
-        "refresh_not_available", "La fonctionnalité de rafraîchissement de token n'est pas encore disponible."));
+        //TODO: Not yet implemented
+        return Task.FromResult(TResult<WebLoginCommandResult>.Failure(
+            "refresh_not_available", "La fonctionnalité de rafraîchissement de token n'est pas encore disponible."));
     }
 
     async Task IAuthenticationServices.Logout()
