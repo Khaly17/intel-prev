@@ -41,7 +41,7 @@ public partial class AddBuilding
         }
         catch (Exception ex)
         {
-            errorMessage = $"Une erreur interne est survenue lors de la création du bâtiment.";
+            errorMessage = "Une erreur interne est survenue lors de la création du bâtiment.";
             Logger.LogError(ex, errorMessage);
         }
     }

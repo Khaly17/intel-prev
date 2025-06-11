@@ -1,7 +1,4 @@
-﻿@model Soditech.IntelPrev.Users.Application.Helpers.Models.WelcomeTemplateMailModel
-
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -17,19 +14,19 @@
 </head>
 <body>
     <div class="container">
-            <h1>Bienvenue, @Model.FullName !</h1>
+            <h1>Bienvenue, {{ FullName }} !</h1>
         <p>Nous sommes ravis de vous accueillir sur notre plateforme.</p>
         <p>Voici vos informations de connexion :</p>
         <ul>
-            <li><strong>Nom d'utilisateur :</strong> @Model.UserName </li>
-                <li><strong>Mot de passe :</strong> @Model.Password </li>
+            <li><strong>Nom d'utilisateur :</strong> {{ UserName }} </li>
+            <li><strong>Mot de passe :</strong> {{ Password }} </li>
         </ul>
         <p>Pour vous connecter, veuillez cliquer sur le lien ci-dessous :</p>
-        <p><a href="@Model.Url">Se connecter</a></p>
+        <p><a href="{{ Url }}">Se connecter</a></p>
       
         <div class="footer">
             <p>Merci de faire partie de notre communauté !</p>
-                <p>L'équipe de @Model.ApplicationName</p>
+            <p>L'équipe de {{ ApplicationName }}</p>
         </div>
     </div>
 </body>

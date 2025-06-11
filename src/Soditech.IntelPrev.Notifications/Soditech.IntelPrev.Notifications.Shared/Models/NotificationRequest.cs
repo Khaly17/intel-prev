@@ -3,8 +3,8 @@
 public class NotificationRequest
 {
     public string Title { get; set; } = "IntelPrev";
-    public string Text { get; set; }
-    public string Action { get; set; }
+    public string Text { get; set; } = string.Empty;
+    public string Action { get; set; } = string.Empty;
     public string[] Tags { get; set; } = [];
     public bool Silent { get; set; }
 }

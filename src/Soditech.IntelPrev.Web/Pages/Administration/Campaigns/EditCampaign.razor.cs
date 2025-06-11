@@ -53,7 +53,7 @@ public partial class EditCampaign
             }
             else
             {
-                errorMessage = $"Erreur de récupération des informations de la campagne.";
+                errorMessage = "Erreur de récupération des informations de la campagne.";
             }
         }
         catch (Exception ex)

@@ -74,7 +74,7 @@ namespace Soditech.IntelPrev.Mobile.ViewModels.Tutoriels
             }
         }
 
-        public async void ApplyQueryAttributes(IDictionary<string, object> query)
+        public async Task ApplyQueryAttributes(IDictionary<string, object> query)
 		{
             IsBusy = true;
             if (query.TryGetValue("videoUrl", out var videoUrl))

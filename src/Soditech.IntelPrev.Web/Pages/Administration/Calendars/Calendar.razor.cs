@@ -108,8 +108,6 @@ public partial class Calendar
             if (result.IsSuccess)
             {
                 successMessage = "L'événement a été ajouté avec succès !";
-
-                var eventId = result.Value.Id;
             }
             else
             {
@@ -119,7 +117,7 @@ public partial class Calendar
         }
         catch (Exception ex)
         {
-            errorMessage = $"Une erreur interne est survenue lors de la création de l'événement.";
+            errorMessage = "Une erreur interne est survenue lors de la création de l'événement.";
             Logger.LogError(ex, errorMessage);
         }
     }

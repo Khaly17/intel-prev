@@ -145,10 +145,6 @@ public partial class UsersList: ComponentBase
         {
             Users = usersResult.Value;
         }
-        else
-        {
-
-        }
 
         IsLoading = false;
     }

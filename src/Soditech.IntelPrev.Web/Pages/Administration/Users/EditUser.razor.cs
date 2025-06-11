@@ -59,7 +59,7 @@ public partial class EditUser: ComponentBase
             }
             else
             {
-                errorMessage = $"Erreur de récupération d'utilisateur.";
+                errorMessage = "Erreur de récupération d'utilisateur.";
             }
         }
         catch (Exception ex)
@@ -153,7 +153,7 @@ public partial class EditUser: ComponentBase
         }
         catch (Exception ex)
         {
-            errorMessage = $" Error: Cannot load tenants";
+            errorMessage = "Error: Cannot load tenants";
             Logger.LogError(ex, errorMessage);
         }
     }

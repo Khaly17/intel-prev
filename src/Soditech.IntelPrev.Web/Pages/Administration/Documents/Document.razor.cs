@@ -29,8 +29,6 @@
                 if (result.IsSuccess)
                 {
                     successMessage = "La document a été ajouté avec succès !";
-                    var documentId = result.Value.Id;
-
                     Navigation.NavigateTo("/documents");
                 }
                 else
@@ -41,7 +39,7 @@
             }
             catch (Exception ex)
             {
-                errorMessage = $"Une erreur interne est survenue lors de la création du document.";
+                errorMessage = "Une erreur interne est survenue lors de la création du document.";
                 Logger.LogError(ex, errorMessage);
             }
         }

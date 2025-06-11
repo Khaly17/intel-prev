@@ -49,7 +49,7 @@ namespace Soditech.IntelPrev.Mobile.Views.Components
 
 		private static void OnIsExpandedChanged(BindableObject bindable, object oldValue, object newValue)
 		{
-			var control = (SectionCard)bindable;
+			// var control = (SectionCard)bindable;
 			// Animation could be added here
 		}
 	}

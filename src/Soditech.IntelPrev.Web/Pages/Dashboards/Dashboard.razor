@@ -10,136 +10,142 @@
                  SetCurrentMonth="SetCurrentMonth"
                  @bind-StartDate="DateFilter.StartDate"
                  @bind-EndDate="DateFilter.EndDate"
-                 LoadCharts="LoadCharts">
+                 LoadCharts="LoadCharts"
+                 Print="@PrintCharts"
+                 Download="@DownloadCharts">
 </FilterComponent>
-<div class="total-visits-browse-area">
-    <div class="container-fluid">
-        <div class="row justify-content-center">
-            <div class="col-xxl-6">
-                <div class="total-visits-content card-box-style">
-                    <div class="main-title d-flex justify-content-between align-items-center">
-                        <h3>Résultats de Sensibilisation</h3>
-                        <i class="date-label-sub-title">Données du @DateFilter.StartDate.ToString("d/M/yyyy") au @DateFilter.EndDate.ToString("d/M/yyyy")</i>
-                        @* @NavigateToAssignmentsDetails() *@
-                        <a href="#">
-                            Détails
-                        </a>
+
+<div id="charts">
+
+    <div class="total-visits-browse-area">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-xxl-6">
+                    <div class="total-visits-content card-box-style">
+                        <div class="main-title d-flex justify-content-between align-items-center">
+                            <h3>Résultats de Sensibilisation</h3>
+                            <i class="date-label-sub-title">Données du @DateFilter.StartDate.ToString("d/M/yyyy") au @DateFilter.EndDate.ToString("d/M/yyyy")</i>
+                            @* @NavigateToAssignmentsDetails() *@
+                            <a href="#">
+                                Détails
+                            </a>
+                        </div>
+
+                        @if (_isLoadingReports)
+                        {
+                            <Spinner />
+                        }
+                        else
+                        {
+                            <CircularGaugeComponent
+                                Value="75"
+                                OkValue="2564"
+                                NcValue="1053"
+                                />
+                        }
                     </div>
-
-                    @if (_isLoadingReports)
-                    {
-                        <Spinner />
-                    }
-                    else
-                    {
-                        <CircularGaugeComponent
-                            Value="75"
-                            OkValue="2564"
-                            NcValue="1053"
-                            />
-                    }
                 </div>
-            </div>
 
-            <div class="col-xxl-6">
-                <div class="total-browse-content card-box-style">
-                    <div class="main-title d-flex justify-content-between align-items-center">
-                        <h3>Top 3 des Sensibilisations Non Conformes</h3>
-                        <i class="date-label-sub-title">Données du @DateFilter.StartDate.ToString("d/M/yyyy") au @DateFilter.EndDate.ToString("d/M/yyyy")</i>
-                        @* @NavigateToNotConformAssignmentsDetails() *@
-                        <a href="#">
-                            Détails
-                        </a>
+                <div class="col-xxl-6">
+                    <div class="total-browse-content card-box-style">
+                        <div class="main-title d-flex justify-content-between align-items-center">
+                            <h3>Top 3 des Sensibilisations Non Conformes</h3>
+                            <i class="date-label-sub-title">Données du @DateFilter.StartDate.ToString("d/M/yyyy") au @DateFilter.EndDate.ToString("d/M/yyyy")</i>
+                            @* @NavigateToNotConformAssignmentsDetails() *@
+                            <a href="#">
+                                Détails
+                            </a>
+                        </div>
+
+                        @if (_isLoadingReports)
+                        {
+                            <Spinner />
+                        }
+                        else
+                        {
+                            <SfChart>
+                                <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category"></ChartPrimaryXAxis>
+                                <ChartPrimaryYAxis Minimum="0"></ChartPrimaryYAxis>
+                                <ChartSeriesCollection>
+                                    <ChartSeries DataSource="@ReportsGroupedByRegisterResult" XName="RegisterTypeName" YName="Count" Type="ChartSeriesType.Line">
+                                    </ChartSeries>
+                                </ChartSeriesCollection>
+                                <ChartTooltipSettings Enable="true"></ChartTooltipSettings>
+                            </SfChart>
+                        }
                     </div>
-
-                    @if (_isLoadingReports)
-                    {
-                        <Spinner />
-                    }
-                    else
-                    {
-                        <SfChart>
-                            <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category"></ChartPrimaryXAxis>
-                            <ChartPrimaryYAxis Minimum="0"></ChartPrimaryYAxis>
-                            <ChartSeriesCollection>
-                                <ChartSeries DataSource="@ReportsGroupedByRegisterResult" XName="RegisterTypeName" YName="Count" Type="ChartSeriesType.Line">
-                                </ChartSeries>
-                            </ChartSeriesCollection>
-                            <ChartTooltipSettings Enable="true"></ChartTooltipSettings>
-                        </SfChart>
-                    }
                 </div>
+            
             </div>
-        
         </div>
     </div>
-</div>
 
-<div class="total-visits-browse-area">
-    <div class="container-fluid">
-        <div class="row justify-content-center">
-            <div class="col-xxl-6">
-                <div class="total-visits-content card-box-style">
-                    <div class="main-title d-flex justify-content-between align-items-center">
-                        <h3>Statistique des signalements</h3>
-                        <i class="date-label-sub-title">Données du @DateFilter.StartDate.ToString("d/M/yyyy") au @DateFilter.EndDate.ToString("d/M/yyyy")</i>
-                        <a href="@NavigateToReportsDetails()" target="_blank">
-                            Détails
-                        </a>
+    <div class="total-visits-browse-area">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-xxl-6">
+                    <div class="total-visits-content card-box-style">
+                        <div class="main-title d-flex justify-content-between align-items-center">
+                            <h3>Statistique des signalements</h3>
+                            <i class="date-label-sub-title">Données du @DateFilter.StartDate.ToString("d/M/yyyy") au @DateFilter.EndDate.ToString("d/M/yyyy")</i>
+                            <a href="@NavigateToReportsDetails()" target="_blank">
+                                Détails
+                            </a>
+                        </div>
+
+                        @if (_isLoadingReports)
+                        {
+                            <Spinner />
+                        }
+                        else
+                        {
+                            <SfAccumulationChart>
+                                <AccumulationChartSeriesCollection>
+                                    <AccumulationChartSeries DataSource="@ReportsGroupedByRegisterResult" XName="RegisterTypeName" YName="Count">
+                                    </AccumulationChartSeries>
+                                </AccumulationChartSeriesCollection>
+                                <AccumulationChartTooltipSettings Enable="true"></AccumulationChartTooltipSettings>
+                                <AccumulationChartLegendSettings Visible="true"></AccumulationChartLegendSettings>
+                            </SfAccumulationChart>
+                        }
                     </div>
-
-                    @if (_isLoadingReports)
-                    {
-                        <Spinner />
-                    }
-                    else
-                    {
-                        <SfAccumulationChart>
-                            <AccumulationChartSeriesCollection>
-                                <AccumulationChartSeries DataSource="@ReportsGroupedByRegisterResult" XName="RegisterTypeName" YName="Count">
-                                </AccumulationChartSeries>
-                            </AccumulationChartSeriesCollection>
-                            <AccumulationChartTooltipSettings Enable="true"></AccumulationChartTooltipSettings>
-                            <AccumulationChartLegendSettings Visible="true"></AccumulationChartLegendSettings>
-                        </SfAccumulationChart>
-                    }
                 </div>
-            </div>
 
-            <div class="col-xxl-6">
-                <div class="total-browse-content card-box-style">
-                    <div class="main-title d-flex justify-content-between align-items-center">
-                        <h3>Analyse des Alertes par Statut</h3>
-                        <i class="date-label-sub-title">Données du @DateFilter.StartDate.ToString("d/M/yyyy") au @DateFilter.EndDate.ToString("d/M/yyyy")</i>
-                        <a href="@NavigateToAlertsDetails()" target="_blank">
-                            Détails
-                        </a>
+                <div class="col-xxl-6">
+                    <div class="total-browse-content card-box-style">
+                        <div class="main-title d-flex justify-content-between align-items-center">
+                            <h3>Analyse des Alertes par Statut</h3>
+                            <i class="date-label-sub-title">Données du @DateFilter.StartDate.ToString("d/M/yyyy") au @DateFilter.EndDate.ToString("d/M/yyyy")</i>
+                            <a href="@NavigateToAlertsDetails()" target="_blank">
+                                Détails
+                            </a>
+                        </div>
+
+                        @if (_isLoadingReports)
+                        {
+                            <Spinner />
+                        }
+                        else
+                        {
+                            <SfChart>
+                                <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category"></ChartPrimaryXAxis>
+                                <ChartPrimaryYAxis Minimum="0"></ChartPrimaryYAxis>
+                                <ChartSeriesCollection>
+                                    <ChartSeries DataSource="@AlertsGroupedByTypeResult"
+                                                 XName="Type"
+                                                 YName="Count"
+                                                 Type="ChartSeriesType.Column">
+
+                                        <ChartCornerRadius TopLeft="5" TopRight="5"></ChartCornerRadius>
+                                    </ChartSeries>
+                                </ChartSeriesCollection>
+                                <ChartTooltipSettings Enable="true"></ChartTooltipSettings>
+                            </SfChart>
+                        }
                     </div>
-
-                    @if (_isLoadingReports)
-                    {
-                        <Spinner />
-                    }
-                    else
-                    {
-                        <SfChart>
-                            <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category"></ChartPrimaryXAxis>
-                            <ChartPrimaryYAxis Minimum="0"></ChartPrimaryYAxis>
-                            <ChartSeriesCollection>
-                                <ChartSeries DataSource="@AlertsGroupedByTypeResult"
-                                             XName="Type"
-                                             YName="Count"
-                                             Type="ChartSeriesType.Column">
-
-                                    <ChartCornerRadius TopLeft="5" TopRight="5"></ChartCornerRadius>
-                                </ChartSeries>
-                            </ChartSeriesCollection>
-                            <ChartTooltipSettings Enable="true"></ChartTooltipSettings>
-                        </SfChart>
-                    }
                 </div>
+           
             </div>
-       
         </div>
     </div>
 </div>

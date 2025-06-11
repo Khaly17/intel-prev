@@ -24,9 +24,10 @@ public class ReportSeeder : ISeeder
     {
         if (context is ReportDbContext authDbContext)
         {
+            var configuration = AppConfigurations.Get(
+                                typeof(ReportSeeder).Assembly.GetDirectoryPathOrNull()!,
+                                "Development", true);
 
-            var configuration = AppConfigurations.Get(Assembly.GetExecutingAssembly().GetDirectoryPathOrNull()!,
-                "Development", true);
             var basePath = configuration.GetSection("DATA_DIRECTORY").Value;
 
             // check if basePath is null or empty

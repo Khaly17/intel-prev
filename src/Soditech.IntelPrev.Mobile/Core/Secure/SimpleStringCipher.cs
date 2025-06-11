@@ -8,7 +8,7 @@ namespace SavvyTech.R2A.Core.Secure;
 
 public class SimpleStringCipher
 {
-    private static readonly string EncryptionKey = "your-encryption-key-123"; // Utilisez une clé sécurisée.
+    const  string EncryptionKey = "your-encryption-key-123"; // Utilisez une clé sécurisée.
 
     // Méthode de chiffrement
     public static string Encrypt(string plainText)

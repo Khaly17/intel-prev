@@ -11,29 +11,27 @@ public static class FlurlResponseExtensions
         try
         {
             var response = await responseTask.ConfigureAwait(false);
-            
+
             switch (response.StatusCode)
             {
                 case 200:
-                {
-                    var resultSting = await response.GetStringAsync();
-                
-                    // if resulString contains "IsSuccess", then parse it with TResult<T>
-                    if (resultSting.Contains("isSuccess"))
                     {
-                        // var tResult = JsonSerializer.Deserialize<TResult<T>>(resultSting);
-                        var tResult = await response.GetJsonAsync<TResult<T>>();
-                        return tResult ?? Result.Failure<T>(new Error("DeserializationError",$"Cannot deserialize {typeof(T).Name}"));
-                    }
+                        var resultSting = await response.GetStringAsync();
 
-                    var result = JsonSerializer.Deserialize<T>(resultSting);
-                    if (result != null)
-                    {
-                        return Result.Success(result);
-                    
+                        // if resulString contains "IsSuccess", then parse it with TResult<T>
+                        if (resultSting.Contains("isSuccess"))
+                        {
+                            var tResult = await response.GetJsonAsync<TResult<T>>();
+                            return tResult ?? Result.Failure<T>(new Error("DeserializationError", $"Cannot deserialize {typeof(T).Name}"));
+                        }
+
+                        var result = JsonSerializer.Deserialize<T>(resultSting);
+                        if (!EqualityComparer<T>.Default.Equals(result, default)) // Fix for S2955, result != null is not sufficient for reference types
+                        {
+                            return Result.Success(result);
+                        }
+                        return Result.Failure<T>(new Error("DeserializationError", $"Cannot deserialize {typeof(T).Name}"));
                     }
-                    return Result.Failure<T>(new Error("DeserializationError",$"Cannot deserialize {typeof(T).Name}"));
-                }
                 case 401:
                     return Result.Failure<T>(new Error("401", response.ResponseMessage.ToString()));
                 default:
@@ -44,14 +42,14 @@ public static class FlurlResponseExtensions
         {
             if (e.StatusCode == 401)
             {
-                return Result.Failure<T>(new Error("401", e.Message));   
+                return Result.Failure<T>(new Error("401", e.Message));
             }
-            
-            return Result.Failure<T>(new Error(e.StatusCode.ToString() ?? "DeserializationError",$"Cannot deserialize {typeof(T).Name}"));
+
+            return Result.Failure<T>(new Error(e.StatusCode.ToString() ?? "DeserializationError", $"Cannot deserialize {typeof(T).Name}"));
         }
         catch (Exception e)
         {
-            return Result.Failure<T>(new Error("DeserializationError",$"Cannot deserialize {typeof(T).Name}"));
+            return Result.Failure<T>(new Error("DeserializationError", $"Cannot deserialize {typeof(T).Name}"));
         }
     }
     

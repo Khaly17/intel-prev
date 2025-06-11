@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -56,7 +57,7 @@ public class CreateUserCommandHandler(IServiceProvider serviceProvider) : IReque
                     }
                 }
             }
-            var password = new Random().Next(1000, 10000).ToString();
+            var password = GenerateSecureCode();
 
             var result = await _userManager.CreateAsync(user, password);
 
@@ -78,12 +79,12 @@ public class CreateUserCommandHandler(IServiceProvider serviceProvider) : IReque
                         Url = "https://intelprev.sensor6ty.com"
                     };
                     
-                    var htmlBody = await _emailTemplateRenderer.RenderTemplateAsync("_WelcomeTemplateMail", welcomeTemplateMailModel);
+                    var htmlBody = await _emailTemplateRenderer.RenderTemplateAsync("Helpers/Templates/_WelcomeTemplateMail.html", welcomeTemplateMailModel);
                 
                     //if htmlBody is null or empty, send msg without htmlBody
                     if (string.IsNullOrEmpty(htmlBody))
                     {
-                        htmlBody = $"Votre nouveau mot de passe : {password}";
+                        htmlBody = $"Bonjour vous pouvez vous connectez avec ces infos.\n\tnom d'utilisateur: {user.UserName} \n\tmot de passe : {password}";
                         _logger.LogError("mail send without reset password `_WelcomeTemplate.cshtml` for template.");
                     }
                 
@@ -104,4 +105,15 @@ public class CreateUserCommandHandler(IServiceProvider serviceProvider) : IReque
         
         return Result.Failure<UserResult>(new Error("500", "Error while creating user"));
     }   
+
+    private string GenerateSecureCode(int length = 4)
+    {
+        using var rng = RandomNumberGenerator.Create();
+        var bytes = new byte[length];
+        rng.GetBytes(bytes);
+
+        var digits = bytes.Select(b => (b % 10).ToString());
+        return string.Concat(digits);
+    }
+
 }

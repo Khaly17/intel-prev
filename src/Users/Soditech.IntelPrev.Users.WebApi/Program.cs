@@ -2,6 +2,7 @@ using FastEndpoints;
 using FastEndpoints.Swagger;
 using Sensor6ty.WebApi;
 using Soditech.IntelPrev.Users.Persistence.Models;
+using Soditech.IntelPrev.Users.WebApi;
 
 var builder = WebApplication.CreateBuilder(args);
 

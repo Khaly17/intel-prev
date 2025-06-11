@@ -1,12 +1,12 @@
-﻿using System.Net;
+﻿using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Microsoft.Identity.Client;
+using Soditech.IntelPrev.Emails.Services.Options;
+using System.Net;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
-using Soditech.IntelPrev.Emails.Services.Options;
-using Microsoft.AspNetCore.Identity.UI.Services;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 
 namespace Soditech.IntelPrev.Emails.Services;
 
@@ -61,7 +61,7 @@ public class EmailSender : IEmailSender
                     new { EmailAddress = new { Address = email } }
                 },
             },
-            SaveToSentItems = "true"
+            SaveToSentItems = "false"
         };
 
 

@@ -32,7 +32,7 @@ public partial class EditEvent
             }
             else
             {
-                errorMessage = $"Erreur de récupération des informations de l'événement.";
+                errorMessage = "Erreur de récupération des informations de l'événement.";
             }
         }
         catch (Exception ex)

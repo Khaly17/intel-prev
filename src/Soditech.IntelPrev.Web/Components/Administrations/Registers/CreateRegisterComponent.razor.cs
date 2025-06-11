@@ -82,8 +82,7 @@ public partial class CreateRegisterComponent : ComponentBase
 
             if (result.IsSuccess)
             {
-                successMessage = "Le registre a été ajouté avec succès !";
-                var registerId = result.Value.Id;
+                successMessage = "Le registre a ï¿½tï¿½ ajoutï¿½ avec succï¿½s !";
                  
 
 
@@ -91,13 +90,13 @@ public partial class CreateRegisterComponent : ComponentBase
             }
             else
             {
-                errorMessage = result.Error?.Message ?? "Une erreur est survenue lors de la création du registre.";
+                errorMessage = result.Error?.Message ?? "Une erreur est survenue lors de la crï¿½ation du registre.";
                 Logger.LogError("{code} : {message}", result.Error?.Code, result.Error?.Message);
             }
         }
         catch (Exception ex)
         {
-            errorMessage = $"Une erreur interne est survenue lors de la création du registre.";
+            errorMessage = "Une erreur interne est survenue lors de la crï¿½ation du registre.";
             Logger.LogError(ex, errorMessage);
         }
     }

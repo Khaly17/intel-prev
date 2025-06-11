@@ -36,7 +36,7 @@ public partial class EditTenant: ComponentBase
             }
             else
             {
-                errorMessage = $"Erreur de récupération de la structure.";
+                errorMessage = "Erreur de récupération de la structure.";
             }
         }
         catch (Exception ex)

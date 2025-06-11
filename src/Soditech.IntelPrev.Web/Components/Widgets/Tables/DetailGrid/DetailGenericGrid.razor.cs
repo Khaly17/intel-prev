@@ -69,7 +69,7 @@ public partial class DetailGenericGrid<TItem> : ComponentBase
     [Parameter] public Func<Task> OnSearchMethod { get; set; } = default!;
 
     
-    private async void SearchMethod()
+    private async Task SearchMethod()
     {
         CustomSearch = true;
         DisplaySpinnerOnLoading = true;

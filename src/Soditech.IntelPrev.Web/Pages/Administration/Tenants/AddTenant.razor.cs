@@ -30,7 +30,6 @@ public partial class AddTenant: ComponentBase
             if (result.IsSuccess)
             {
                 successMessage = "La structure a été ajouté avec succès !";
-                var userId = result.Value.Id;
 
                 Navigation.NavigateTo("/tenants");
             }
@@ -42,7 +41,7 @@ public partial class AddTenant: ComponentBase
         }
         catch (Exception ex)
         {
-            errorMessage = $"Une erreur interne est survenue lors de la création de la structure.";
+            errorMessage = "Une erreur interne est survenue lors de la création de la structure.";
             Logger.LogError(ex, errorMessage);
         }
     }

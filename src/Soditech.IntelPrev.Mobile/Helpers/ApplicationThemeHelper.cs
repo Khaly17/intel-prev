@@ -74,6 +74,7 @@ namespace Soditech.IntelPrev.Mobile.Helpers
 				// Applique les changements de couleur en mettant à jour le BindingContext
 				// Cette technique permet de forcer un refresh de l'UI
 				var currentBindingContext = Shell.Current.BindingContext;
+				Shell.Current.BindingContext = null;
 				Shell.Current.BindingContext = currentBindingContext;
 			}
 		}

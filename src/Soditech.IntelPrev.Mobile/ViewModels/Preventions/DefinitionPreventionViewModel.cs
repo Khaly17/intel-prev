@@ -31,38 +31,7 @@ public class DefinitionPreventionViewModel : MauiViewModel
 		{
 			if (_definitionText == value) return;
 			_definitionText = value;
-			// _definitionText = $"<html><head><style>body {{ font-size: 18px; color: #424242; line-height: 1.6; }}</style></head><body>{_definitionText}</body></html>";
-			_definitionText = $$"""
-				<html>
-				<head>
-					<meta name="viewport" content="width=device-width, initial-scale=1.0">
-					<style>
-						* {
-							-webkit-hyphens: none;
-							-moz-hyphens: none;
-							-ms-hyphens: none;
-							hyphens: none;
-							word-break: keep-all;
-							overflow-wrap: break-word;
-						}
-
-						body {
-							font-family: sans-serif;
-							font-size: 18px;
-							color: #424242;
-							line-height: 1.6;
-							padding: 10px;
-						}
-					</style>
-				</head>
-				<body>
-				{{_definitionText}}
-				</body>
-				</html>
-				""";
-
-
-
+			_definitionText = $"<html><head><style>body {{ font-size: 18px; color: #424242; line-height: 1.6; }}</style></head><body>{_definitionText}</body></html>";
 			OnPropertyChanged();
 		}
 	}

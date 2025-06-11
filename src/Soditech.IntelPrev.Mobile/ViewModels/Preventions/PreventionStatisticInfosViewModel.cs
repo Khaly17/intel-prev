@@ -12,7 +12,7 @@ public class PreventionStatisticInfosViewModel : MauiViewModel
    
 	public ICommand GoToDevViewCommand => new RelayCommand(GoToDevViewAsync);
 
-	private async void GoToDevViewAsync()
+	private async Task GoToDevViewAsync()
 	{
 		await Shell.Current.GoToAsync(new ShellNavigationState($"{AppRoutes.DevPage}"));
 	}

@@ -39,8 +39,6 @@ namespace Soditech.IntelPrev.Web.Pages.Administration.CommitteeMembers
                 if (result.IsSuccess)
                 {
                     successMessage = "Le membre du comité a été ajouté avec succès !";
-                    var committeeMemberId = result.Value.Id;
-
                     Navigation.NavigateTo("/committeemembers");
                 }
                 else
@@ -51,7 +49,7 @@ namespace Soditech.IntelPrev.Web.Pages.Administration.CommitteeMembers
             }
             catch (Exception ex)
             {
-                errorMessage = $"Error: Cannot create committee member";
+                errorMessage = "Error: Cannot create committee member";
                 Logger.LogError(ex, errorMessage);
             }
         }
@@ -73,7 +71,7 @@ namespace Soditech.IntelPrev.Web.Pages.Administration.CommitteeMembers
             }
             catch (Exception ex)
             {
-                errorMessage = $" Error: Cannot load roles";
+                errorMessage = " Error: Cannot load roles";
                 Logger.LogError(ex, errorMessage);
             }
         }

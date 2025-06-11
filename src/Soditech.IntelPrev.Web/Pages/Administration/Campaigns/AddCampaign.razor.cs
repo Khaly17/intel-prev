@@ -35,7 +35,7 @@ public partial class AddCampaign
         }
         catch (Exception ex)
         {
-            errorMessage = $"Error: Cannot create campaign";
+            errorMessage = "Error: Cannot create campaign";
             Logger.LogError(ex, errorMessage);
         }
     }

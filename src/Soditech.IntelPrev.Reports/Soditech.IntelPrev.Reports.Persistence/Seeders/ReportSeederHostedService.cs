@@ -11,9 +11,10 @@ public class ReportSeederHostedService(IServiceProvider serviceProvider) : IHost
 {
     public async Task StartAsync(CancellationToken cancellationToken)
     {
-        var configuration = AppConfigurations.Get(Assembly.GetExecutingAssembly().GetDirectoryPathOrNull()!,
-            "Development", true);
-        
+        var configuration = AppConfigurations.Get(
+                                    typeof(ReportSeederHostedService).Assembly.GetDirectoryPathOrNull()!,
+                                    "Development", true);
+
         //get seedIsEnabled value from configuration. If it is false, return
         if (configuration.GetSection("SeedIsEnabled").Value == "false")
         {

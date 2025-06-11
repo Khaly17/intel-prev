@@ -17,4 +17,13 @@
       <ProjectReference Include="..\..\Soditech.IntelPrev.Preventions\Soditech.IntelPrev.Preventions.Shared\Soditech.IntelPrev.Preventions.Shared.csproj" />
       <ProjectReference Include="..\Soditech.IntelPrev.Users.Persistence\Soditech.IntelPrev.Users.Persistence.csproj" />
     </ItemGroup>
+
+    <ItemGroup>
+      <None Update="Helpers\Templates\_ResetPasswordTemplateMail.html">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="Helpers\Templates\_WelcomeTemplateMail.html">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
 </Project>

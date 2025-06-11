@@ -44,60 +44,60 @@ class ProPrevHomeViewModel : MauiViewModel
     }
 
     // Add handler for carousel item changed event
-    private void OnCarouselItemChanged(CurrentItemChangedEventArgs args)
+    private Task OnCarouselItemChanged(CurrentItemChangedEventArgs args)
     {
         SfCarouselItem? previousItem = args.PreviousItem as SfCarouselItem;
         SfCarouselItem? currentItem = args.CurrentItem as SfCarouselItem;
         // Add additional logic here if needed
     }
 
-    private async void GoToRiskAnalysisProtocolPageAsync()
+    private async Task GoToRiskAnalysisProtocolPageAsync()
     {
         await Shell.Current.GoToAsync(new ShellNavigationState(AppRoutes.RiskAnalysisProtocolPage));
     }
 
-    private async void GoToAnalysisToolsPageAsync()
+    private async Task GoToAnalysisToolsPageAsync()
     {
         await Shell.Current.GoToAsync(new ShellNavigationState(AppRoutes.AnalysisToolsPage));
     }
 
-    private async void GoToActionTrackingPageAsync()
+    private async Task GoToActionTrackingPageAsync()
     {
         await Shell.Current.GoToAsync(new ShellNavigationState($"{AppRoutes.ActionTrackingPage}"));
     }
-    private async void GoToSiteVisitePageAsync()
+    private async Task GoToSiteVisitePageAsync()
     {
         await Shell.Current.GoToAsync(new ShellNavigationState($"{AppRoutes.SiteVisitePage}"));
     }
-    private async void GoToAgendaCSEPageAsync()
+    private async Task GoToAgendaCSEPageAsync()
     {
         await Shell.Current.GoToAsync(new ShellNavigationState($"{AppRoutes.AgendaCSEPage}"));
     }
-    private async void GoToEPIControlPageAsync()
+    private async Task GoToEPIControlPageAsync()
     {
         await Shell.Current.GoToAsync(new ShellNavigationState($"{AppRoutes.EPIControlPage}"));
     }
-    private async void GoToFDSPageAsync()
+    private async Task GoToFDSPageAsync()
     {
         await Shell.Current.GoToAsync(new ShellNavigationState($"{AppRoutes.FDSPage}"));
     }
-    private async void GoToFirstAidPageAsync()
+    private async Task GoToFirstAidPageAsync()
     {
         await Shell.Current.GoToAsync(new ShellNavigationState($"{AppRoutes.FirstAidPage}"));
     }
-    private async void GoToTrainingPageAsync()
+    private async Task GoToTrainingPageAsync()
     {
         await Shell.Current.GoToAsync(new ShellNavigationState($"{AppRoutes.TrainingPage}"));
     }
-    private async void GoToSecurityMeetingPageAsync()
+    private async Task GoToSecurityMeetingPageAsync()
     {
         await Shell.Current.GoToAsync(new ShellNavigationState($"{AppRoutes.SecurityMeetingPage}"));
     }
-    private async void GoToMyLibraryPageAsync()
+    private async Task GoToMyLibraryPageAsync()
     {
         await Shell.Current.GoToAsync(new ShellNavigationState($"{AppRoutes.MyLibraryPage}"));
     }
-    private async void GoToDevViewAsync()
+    private async Task GoToDevViewAsync()
     {
         await Shell.Current.GoToAsync(new ShellNavigationState($"{AppRoutes.DevPage}"));
     }

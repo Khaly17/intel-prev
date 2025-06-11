@@ -112,9 +112,9 @@ public static class PreventionRoutes
     {
         private const string Base = "api/materials";
         
-        public static string GetExtinguishers = $"{Base}/extinguishers";
-        public static string GetDefibrillators = $"{Base}/dae";
-        public static string GetAssemblyPoints = $"{Base}/assembly-points";
+        public const string GetExtinguishers = $"{Base}/extinguishers";
+        public const string GetDefibrillators = $"{Base}/dae";
+        public const string GetAssemblyPoints = $"{Base}/assembly-points";
     }
     
     public static class GeoLocations

@@ -6,6 +6,7 @@ using Soditech.IntelPrev.Preventions.WebApi;
 using Soditech.IntelPrev.Reports.Application;
 using Soditech.IntelPrev.Reports.WebApi;
 using Soditech.IntelPrev.Users.Persistence.Models;
+using Soditech.IntelPrev.Users.WebApi;
 
 var builder = WebApplication.CreateBuilder(args);
 

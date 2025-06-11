@@ -87,7 +87,7 @@ namespace Soditech.IntelPrev.Web.Pages.Administration.Users
             }
             catch (Exception ex)
             {
-                errorMessage = $" Error: Cannot load roles";
+                errorMessage = " Error: Cannot load roles";
                 Logger.LogError(ex, errorMessage);
             }
         }
@@ -108,7 +108,7 @@ namespace Soditech.IntelPrev.Web.Pages.Administration.Users
 
                     if (!result.IsSuccess)
                     {
-                        errorMessage = $"An error occurred while assigning the role with ID .";
+                        errorMessage = "An error occurred while assigning the role with ID .";
                         Logger.LogError("{code} : {message}", result.Error?.Code, result.Error?.Message);
                         break;
                     }

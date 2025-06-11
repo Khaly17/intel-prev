@@ -28,8 +28,6 @@ public partial class AddEvent
             if (result.IsSuccess)
             {
                 successMessage = "L'événement a été ajouté avec succès !";
-                var eventId = result.Value.Id;
-
                 Navigation.NavigateTo("/events");
             }
             else
@@ -40,7 +38,7 @@ public partial class AddEvent
         }
         catch (Exception ex)
         {
-            errorMessage = $"Une erreur interne est survenue lors de la création de l'événement.";
+            errorMessage = "Une erreur interne est survenue lors de la création de l'événement.";
             Logger.LogError(ex, errorMessage);
         }
     }

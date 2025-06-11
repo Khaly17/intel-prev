@@ -9,6 +9,7 @@ using Soditech.IntelPrev.Web.Models;
 using Soditech.IntelPrev.Web.Services.Extensions;
 using Syncfusion.Blazor.Charts;
 using System.Web;
+using Soditech.IntelPrev.Web.Services.Helper;
 
 namespace Soditech.IntelPrev.Web.Pages.Dashboards;
 
@@ -200,6 +201,18 @@ public partial class Dashboard : IAsyncDisposable
     private string NavigateToNotConformAssignmentsDetails()
     {
         return "/not-conform-assigment-details".AddQueryParameters(DateFilter);
+    }
+
+    private async Task PrintCharts()
+    {
+        await Js.PrintCharts("Dashboard", "charts");
+    }
+
+    private async Task DownloadCharts()
+    {
+        //use DateFilter to get the file name
+        var fileName = $"Dashboard_{DateFilter.StartDate:yyyy-MM-dd}_{DateFilter.EndDate:yyyy-MM-dd}";
+        await Js.DownloadCharts("charts", fileName);
     }
     public async ValueTask DisposeAsync()
     {

@@ -1,15 +1,14 @@
-﻿using System.Reflection;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Sensor6ty.Results;
-using Sensor6ty.System.Reflection;
 using Soditech.IntelPrev.Emails.Helpers;
 using Soditech.IntelPrev.Users.Application.Helpers.Models;
 using Soditech.IntelPrev.Users.Persistence.Models;
 using Soditech.IntelPrev.Users.Shared.Users;
+using System.Security.Cryptography;
 
 namespace Soditech.IntelPrev.Users.Application.Users.Commands;
 
@@ -33,7 +32,7 @@ public class ResetPasswordUserCommandHandler(IServiceProvider serviceProvider) :
 
             if (!string.IsNullOrEmpty(user.Email))
             {
-                var newPassword = new Random().Next(1000, 10000).ToString();
+                var newPassword = GenerateSecureCode();
 
                 // update user password
                 var result = await _userManager.RemovePasswordAsync(user);
@@ -60,7 +59,7 @@ public class ResetPasswordUserCommandHandler(IServiceProvider serviceProvider) :
                     Url = "https://intelprev.sensor6ty.com"
                 };
                 
-                var htmlBody = await _emailTemplateRenderer.RenderTemplateAsync("_ResetPasswordTemplateMail", resetPasswordTemplateMailModel);
+                var htmlBody = await _emailTemplateRenderer.RenderTemplateAsync("Helpers/Templates/_ResetPasswordTemplateMail.html", resetPasswordTemplateMailModel);
                 
                 //if htmlBody is null or empty, send msg without htmlBody
                 if (string.IsNullOrEmpty(htmlBody))
@@ -94,4 +93,15 @@ public class ResetPasswordUserCommandHandler(IServiceProvider serviceProvider) :
         }
 
     }   
+
+    private string GenerateSecureCode(int length = 4)
+    {
+        using var rng = RandomNumberGenerator.Create();
+        var bytes = new byte[length];
+        rng.GetBytes(bytes);
+
+        var digits = bytes.Select(b => (b % 10).ToString());
+        return string.Concat(digits);
+    }
+
 }

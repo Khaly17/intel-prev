@@ -96,12 +96,12 @@ public class MainViewModel : MauiViewModel
 		}
 	}
 
-	private async void GoToDocumentAsync()
+	private async Task GoToDocumentAsync()
 	{
 		await Shell.Current.GoToAsync($"{nameof(DocumentLegauxView)}");
 	}
 
-	private async void GoToTutosAsync()
+	private async Task GoToTutosAsync()
 	{
 		await Shell.Current.GoToAsync(new ShellNavigationState($"{AppRoutes.TutosPage}"));
 	}
@@ -121,7 +121,7 @@ public class MainViewModel : MauiViewModel
 		await Shell.Current.GoToAsync(new ShellNavigationState(AppRoutes.ProPrevHomePage));
 	}
 
-	private async void GoToDevViewAsync()
+	private async Task GoToDevViewAsync()
 	{
 		await Shell.Current.GoToAsync(new ShellNavigationState($"{AppRoutes.DevPage}"));
 	}

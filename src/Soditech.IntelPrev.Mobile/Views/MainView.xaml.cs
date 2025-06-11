@@ -11,7 +11,7 @@ public partial class MainView : ContentPage, IXamarinView
 
 	private void CarouselView_OnCurrentItemChanged(object? sender, CurrentItemChangedEventArgs e)
 	{
-		SfCarouselItem? previousItem = e.PreviousItem as SfCarouselItem;
-		SfCarouselItem? currentItem = e.CurrentItem as SfCarouselItem;
+		// SfCarouselItem? previousItem = e.PreviousItem as SfCarouselItem;
+		// SfCarouselItem? currentItem = e.CurrentItem as SfCarouselItem;
 	}
 }

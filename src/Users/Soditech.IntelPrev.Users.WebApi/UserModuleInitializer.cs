@@ -11,6 +11,7 @@ using Soditech.IntelPrev.Users.Persistence.Models;
 using Soditech.IntelPrev.Users.Persistence.OpenIddict;
 using Soditech.IntelPrev.Users.WebApi.Extensions.OpenIddict;
 
+namespace Soditech.IntelPrev.Users.WebApi;
 public class UserModuleInitializer : DefaultModuleInitializer
 {
     public override void Initialize(WebApplicationBuilder builder, IConfiguration moduleConfiguration)

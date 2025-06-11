@@ -37,7 +37,7 @@
 //        }
 //        catch (Exception ex)
 //        {
-//            errorMessage = $"Une erreur interne est survenue lors de la création de l'équipement.";
+//            errorMessage = "Une erreur interne est survenue lors de la création de l'équipement.";
 //            Logger.LogError(ex, errorMessage);
 //        }
 //    }

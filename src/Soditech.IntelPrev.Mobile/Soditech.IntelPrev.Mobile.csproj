@@ -23,11 +23,13 @@
 		<ApplicationTitle>IntelPrev</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>Soditech.IntelPrev.Mobile-</ApplicationId>
+		<ApplicationId>Soditech.IntelPrev.Mobile</ApplicationId>
+		<ApplicationIdGuid>594F3BB4-05C6-4DD6-9287-DE8C0A8A2478</ApplicationIdGuid>
+
 
 		<!-- Versions -->
-		<ApplicationDisplayVersion>1.0.0.6</ApplicationDisplayVersion>
-		<ApplicationVersion>6</ApplicationVersion>
+		<ApplicationDisplayVersion>1.0.0.7</ApplicationDisplayVersion>
+		<ApplicationVersion>7</ApplicationVersion>
 
 		<!-- To develop, package, and publish an app to the Microsoft Store, see: https://aka.ms/MauiTemplateUnpackaged -->
 		<WindowsPackageType>None</WindowsPackageType>

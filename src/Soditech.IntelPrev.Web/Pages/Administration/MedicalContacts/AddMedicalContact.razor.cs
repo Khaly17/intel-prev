@@ -34,7 +34,7 @@ public partial class AddMedicalContact
         }
         catch (Exception ex)
         {
-            errorMessage = $"Une erreur interne est survenue lors de l'ajout du contact'.";
+            errorMessage = "Une erreur interne est survenue lors de l'ajout du contact'.";
             Logger.LogError(ex, errorMessage);
         }
     }

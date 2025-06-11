@@ -2,8 +2,6 @@
 using Soditech.IntelPrev.Emails.Services;
 using Soditech.IntelPrev.Emails.Services.Options;
 using Microsoft.AspNetCore.Identity.UI.Services;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
-using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Sensor6ty.Application;
@@ -18,11 +16,12 @@ public static class DependencyInjection
 
         #region Mail services
 
-        services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
-        services.AddSingleton<ITempDataProvider, SessionStateTempDataProvider>();
         services.AddScoped<IEmailTemplateRenderer, EmailTemplateRenderer>();
-
+#if DEBUG
+        services.AddTransient<IEmailSender, NullEmailSender>();
+#else 
         services.AddTransient<IEmailSender, EmailSender>();
+#endif
 
         var builder = services.BuildServiceProvider();
         var configuration = builder.GetRequiredService<IConfiguration>();

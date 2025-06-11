@@ -8,6 +8,7 @@ using Soditech.IntelPrev.Emails.Helpers;
 using Soditech.IntelPrev.Users.Application.Helpers.Models;
 using Soditech.IntelPrev.Users.Persistence.Models;
 using Soditech.IntelPrev.Users.Shared.Users;
+using System.Security.Cryptography;
 
 namespace Soditech.IntelPrev.Users.Application.Users.Commands;
 
@@ -30,7 +31,7 @@ public class ForgetPasswordCommandHandler(IServiceProvider serviceProvider) : IR
                 return Result.Failure(new Error("404", "Utilisateur introuvable."));
             }
 
-            var newPassword = new Random().Next(1000, 10000).ToString();
+            var newPassword = GenerateSecureCode();
 
             var removePasswordResult = await _userManager.RemovePasswordAsync(user);
             if (!removePasswordResult.Succeeded)
@@ -56,7 +57,7 @@ public class ForgetPasswordCommandHandler(IServiceProvider serviceProvider) : IR
                     Url = "https://intelprev.sensor6ty.com"
                 };
                 
-                var htmlBody = await _emailTemplateRenderer.RenderTemplateAsync("_ResetPasswordTemplateMail", welcomeTemplateMailModel);
+                var htmlBody = await _emailTemplateRenderer.RenderTemplateAsync("Helpers/Templates/_ResetPasswordTemplateMail.html", welcomeTemplateMailModel);
                 
                 //if htmlBody is null or empty, send msg without htmlBody
                 if (string.IsNullOrEmpty(htmlBody))
@@ -79,4 +80,16 @@ public class ForgetPasswordCommandHandler(IServiceProvider serviceProvider) : IR
             return Result.Failure(new Error("500", "Une erreur interne est survenue."));
         }
     }
+
+
+    private string GenerateSecureCode(int length = 4)
+    {
+        using var rng = RandomNumberGenerator.Create();
+        var bytes = new byte[length];
+        rng.GetBytes(bytes);
+
+        var digits = bytes.Select(b => (b % 10).ToString());
+        return string.Concat(digits);
+    }
+
 }

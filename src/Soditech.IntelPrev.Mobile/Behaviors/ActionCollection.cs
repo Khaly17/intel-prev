@@ -33,7 +33,7 @@ public class ActionCollection : BindableObjectCollection
 
     private static void VerifyType(BindableObject bindable)
     {
-        if (bindable is not IAction)
+        if (!(bindable is IAction))
         {
             throw new InvalidOperationException("Non-IAction added to IAction collection");
         }

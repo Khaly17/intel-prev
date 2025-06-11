@@ -43,7 +43,7 @@ public class FireSafetyListViewModel : MauiViewModel
         // Add additional logic here if needed
     }
 
-    private async void GoToDevViewAsync()
+    private async Task GoToDevViewAsync()
     {
         await Shell.Current.GoToAsync(new ShellNavigationState($"{AppRoutes.DevPage}"));
     }

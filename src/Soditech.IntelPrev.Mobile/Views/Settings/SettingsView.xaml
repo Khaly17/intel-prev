@@ -7,12 +7,15 @@
              xmlns:converters="clr-namespace:Soditech.IntelPrev.Mobile.Converters"
              base:ViewManager.AutoWireViewModel="True"
              xmlns:viewModel="clr-namespace:Soditech.IntelPrev.Mobile.ViewModels.Settings"
-             x:DataType="viewModel:SettingsViewModel"
+             
              Title="Permissions de l'application"
              Shell.ForegroundColor="White"
              Shell.TitleColor="White"
              BackgroundColor="White">
-
+    <ContentPage.BindingContext>
+        <viewModel:SettingsViewModel />
+    </ContentPage.BindingContext>
+        
     <Shell.BackButtonBehavior>
         <BackButtonBehavior IconOverride="back.png" IsVisible="True" IsEnabled="True" />
     </Shell.BackButtonBehavior>

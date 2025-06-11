@@ -117,7 +117,7 @@ public class SettingsManager : ISettingsManager
 	private async Task UpdateLocationLastAccessed()
 	{
 		// Get current time and format it for display
-		var now = DateTime.Now;
+		var now = DateTime.UtcNow;
 		var accessTime = now.ToString("HH:mm");
 		await _dataStorageService.SetValue(DataStorageKey.Settings_GeoLocationLastAccessed, $"Dernier accès {accessTime}");
 	}
@@ -131,8 +131,8 @@ public class SettingsManager : ISettingsManager
 	{
 		// This method can be called at app startup to apply all settings
 		var isGeoLocationEnabled = IsGeoLocationEnabled;
-		var areNotificationsEnabled = AreNotificationsEnabled;
-		var selectedLanguage = SelectedLanguage;
+		var areNotificationsEnabled = AreNotificsationsEnabled;
+		// var selectedLanguage = SelectedLanguage;
 
 		// Check if location permission is already granted
 		if (isGeoLocationEnabled)
