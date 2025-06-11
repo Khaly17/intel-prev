@@ -11,7 +11,7 @@ public record CommitteeMemberCreatedEvent : INotification
     public string LastName { get; set; } = string.Empty;
     public string Email { get; set; } = string.Empty;
     public string PhoneNumber { get; set; } = string.Empty;
-    public string[] Roles { get; set; } = default!;
+    public IReadOnlyList<string> Roles { get; init; } = Array.Empty<string>();
     
     public Guid? CreatorId { get; set; }
     public DateTimeOffset? CreatedAt { get; set; }
@@ -32,7 +32,7 @@ public record CommitteeMemberUpdatedEvent : INotification
     public string LastName { get; set; } = string.Empty;
     public string Email { get; set; } = string.Empty;
     public string PhoneNumber { get; set; } = string.Empty;
-    public string[] Roles { get; set; } = default!;
+    public IReadOnlyList<string> Roles { get; init; } = Array.Empty<string>();
     
     public Guid? CreatorId { get; set; }
     public DateTimeOffset? CreatedAt { get; set; }

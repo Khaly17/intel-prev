@@ -8,11 +8,17 @@ public class CommitteeMember : EntityBase
     public string LastName { get; set; } = string.Empty;
     public string Email { get; set; } = string.Empty;
     public string PhoneNumber { get; set; } = string.Empty;
-    public string[] Roles { get; set; } = default!;
-    
+
+    private string[] _roles = Array.Empty<string>();
+    public string[] Roles
+    {
+        get => (string[])_roles.Clone();
+        set => _roles = (string[])value.Clone();
+    }
+
     public Guid TenantId { get; set; }
     public virtual Tenant Tenant { get; set; } = default!;
-    
+
     public virtual User? Creator { get; set; }
     public Guid? CreatorId { get; set; }
     public DateTimeOffset? CreatedAt { get; set; }

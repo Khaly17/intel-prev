@@ -42,10 +42,10 @@ public class DeviceiOsInstallationService : IDeviceInstallationService
     string GetNotificationsSupportError()
     {
         if (!NotificationsSupported)
-            return $"This app only supports notifications on iOS {SupportedVersionMajor}.{SupportedVersionMinor} and above. You are running {UIDevice.CurrentDevice.SystemVersion}.";
+            return "This app only supports notifications on iOS {SupportedVersionMajor}.{SupportedVersionMinor} and above. You are running {UIDevice.CurrentDevice.SystemVersion}.";
 
         if (string.IsNullOrWhiteSpace(Token))
-            return $"This app can support notifications but you must enable this in your settings.";
+            return "This app can support notifications but you must enable this in your settings.";
 
         return "An error occurred preventing the use of push notifications";
     }

@@ -58,10 +58,16 @@ public record UserDetailResult
     public string AppVersion { get; set; } = string.Empty;   
     public string Email { get; set; } = string.Empty;
     public string PhoneNumber { get; set; } = string.Empty;
-    
-    // roles
-    public string[] Roles { get; set; } = Array.Empty<string>();
+
+    private string[] _roles = Array.Empty<string>();
+
+    public string[] Roles
+    {
+        get => (string[])_roles.Clone();
+        set => _roles = (string[])value.Clone();
+    }
 }
+
 
 public record RemoveUserRoleCommand : IRequest<Result>
 {

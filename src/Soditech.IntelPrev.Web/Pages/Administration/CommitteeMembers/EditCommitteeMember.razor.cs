@@ -60,7 +60,7 @@ public partial class EditCommitteeMember : ComponentBase
             }
             else
             {
-                errorMessage = $"Erreur de récupération du membre du comité.";
+                errorMessage = "Erreur de récupération du membre du comité.";
             }
         }
         catch (Exception ex)

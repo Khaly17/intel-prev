@@ -75,6 +75,12 @@ public record CreateReportCommand : IRequest<TResult<ReportResult>>
 						}
 
 						break;
+
+					default:
+						throw new ArgumentException(
+							$"Type de champ non supporté dans le switch : {item?.GetType().Name ?? "null"}",
+							nameof(item)
+						);
 					}
 			}
 		}

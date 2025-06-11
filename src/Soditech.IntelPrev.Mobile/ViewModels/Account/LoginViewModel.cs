@@ -172,7 +172,7 @@ namespace Soditech.IntelPrev.Mobile.ViewModels.Account
 
 				var userProfile = new UserInfoModel
 				{
-					userId = userId,
+					userId,
 					FirstName = fullName,
 					LastName = username,
 					Email = email

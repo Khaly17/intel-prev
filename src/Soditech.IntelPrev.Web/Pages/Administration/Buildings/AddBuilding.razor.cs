@@ -29,8 +29,6 @@ public partial class AddBuilding
             if (result.IsSuccess)
             {
                 successMessage = "Le batiment a été ajouté avec succès !";
-                var userId = result.Value.Id;
-
                 Navigation.NavigateTo("/buildings");
             }
             else

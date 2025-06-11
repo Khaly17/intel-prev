@@ -41,9 +41,10 @@ public class MainViewModel : MauiViewModel
 
 	private void OnCarouselItemChanged(CurrentItemChangedEventArgs args)
 	{
-		SfCarouselItem? previousItem = args.PreviousItem as SfCarouselItem;
-		SfCarouselItem? currentItem = args.CurrentItem as SfCarouselItem;
-		// Ajoutez ici toute logique supplémentaire
+		SfCarouselItem? _ = args.PreviousItem as SfCarouselItem;
+		SfCarouselItem? _ = args.CurrentItem as SfCarouselItem;
+		// TODO: logiques à implémenter
+
 	}
 
 	public override async Task InitializeAsync()

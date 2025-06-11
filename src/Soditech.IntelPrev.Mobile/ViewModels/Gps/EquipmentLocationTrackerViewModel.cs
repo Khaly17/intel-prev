@@ -174,7 +174,7 @@ public partial class EquipmentLocationTrackerViewModel : MauiViewModel, IQueryAt
         {
             IsBusy = true;
 
-            var type = _selectedEquipment.Type.ToGeoLocationType();
+            var type _= _selectedEquipment.Type.ToGeoLocationType();
             var result = await _proxyClientService.PostAsync(PreventionRoutes.Equipments.UpdateGeoLocation, new UpdateGeoLocationCommand
             {
                 EquipmentId = _selectedEquipment.Id,

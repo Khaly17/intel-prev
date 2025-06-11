@@ -21,8 +21,10 @@ public class UserSeeder : ISeeder
         if (context is UserDbContext authDbContext)
         {
 
-            var configuration = AppConfigurations.Get(Assembly.GetExecutingAssembly().GetDirectoryPathOrNull()!,
-                "Development", true);
+            var configuration = AppConfigurations.Get(
+                                    typeof(UserSeeder).Assembly.GetDirectoryPathOrNull()!,
+                                    "Development", true);
+
             var basePath = configuration.GetSection("DATA_DIRECTORY").Value;
 
             // check if basePath is null or empty

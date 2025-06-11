@@ -66,7 +66,7 @@ namespace Soditech.IntelPrev.Web.Pages.Administration.Users
             }
             catch (Exception ex)
             {
-                errorMessage = $"Error: Cannot create user";
+                errorMessage = "Error: Cannot create user";
                 Logger.LogError(ex, errorMessage);
             }
         }
@@ -134,7 +134,7 @@ namespace Soditech.IntelPrev.Web.Pages.Administration.Users
             }
             catch (Exception ex)
             {
-                errorMessage = $" Error: Cannot load tenants";
+                errorMessage = " Error: Cannot load tenants";
                 Logger.LogError(ex, errorMessage);
             }
         }

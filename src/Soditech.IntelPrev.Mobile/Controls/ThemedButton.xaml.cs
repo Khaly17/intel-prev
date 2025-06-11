@@ -64,6 +64,9 @@ public partial class ThemedButton : Button
                 TextColor = ThemeHelper.PureWhite;
                 BorderWidth = 0;
                 break;
+     
+            default:
+                throw new ArgumentOutOfRangeException(nameof(style), $"Unhandled button style: {style}");
         }
     }
 }

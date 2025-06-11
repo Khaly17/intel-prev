@@ -56,7 +56,6 @@ public partial class ThemedCard : Border
 		switch (style)
 		{
 			case CardStyle.Default:
-				// Standard card with shadow and no border
 				HasShadow = true;
 				StrokeThickness = 0;
 				Stroke = null;
@@ -64,7 +63,6 @@ public partial class ThemedCard : Border
 				break;
 
 			case CardStyle.Elevated:
-				// Elevated card with more pronounced shadow and margin
 				HasShadow = true;
 				if (Shadow != null)
 				{
@@ -77,7 +75,6 @@ public partial class ThemedCard : Border
 				break;
 
 			case CardStyle.Bordered:
-				// Card with border and no shadow
 				HasShadow = false;
 				StrokeThickness = 1;
 				Stroke = Application.Current.Resources.TryGetValue("Border", out var borderColor)
@@ -87,12 +84,15 @@ public partial class ThemedCard : Border
 				break;
 
 			case CardStyle.Flat:
-				// Flat card with no border or shadow
 				HasShadow = false;
 				StrokeThickness = 0;
 				Stroke = null;
 				Margin = new Thickness(0, 0, 0, 16);
 				break;
+
+			default:
+				throw new ArgumentOutOfRangeException(nameof(style), $"Unhandled card style: {style}");
 		}
+
 	}
 }

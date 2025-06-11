@@ -211,8 +211,9 @@ public class OpenIddictDataSeeder (IServiceProvider serviceProvider)
 						application.Permissions.Add(OpenIddictConstants.Permissions.GrantTypes.DeviceCode);
 						application.Permissions.Add(OpenIddictConstants.Permissions.Endpoints.DeviceAuthorization);
 						break;
+					default:
+						throw new ArgumentOutOfRangeException(nameof(grantType), $"Unsupported grant type: {grantType}");
 				}
-
 				if (grantType == OpenIddictConstants.GrantTypes.Implicit)
 				{
 					application.Permissions.Add(OpenIddictConstants.Permissions.ResponseTypes.IdToken);

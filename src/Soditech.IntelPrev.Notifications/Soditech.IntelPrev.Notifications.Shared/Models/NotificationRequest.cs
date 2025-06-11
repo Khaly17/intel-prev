@@ -5,7 +5,15 @@ public class NotificationRequest
     public string Title { get; set; } = "IntelPrev";
     public string Text { get; set; } = string.Empty;
     public string Action { get; set; } = string.Empty;
-    public string[] Tags { get; set; } = [];
+
+    private string[] _tags = Array.Empty<string>();
+
+    public string[] Tags
+    {
+        get => (string[])_tags.Clone();             
+        set => _tags = (string[])value.Clone();     
+    }
+
     public bool Silent { get; set; }
 }
 

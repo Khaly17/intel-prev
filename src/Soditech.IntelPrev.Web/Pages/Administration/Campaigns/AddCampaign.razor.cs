@@ -24,7 +24,6 @@ public partial class AddCampaign
             if (result.IsSuccess)
             {
                 successMessage = "La campaigne a été ajouté avec succès !";
-                var campaignId = result.Value.Id;
                 Navigation.NavigateTo("/campaigns");
             }
             else

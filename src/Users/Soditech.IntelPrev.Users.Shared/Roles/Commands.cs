@@ -30,12 +30,23 @@ public record RoleDetailResult
     public string Name { get; set; } = string.Empty;
     public string Description { get; set; } = string.Empty;
     public string Scope { get; set; } = string.Empty;
-    
-    public string[] Permissions { get; set; } = Array.Empty<string>();
-    
-    // users
-    public string[] Users { get; set; } = Array.Empty<string>();
+
+    private string[] _permissions = Array.Empty<string>();
+    private string[] _users = Array.Empty<string>();
+
+    public string[] Permissions
+    {
+        get => (string[])_permissions.Clone();
+        set => _permissions = (string[])value.Clone();
+    }
+
+    public string[] Users
+    {
+        get => (string[])_users.Clone();
+        set => _users = (string[])value.Clone();
+    }
 }
+
 
 public record GetRoleUsersQuery(Guid Id) : IRequest<TResult<IEnumerable<UserResult>>>;
 

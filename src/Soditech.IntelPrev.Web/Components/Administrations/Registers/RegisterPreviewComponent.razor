@@ -94,7 +94,10 @@
                                                     </div>
                                                 </div>
                                                 break;
-                                            }
+                                            
+                                            default:
+                                                throw new ArgumentException($"Type d'élément non supporté : {item?.GetType().Name ?? "null"}", nameof(item));
+                                        }
                                     }
                                 }
                             </div>

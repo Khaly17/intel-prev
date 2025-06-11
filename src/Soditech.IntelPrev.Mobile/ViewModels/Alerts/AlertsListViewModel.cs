@@ -149,6 +149,8 @@ public class AlertsListViewModel : MauiViewModel
 				// Prompt the user to turn on in settings
 				// On iOS once a permission has been denied it may not be requested again from the application
 				return status;
+		    default:
+				throw new ArgumentOutOfRangeException(nameof(status), $"Unhandled permission status: {status}");
 		}
 
 		if (Permissions.ShouldShowRationale<Permissions.LocationWhenInUse>())
