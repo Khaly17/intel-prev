@@ -148,7 +148,7 @@ namespace Soditech.IntelPrev.Mobile
 
 
 
-		private async void HandleLogoutAsync(object? sender, EventArgs eventArgs)
+		private async Task HandleLogoutAsync(object? sender, EventArgs eventArgs)
 		{
 			if (sender is not Button button) return;
 			// Visual feedback when logout is clicked
@@ -156,7 +156,7 @@ namespace Soditech.IntelPrev.Mobile
 			await button.ScaleTo(1.0, 100);
 		}
 
-		protected override async void OnAppearing()
+		protected override async Task OnAppearing()
 		{
 			base.OnAppearing();
 

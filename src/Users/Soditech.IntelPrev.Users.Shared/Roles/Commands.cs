@@ -34,17 +34,10 @@ public record RoleDetailResult
     private string[] _permissions = Array.Empty<string>();
     private string[] _users = Array.Empty<string>();
 
-    public string[] Permissions
-    {
-        get => (string[])_permissions.Clone();
-        set => _permissions = (string[])value.Clone();
-    }
+    public IReadOnlyList<string> Users => _users;
 
-    public string[] Users
-    {
-        get => (string[])_users.Clone();
-        set => _users = (string[])value.Clone();
-    }
+    public IReadOnlyList<string> Permissions => _permissions;
+
 }
 
 

@@ -21,7 +21,7 @@ public partial class App : Application
 		// Apply settings asynchronously
 	}
 
-	private async void ApplySettingsAsync()
+	private async Task ApplySettingsAsync()
 	{
 		// Apply all app settings at startup
 		if (_settingsManager != null)

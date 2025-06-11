@@ -85,7 +85,7 @@ public class EventsViewModel : MauiViewModel
 		EventTappedCommand = new Command<SchedulerAppointment>(OnEventTapped);
 	}
 
-	private async void OnEventTapped(SchedulerAppointment appointment)
+	private async Task OnEventTapped(SchedulerAppointment appointment)
 	{
 		if (appointment != null)
 		{

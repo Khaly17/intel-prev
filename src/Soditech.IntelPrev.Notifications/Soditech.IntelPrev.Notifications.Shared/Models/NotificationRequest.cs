@@ -7,12 +7,9 @@ public class NotificationRequest
     public string Action { get; set; } = string.Empty;
 
     private string[] _tags = Array.Empty<string>();
+    
 
-    public string[] Tags
-    {
-        get => (string[])_tags.Clone();             
-        set => _tags = (string[])value.Clone();     
-    }
+    public IReadOnlyList<string> Tags => _tags;
 
     public bool Silent { get; set; }
 }

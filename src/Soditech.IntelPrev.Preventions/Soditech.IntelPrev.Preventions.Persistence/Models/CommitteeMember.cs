@@ -10,11 +10,7 @@ public class CommitteeMember : EntityBase
     public string PhoneNumber { get; set; } = string.Empty;
 
     private string[] _roles = Array.Empty<string>();
-    public string[] Roles
-    {
-        get => (string[])_roles.Clone();
-        set => _roles = (string[])value.Clone();
-    }
+    public IReadOnlyList<string> Roles => _roles;
 
     public Guid TenantId { get; set; }
     public virtual Tenant Tenant { get; set; } = default!;

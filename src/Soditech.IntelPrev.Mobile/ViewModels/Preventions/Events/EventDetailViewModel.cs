@@ -30,7 +30,7 @@ namespace Soditech.IntelPrev.Mobile.ViewModels.Preventions.Events
 			CloseCommand = new Command(OnClose);
 		}
 
-		private async void OnClose()
+		private async Task OnClose()
 		{
 			await Shell.Current.GoToAsync("..");
 		}

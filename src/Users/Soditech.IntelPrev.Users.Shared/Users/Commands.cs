@@ -61,11 +61,7 @@ public record UserDetailResult
 
     private string[] _roles = Array.Empty<string>();
 
-    public string[] Roles
-    {
-        get => (string[])_roles.Clone();
-        set => _roles = (string[])value.Clone();
-    }
+    public IReadOnlyList<string> Roles => _roles;
 }
 
 
