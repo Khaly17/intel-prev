@@ -54,8 +54,8 @@ public ICommand CarouselItemChangedCommand => new RelayCommand<CurrentItemChange
 
 private void OnCarouselItemChanged(CurrentItemChangedEventArgs args)
 {
-    SfCarouselItem? previousItem = args.PreviousItem as SfCarouselItem;
-    SfCarouselItem? currentItem _ = args.CurrentItem as SfCarouselItem;
+    // SfCarouselItem? previousItem = args.PreviousItem as SfCarouselItem;
+    // SfCarouselItem? currentItem  = args.CurrentItem as SfCarouselItem;
     // Add your logic here
 }
 ```

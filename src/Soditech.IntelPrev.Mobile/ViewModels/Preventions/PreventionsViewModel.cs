@@ -42,8 +42,8 @@ public class PreventionsViewModel : MauiViewModel
 	// Add handler for carousel item changed event
 	private void OnCarouselItemChanged(CurrentItemChangedEventArgs args)
 	{
-		SfCarouselItem? previousItem = args.PreviousItem as SfCarouselItem;
-		SfCarouselItem? currentItem _ = args.CurrentItem as SfCarouselItem;
+		// SfCarouselItem? previousItem = args.PreviousItem as SfCarouselItem;
+		// SfCarouselItem? currentItem  = args.CurrentItem as SfCarouselItem;
 		// Add additional logic here if needed
 	}
 
