@@ -88,7 +88,7 @@ namespace Soditech.IntelPrev.Mobile.ViewModels.Gps
                     if (_currentLocation != null)
                     {
                         var location = new Location(_currentLocation.Latitude, _currentLocation.Longitude);
-                        // var mapSpan  = new MapSpan(location, 0.01, 0.01);
+                        var mapSpan = new MapSpan(location, 0.01, 0.01);
                         _map?.MoveToRegion(mapSpan);
                     }
                 }

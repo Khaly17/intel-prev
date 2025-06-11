@@ -86,8 +86,8 @@ class EquipmentLocationUpdateViewModel : MauiViewModel, IQueryAttributable
                 if (_currentLocation != null)
                 {
                     var location = new Location(_currentLocation.Latitude, _currentLocation.Longitude);
-                    // var mapSpan  = new MapSpan(location, 0.01, 0.01);
-                    //_map?.MoveToRegion(mapSpan);
+                    var mapSpan = new MapSpan(location, 0.01, 0.01);
+                    _map?.MoveToRegion(mapSpan);
                 }
             }
         }
