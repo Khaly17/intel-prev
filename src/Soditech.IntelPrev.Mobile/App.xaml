@@ -28,6 +28,8 @@
             <converters:BoolToSelectionModeConverter x:Key="BoolToSelectionModeConverter" />
 
 
+            <Color x:Key="DefaultBackgroundColor">#fff</Color>
+            <Color x:Key="DefaultTextColor">#000</Color>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

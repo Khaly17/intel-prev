@@ -14,7 +14,7 @@
         <BackButtonBehavior IconOverride="back.png" IsVisible="True" IsEnabled="True" />
     </Shell.BackButtonBehavior>
     <ContentPage.Content>
-        <Grid Padding="0" Margin="0">
+        <Grid Padding="0" Margin="0" BackgroundColor="{StaticResource DefaultBackgroundColor}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="2*"/>
@@ -49,6 +49,7 @@
                     <VerticalStackLayout Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
                         <Image Source="risk_management.png" HeightRequest="40" />
                         <Label Text="Risques"
+                               TextColor="{StaticResource DefaultTextColor}"
                                FontSize="14" FontAttributes="Bold"
                                LineBreakMode="CharacterWrap"
                                HorizontalTextAlignment="Center" />
@@ -69,6 +70,7 @@
                     <VerticalStackLayout Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
                         <Image Source="agenda.png" HeightRequest="40" />
                         <Label Text="Agenda"
+                               TextColor="{StaticResource DefaultTextColor}"
                                FontSize="14" FontAttributes="Bold"
                                LineBreakMode="CharacterWrap"
                                HorizontalTextAlignment="Center" />
@@ -89,6 +91,7 @@
                     <VerticalStackLayout Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
                         <Image Source="batiment.png" HeightRequest="40" />
                         <Label Text="Bâtiments"
+                               TextColor="{StaticResource DefaultTextColor}"
                                FontSize="14" FontAttributes="Bold"
                                LineBreakMode="CharacterWrap"
                                HorizontalTextAlignment="Center" />
@@ -110,6 +113,7 @@
                     <VerticalStackLayout Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
                         <Image Source="annonce.png" HeightRequest="40" />
                         <Label Text="Sensibilisation"
+                               TextColor="{StaticResource DefaultTextColor}"
                                FontSize="14" FontAttributes="Bold"
                                LineBreakMode="CharacterWrap"
                                HorizontalTextAlignment="Center" />
@@ -131,6 +135,7 @@
                     <VerticalStackLayout Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
                         <Image Source="materiel.png" HeightRequest="40" />
                         <Label Text="Matériel"
+                               TextColor="{StaticResource DefaultTextColor}"
                                FontSize="14" FontAttributes="Bold"
                                LineBreakMode="CharacterWrap"
                                HorizontalTextAlignment="Center" />
@@ -152,6 +157,7 @@
                     <VerticalStackLayout Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
                         <Image Source="grouper.png" HeightRequest="40" />
                         <Label Text="Membres du CHSCT/CS"
+                               TextColor="{StaticResource DefaultTextColor}"
                                FontSize="14" FontAttributes="Bold"
                                LineBreakMode="CharacterWrap"
                                HorizontalTextAlignment="Center" />
@@ -173,6 +179,7 @@
                     <VerticalStackLayout Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
                         <Image Source="medecin.png" HeightRequest="40" />
                         <Label Text="Médecine du travail"
+                               TextColor="{StaticResource DefaultTextColor}"
                                FontSize="14" FontAttributes="Bold"
                                LineBreakMode="CharacterWrap"
                                HorizontalTextAlignment="Center" />

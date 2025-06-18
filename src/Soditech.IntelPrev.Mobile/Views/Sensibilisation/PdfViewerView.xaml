@@ -16,7 +16,7 @@
         <viewModels:RiskPreventionViewModel />
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <VerticalStackLayout>
+        <VerticalStackLayout BackgroundColor="{StaticResource DefaultBackgroundColor}">
             <syncfusion:SfPdfViewer x:Name="pdfviewer"
                 HeightRequest="530"
                 DocumentSource="{Binding PdfDocumentStream}">

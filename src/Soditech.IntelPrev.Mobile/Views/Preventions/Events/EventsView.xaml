@@ -17,8 +17,9 @@ xmlns:scheduler="clr-namespace:Syncfusion.Maui.Scheduler;assembly=Syncfusion.Mau
         <ToolbarItem Text="Actualiser" Command="{Binding RefreshCommand}" />
     </ContentPage.ToolbarItems>
 
-    <Grid RowDefinitions="Auto,*">
+    <Grid RowDefinitions="Auto,*" BackgroundColor="{StaticResource DefaultBackgroundColor}">
         <Label Text="Événements à venir"
+               TextColor="{StaticResource DefaultTextColor}"
                FontSize="20"
                FontAttributes="Bold"
                HorizontalOptions="Center"

@@ -10,7 +10,7 @@ namespace Soditech.IntelPrev.Mobile.ViewModels.Preventions;
 public class PreventionStatisticInfosViewModel : MauiViewModel
 {
    
-	public ICommand GoToDevViewCommand => new RelayCommand(GoToDevViewAsync);
+	public ICommand GoToDevViewCommand => new AsyncRelayCommand(GoToDevViewAsync);
 
 	private async Task GoToDevViewAsync()
 	{

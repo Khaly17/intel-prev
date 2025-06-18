@@ -36,31 +36,20 @@ public class MainViewModel : MauiViewModel
 
 	public ICommand PageAppearingCommand => new AsyncRelayCommand(async () => await InitializeAsync());
 
-	// Commande pour la modification d'élément de carrousel
-	public ICommand CarouselItemChangedCommand => new RelayCommand<CurrentItemChangedEventArgs>(OnCarouselItemChanged);
+	
 
-	private void OnCarouselItemChanged(CurrentItemChangedEventArgs args)
-	{
-		SfCarouselItem? _ = args.PreviousItem as SfCarouselItem;
-		SfCarouselItem? _ = args.CurrentItem as SfCarouselItem;
-		// TODO: logiques à implémenter
 
-	}
-
-	public override async Task InitializeAsync()
-	{
-	}
 
 	public ICommand CallPoliceCommand => new RelayCommand(CallPoliceAsync);
 	public ICommand CallFirefighterCommand => new RelayCommand(CallFirefighterAsync);
 	public ICommand PreventionsViewCommand => new AsyncRelayCommand(PreventionsViewAsync);
-	public ICommand GoToDocumentCommand => new RelayCommand(GoToDocumentAsync);
-	public ICommand GoToTutosCommand => new RelayCommand(GoToTutosAsync);
+	public ICommand GoToDocumentCommand => new AsyncRelayCommand(GoToDocumentAsync);
+	public ICommand GoToTutosCommand => new AsyncRelayCommand(GoToTutosAsync);
 	public ICommand GoToCreateReportCommand => new AsyncRelayCommand(GoToCreateReportPageAsync);
 	public ICommand GoToAlertsListPageCommand => new AsyncRelayCommand(GoToAlertsListPageAsync);
 	public ICommand GoToProPrevHomePageCommand => new AsyncRelayCommand(GoToProPrevHomePageAsync);
 	// go to devview
-	public ICommand GoToDevViewCommand => new RelayCommand(GoToDevViewAsync);
+	public ICommand GoToDevViewCommand => new AsyncRelayCommand(GoToDevViewAsync);
 
 	// Go to GPS page
 	public ICommand GoToGpsPageCommand => new AsyncRelayCommand(GoToGpsPageAsync);

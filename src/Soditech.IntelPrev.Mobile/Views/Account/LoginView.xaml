@@ -12,7 +12,7 @@
         <viewModel:LoginViewModel/>
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <Grid RowDefinitions="Auto,*,Auto">
+        <Grid RowDefinitions="Auto,*,Auto" BackgroundColor="{StaticResource DefaultBackgroundColor}">
 
             <BoxView HeightRequest="3" BackgroundColor="{StaticResource Secondary}" HorizontalOptions="FillAndExpand" />
 

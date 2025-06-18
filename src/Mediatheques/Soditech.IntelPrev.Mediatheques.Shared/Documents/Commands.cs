@@ -25,8 +25,12 @@ public record DocumentResult
     public DateTimeOffset? UpdatedAt { get; set; }
 
     private byte[] _blobFile = Array.Empty<byte>();
-   
-    public IReadOnlyList<string> BlobFile => _blobFile;
+
+    public byte[] BlobFile
+    {
+        get => (byte[])_blobFile.Clone(); 
+        set => _blobFile = (byte[])value.Clone();
+    }
 
     public string Path { get; set; } = string.Empty;
     public string Extension { get; set; } = string.Empty;
@@ -55,9 +59,11 @@ public record CreateFileFormByteCommand : IRequest<Result>
 {
     public string FileName { get; set; } = string.Empty;
     private byte[] _blobFile = Array.Empty<byte>();
-
-       public IReadOnlyList<string> BlobFile => _blobFile;
-
+    public byte[] BlobFile
+    {
+        get => (byte[])_blobFile.Clone(); 
+        set => _blobFile = (byte[])value.Clone();
+    }
 
 }
 
@@ -67,7 +73,12 @@ public record CreateDocumentCommand : IRequest<TResult<DocumentResult>>
     public string Description { get; set; } = string.Empty;
 
     private byte[] _blobFile = Array.Empty<byte>();
-    public IReadOnlyList<string> BlobFile => _blobFile;
+    public byte[] BlobFile
+    {
+        get => (byte[])_blobFile.Clone();
+        set => _blobFile = (byte[])value.Clone();
+    }
+
 
     public string Extension { get; set; } = string.Empty;
 

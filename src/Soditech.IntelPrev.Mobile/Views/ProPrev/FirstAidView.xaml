@@ -19,6 +19,7 @@
                       JustifyContent="Start"
                       AlignItems="Stretch"
                       Padding="20"
+                        BackgroundColor="{StaticResource DefaultBackgroundColor}"
                       Wrap="NoWrap">
 
                 <!-- Header Section with improved layout -->
@@ -39,7 +40,7 @@
                                        SemanticProperties.Hint="Section d'information"/>
                     </Border>
                 </Grid>
-                <Border Style="{StaticResource CardStyle}">
+                <Border Style="{StaticResource CardStyle}" BackgroundColor="{StaticResource DefaultBackgroundColor}">
                     <VerticalStackLayout Spacing="15">
                         <!-- Loading Indicator -->
                         <ActivityIndicator IsVisible="{Binding IsBusy}"

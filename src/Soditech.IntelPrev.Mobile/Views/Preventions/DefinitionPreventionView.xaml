@@ -17,7 +17,7 @@
     </Shell.BackButtonBehavior>
 
 <ContentPage.Content>
-    <VerticalStackLayout Padding="20" Spacing="10">
+        <VerticalStackLayout Padding="20" Spacing="10" BackgroundColor="{StaticResource DefaultBackgroundColor}">
         
         <Label Text="Definition"
                HorizontalOptions="Center"
@@ -29,8 +29,8 @@
                    HorizontalTextAlignment="Center" />
         </Border>
 
-        <Border Style="{StaticResource CardStyle}">
-            <Grid>
+            <Border Style="{StaticResource CardStyle}" BackgroundColor="{StaticResource DefaultBackgroundColor}">
+            <Grid >
                 <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" />
 
                 <WebView IsVisible="{Binding IsNotBusy}"

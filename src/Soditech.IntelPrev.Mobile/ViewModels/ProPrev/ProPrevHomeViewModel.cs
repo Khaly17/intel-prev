@@ -7,20 +7,18 @@ namespace Soditech.IntelPrev.Mobile.ViewModels.ProPrev;
 
 class ProPrevHomeViewModel : MauiViewModel
 {
-    public ICommand GoToDevViewCommand => new RelayCommand(GoToDevViewAsync);
-    public ICommand GoToRiskAnalysisProtocolCommand => new RelayCommand(GoToRiskAnalysisProtocolPageAsync);
-    public ICommand GoToAnalysisToolsCommand => new RelayCommand(GoToAnalysisToolsPageAsync);
-    public ICommand GoToActionTrackingCommand => new RelayCommand(GoToActionTrackingPageAsync);
-    public ICommand GoToSiteVisiteCommand => new RelayCommand(GoToSiteVisitePageAsync);
-    public ICommand GoToAgendaCSECommand => new RelayCommand(GoToAgendaCSEPageAsync);
-    public ICommand GoToEPIControlCommand => new RelayCommand(GoToEPIControlPageAsync);
-    public ICommand GoToFDSCommand => new RelayCommand(GoToFDSPageAsync);
-    public ICommand GoToFirstAidCommand => new RelayCommand(GoToFirstAidPageAsync);
-    public ICommand GoToTrainingCommand => new RelayCommand(GoToTrainingPageAsync);
-    public ICommand GoToSecurityMeetingCommand => new RelayCommand(GoToSecurityMeetingPageAsync);
-    public ICommand GoToMyLibraryCommand => new RelayCommand(GoToMyLibraryPageAsync);
-    // Add carousel item changed command
-    public ICommand CarouselItemChangedCommand => new RelayCommand<CurrentItemChangedEventArgs>(OnCarouselItemChanged);
+    public ICommand GoToDevViewCommand => new AsyncRelayCommand(GoToDevViewAsync);
+    public ICommand GoToRiskAnalysisProtocolCommand => new AsyncRelayCommand(GoToRiskAnalysisProtocolPageAsync);
+    public ICommand GoToAnalysisToolsCommand => new AsyncRelayCommand(GoToAnalysisToolsPageAsync);
+    public ICommand GoToActionTrackingCommand => new AsyncRelayCommand(GoToActionTrackingPageAsync);
+    public ICommand GoToSiteVisiteCommand => new AsyncRelayCommand(GoToSiteVisitePageAsync);
+    public ICommand GoToAgendaCSECommand => new AsyncRelayCommand(GoToAgendaCSEPageAsync);
+    public ICommand GoToEPIControlCommand => new AsyncRelayCommand(GoToEPIControlPageAsync);
+    public ICommand GoToFDSCommand => new AsyncRelayCommand(GoToFDSPageAsync);
+    public ICommand GoToFirstAidCommand => new AsyncRelayCommand(GoToFirstAidPageAsync);
+    public ICommand GoToTrainingCommand => new AsyncRelayCommand(GoToTrainingPageAsync);
+    public ICommand GoToSecurityMeetingCommand => new AsyncRelayCommand(GoToSecurityMeetingPageAsync);
+    public ICommand GoToMyLibraryCommand => new AsyncRelayCommand(GoToMyLibraryPageAsync);
 
 
     private List<SfCarouselItem> _carouselItems;
@@ -41,14 +39,6 @@ class ProPrevHomeViewModel : MauiViewModel
             new SfCarouselItem() { ImageName = "image4.png" },
             new SfCarouselItem() { ImageName = "image5.png" }
         ];
-    }
-
-    // Add handler for carousel item changed event
-    private Task OnCarouselItemChanged(CurrentItemChangedEventArgs args)
-    {
-        // SfCarouselItem? previousItem = args.PreviousItem as SfCarouselItem;
-        // SfCarouselItem? currentItem  = args.CurrentItem as SfCarouselItem;
-        // Add additional logic here if needed
     }
 
     private async Task GoToRiskAnalysisProtocolPageAsync()

@@ -14,10 +14,7 @@ public class FireSafetyListViewModel : MauiViewModel
     public ICommand NavigateFireInstructionsCommand => new AsyncRelayCommand(NavigateFireInstructionsAsync);
     public ICommand NavigateFireEquipmentCommand => new AsyncRelayCommand(NavigateFireEquipmentAsync);
     public ICommand NavigateEvacuationCommand => new AsyncRelayCommand(NavigateEvacuationAsync);
-    public ICommand GoToDevViewCommand => new RelayCommand(GoToDevViewAsync);
-    // Add carousel item changed command
-    public ICommand CarouselItemChangedCommand => new RelayCommand<CurrentItemChangedEventArgs>(OnCarouselItemChanged);
-
+    public ICommand GoToDevViewCommand => new AsyncRelayCommand(GoToDevViewAsync);
     private List<SfCarouselItem> _carouselItems;
     public List<SfCarouselItem> CarouselItems
     {
@@ -33,14 +30,6 @@ public class FireSafetyListViewModel : MauiViewModel
             new SfCarouselItem() { ImageName = "securite2.png" },
             new SfCarouselItem() { ImageName = "securite3.png" }
         ];
-    }
-
-    // Add handler for carousel item changed event
-    private void OnCarouselItemChanged(CurrentItemChangedEventArgs args)
-    {
-        // SfCarouselItem? previousItem = args.PreviousItem as SfCarouselItem;
-        // SfCarouselItem? currentItem  = args.CurrentItem as SfCarouselItem;
-        // Add additional logic here if needed
     }
 
     private async Task GoToDevViewAsync()

@@ -10,7 +10,7 @@
     </Shell.BackButtonBehavior>
 
     <ContentPage.Content>
-        <Grid BackgroundColor="#ffffff" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+        <Grid BackgroundColor="{StaticResource DefaultBackgroundColor}"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
             <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="20">
                 <!-- Icône -->
                 <Image Source="work_in_progress.jpg"
@@ -21,7 +21,7 @@
                 <Label Text="Cette page est en phase de développement."
                        FontSize="24"
                        FontAttributes="Bold"
-                       TextColor="#333333"
+                       TextColor="{StaticResource DefaultTextColor}"
                        HorizontalTextAlignment="Center"/>
 
                 <!-- Sous-texte -->

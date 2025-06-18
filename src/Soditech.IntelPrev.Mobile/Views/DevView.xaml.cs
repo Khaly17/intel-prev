@@ -12,7 +12,7 @@ public partial class DevView : IXamarinView
 	{
 		InitializeComponent();
 	}
-	private async Task OnBackButtonClicked(object sender, EventArgs e)
+	private async void OnBackButtonClicked(object sender, EventArgs e)
 	{
 		await Navigation.PopAsync(); // Navigates back to the previous page
 	}

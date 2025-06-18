@@ -82,10 +82,10 @@ public class EventsViewModel : MauiViewModel
 	public EventsViewModel(ILogger<EventsViewModel> logger)
 	{
 		_logger = logger;
-		EventTappedCommand = new Command<SchedulerAppointment>(OnEventTapped);
+		EventTappedCommand = new AsyncRelayCommand<SchedulerAppointment>(OnEventTapped);
 	}
 
-	private async Task OnEventTapped(SchedulerAppointment appointment)
+	private async Task OnEventTapped(SchedulerAppointment? appointment)
 	{
 		if (appointment != null)
 		{

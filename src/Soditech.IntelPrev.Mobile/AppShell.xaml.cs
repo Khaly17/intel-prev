@@ -156,7 +156,7 @@ namespace Soditech.IntelPrev.Mobile
 			await button.ScaleTo(1.0, 100);
 		}
 
-		protected override async Task OnAppearing()
+		protected override async void OnAppearing()
 		{
 			base.OnAppearing();
 

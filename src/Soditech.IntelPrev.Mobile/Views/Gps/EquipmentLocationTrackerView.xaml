@@ -13,7 +13,7 @@
     </Shell.BackButtonBehavior>
 
     <ScrollView>
-        <VerticalStackLayout Spacing="20" Padding="20">
+        <VerticalStackLayout Spacing="20" Padding="20" BackgroundColor="{StaticResource DefaultBackgroundColor}">
             <Label Text="Informations de l'équipement"
                    FontSize="24"
                    FontAttributes="Bold"
@@ -32,7 +32,9 @@
                            TextColor="Gray"/>
                     <Label Text="{Binding EquipmentTypeDisplay}"
                            FontSize="16"
-                           FontAttributes="Bold"/>
+                           FontAttributes="Bold"
+                           TextColor="{StaticResource DefaultTextColor}"
+                           />
                 </VerticalStackLayout>
             </Border>
 

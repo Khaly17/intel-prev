@@ -41,7 +41,7 @@
                             </Border>
                         </Grid>
                     </toolkit:Expander.Header>
-                    <Border Style="{StaticResource CardStyle}">
+                    <Border Style="{StaticResource CardStyle}" BackgroundColor="{StaticResource DefaultBackgroundColor}">
                         <VerticalStackLayout>
                             <!-- Collapsed preview text -->
                             <Label Style="{StaticResource BodyPreviewStyle}"
@@ -49,7 +49,8 @@
                                   SemanticProperties.Hint="Aperçu de la description de la sécurité incendie">
                                 <Label.FormattedText>
                                     <FormattedString>
-                                        <Span Text="{Binding FireSafetyDescription}" />
+                                        <Span Text="{Binding FireSafetyDescription}" 
+                                   TextColor="{StaticResource DefaultTextColor}" />
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
@@ -86,7 +87,7 @@
                             </Border>
                         </Grid>
                     </toolkit:Expander.Header>
-                    <Border Style="{StaticResource CardStyle}">
+                    <Border Style="{StaticResource CardStyle}" BackgroundColor="{StaticResource DefaultBackgroundColor}">
                         <VerticalStackLayout>
                             <!-- Collapsed preview text -->
                             <Label Style="{StaticResource BodyPreviewStyle}"
@@ -94,7 +95,8 @@
                                   SemanticProperties.Hint="Aperçu des principes de la sécurité incendie">
                                 <Label.FormattedText>
                                     <FormattedString>
-                                        <Span Text="{Binding SafetyPrinciples}" />
+                                        <Span Text="{Binding SafetyPrinciples}" 
+                                   TextColor="{StaticResource DefaultTextColor}"/>
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
@@ -131,7 +133,7 @@
                             </Border>
                         </Grid>
                     </toolkit:Expander.Header>
-                    <Border Style="{StaticResource CardStyle}">
+                    <Border Style="{StaticResource CardStyle}" BackgroundColor="{StaticResource DefaultBackgroundColor}">
                         <VerticalStackLayout>
                             <!-- Collapsed preview text -->
                             <Label Style="{StaticResource BodyPreviewStyle}"
@@ -139,7 +141,8 @@
                                   SemanticProperties.Hint="Aperçu des causes d'incendie">
                                 <Label.FormattedText>
                                     <FormattedString>
-                                        <Span Text="{Binding SafetyCauses}" />
+                                        <Span Text="{Binding SafetyCauses}" 
+                                   TextColor="{StaticResource DefaultTextColor}" />
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>

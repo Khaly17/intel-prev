@@ -98,7 +98,6 @@
                     Text="Déconnexion"
                     ImageSource="lock.png"
                     Command="{Binding LogoutCommand}"
-                    Clicked="HandleLogoutAsync"
                     TextColor="{StaticResource CharcoalGray}"
                     BackgroundColor="Transparent"
                     FontAttributes="Bold"

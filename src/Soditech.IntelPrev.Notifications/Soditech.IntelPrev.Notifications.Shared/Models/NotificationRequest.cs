@@ -7,9 +7,14 @@ public class NotificationRequest
     public string Action { get; set; } = string.Empty;
 
     private string[] _tags = Array.Empty<string>();
-    
 
-    public IReadOnlyList<string> Tags => _tags;
+
+    public IReadOnlyList<string> Tags
+    {
+        get => _tags;
+        set => _tags = value?.ToArray() ?? Array.Empty<string>();
+    }
+
 
     public bool Silent { get; set; }
 }

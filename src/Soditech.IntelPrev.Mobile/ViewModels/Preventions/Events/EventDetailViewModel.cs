@@ -1,6 +1,7 @@
 using System.Windows.Input;
 using Syncfusion.Maui.Scheduler;
 using Soditech.IntelPrev.Mobile.ViewModels.Base;
+using CommunityToolkit.Mvvm.Input;
 
 namespace Soditech.IntelPrev.Mobile.ViewModels.Preventions.Events
 {
@@ -27,7 +28,7 @@ namespace Soditech.IntelPrev.Mobile.ViewModels.Preventions.Events
 
 		public EventDetailViewModel()
 		{
-			CloseCommand = new Command(OnClose);
+			CloseCommand = new AsyncRelayCommand(OnClose);
 		}
 
 		private async Task OnClose()

@@ -42,7 +42,7 @@
                             </Border>
                         </Grid>
                     </toolkit:Expander.Header>
-                    <Border Style="{StaticResource CardStyle}">
+                    <Border Style="{StaticResource CardStyle}" BackgroundColor="{StaticResource DefaultBackgroundColor}">
                         <VerticalStackLayout Spacing="15">
                             <!-- Loading Indicator -->
                             <ActivityIndicator IsVisible="{Binding IsBusy}"

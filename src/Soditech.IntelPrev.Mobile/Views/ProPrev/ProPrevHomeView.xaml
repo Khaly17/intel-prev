@@ -14,7 +14,7 @@
         <BackButtonBehavior IconOverride="back.png" IsVisible="True" IsEnabled="True" />
     </Shell.BackButtonBehavior>
     <ContentPage.Content>
-        <Grid Padding="0" Margin="-1">
+        <Grid Padding="0" Margin="-1" BackgroundColor="{StaticResource DefaultBackgroundColor}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="2*"/>
@@ -49,7 +49,8 @@
                     </Border.Shadow>
                     <VerticalStackLayout Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
                         <Image Source="protocole_d_analyse.png" HeightRequest="40" />
-                        <Label Text="Protocole d'analyse" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                        <Label Text="Protocole d'analyse" 
+                           TextColor="{StaticResource DefaultTextColor}" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
                     </VerticalStackLayout>
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding GoToRiskAnalysisProtocolCommand}"/>
@@ -66,7 +67,8 @@
                     </Border.Shadow>
                     <VerticalStackLayout Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
                         <Image Source="outils_d_analyses.png" HeightRequest="40" />
-                        <Label Text="Outils d'analyses" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                        <Label Text="Outils d'analyses" 
+                           TextColor="{StaticResource DefaultTextColor}" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
                     </VerticalStackLayout>
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding GoToAnalysisToolsCommand}"  />
@@ -83,7 +85,8 @@
                     </Border.Shadow>
                     <VerticalStackLayout Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
                         <Image Source="suivi_des_actions.png" HeightRequest="40" />
-                        <Label Text="Suivi des actions" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                        <Label Text="Suivi des actions" 
+                           TextColor="{StaticResource DefaultTextColor}" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
                     </VerticalStackLayout>
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding GoToActionTrackingCommand}" />
@@ -100,7 +103,8 @@
                     </Border.Shadow>
                     <VerticalStackLayout Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
                         <Image Source="visite_des_sites.png" HeightRequest="40" />
-                        <Label Text="Visite des sites" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                        <Label Text="Visite des sites" 
+                           TextColor="{StaticResource DefaultTextColor}" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
                     </VerticalStackLayout>
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding GoToSiteVisiteCommand}" />
@@ -117,7 +121,8 @@
                     </Border.Shadow>
                     <VerticalStackLayout Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
                         <Image Source="agenda_du_cse.png" HeightRequest="40" />
-                        <Label Text="Agenda du CSE" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                        <Label Text="Agenda du CSE" 
+                           TextColor="{StaticResource DefaultTextColor}" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
                     </VerticalStackLayout>
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding GoToAgendaCSECommand}" />
@@ -134,7 +139,8 @@
                     </Border.Shadow>
                     <VerticalStackLayout Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
                         <Image Source="quart_d_heures.png" HeightRequest="40" />
-                        <Label Text="&#xbc; d'heures sécurité" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                        <Label Text="&#xbc; d'heures sécurité" 
+                           TextColor="{StaticResource DefaultTextColor}" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
                     </VerticalStackLayout>
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding GoToSecurityMeetingCommand}" />
@@ -151,7 +157,8 @@
                     </Border.Shadow>
                     <VerticalStackLayout Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
                         <Image Source="controles_des_epi.png" HeightRequest="40" />
-                        <Label Text="Contrôles epi" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                        <Label Text="Contrôles epi" 
+                           TextColor="{StaticResource DefaultTextColor}" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
                     </VerticalStackLayout>
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding GoToEPIControlCommand}" />
@@ -169,7 +176,8 @@
 
                     <VerticalStackLayout Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
                         <Image Source="fiche_de_donnees_de_securite.png" HeightRequest="30" />
-                        <Label Text="Fiches de donnees et de sécurité (FDS)" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                        <Label Text="Fiches de donnees et de sécurité (FDS)" 
+                           TextColor="{StaticResource DefaultTextColor}" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
                     </VerticalStackLayout>
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding GoToFDSCommand}" />
@@ -186,7 +194,8 @@
                     </Border.Shadow>
                     <VerticalStackLayout Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
                         <Image Source="premiers_secours.png" HeightRequest="40" />
-                        <Label Text="Premiers secours" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                        <Label Text="Premiers secours" 
+                           TextColor="{StaticResource DefaultTextColor}" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
                     </VerticalStackLayout>
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding GoToFirstAidCommand}" />
@@ -203,7 +212,8 @@
                     </Border.Shadow>
                     <VerticalStackLayout Padding="0" HorizontalOptions="Fill" VerticalOptions="Center">
                         <Image Source="formation_en_sante_et_securite.png" HeightRequest="30" />
-                        <Label Text="Formation en sante et sécurité au travail" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                        <Label Text="Formation en sante et sécurité au travail" 
+                           TextColor="{StaticResource DefaultTextColor}" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
                     </VerticalStackLayout>
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer  Command="{Binding GoToTrainingCommand}" />
@@ -220,7 +230,8 @@
                     </Border.Shadow>
                     <VerticalStackLayout Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
                         <Image Source="ma_bibliotheque.png" HeightRequest="40" />
-                        <Label Text="Ma bibliothèque" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                        <Label Text="Ma bibliothèque" 
+                           TextColor="{StaticResource DefaultTextColor}" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
                     </VerticalStackLayout>
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding GoToMyLibraryCommand}" />

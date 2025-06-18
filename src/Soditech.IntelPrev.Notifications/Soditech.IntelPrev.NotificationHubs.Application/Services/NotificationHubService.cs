@@ -93,7 +93,7 @@ public class NotificationHubService(IOptions<NotificationHubOptions> options, IL
 
         try
         {
-            switch (notificationRequest.Tags.Length)
+            switch (notificationRequest.Tags.Count)
             {
                 case 0:
                     // This will broadcast to all users registered in the notification hub

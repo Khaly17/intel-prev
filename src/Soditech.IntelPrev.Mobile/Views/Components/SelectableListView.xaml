@@ -42,6 +42,7 @@
 
             <!-- The CollectionView with ItemTapped handling instead of selection -->
             <CollectionView x:Name="ItemsCollectionView"
+                            BackgroundColor="{StaticResource DefaultBackgroundColor}"
                             ItemsSource="{Binding ItemsSource, Source={x:Reference RootView}}"
                              SelectionMode="{Binding IsSelectable, Source={x:Reference RootView}, Converter={StaticResource BoolToSelectionModeConverter}}"
                             SelectionChangedCommand="{Binding SelectionChangedCommand, Source={x:Reference RootView}}"
@@ -51,7 +52,7 @@
                             IsVisible="{Binding IsNotBusy, Source={x:Reference RootView}}">
 
                 <!-- EmptyView -->
-                <CollectionView.EmptyView>
+                <CollectionView.EmptyView >
                     <VerticalStackLayout Spacing="10"
                                          HorizontalOptions="Center"
                                          VerticalOptions="Start"

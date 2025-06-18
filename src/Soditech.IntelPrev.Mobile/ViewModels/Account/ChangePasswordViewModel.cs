@@ -61,7 +61,7 @@ public partial class ChangePasswordViewModel : MauiViewModel
             var userInfos = _dataStorageService.GetValueOrDefault<UserInfoModel>(AppConsts.UserProfileKey);
             if (_accountService.AuthenticateResult!= null)
             {
-                userId = Guid.Parse(userInfos.userId);
+                userId = Guid.Parse(userInfos.UserId);
             }
 
             var result = await _accountService.ChangePasswordAsync(userId.ToString(), CurrentPassword, NewPassword);

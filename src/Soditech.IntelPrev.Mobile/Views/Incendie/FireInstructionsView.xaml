@@ -39,13 +39,16 @@
                             </Border>
                         </Grid>
                     </toolkit:Expander.Header>
-                    <Border Style="{StaticResource CardStyle}">
-                        <Label Style="{StaticResource BodyStyle}">
+                    <Border Style="{StaticResource CardStyle}" BackgroundColor="{StaticResource DefaultBackgroundColor}" >
+                        <Label Style="{StaticResource BodyStyle}" >
                             <Label.FormattedText>
                                 <FormattedString>
-                                    <Span Text="La notion de 'consigne de sécurité à appliquer en cas de départ de feu' désigne :" />
-                                    <Span Text="&#x0a;• les instructions qui doivent être mises en œuvre et qui sont propres à chaque bâtiment" />
-                                    <Span Text="&#x0a;• l'affichage de ces règles dans les parties visibles des bâtiments" />
+                                    <Span Text="La notion de 'consigne de sécurité à appliquer en cas de départ de feu' désigne :"  
+                                   TextColor="{StaticResource DefaultTextColor}"/>
+                                    <Span Text="&#x0a;• les instructions qui doivent être mises en œuvre et qui sont propres à chaque bâtiment" 
+                                   TextColor="{StaticResource DefaultTextColor}" />
+                                    <Span Text="&#x0a;• l'affichage de ces règles dans les parties visibles des bâtiments" 
+                                   TextColor="{StaticResource DefaultTextColor}"/>
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>
@@ -64,17 +67,17 @@
                             </Border>
                         </Grid>
                     </toolkit:Expander.Header>
-                    <Border Style="{StaticResource CardStyle}">
+                    <Border Style="{StaticResource CardStyle}" BackgroundColor="{StaticResource DefaultBackgroundColor}">
                         <Label Style="{StaticResource BodyStyle}">
                             <Label.FormattedText>
                                 <FormattedString>
-                                    <Span Text="La norme prévoit que des panneaux de consigne de sécurité incendie soient affichés :" />
-                                    <Span Text="&#x0a;&#x0a;• à chaque étage d'un bâtiment" />
-                                    <Span Text="&#x0a;• à proximité immédiate des escaliers ou ascenseurs" />
-                                    <Span Text="&#x0a;• sur la porte d'escalier" />
-                                    <Span Text="&#x0a;• à défaut à tout endroit où ils pourront être lus facilement" />
-                                    <Span Text="&#x0a;&#x0a;Chaque étage d'un bâtiment ou unité de travail doit avoir ses consignes de sécurité incendie. Elle doit prendre en compte la spécificité du lieu d'exercice ou de travail." />
-                                    <Span Text="&#x0a;&#x0a;En cas de modification du lieu ou des techniques de travail, les consignes doivent être mises à jour." />
+                                    <Span TextColor="{StaticResource DefaultTextColor}" Text="La norme prévoit que des panneaux de consigne de sécurité incendie soient affichés :" />
+                                    <Span TextColor="{StaticResource DefaultTextColor}" Text="&#x0a;&#x0a;• à chaque étage d'un bâtiment" />
+                                    <Span TextColor="{StaticResource DefaultTextColor}" Text="&#x0a;• à proximité immédiate des escaliers ou ascenseurs" />
+                                    <Span TextColor="{StaticResource DefaultTextColor}" Text="&#x0a;• sur la porte d'escalier" />
+                                    <Span TextColor="{StaticResource DefaultTextColor}" Text="&#x0a;• à défaut à tout endroit où ils pourront être lus facilement" />
+                                    <Span TextColor="{StaticResource DefaultTextColor}" Text="&#x0a;&#x0a;Chaque étage d'un bâtiment ou unité de travail doit avoir ses consignes de sécurité incendie. Elle doit prendre en compte la spécificité du lieu d'exercice ou de travail." />
+                                    <Span TextColor="{StaticResource DefaultTextColor}" Text="&#x0a;&#x0a;En cas de modification du lieu ou des techniques de travail, les consignes doivent être mises à jour." />
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>
@@ -93,26 +96,27 @@
                             </Border>
                         </Grid>
                     </toolkit:Expander.Header>
-                    <Border Style="{StaticResource CardStyle}">
+                    <Border Style="{StaticResource CardStyle}" BackgroundColor="{StaticResource DefaultBackgroundColor}">
                         <VerticalStackLayout>
                             <!-- Loading indicator -->
                             <ActivityIndicator IsRunning="{Binding IsBusy}"
-                                               IsVisible="{Binding IsBusy}"/>
+                           IsVisible="{Binding IsBusy}" />
 
-                            <!-- Custom instructions content -->
+                            <!-- Si CustomInstructions est non vide -->
                             <Label Style="{StaticResource BodyStyle}"
-                                   Text="{Binding CustomInstructions}"
-                                   IsVisible="{Binding IsNotBusy}">
-                                <Label.Triggers>
-                                    <DataTrigger TargetType="Label"
-                                                 Binding="{Binding CustomInstructions, Converter={StaticResource IsStringNotNullOrEmptyConverter}}"
-                                                 Value="True">
-                                        <Setter Property="Text" Value="Aucune consigne personnalisée n'est disponible pour le moment." />
-                                    </DataTrigger>
-                                </Label.Triggers>
-                            </Label>
+                               Text="{Binding CustomInstructions}"
+                               IsVisible="{Binding CustomInstructions, Converter={StaticResource IsStringNotNullOrEmptyConverter}}" 
+                               TextColor="{StaticResource DefaultTextColor}"/>
+
+                            <!-- Si CustomInstructions est vide -->
+                            <Label Text="Aucune consigne personnalisée n'est disponible pour le moment."
+                               Style="{StaticResource BodyStyle}"
+                               IsVisible="{Binding CustomInstructions, Converter={StaticResource IsStringNullOrEmptyConverter}}" 
+                               TextColor="{StaticResource DefaultTextColor}"
+                               FontAttributes="Italic" />
                         </VerticalStackLayout>
                     </Border>
+
                 </toolkit:Expander>
 
             </FlexLayout>

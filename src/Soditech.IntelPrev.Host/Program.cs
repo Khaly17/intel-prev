@@ -2,6 +2,7 @@ using FastEndpoints;
 using FastEndpoints.Swagger;
 using Sensor6ty.WebApi;
 using Soditech.IntelPrev.Mediatheques.WebApi;
+using Soditech.IntelPrev.NotificationHubs.WebApi;
 using Soditech.IntelPrev.Preventions.WebApi;
 using Soditech.IntelPrev.Reports.Application;
 using Soditech.IntelPrev.Reports.WebApi;

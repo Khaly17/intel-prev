@@ -15,7 +15,7 @@
         <viewModel:FireSafetyListViewModel></viewModel:FireSafetyListViewModel>
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <Grid Padding="0" Margin="5">
+        <Grid Padding="0" Margin="5" BackgroundColor="{StaticResource DefaultBackgroundColor}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="2*"/>
@@ -47,7 +47,7 @@
                     </Border.Shadow>
                     <VerticalStackLayout Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
                         <Image Source="question.png" HeightRequest="40" />
-                        <Label Text="Définition" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                        <Label Text="Définition" TextColor="{StaticResource DefaultTextColor}" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
                     </VerticalStackLayout>
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding NavigateWhatIsFireSafetyCommand}"  />
@@ -63,7 +63,7 @@
                     </Border.Shadow>
                     <VerticalStackLayout Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
                         <Image Source="consignes.png" HeightRequest="40" />
-                        <Label Text="Consignes de sécurité" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                        <Label Text="Consignes de sécurité" TextColor="{StaticResource DefaultTextColor}" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
                     </VerticalStackLayout>
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding NavigateFireInstructionsCommand}"  />
@@ -80,7 +80,7 @@
                     </Border.Shadow>
                     <VerticalStackLayout Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
                         <Image Source="materiel_incendie.png" HeightRequest="40" />
-                        <Label Text="Matériel incendie" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                        <Label Text="Matériel incendie" TextColor="{StaticResource DefaultTextColor}" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
                     </VerticalStackLayout>
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding NavigateFireEquipmentCommand}"  />
@@ -96,7 +96,7 @@
                     </Border.Shadow>
                     <VerticalStackLayout Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
                         <Image Source="en_cas_d_evacuation.png" HeightRequest="40" />
-                        <Label Text="En cas d'évacuation" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                        <Label Text="En cas d'évacuation" TextColor="{StaticResource DefaultTextColor}" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
                     </VerticalStackLayout>
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding NavigateEvacuationCommand}"  />

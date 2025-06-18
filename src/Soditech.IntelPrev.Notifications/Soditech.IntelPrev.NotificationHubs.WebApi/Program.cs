@@ -1,4 +1,5 @@
 using Sensor6ty.WebApi;
+using Soditech.IntelPrev.NotificationHubs.WebApi;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -95,7 +95,7 @@ namespace Soditech.IntelPrev.Mobile.ViewModels.Account
 			}
 			catch (Exception ex)
 			{
-				ErrorMessage = "Initialization failed. Please try again.";
+				ErrorMessage = "";
 				_logger.LogError(ex, "Error during initialization in LoginViewModel");
 				// Handle specific exceptions if needed
 				// Don't rethrow - let the app continue with login screen
@@ -135,7 +135,7 @@ namespace Soditech.IntelPrev.Mobile.ViewModels.Account
 			catch (Exception ex)
 			{
 				_logger.LogError(ex, "Login failed in LoginViewModel");
-				ErrorMessage = "Login failed. Please try again.";
+				ErrorMessage = "La connexion a échoué. Veuillez réessayer.";
 			}
 			finally
 			{
@@ -172,10 +172,10 @@ namespace Soditech.IntelPrev.Mobile.ViewModels.Account
 
 				var userProfile = new UserInfoModel
 				{
-					userId,
-					FirstName = fullName,
-					LastName = username,
-					Email = email
+					UserId = userId ?? string.Empty,
+					FirstName = fullName ?? string.Empty,
+					LastName = username ?? string.Empty,
+					Email = email ?? string.Empty
 				};		
 				// Store user profile in the local storage
 				_dataStorageService.SetValue<UserInfoModel>(AppConsts.UserProfileKey, userProfile);

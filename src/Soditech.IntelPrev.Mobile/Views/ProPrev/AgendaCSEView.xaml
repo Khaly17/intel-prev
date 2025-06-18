@@ -42,7 +42,7 @@
                             </Border>
                         </Grid>
                     </toolkit:Expander.Header>
-                    <Border Style="{StaticResource CardStyle}">
+                    <Border Style="{StaticResource CardStyle}" BackgroundColor="{StaticResource DefaultBackgroundColor}">
                         <VerticalStackLayout Spacing="15">
                             <!-- Loading Indicator -->
                             <ActivityIndicator IsVisible="{Binding IsBusy}"
@@ -69,16 +69,25 @@
                             </Border>
                         </Grid>
                     </toolkit:Expander.Header>
-                    <Border Style="{StaticResource CardStyle}">
-                        <VerticalStackLayout Spacing="15">
+                    <Border Style="{StaticResource CardStyle}" BackgroundColor="{StaticResource DefaultBackgroundColor}">
+                        <VerticalStackLayout Spacing="15" >
                             <!-- Loading Indicator -->
                             <ActivityIndicator IsVisible="{Binding IsBusy}"
                                               IsRunning="{Binding IsBusy}" />
 
+                            
                             <CollectionView IsVisible="{Binding IsNotBusy}"
-                                           ItemsSource="{Binding Meetings}"
-                                           EmptyView="Aucune réunion à venir n'est programmée."
+                                           ItemsSource="{Binding Meetings}" 
                                            SelectionMode="None">
+
+                                <CollectionView.EmptyView>
+                                    <Label Text="Aucune réunion à venir n'est programmée."
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"
+                                   FontAttributes="Italic"
+                                   FontSize="14"
+                                   TextColor="{StaticResource DefaultTextColor}" />
+                                </CollectionView.EmptyView>
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate>
                                         <Border Style="{StaticResource CardStyle}" Margin="0,5">
@@ -92,10 +101,13 @@
                                                 <VerticalStackLayout Grid.Column="1">
                                                     <Label Text="{Binding Title}"
                                                            FontAttributes="Bold"
+                                                           TextColor="{StaticResource DefaultTextColor}"
                                                            Style="{StaticResource BodyStyle}" />
                                                     <Label Text="{Binding Date, StringFormat='{0:dd/MM/yyyy HH:mm}'}"
+                                                           TextColor="{StaticResource DefaultTextColor}"
                                                            Style="{StaticResource BodyStyle}" />
                                                     <Label Text="{Binding Location}"
+                                                           TextColor="{StaticResource DefaultTextColor}"
                                                            Style="{StaticResource BodyStyle}" />
                                                 </VerticalStackLayout>
                                             </Grid>
@@ -105,6 +117,7 @@
                             </CollectionView>
                         </VerticalStackLayout>
                     </Border>
+                
                 </toolkit:Expander>
             </FlexLayout>
         </ScrollView>

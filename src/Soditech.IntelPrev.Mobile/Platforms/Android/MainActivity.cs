@@ -8,6 +8,7 @@ using Soditech.IntelPrev.Mobile.Core.Dependency;
 using Android.Views; // Added for SoftInput
 using Soditech.IntelPrev.Mobile.Services.Notifications;
 using Microsoft.Extensions.Logging;
+using Firebase;
 
 namespace Soditech.IntelPrev.Mobile
 {
@@ -59,7 +60,10 @@ namespace Soditech.IntelPrev.Mobile
 			base.OnCreate(savedInstanceState);
 
 			if (DeviceInstallationService.NotificationsSupported)
+			{
 				FirebaseMessaging.Instance.GetToken().AddOnSuccessListener(this);
+			}
+				
 
 			ProcessNotificationsAction(Intent);
 		}

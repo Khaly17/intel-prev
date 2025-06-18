@@ -131,7 +131,7 @@ public class SettingsManager : ISettingsManager
 	{
 		// This method can be called at app startup to apply all settings
 		var isGeoLocationEnabled = IsGeoLocationEnabled;
-		var areNotificationsEnabled = AreNotificsationsEnabled;
+		var areNotificationsEnabled = AreNotificationsEnabled;
 		// var selectedLanguage = SelectedLanguage;
 
 		// Check if location permission is already granted

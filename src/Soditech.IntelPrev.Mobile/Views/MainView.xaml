@@ -13,7 +13,7 @@
     </ContentPage.BindingContext>
 
     <ContentPage.Content>
-        <Grid Padding="0" Margin="0">
+        <Grid Padding="0" Margin="0" BackgroundColor="{StaticResource DefaultBackgroundColor}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="2*"/>
@@ -48,7 +48,7 @@
                     </Border.Shadow>
                     <VerticalStackLayout Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
                         <Image Source="assurance.png" HeightRequest="40" />
-                        <Label Text="Prévention" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                        <Label Text="Prévention" TextColor="{StaticResource DefaultTextColor}" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
                     </VerticalStackLayout>
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding PreventionsViewCommand}" />
@@ -65,7 +65,7 @@
                     </Border.Shadow>
                     <VerticalStackLayout Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
                         <Image Source="prevention_dincendies.png" HeightRequest="40" />
-                        <Label Text="Incendie " FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                        <Label Text="Incendie " TextColor="{StaticResource DefaultTextColor}" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
                     </VerticalStackLayout>
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding GoToIncendieViewCommand}"  />
@@ -82,7 +82,7 @@
                     </Border.Shadow>
                     <VerticalStackLayout Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
                         <Image Source="chequier.png" HeightRequest="40" />
-                        <Label Text="Signaler" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                        <Label Text="Signaler" TextColor="{StaticResource DefaultTextColor}" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
                     </VerticalStackLayout>
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding GoToCreateReportCommand}" />
@@ -99,7 +99,7 @@
                     </Border.Shadow>
                     <VerticalStackLayout Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
                         <Image Source="papier_juridique.png" HeightRequest="40" />
-                        <Label Text="Documents légaux" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                        <Label Text="Documents légaux" TextColor="{StaticResource DefaultTextColor}" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
                     </VerticalStackLayout>
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding GoToDocumentCommand}" />
@@ -116,7 +116,7 @@
                     </Border.Shadow>
                     <VerticalStackLayout Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
                         <Image Source="alerte.png" HeightRequest="40" />
-                        <Label Text="Alertes" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                        <Label Text="Alertes" TextColor="{StaticResource DefaultTextColor}" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
                     </VerticalStackLayout>
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding GoToAlertsListPageCommand}" />
@@ -133,7 +133,7 @@
                     </Border.Shadow>
                     <VerticalStackLayout Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
                         <Image Source="gps.png" HeightRequest="40" />
-                        <Label Text="GPS" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                        <Label Text="GPS" TextColor="{StaticResource DefaultTextColor}" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
                     </VerticalStackLayout>
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding GoToGpsPageCommand}" />
@@ -150,7 +150,7 @@
                     </Border.Shadow>
                     <VerticalStackLayout Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
                         <Image Source="tutoriels_videos.png" HeightRequest="40" />
-                        <Label Text="Tutos" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                        <Label Text="Tutos" TextColor="{StaticResource DefaultTextColor}" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
                     </VerticalStackLayout>
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding GoToTutosCommand}" />
@@ -168,7 +168,7 @@
 
                     <VerticalStackLayout Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
                         <Image Source="professionnel.png" HeightRequest="40" />
-                        <Label Text="Pro-Prev" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                        <Label Text="Pro-Prev" TextColor="{StaticResource DefaultTextColor}" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
                     </VerticalStackLayout>
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding GoToProPrevHomePageCommand}" />
@@ -185,7 +185,7 @@
                     </Border.Shadow>
                     <VerticalStackLayout Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
                         <Image Source="parametres.png" HeightRequest="40" />
-                        <Label Text="Settings" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                        <Label Text="Settings" TextColor="{StaticResource DefaultTextColor}" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
                     </VerticalStackLayout>
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding GoToSettingsCommand}" />
@@ -202,7 +202,7 @@
                     </Border.Shadow>
                     <VerticalStackLayout Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
                         <Image Source="appel_d_urgence.png" HeightRequest="40" />
-                        <Label Text="Pompier" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                        <Label Text="Pompier" TextColor="{StaticResource DefaultTextColor}" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
                     </VerticalStackLayout>
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer  Command="{Binding CallFirefighterCommand}" />
@@ -219,7 +219,7 @@
                     </Border.Shadow>
                     <VerticalStackLayout Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
                         <Image Source="appel_police.png" HeightRequest="40" />
-                        <Label Text="Police" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                        <Label Text="Police" TextColor="{StaticResource DefaultTextColor}" FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" />
                     </VerticalStackLayout>
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding CallPoliceCommand}" />
