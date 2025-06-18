@@ -1,5 +1,11 @@
+using System;
 using FastEndpoints;
 using FastEndpoints.Swagger;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Routing;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Sensor6ty.WebApi;
 using Soditech.IntelPrev.Users.Persistence.Models;
 using Soditech.IntelPrev.Users.WebApi;

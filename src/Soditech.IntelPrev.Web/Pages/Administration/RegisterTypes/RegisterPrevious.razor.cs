@@ -1,4 +1,7 @@
-﻿using Soditech.IntelPrev.Reports.Shared.RegisterTypes;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Soditech.IntelPrev.Reports.Shared.RegisterTypes;
 using Soditech.IntelPrev.Reports.Shared;
 
 namespace Soditech.IntelPrev.Web.Pages.Administration.RegisterTypes;

@@ -1,6 +1,6 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Soditech.IntelPrev.Mobile.Views.DocumentLegauxView"
+             x:Class="Soditech.IntelPrev.Mobile.Views.DocumentLegaux.DocumentLegauxView"
              xmlns:viewModel="clr-namespace:Soditech.IntelPrev.Mobile.ViewModels"
              xmlns:behaviors="using:Soditech.IntelPrev.Mobile.Behaviors"
              xmlns:components="clr-namespace:Soditech.IntelPrev.Mobile.Views.Components"

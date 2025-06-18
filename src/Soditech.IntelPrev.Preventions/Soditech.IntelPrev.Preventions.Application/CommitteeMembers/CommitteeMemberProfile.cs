@@ -1,8 +1,8 @@
 using AutoMapper;
+using Soditech.IntelPrev.Prevensions.Shared.CommitteeMembers;
 using Soditech.IntelPrev.Preventions.Persistence.Models;
-using Soditech.IntelPrev.Preventions.Shared.CommitteeMembers;
 
-namespace Soditech.IntelPrev.Preventions.Application.CommitteeMembers;
+namespace Soditech.IntelPrev.Prevensions.Application.CommitteeMembers;
 
 public class CommitteeMemberProfile : Profile
 {

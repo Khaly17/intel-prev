@@ -1,10 +1,13 @@
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Sensor6ty.Repositories;
 using Soditech.IntelPrev.Reports.Persistence.Models;
-using Soditech.IntelPrev.Users.Shared.Users.Events;
+using Soditech.IntelPrev.Users.Shared.Users;
 
 namespace Soditech.IntelPrev.Reports.Application.Users.Events;
 

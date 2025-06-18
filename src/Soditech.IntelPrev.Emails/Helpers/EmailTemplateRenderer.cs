@@ -1,4 +1,7 @@
-﻿using Scriban;
+﻿using System;
+using System.IO;
+using System.Threading.Tasks;
+using Scriban;
 
 namespace Soditech.IntelPrev.Emails.Helpers;
 

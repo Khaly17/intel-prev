@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using MediatR;
 using Soditech.IntelPrev.Reports.Shared.ReportDatas;
 

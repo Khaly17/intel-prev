@@ -1,13 +1,13 @@
-﻿namespace Soditech.IntelPrev.Web.Events
+﻿using System;
+
+namespace Soditech.IntelPrev.Web.Events;
+
+public class SiteEventService
 {
-    public class SiteEventService
+    public event Action? OnSiteChanged;
+
+    public void NotifySiteChanged()
     {
-        public event Action OnSiteChanged;
-
-        public void NotifySiteChanged()
-        {
-            OnSiteChanged?.Invoke();
-        }
+        OnSiteChanged?.Invoke();
     }
-
 }

@@ -1,5 +1,6 @@
-﻿using FluentValidation;
-using Soditech.IntelPrev.Preventions.Shared.Campaigns;
+﻿using System;
+using FluentValidation;
+using Soditech.IntelPrev.Prevensions.Shared.Campaigns;
 
 namespace Soditech.IntelPrev.Web.Validators;
 

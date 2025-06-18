@@ -1,6 +1,7 @@
+using System;
 using MediatR;
 
-namespace Soditech.IntelPrev.Preventions.Shared.StaticContents;
+namespace Soditech.IntelPrev.Prevensions.Shared.StaticContents;
 
 public record StaticContentCreatedEvent : INotification
 {

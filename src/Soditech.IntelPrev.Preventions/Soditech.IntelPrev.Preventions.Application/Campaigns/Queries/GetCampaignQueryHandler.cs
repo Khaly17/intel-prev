@@ -1,12 +1,15 @@
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Sensor6ty.Repositories;
 using Sensor6ty.Results;
+using Soditech.IntelPrev.Prevensions.Shared.Campaigns;
 using Soditech.IntelPrev.Preventions.Persistence.Models;
-using Soditech.IntelPrev.Preventions.Shared.Campaigns;
 
-namespace Soditech.IntelPrev.Preventions.Application.Campaigns.Queries;
+namespace Soditech.IntelPrev.Prevensions.Application.Campaigns.Queries;
 
 public class GetCampaignQueryHandler(IServiceProvider serviceProvider)
     : IRequestHandler<GetCampaignQuery, TResult<CampaignResult>>

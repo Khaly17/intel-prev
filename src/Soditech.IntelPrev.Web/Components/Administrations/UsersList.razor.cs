@@ -1,7 +1,11 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Logging;
 using Soditech.IntelPrev.Users.Shared.Users;
 using Soditech.IntelPrev.Users.Shared;
-using Soditech.IntelPrev.Web.Services.Proxy;
 using Syncfusion.Blazor.Grids;
 
 namespace Soditech.IntelPrev.Web.Components.Administrations;
@@ -17,11 +21,11 @@ public partial class UsersList: ComponentBase
 
     private static List<GridColumn> Columns =>
     [
-        new GridColumn { Field =  nameof(UserResult.TenantName), HeaderText = "Structure" },
-        new GridColumn { Field = nameof(UserResult.UserName), HeaderText = "Identifiant" },
-        new GridColumn { Field = nameof(UserResult.FirstName), HeaderText = "Prénom" },
-        new GridColumn { Field = nameof(UserResult.LastName), HeaderText = "Nom" },
-        new GridColumn { Field = nameof(UserResult.AppVersion), HeaderText = "Version"},
+        new() { Field =  nameof(UserResult.TenantName), HeaderText = "Structure" },
+        new() { Field = nameof(UserResult.UserName), HeaderText = "Identifiant" },
+        new() { Field = nameof(UserResult.FirstName), HeaderText = "Prénom" },
+        new() { Field = nameof(UserResult.LastName), HeaderText = "Nom" },
+        new() { Field = nameof(UserResult.AppVersion), HeaderText = "Version"},
     ];
     // toolbar items
     private static List<string> ToolbarItems => ["Search", "ExcelExport", "PdfExport", "Print"];

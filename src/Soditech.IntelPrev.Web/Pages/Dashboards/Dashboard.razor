@@ -3,7 +3,6 @@
 @using Soditech.IntelPrev.Web.Shared.Spinners
 @using Soditech.IntelPrev.Web.Shared.widgets
 @using Syncfusion.Blazor.Charts
-@using ValueType = Syncfusion.Blazor.Charts.ValueType
 
 <PageTitle>Intel Prev Dashboard</PageTitle>
 <FilterComponent SetCurrentWeek="SetCurrentWeek"
@@ -31,7 +30,7 @@
                             </a>
                         </div>
 
-                        @if (_isLoadingReports)
+                        @if (IsLoadingReports)
                         {
                             <Spinner />
                         }
@@ -57,7 +56,7 @@
                             </a>
                         </div>
 
-                        @if (_isLoadingReports)
+                        @if (IsLoadingReports)
                         {
                             <Spinner />
                         }
@@ -67,7 +66,7 @@
                                 <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category"></ChartPrimaryXAxis>
                                 <ChartPrimaryYAxis Minimum="0"></ChartPrimaryYAxis>
                                 <ChartSeriesCollection>
-                                    <ChartSeries DataSource="@ReportsGroupedByRegisterResult" XName="RegisterTypeName" YName="Count" Type="ChartSeriesType.Line">
+                                    <ChartSeries DataSource="@_reportsGroupedByRegisterResult" XName="RegisterTypeName" YName="Count" Type="ChartSeriesType.Line">
                                     </ChartSeries>
                                 </ChartSeriesCollection>
                                 <ChartTooltipSettings Enable="true"></ChartTooltipSettings>
@@ -93,7 +92,7 @@
                             </a>
                         </div>
 
-                        @if (_isLoadingReports)
+                        @if (IsLoadingReports)
                         {
                             <Spinner />
                         }
@@ -101,7 +100,7 @@
                         {
                             <SfAccumulationChart>
                                 <AccumulationChartSeriesCollection>
-                                    <AccumulationChartSeries DataSource="@ReportsGroupedByRegisterResult" XName="RegisterTypeName" YName="Count">
+                                    <AccumulationChartSeries DataSource="@_reportsGroupedByRegisterResult" XName="RegisterTypeName" YName="Count">
                                     </AccumulationChartSeries>
                                 </AccumulationChartSeriesCollection>
                                 <AccumulationChartTooltipSettings Enable="true"></AccumulationChartTooltipSettings>
@@ -121,7 +120,7 @@
                             </a>
                         </div>
 
-                        @if (_isLoadingReports)
+                        @if (IsLoadingReports)
                         {
                             <Spinner />
                         }
@@ -131,7 +130,7 @@
                                 <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category"></ChartPrimaryXAxis>
                                 <ChartPrimaryYAxis Minimum="0"></ChartPrimaryYAxis>
                                 <ChartSeriesCollection>
-                                    <ChartSeries DataSource="@AlertsGroupedByTypeResult"
+                                    <ChartSeries DataSource="@_alertsGroupedByTypeResult"
                                                  XName="Type"
                                                  YName="Count"
                                                  Type="ChartSeriesType.Column">

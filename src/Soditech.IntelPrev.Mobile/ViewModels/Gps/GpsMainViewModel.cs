@@ -1,11 +1,13 @@
+using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using System.Windows.Input;
-using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.Maui.Controls;
+using Soditech.IntelPrev.Mobile.Models.Materials;
 using Soditech.IntelPrev.Mobile.ViewModels.Base;
 using Soditech.IntelPrev.Mobile.Views.Gps;
-using Soditech.IntelPrev.Mobile.Views.Preventions.Materials;
-using Soditech.IntelPrev.Preventions.Shared.Materials;
 
 namespace Soditech.IntelPrev.Mobile.ViewModels.Gps;
 
@@ -19,7 +21,7 @@ public partial class GpsMainViewModel : MauiViewModel
 		set => SetProperty(ref _selectedEquipment, value);
 	}
 
-	public ObservableCollection<EquipmentItem> EquipmentItems { get; } = new ObservableCollection<EquipmentItem>();
+	public ObservableCollection<EquipmentItem> EquipmentItems { get; } = new();
 
 	public ICommand PageAppearingCommand => new AsyncRelayCommand((Func<Task>)InitializeAsync);
 	public ICommand EquipmentSelectionCommand => new AsyncRelayCommand<EquipmentItem?>(HandleEquipmentSelection);

@@ -1,5 +1,6 @@
-﻿using Microsoft.AspNetCore.Components;
-using Soditech.IntelPrev.Preventions.Shared.Campaigns;
+﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components;
+using Soditech.IntelPrev.Prevensions.Shared.Campaigns;
 
 namespace Soditech.IntelPrev.Web.Components.Administrations;
 

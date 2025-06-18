@@ -1,10 +1,15 @@
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 using FastEndpoints;
 using MediatR;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
 using Sensor6ty.Results;
+using Soditech.IntelPrev.Prevensions.Shared;
 using Soditech.IntelPrev.Prevensions.Shared.GeoLocations;
-using Soditech.IntelPrev.Preventions.Shared;
 
-namespace Soditech.IntelPrev.Preventions.WebApi.Endpoints.Equipments;
+namespace Soditech.IntelPrev.Preventions.WebApi.Endpoints.GeoLocations;
 
 [HttpPost(PreventionRoutes.GeoLocations.Update)]
 [Tags("GeoLocations")]

@@ -1,6 +1,7 @@
+using System;
 using MediatR;
 
-namespace Soditech.IntelPrev.Reports.Shared.RegisterFieldGroups;
+namespace Soditech.IntelPrev.Reports.Shared.RegisterFielGroups;
 
 public record RegisterFieldGroupCreatedEvent : INotification
 {

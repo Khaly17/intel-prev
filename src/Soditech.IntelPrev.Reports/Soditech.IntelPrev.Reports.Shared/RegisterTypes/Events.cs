@@ -1,6 +1,8 @@
+using System;
+using System.Collections.Generic;
 using MediatR;
-using Soditech.IntelPrev.Reports.Shared.RegisterFieldGroups;
 using Soditech.IntelPrev.Reports.Shared.RegisterFields;
+using Soditech.IntelPrev.Reports.Shared.RegisterFielGroups;
 
 namespace Soditech.IntelPrev.Reports.Shared.RegisterTypes;
 

@@ -1,4 +1,6 @@
-﻿namespace Soditech.IntelPrev.Emails.Helpers;
+﻿using System.Threading.Tasks;
+
+namespace Soditech.IntelPrev.Emails.Helpers;
 
 /// <summary>
 /// Interface for rendering email templates.

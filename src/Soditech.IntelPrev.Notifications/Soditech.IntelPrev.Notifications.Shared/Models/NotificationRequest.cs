@@ -1,4 +1,7 @@
-﻿namespace Soditech.IntelPrev.Notifications.Shared.Models;
+﻿using System.Collections.Generic;
+using System.Linq;
+
+namespace Soditech.IntelPrev.Notifications.Shared.Models;
 
 public class NotificationRequest
 {
@@ -6,13 +9,13 @@ public class NotificationRequest
     public string Text { get; set; } = string.Empty;
     public string Action { get; set; } = string.Empty;
 
-    private string[] _tags = Array.Empty<string>();
+    private string[] _tags = [];
 
 
     public IReadOnlyList<string> Tags
     {
         get => _tags;
-        set => _tags = value?.ToArray() ?? Array.Empty<string>();
+        set => _tags = value?.ToArray() ?? [];
     }
 
 

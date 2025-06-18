@@ -1,7 +1,6 @@
 using AutoMapper;
 using Soditech.IntelPrev.Users.Persistence.Models;
 using Soditech.IntelPrev.Users.Shared.Tenants;
-using Soditech.IntelPrev.Users.Shared.Tenants.Events;
 
 namespace Soditech.IntelPrev.Users.Application.Tenants;
 

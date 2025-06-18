@@ -1,12 +1,14 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components;
 using Soditech.IntelPrev.Users.Shared.Roles;
 using Soditech.IntelPrev.Users.Shared;
 using Soditech.IntelPrev.Web.Models;
 using Microsoft.Extensions.Logging;
-using Soditech.IntelPrev.Preventions.Shared.CommitteeMembers;
-using Soditech.IntelPrev.Preventions.Shared;
-using Soditech.IntelPrev.Preventions.Shared.Campaigns;
-using Soditech.IntelPrev.Web.Services.Cache;
+using Soditech.IntelPrev.Prevensions.Shared;
+using Soditech.IntelPrev.Prevensions.Shared.CommitteeMembers;
 
 namespace Soditech.IntelPrev.Web.Pages.Administration.CommitteeMembers;
 
@@ -14,14 +16,14 @@ public partial class EditCommitteeMember : ComponentBase
 {
     [Parameter]
     public string CommitteeMemberId { get; set; } = string.Empty;
-    private IEnumerable<RoleModel> _roles { get; set; } = new List<RoleModel>();
-    private List<Guid> SelectedRoles { get; set; } = new List<Guid>();
-    public string title { get; set; } = "Modifier le membre du comité";
-    private CommitteeMemberResult committeeMember { get; set; } = new CommitteeMemberResult();
-    public UpdateCommitteeMemberCommand NewCommitteeMember { get; set; } = new UpdateCommitteeMemberCommand();
+    private IEnumerable<RoleModel> Roles { get; set; } = new List<RoleModel>();
+    private List<Guid> SelectedRoles { get; set; } = new();
+    public string Title { get; set; } = "Modifier le membre du comité";
+    private CommitteeMemberResult CommitteeMember { get; set; } = new();
+    public UpdateCommitteeMemberCommand NewCommitteeMember { get; set; } = new();
 
-    private string? successMessage;
-    private string? errorMessage;
+    private string? _successMessage;
+    private string? _errorMessage;
     [Inject] private ILogger<EditCommitteeMember> Logger { get; set; } = default!;
     private const string CommitteeMembersCacheKey = "CommitteeMembers";
     private string GetCommitteeMemberCacheKey() => $"CommitteeMember_{CommitteeMemberId}";
@@ -38,12 +40,12 @@ public partial class EditCommitteeMember : ComponentBase
 
         if (exists)
         {
-            committeeMember = (CommitteeMemberResult)cachedValue;
+            CommitteeMember = (CommitteeMemberResult)cachedValue;
         }
         else
         {
             await LoadCommitteeMemberFromApiAsync();
-            CacheService.Set(cacheKey, committeeMember);
+            CacheService.Set(cacheKey, CommitteeMember);
         }
     }
     private async Task LoadCommitteeMemberFromApiAsync()
@@ -54,18 +56,18 @@ public partial class EditCommitteeMember : ComponentBase
 
             if (result.IsSuccess)
             {
-                committeeMember = result.Value;
+                CommitteeMember = result.Value;
 
                 await LoadRoles();
             }
             else
             {
-                errorMessage = "Erreur de récupération du membre du comité.";
+                _errorMessage = "Erreur de récupération du membre du comité.";
             }
         }
         catch (Exception ex)
         {
-            errorMessage = $"Erreur: {ex.Message}";
+            _errorMessage = $"Erreur: {ex.Message}";
         }
     }
 
@@ -76,7 +78,7 @@ public partial class EditCommitteeMember : ComponentBase
             var response = await ProxyService.GetAsync<IEnumerable<RoleResult>>(UserRoutes.Roles.GetAll);
             if (response.IsSuccess)
             {
-                _roles = response.Value.Select(r => new RoleModel
+                Roles = response.Value.Select(r => new RoleModel
                 {
                     Id = r.Id,
                     Name = r.Name,
@@ -86,30 +88,30 @@ public partial class EditCommitteeMember : ComponentBase
         }
         catch (Exception ex)
         {
-            errorMessage = $"Error {ex.Message}";
+            _errorMessage = $"Error {ex.Message}";
         }
     }
 
     private async Task UpdateCommitteeMember()
     {
-        if (committeeMember.Id == Guid.Empty)
+        if (CommitteeMember.Id == Guid.Empty)
         {
-            errorMessage = "L'ID du membre du comité est invalide.";
+            _errorMessage = "L'ID du membre du comité est invalide.";
             return;
         }
 
-        var updateResult = await ProxyService.PostAsync<CommitteeMemberResult>(PreventionRoutes.CommitteeMembers.Update.Replace("{id:guid}", committeeMember.Id.ToString()), committeeMember);
+        var updateResult = await ProxyService.PostAsync<CommitteeMemberResult>(PreventionRoutes.CommitteeMembers.Update.Replace("{id:guid}", CommitteeMember.Id.ToString()), CommitteeMember);
         if (updateResult.IsSuccess)
         {
-            successMessage = "Membre du comité mis à jour avec succès.";
-            errorMessage = null;
-            CacheService.Set(GetCommitteeMemberCacheKey(), committeeMember);
+            _successMessage = "Membre du comité mis à jour avec succès.";
+            _errorMessage = null;
+            CacheService.Set(GetCommitteeMemberCacheKey(), CommitteeMember);
             CacheService.Set(CommitteeMembersCacheKey, null);
             Navigation.NavigateTo("/committeemembers");
         }
         else
         {
-            errorMessage = "Erreur lors de la mise à jour du membre du comité.";
+            _errorMessage = "Erreur lors de la mise à jour du membre du comité.";
         }
     }
 }

@@ -1,43 +1,42 @@
 ﻿using System;
 using System.Reflection;
 
-namespace Soditech.IntelPrev.Mobile.Core.Runtime
+namespace Soditech.IntelPrev.Mobile.Core.Type;
+
+public class TypeHelperExtended
 {
-    public class TypeHelperExtended
+    public static bool IsPrimitiveIncludingNullable(System.Type type, bool includeEnums = false)
     {
-        public static bool IsPrimitiveIncludingNullable(Type type, bool includeEnums = false)
+        if (IsPrimitive(type, includeEnums))
         {
-            if (IsPrimitive(type, includeEnums))
-            {
-                return true;
-            }
-
-            if (type.GetTypeInfo().IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>))
-            {
-                return IsPrimitive(type.GenericTypeArguments[0], includeEnums);
-            }
-
-            return false;
+            return true;
         }
 
-        public static bool IsPrimitive(Type type, bool includeEnums)
+        if (type.GetTypeInfo().IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>))
         {
-            if (type.GetTypeInfo().IsPrimitive)
-            {
-                return true;
-            }
-
-            if (includeEnums && type.GetTypeInfo().IsEnum)
-            {
-                return true;
-            }
-
-            return type == typeof(string) ||
-                   type == typeof(decimal) ||
-                   type == typeof(DateTime) ||
-                   type == typeof(DateTimeOffset) ||
-                   type == typeof(TimeSpan) ||
-                   type == typeof(Guid);
+            return IsPrimitive(type.GenericTypeArguments[0], includeEnums);
         }
+
+        return false;
+    }
+
+    public static bool IsPrimitive(System.Type type, bool includeEnums)
+    {
+        if (type.GetTypeInfo().IsPrimitive)
+        {
+            return true;
+        }
+
+        if (includeEnums && type.GetTypeInfo().IsEnum)
+        {
+            return true;
+        }
+
+        return type == typeof(string) ||
+               type == typeof(decimal) ||
+               type == typeof(DateTime) ||
+               type == typeof(DateTimeOffset) ||
+               type == typeof(TimeSpan) ||
+               type == typeof(Guid);
     }
 }

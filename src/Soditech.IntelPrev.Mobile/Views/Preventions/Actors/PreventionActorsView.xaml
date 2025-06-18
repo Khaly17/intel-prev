@@ -7,9 +7,9 @@
             xmlns:base="clr-namespace:Soditech.IntelPrev.Mobile.ViewModels.Base;assembly=Soditech.IntelPrev.Mobile"
             base:ViewManager.AutoWireViewModel="True"
             xmlns:viewModel="clr-namespace:Soditech.IntelPrev.Mobile.ViewModels.Preventions.Actors"
-            xmlns:committeeMembers="clr-namespace:Soditech.IntelPrev.Preventions.Shared.CommitteeMembers;assembly=Soditech.IntelPrev.Preventions.Shared"
             xmlns:behaviors="clr-namespace:Soditech.IntelPrev.Mobile.Behaviors"
             xmlns:components="clr-namespace:Soditech.IntelPrev.Mobile.Views.Components"
+            xmlns:committeeMembers="clr-namespace:Soditech.IntelPrev.Prevensions.Shared.CommitteeMembers;assembly=Soditech.IntelPrev.Preventions.Shared"
             x:DataType="viewModel:PreventionActorsViewModel"
             Title="Membres CHSCT/CST">
     <ContentPage.ToolbarItems>

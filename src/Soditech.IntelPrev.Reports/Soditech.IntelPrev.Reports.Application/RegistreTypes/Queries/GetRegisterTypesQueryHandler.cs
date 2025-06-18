@@ -1,3 +1,8 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -9,7 +14,7 @@ using Sensor6ty.Sessions;
 using Soditech.IntelPrev.Reports.Persistence.Models;
 using Soditech.IntelPrev.Reports.Shared.RegisterTypes;
 
-namespace Soditech.IntelPrev.Reports.Application.RegisterTypes.Queries;
+namespace Soditech.IntelPrev.Reports.Application.RegistreTypes.Queries;
 
 public class GetRegisterTypesQueryHandler(IServiceProvider serviceProvider) : IRequestHandler<GetRegisterTypesQuery, TResult<IEnumerable<RegisterTypeResult>>>
 {

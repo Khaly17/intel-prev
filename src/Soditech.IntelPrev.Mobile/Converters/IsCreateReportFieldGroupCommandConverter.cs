@@ -1,18 +1,20 @@
+using System;
 using System.Globalization;
-using Soditech.IntelPrev.Reports.Shared.RegisterFieldGroups;
+using Microsoft.Maui.Controls;
+using Soditech.IntelPrev.Reports.Shared.RegisterFielGroups;
 
 namespace Soditech.IntelPrev.Mobile.Converters;
 
 public class IsCreateReportFieldGroupCommandConverter : IValueConverter
 {
     /// <inheritdoc />
-    public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+    public object Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
         return value is CreateReportFieldGroupCommand;
     }
 
     /// <inheritdoc />
-    public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
+    public  object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
         if (value is bool b)
         {

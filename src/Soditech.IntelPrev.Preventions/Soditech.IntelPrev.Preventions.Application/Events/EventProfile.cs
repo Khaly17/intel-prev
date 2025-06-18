@@ -1,8 +1,8 @@
 using AutoMapper;
+using Soditech.IntelPrev.Prevensions.Shared.Events;
 using Soditech.IntelPrev.Preventions.Persistence.Models;
-using Soditech.IntelPrev.Preventions.Shared.Events;
 
-namespace Soditech.IntelPrev.Preventions.Application.Events;
+namespace Soditech.IntelPrev.Prevensions.Application.Events;
 
 public class EventProfile : Profile
 {

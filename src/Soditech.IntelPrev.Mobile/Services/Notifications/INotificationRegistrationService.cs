@@ -1,4 +1,6 @@
-﻿namespace Soditech.IntelPrev.Mobile.Services.Notifications;
+﻿using System.Threading.Tasks;
+
+namespace Soditech.IntelPrev.Mobile.Services.Notifications;
 
 public interface INotificationRegistrationService
 {

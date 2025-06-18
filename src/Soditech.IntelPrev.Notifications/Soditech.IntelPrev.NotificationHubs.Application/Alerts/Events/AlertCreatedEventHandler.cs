@@ -1,3 +1,6 @@
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -5,7 +8,7 @@ using Soditech.IntelPrev.Notifications.Shared.Models;
 using Soditech.IntelPrev.Notifications.Shared.NotificationHubs;
 using Soditech.IntelPrev.Reports.Shared.Alerts;
 
-namespace Soditech.IntelPrev.Reports.Application.Alerts.Events;
+namespace Soditech.IntelPrev.NotificationHubs.Application.Alerts.Events;
 
 public class AlertCreatedEventHandler(IServiceProvider serviceProvider) : INotificationHandler<AlertCreatedEvent>
 {

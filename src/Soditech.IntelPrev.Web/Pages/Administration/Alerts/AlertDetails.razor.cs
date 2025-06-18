@@ -1,8 +1,7 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components;
 using Soditech.IntelPrev.Reports.Shared;
 using Soditech.IntelPrev.Reports.Shared.Alerts;
-using Soditech.IntelPrev.Reports.Shared.Reports;
-using Soditech.IntelPrev.Web.Services;
 
 namespace Soditech.IntelPrev.Web.Pages.Administration.Alerts;
 

@@ -1,12 +1,15 @@
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Sensor6ty.Repositories;
 using Sensor6ty.Results;
+using Soditech.IntelPrev.Prevensions.Shared.GatheringPoints;
 using Soditech.IntelPrev.Preventions.Persistence.Models;
-using Soditech.IntelPrev.Preventions.Shared.GatheringPoints;
 
-namespace Soditech.IntelPrev.Preventions.Application.GatheringPoints.Queries;
+namespace Soditech.IntelPrev.Prevensions.Application.GatheringPoints.Queries;
 
 public class GetGatheringPointQueryHandler(IServiceProvider serviceProvider)
     : IRequestHandler<GetGatheringPointQuery, TResult<GatheringPointResult>>

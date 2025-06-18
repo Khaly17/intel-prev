@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Sensor6ty.Domain;
 using Soditech.IntelPrev.Reports.Shared.Enums;
 
@@ -12,12 +14,12 @@ public class Report: EntityBase
     public ReportStatus Status { get; set; }
     
     public Guid RegisterTypeId { get; set; } // register type reference
-    public virtual RegisterType RegisterType { get; set; } = default!;
-    public virtual List<ReportData> ReportDatas { get; set; } = default!;
+    public virtual RegisterType RegisterType { get; set; } = null!;
+    public virtual List<ReportData> ReportDatas { get; set; } = null!;
     
     
     public Guid TenantId { get; set; }
-    public virtual Tenant Tenant { get; set; } = default!;
+    public virtual Tenant Tenant { get; set; } = null!;
     
     public virtual User? Creator { get; set; }
     public Guid? CreatorId { get; set; }

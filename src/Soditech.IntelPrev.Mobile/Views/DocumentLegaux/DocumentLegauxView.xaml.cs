@@ -1,8 +1,6 @@
-using System;
 using Microsoft.Maui.Controls;
-using Soditech.IntelPrev.Mobile.ViewModels;
 
-namespace Soditech.IntelPrev.Mobile.Views;
+namespace Soditech.IntelPrev.Mobile.Views.DocumentLegaux;
 
 public partial class DocumentLegauxView : ContentPage
 {

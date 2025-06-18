@@ -1,3 +1,4 @@
+using Microsoft.Maui.Controls;
 using Soditech.IntelPrev.Mobile.ViewModels.Settings;
 
 namespace Soditech.IntelPrev.Mobile.Views.Settings;

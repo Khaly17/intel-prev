@@ -1,9 +1,11 @@
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
 using Soditech.IntelPrev.Mobile.Core.Dependency;
 using Soditech.IntelPrev.Mobile.ViewModels.Base;
-using Soditech.IntelPrev.Preventions.Shared;
-using Soditech.IntelPrev.Preventions.Shared.MedicalContacts;
+using Soditech.IntelPrev.Prevensions.Shared;
+using Soditech.IntelPrev.Prevensions.Shared.MedicalContacts;
 using Soditech.IntelPrev.Proxy;
 
 namespace Soditech.IntelPrev.Mobile.ViewModels.Preventions.MedicalContacts;

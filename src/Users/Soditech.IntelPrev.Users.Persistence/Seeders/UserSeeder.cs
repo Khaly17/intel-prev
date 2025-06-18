@@ -1,18 +1,21 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Text.Json;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Sensor6ty.Configurations;
 using Sensor6ty.Migration;
 using Sensor6ty.System.Reflection;
 using Soditech.IntelPrev.Users.Persistence.Models;
 
-namespace Soditech.IntelPrev.Users.Persistence.EfCore;
+namespace Soditech.IntelPrev.Users.Persistence.Seeders;
 
 
 public class UserSeeder : ISeeder
 {
     // json options for deserialization: camelCase
-    private static readonly JsonSerializerOptions JsonSerializerOptions = new JsonSerializerOptions
+    private static readonly JsonSerializerOptions JsonSerializerOptions = new()
     {
         PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
     };

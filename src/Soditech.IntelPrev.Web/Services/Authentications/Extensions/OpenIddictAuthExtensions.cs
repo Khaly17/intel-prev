@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Soditech.IntelPrev.Web.Services.Authentications.Extensions;
 

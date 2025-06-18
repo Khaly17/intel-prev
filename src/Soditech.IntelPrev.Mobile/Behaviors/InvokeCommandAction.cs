@@ -1,7 +1,7 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Windows.Input;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Controls.Internals;
-using System.Diagnostics;
 using Microsoft.Extensions.Logging;
 
 namespace Soditech.IntelPrev.Mobile.Behaviors;

@@ -1,4 +1,6 @@
-﻿namespace Soditech.IntelPrev.Mobile.ViewPartiels;
+﻿using Microsoft.Maui.Controls;
+
+namespace Soditech.IntelPrev.Mobile.ViewPartiels;
 
 public partial class SampleHeaderBoxView : ContentView
 {

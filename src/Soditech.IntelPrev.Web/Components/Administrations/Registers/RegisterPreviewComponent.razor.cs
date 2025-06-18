@@ -1,6 +1,5 @@
+using System;
 using Microsoft.AspNetCore.Components;
-using Soditech.IntelPrev.Reports.Shared.RegisterFieldGroups;
-using Soditech.IntelPrev.Reports.Shared.RegisterFields;
 using Soditech.IntelPrev.Reports.Shared.RegisterTypes;
 using Soditech.IntelPrev.Reports.Shared.Reports;
 
@@ -15,9 +14,9 @@ public partial class RegisterPreviewComponent : ComponentBase
     private string _textTest = string.Empty;
     private int _numberTest ;
     private bool _booleanTest;
-    private bool isCreating = false;
+    private bool _isCreating = false;
     [Parameter]
-    public string saveBtnLabel { get; set; } = "Enregistrer";
+    public string SaveBtnLabel { get; set; } = "Enregistrer";
 
     [Parameter]
     public EventCallback<bool> OnIsCreatingChanged { get; set; }

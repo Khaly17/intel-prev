@@ -1,7 +1,11 @@
+using System;
+using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.Maui.Controls;
+using Microsoft.Maui.Devices.Sensors;
+using Soditech.IntelPrev.Mobile.Models.Materials;
 using Soditech.IntelPrev.Mobile.ViewModels.Base;
-using Soditech.IntelPrev.Preventions.Shared.Materials;
 
 namespace Soditech.IntelPrev.Mobile.ViewModels.Gps;
 

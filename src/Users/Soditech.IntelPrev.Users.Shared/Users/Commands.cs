@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using MediatR;
 using Sensor6ty.Results;
 using Soditech.IntelPrev.Users.Shared.Roles;
@@ -59,7 +61,7 @@ public record UserDetailResult
     public string Email { get; set; } = string.Empty;
     public string PhoneNumber { get; set; } = string.Empty;
 
-    private string[] _roles = Array.Empty<string>();
+    private string[] _roles = [];
 
     public IReadOnlyList<string> Roles => _roles;
 }

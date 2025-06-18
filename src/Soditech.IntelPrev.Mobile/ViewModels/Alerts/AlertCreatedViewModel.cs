@@ -1,17 +1,15 @@
+using System.Threading.Tasks;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Maui.Controls;
 using Soditech.IntelPrev.Mobile.ViewModels.Base;
-using Soditech.IntelPrev.Preventions.Shared.Floors;
-using Soditech.IntelPrev.Preventions.Shared.Buildings;
-using Soditech.IntelPrev.Reports.Shared.Alerts;
 
 namespace Soditech.IntelPrev.Mobile.ViewModels.Alerts;
 
 public class AlertCreatedViewModel : MauiViewModel
 {
 
-	private string _successMessage = "Votre alerte a été envoyée avec succès!";
+	private string _successMessage = "Votre alerte a Ã©tÃ© envoyÃ©e avec succÃ¨s!";
 	public string SuccessMessage
 	{
 		get => _successMessage;
@@ -32,7 +30,7 @@ public class AlertCreatedViewModel : MauiViewModel
 		set => SetProperty(ref _primaryActionText, value);
 	}
 
-	private string _secondaryActionText = "Retourner à l'Accueil";
+	private string _secondaryActionText = "Retourner Ã  l'Accueil";
 	public string SecondaryActionText
 	{
 		get => _secondaryActionText;

@@ -1,3 +1,6 @@
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -6,7 +9,7 @@ using Sensor6ty.Results;
 using Soditech.IntelPrev.Reports.Persistence.Models;
 using Soditech.IntelPrev.Reports.Shared.RegisterTypes;
 
-namespace Soditech.IntelPrev.Reports.Application.RegisterTypes.Commands;
+namespace Soditech.IntelPrev.Reports.Application.RegistreTypes.Commands;
 
 public class DeleteRegisterTypeCommandHandler(IServiceProvider serviceProvider) : IRequestHandler<DeleteRegisterTypeCommand, Result>
 {

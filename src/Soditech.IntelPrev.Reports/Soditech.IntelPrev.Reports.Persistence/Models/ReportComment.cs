@@ -1,3 +1,4 @@
+using System;
 using Sensor6ty.Domain;
 
 namespace Soditech.IntelPrev.Reports.Persistence.Models;
@@ -8,10 +9,10 @@ public class ReportComment : EntityBase
     public string Content { get; set; } = string.Empty;
     
     public Guid ReportId { get; set; }
-    public virtual Report Report { get; set; } = default!;
+    public virtual Report Report { get; set; } = null!;
     
     public Guid TenantId { get; set; }
-    public virtual Tenant Tenant { get; set; } = default!;
+    public virtual Tenant Tenant { get; set; } = null!;
     
     public virtual User? Creator { get; set; }
     public Guid? CreatorId { get; set; }

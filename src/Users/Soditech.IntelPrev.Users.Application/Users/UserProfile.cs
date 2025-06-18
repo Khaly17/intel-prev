@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Soditech.IntelPrev.Users.Persistence.Models;
 using Soditech.IntelPrev.Users.Shared.Users;
-using Soditech.IntelPrev.Users.Shared.Users.Events;
 
 namespace Soditech.IntelPrev.Users.Application.Users;
 

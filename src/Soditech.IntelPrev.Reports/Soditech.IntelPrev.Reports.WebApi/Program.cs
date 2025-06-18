@@ -1,7 +1,9 @@
 using FastEndpoints;
 using FastEndpoints.Swagger;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Sensor6ty.WebApi;
-using Soditech.IntelPrev.Reports.Application;
 using Soditech.IntelPrev.Reports.WebApi;
 
 var builder = WebApplication.CreateBuilder(args);

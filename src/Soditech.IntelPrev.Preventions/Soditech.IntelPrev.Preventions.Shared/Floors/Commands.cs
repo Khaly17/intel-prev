@@ -1,8 +1,10 @@
-﻿using MediatR;
+﻿using System;
+using System.Collections.Generic;
+using MediatR;
 using Sensor6ty.Results;
-using Soditech.IntelPrev.Preventions.Shared.Equipments;
+using Soditech.IntelPrev.Prevensions.Shared.Equipments;
 
-namespace Soditech.IntelPrev.Preventions.Shared.Floors;
+namespace Soditech.IntelPrev.Prevensions.Shared.Floors;
 
 public record FloorResult
 {

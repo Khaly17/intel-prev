@@ -1,4 +1,6 @@
+using System;
 using System.Globalization;
+using Microsoft.Maui.Controls;
 
 namespace Soditech.IntelPrev.Mobile.Converters;
 
@@ -7,16 +9,12 @@ namespace Soditech.IntelPrev.Mobile.Converters;
 /// </summary>
 public class BoolToIntConverter : IValueConverter
 {
-    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    public object Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
-        if (value is bool boolValue && boolValue)
-        {
-            return 1;
-        }
-        return 0;
+        return value is bool and true ? 1 : 0;
     }
 
-    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    public object ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
         if (value is int intValue)
         {

@@ -1,8 +1,8 @@
 using AutoMapper;
+using Soditech.IntelPrev.Prevensions.Shared.GatheringPoints;
 using Soditech.IntelPrev.Preventions.Persistence.Models;
-using Soditech.IntelPrev.Preventions.Shared.GatheringPoints;
 
-namespace Soditech.IntelPrev.Preventions.Application.GatheringPoints;
+namespace Soditech.IntelPrev.Prevensions.Application.GatheringPoints;
 
 public class GatheringPointProfile : Profile
 {

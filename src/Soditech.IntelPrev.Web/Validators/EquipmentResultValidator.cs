@@ -1,5 +1,6 @@
-﻿using FluentValidation;
-using Soditech.IntelPrev.Preventions.Shared.Equipments;
+﻿using System;
+using FluentValidation;
+using Soditech.IntelPrev.Prevensions.Shared.Equipments;
 
 namespace Soditech.IntelPrev.Web.Validators;
 

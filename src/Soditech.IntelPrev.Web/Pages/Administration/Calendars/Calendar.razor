@@ -2,15 +2,15 @@
 @attribute [Authorize(Roles = "Admin, Super Admin")]
 
 @using Microsoft.AspNetCore.Authorization
-@using Soditech.IntelPrev.Preventions.Shared.Events
+@using Soditech.IntelPrev.Prevensions.Shared.Events
 @using Syncfusion.Blazor.Schedule
 @using Syncfusion.Blazor.Calendars
 @using Syncfusion.Blazor.DropDowns
 @using Syncfusion.Blazor.Inputs
 
-<SfSchedule TValue="EventResult" Height="1000px" @bind-SelectedDate="@CurrentDate">
+<SfSchedule TValue="EventResult" Height="1000px" @bind-SelectedDate="@_currentDate">
     <ScheduleEvents TValue="EventResult" ActionCompleted="OnActionCompleted"></ScheduleEvents>
-    <ScheduleEventSettings DataSource="@DataSource">
+    <ScheduleEventSettings DataSource="@_dataSource">
         <Template>
             @{
                 var eventData = context as EventResult;

@@ -1,6 +1,7 @@
-﻿using Android.Gms.Common;
+﻿using System;
+using Android.Gms.Common;
 using Android.Provider;
-using Firebase.Messaging;
+using Microsoft.Maui.ApplicationModel;
 using Soditech.IntelPrev.Mobile.Services.Notifications;
 using Soditech.IntelPrev.Notifications.Shared.Models;
 
@@ -8,12 +9,12 @@ namespace Soditech.IntelPrev.Mobile;
 
 public class DeviceAndroidInstallationService : IDeviceInstallationService
 {
-    public string Token { get; set; }
+    public string? Token { get; set; }
 
     public bool NotificationsSupported
         => GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(Platform.AppContext) == ConnectionResult.Success;
 
-    public string GetDeviceId()
+    public string? GetDeviceId()
         => Settings.Secure.GetString(Platform.AppContext.ContentResolver, Settings.Secure.AndroidId);
 
     public DeviceInstallation GetDeviceInstallation(params string[] tags)
@@ -35,7 +36,7 @@ public class DeviceAndroidInstallationService : IDeviceInstallationService
         return installation;
     }
 
-    string GetPlayServicesError()
+    static string GetPlayServicesError()
     {
         var resultCode = GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(Platform.AppContext);
 

@@ -1,4 +1,7 @@
-﻿namespace Soditech.IntelPrev.Web.Services.Cache;
+﻿using System;
+using System.Collections.Generic;
+
+namespace Soditech.IntelPrev.Web.Services.Cache;
 
 public class CacheService : ICacheService
 {

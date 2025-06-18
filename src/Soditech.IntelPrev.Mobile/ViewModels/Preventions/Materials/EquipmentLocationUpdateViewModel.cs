@@ -1,10 +1,17 @@
-﻿using Microsoft.Maui.Maps;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+using Microsoft.Maui.ApplicationModel;
+using Microsoft.Maui.Controls;
+using Microsoft.Maui.Devices.Sensors;
+using Microsoft.Maui.Maps;
 using Soditech.IntelPrev.Mobile.Core.Dependency;
 using Soditech.IntelPrev.Mobile.ViewModels.Base;
+using Soditech.IntelPrev.Prevensions.Shared;
 using Soditech.IntelPrev.Prevensions.Shared.Enums;
+using Soditech.IntelPrev.Prevensions.Shared.Equipments;
 using Soditech.IntelPrev.Prevensions.Shared.GeoLocations;
-using Soditech.IntelPrev.Preventions.Shared;
-using Soditech.IntelPrev.Preventions.Shared.Equipments;
 using Soditech.IntelPrev.Proxy;
 
 namespace Soditech.IntelPrev.Mobile.ViewModels.Preventions.Materials;
@@ -75,7 +82,7 @@ class EquipmentLocationUpdateViewModel : MauiViewModel, IQueryAttributable
         try
         {
             _isCheckingLocation = true;
-            var status = await CheckAndRequestLocationPermission();
+            var status = await EquipmentLocationUpdateViewModel.CheckAndRequestLocationPermission();
 
             if (status == PermissionStatus.Granted)
             {
@@ -101,7 +108,7 @@ class EquipmentLocationUpdateViewModel : MauiViewModel, IQueryAttributable
         }
     }
 
-    private async Task<PermissionStatus> CheckAndRequestLocationPermission()
+    private static async Task<PermissionStatus> CheckAndRequestLocationPermission()
     {
         var status = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>();
 

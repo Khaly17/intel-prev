@@ -5,10 +5,10 @@
 @using Soditech.IntelPrev.Web.Components.Administrations;
 
 <AddOrEditDocument
-    DocumentCommand = "currentDocument"
-    Title="@title"
-    ErrorMessage="@errorMessage"
-    SuccessMessage="@successMessage"
-    onCreateDocument="UpdateDocument"
-    onSeletectedFileChange="HandleFileSelected"
+    DocumentCommand = "CurrentDocument"
+    Title="@Title"
+    ErrorMessage="@_errorMessage"
+    SuccessMessage="@_successMessage"
+    OnCreateDocument="UpdateDocument"
+    OnSeletectedFileChange="HandleFileSelected"
     />

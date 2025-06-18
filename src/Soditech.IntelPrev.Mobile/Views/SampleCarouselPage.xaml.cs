@@ -1,12 +1,11 @@
 using Microsoft.Maui.Controls;
 
-namespace Soditech.IntelPrev.Mobile.Views
+namespace Soditech.IntelPrev.Mobile.Views;
+
+public partial class SampleCarouselPage : ContentPage
 {
-    public partial class SampleCarouselPage : ContentPage
+    public SampleCarouselPage()
     {
-        public SampleCarouselPage()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

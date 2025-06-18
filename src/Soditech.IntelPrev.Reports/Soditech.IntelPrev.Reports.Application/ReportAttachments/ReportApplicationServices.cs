@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Sensor6ty.Application;
 
-namespace Soditech.IntelPrev.Reports.Application;
+namespace Soditech.IntelPrev.Reports.Application.ReportAttachments;
 
 public static class ReportApplicationServices
 {

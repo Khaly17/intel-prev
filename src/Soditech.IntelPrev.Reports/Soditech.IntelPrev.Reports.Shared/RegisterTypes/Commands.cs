@@ -1,8 +1,9 @@
+using System;
+using System.Collections.Generic;
 using MediatR;
 using Sensor6ty.Results;
-using Soditech.IntelPrev.Reports.Shared.RegisterFieldGroups;
 using Soditech.IntelPrev.Reports.Shared.RegisterFields;
-using System.ComponentModel.DataAnnotations;
+using Soditech.IntelPrev.Reports.Shared.RegisterFielGroups;
 
 namespace Soditech.IntelPrev.Reports.Shared.RegisterTypes;
 

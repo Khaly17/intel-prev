@@ -1,3 +1,4 @@
+using Microsoft.Maui.Controls;
 using Soditech.IntelPrev.Mobile.ViewModels.Reports;
 
 namespace Soditech.IntelPrev.Mobile.Views.Reports;

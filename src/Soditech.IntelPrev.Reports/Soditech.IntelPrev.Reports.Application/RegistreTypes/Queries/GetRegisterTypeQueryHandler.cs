@@ -1,3 +1,6 @@
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
@@ -6,7 +9,7 @@ using Sensor6ty.Results;
 using Soditech.IntelPrev.Reports.Persistence.Models;
 using Soditech.IntelPrev.Reports.Shared.RegisterTypes;
 
-namespace Soditech.IntelPrev.Reports.Application.RegisterTypes.Queries;
+namespace Soditech.IntelPrev.Reports.Application.RegistreTypes.Queries;
 
 public class GetRegisterTypeQueryHandler(IServiceProvider serviceProvider)
     : IRequestHandler<GetRegisterTypeQuery, TResult<RegisterTypeResult>>

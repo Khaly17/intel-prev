@@ -5,9 +5,9 @@
             xmlns:base="clr-namespace:Soditech.IntelPrev.Mobile.ViewModels.Base;assembly=Soditech.IntelPrev.Mobile"
             base:ViewManager.AutoWireViewModel="True"
             xmlns:viewModel="clr-namespace:Soditech.IntelPrev.Mobile.ViewModels.Preventions.MedicalContacts"
-            xmlns:medicalContacts="clr-namespace:Soditech.IntelPrev.Preventions.Shared.MedicalContacts;assembly=Soditech.IntelPrev.Preventions.Shared"
             xmlns:behaviors="clr-namespace:Soditech.IntelPrev.Mobile.Behaviors"
             xmlns:components="clr-namespace:Soditech.IntelPrev.Mobile.Views.Components"
+            xmlns:medicalContacts="clr-namespace:Soditech.IntelPrev.Prevensions.Shared.MedicalContacts;assembly=Soditech.IntelPrev.Preventions.Shared"
             x:DataType="viewModel:MedicalContactsViewModel"
             Title="Contacts Médicaux">
 

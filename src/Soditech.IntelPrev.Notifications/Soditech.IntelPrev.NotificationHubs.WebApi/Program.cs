@@ -1,3 +1,6 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Sensor6ty.WebApi;
 using Soditech.IntelPrev.NotificationHubs.WebApi;
 

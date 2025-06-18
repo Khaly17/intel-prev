@@ -1,3 +1,4 @@
+using System;
 using Foundation;
 using Soditech.IntelPrev.Mobile.Services.Notifications;
 using Soditech.IntelPrev.Notifications.Shared.Models;
@@ -8,16 +9,16 @@ namespace Soditech.IntelPrev.Mobile;
 
 public class DeviceiOsInstallationService : IDeviceInstallationService
 {
-    const int SupportedVersionMajor = 13;
-    const int SupportedVersionMinor = 0;
+    private const int SupportedVersionMajor = 13;
+    private const int SupportedVersionMinor = 0;
 
-    public string Token { get; set; }
+    public string? Token { get; set; }
 
     public bool NotificationsSupported =>
         UIDevice.CurrentDevice.CheckSystemVersion(SupportedVersionMajor, SupportedVersionMinor);
 
-    public string GetDeviceId() =>
-        UIDevice.CurrentDevice.IdentifierForVendor.ToString();
+    public string? GetDeviceId() =>
+        UIDevice.CurrentDevice.IdentifierForVendor?.ToString();
 
     public DeviceInstallation GetDeviceInstallation(params string[] tags)
     {
@@ -51,14 +52,11 @@ public class DeviceiOsInstallationService : IDeviceInstallationService
     }
 }
 
-internal static class NSDataExtensions
+internal static class NsDataExtensions
 {
     internal static string ToHexString(this NSData data)
     {
         var bytes = data.ToArray();
-
-        if (bytes == null)
-            return null;
 
         var sb = new StringBuilder(bytes.Length * 2);
 

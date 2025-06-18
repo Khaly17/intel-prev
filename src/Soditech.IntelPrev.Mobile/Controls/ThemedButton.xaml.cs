@@ -1,3 +1,5 @@
+using System;
+using Microsoft.Maui.Controls;
 using Soditech.IntelPrev.Mobile.Helpers;
 
 namespace Soditech.IntelPrev.Mobile.Controls;

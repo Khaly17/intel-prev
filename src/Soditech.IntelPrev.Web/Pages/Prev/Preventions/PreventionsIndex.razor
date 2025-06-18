@@ -3,20 +3,20 @@
 @using Soditech.IntelPrev.Web.Components.Widgets
 @using Syncfusion.Blazor.Spinner
 
-@if(!IsLoading){
+@if(!_isLoading){
 
     <div class="editor-container">
 
-        @if (!string.IsNullOrEmpty(successMessage))
+        @if (!string.IsNullOrEmpty(SuccessMessage))
         {
             <div class="alert alert-success">
-                @successMessage
+                @SuccessMessage
             </div>
         }
-        @if (!string.IsNullOrEmpty(errorMessage))
+        @if (!string.IsNullOrEmpty(ErrorMessage))
         {
             <div class="alert alert-danger">
-                @errorMessage
+                @ErrorMessage
             </div>
         }
         <TextEditorComponent Value="@_value" ValueChanged="OnValueChanged" />
@@ -26,7 +26,7 @@
     </div>
 
 }
-@if (IsLoading)
+@if (_isLoading)
 {
     <SfSpinner @bind-Visible="@DisplaySpinnerOnLoading"></SfSpinner>
 }

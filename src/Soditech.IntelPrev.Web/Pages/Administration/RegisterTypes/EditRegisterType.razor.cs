@@ -1,29 +1,28 @@
-﻿using Microsoft.AspNetCore.Components;
-using Soditech.IntelPrev.Preventions.Shared.Buildings;
-using Soditech.IntelPrev.Preventions.Shared;
+﻿using System;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Logging;
 using Soditech.IntelPrev.Reports.Shared;
 using Soditech.IntelPrev.Reports.Shared.RegisterTypes;
-using Soditech.IntelPrev.Users.Shared.Roles;
-using Soditech.IntelPrev.Web.Services.Cache;
 
 namespace Soditech.IntelPrev.Web.Pages.Administration.RegisterTypes;
 
 public partial class EditRegisterType
 {
     [Parameter]
-    public string registerId { get; set; } = string.Empty;
+    public string RegisterId { get; set; } = string.Empty;
     private bool _isCreating;
 
     private const string registerTypesCacheKey = "RegisterTypes";
     [Inject]
     private ILogger<EditRegisterType> Logger { get; set; } = default!;
 
-    private string saveBtnLabel { get; set; } = "Enregistrer";
-    public string? errorMessage { get; set; }
-    public string? successMessage { get; set; }
+    private string SaveBtnLabel { get; set; } = "Enregistrer";
+    public string? ErrorMessage { get; set; }
+    public string? SuccessMessage { get; set; }
     private bool _isLoading;
 
-    private string GetRegisterCacheKey() => $"Register_{registerId}";
+    private string GetRegisterCacheKey() => $"Register_{RegisterId}";
 
     public RegisterTypeResult RegisterTypeResult = new()
     {
@@ -63,7 +62,7 @@ public partial class EditRegisterType
     {
         try
         {
-            var path = ReportRoutes.RegisterTypes.GetById.Replace("{id:guid}", registerId);
+            var path = ReportRoutes.RegisterTypes.GetById.Replace("{id:guid}", RegisterId);
             var result = await ProxyService.GetAsync<RegisterTypeResult>(path);
 
             if (result.IsSuccess)
@@ -72,20 +71,20 @@ public partial class EditRegisterType
             }
             else
             {
-                errorMessage = "Erreur de récupération des informations du registre.";
+                ErrorMessage = "Erreur de récupération des informations du registre.";
             }
         }
         catch (Exception ex)
         {
-            errorMessage = $"Erreur: {ex.Message}";
+            ErrorMessage = $"Erreur: {ex.Message}";
         }
     }
 
     private async Task UpdateRegister()
     {
-        saveBtnLabel = "Enregistrement ...";
-        errorMessage = null;
-        successMessage = null;
+        SaveBtnLabel = "Enregistrement ...";
+        ErrorMessage = null;
+        SuccessMessage = null;
 
         try
         {
@@ -94,23 +93,23 @@ public partial class EditRegisterType
 
             if (result.IsSuccess)
             {
-                successMessage = "Le registre a été enregistré avec succès !";
+                SuccessMessage = "Le registre a été enregistré avec succès !";
                 CacheService.Set(GetRegisterCacheKey(), RegisterTypeResult);
                 CacheService.Set(registerTypesCacheKey, null);
                 Navigation.NavigateTo("/registers");
             }
             else
             {
-                errorMessage = result.Error?.Message ?? "Une erreur est survenue lors de la création du registre.";
+                ErrorMessage = result.Error?.Message ?? "Une erreur est survenue lors de la création du registre.";
                 Logger.LogError("{code} : {message}", result.Error?.Code, result.Error?.Message);
             }
         }
         catch (Exception ex)
         {
-            errorMessage = "Une erreur interne est survenue lors de la création du registre.";
-            Logger.LogError(ex, errorMessage);
+            ErrorMessage = "Une erreur interne est survenue lors de la création du registre.";
+            Logger.LogError(ex, ErrorMessage);
         }
 
-        saveBtnLabel = "Enregistrer";
+        SaveBtnLabel = "Enregistrer";
     }
 }

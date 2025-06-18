@@ -1,3 +1,8 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -10,7 +15,7 @@ using Soditech.IntelPrev.Prevensions.Shared.GeoLocations;
 using Soditech.IntelPrev.Preventions.Persistence.Extensions.EfCore;
 using Soditech.IntelPrev.Preventions.Persistence.Models;
 
-namespace Soditech.IntelPrev.Preventions.Application.GeoLocations.Queries;
+namespace Soditech.IntelPrev.Prevensions.Application.GeoLocations.Queries;
 
 public class GetLocationsByTypeQueryHandler(IServiceProvider serviceProvider)
     : IRequestHandler<GetLocationsByTypeQuery, TResult<IEnumerable<GeoLocationResult>>>

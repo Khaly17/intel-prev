@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Components;
-using Soditech.IntelPrev.Preventions.Shared.Buildings;
-using Soditech.IntelPrev.Preventions.Shared.Equipments;
-using Soditech.IntelPrev.Preventions.Shared.Floors;
+﻿using System;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components;
+using Soditech.IntelPrev.Prevensions.Shared.Buildings;
+using Soditech.IntelPrev.Prevensions.Shared.Equipments;
+using Soditech.IntelPrev.Prevensions.Shared.Floors;
 
 namespace Soditech.IntelPrev.Web.Components.Administrations;
 
@@ -55,12 +57,12 @@ public partial class AddOrEditBuilding: ComponentBase
         NewBuilding.Equipments.Remove(equipment);
     }
 
-    private void AddEquipmentOnFloor(FloorResult floor)
+    private static void AddEquipmentOnFloor(FloorResult floor)
     {
         floor.Equipments ??= [];
         floor.Equipments.Add(new EquipmentResult());
     }
-    private void RemoveEquipment(FloorResult floor, EquipmentResult equipment)
+    private static void RemoveEquipment(FloorResult floor, EquipmentResult equipment)
     {
         floor.Equipments.Remove(equipment);
     }

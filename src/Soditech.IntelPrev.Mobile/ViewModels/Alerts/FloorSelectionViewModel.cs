@@ -1,11 +1,14 @@
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.Maui.Controls;
 using Soditech.IntelPrev.Mobile.Core.Dependency;
-using Soditech.IntelPrev.Mobile.Localization;
 using Soditech.IntelPrev.Mobile.ViewModels.Base;
-using Soditech.IntelPrev.Preventions.Shared.Floors;
-using Soditech.IntelPrev.Preventions.Shared;
-using Soditech.IntelPrev.Preventions.Shared.Buildings;
+using Soditech.IntelPrev.Prevensions.Shared;
+using Soditech.IntelPrev.Prevensions.Shared.Buildings;
+using Soditech.IntelPrev.Prevensions.Shared.Floors;
 using Soditech.IntelPrev.Proxy;
 using Soditech.IntelPrev.Reports.Shared.Alerts;
 
@@ -74,7 +77,7 @@ public partial class FloorSelectionViewModel : MauiViewModel, IQueryAttributable
     {
 		if (Floor != null)
 		{
-            _createAlertCommand.Description += $", {Floor.Number} ier étage.";
+            _createAlertCommand.Description += $", {Floor.Number} ier Ã©tage.";
 		}
 
 		await Shell.Current.GoToAsync(new ShellNavigationState(AppRoutes.AlertSummaryPage),

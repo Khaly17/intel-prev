@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using MediatR;
 using Sensor6ty.Results;
 using Soditech.IntelPrev.Users.Shared.Users;
@@ -31,8 +33,8 @@ public record RoleDetailResult
     public string Description { get; set; } = string.Empty;
     public string Scope { get; set; } = string.Empty;
 
-    private string[] _permissions = Array.Empty<string>();
-    private string[] _users = Array.Empty<string>();
+    private string[] _permissions = [];
+    private string[] _users = [];
 
     public IReadOnlyList<string> Users => _users;
 

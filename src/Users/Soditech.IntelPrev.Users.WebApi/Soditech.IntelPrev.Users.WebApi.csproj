@@ -3,7 +3,6 @@
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
         <Nullable>enable</Nullable>
-        <ImplicitUsings>enable</ImplicitUsings>
         <UserSecretsId>Soditech.IntelPrev.Users.WebApi-ce3fcc84-b83e-40ab-9fda-1c4287a4a54c</UserSecretsId>
     </PropertyGroup>
 

@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Soditech.IntelPrev.Mobile.Views.Gps.EquipmentLocationTrackerView"
              xmlns:viewModel="clr-namespace:Soditech.IntelPrev.Mobile.ViewModels.Gps"
-             xmlns:models="clr-namespace:Soditech.IntelPrev.Preventions.Shared.Equipments;assembly=Soditech.IntelPrev.Preventions.Shared"
              xmlns:behaviors="using:Soditech.IntelPrev.Mobile.Behaviors"
              x:DataType="viewModel:EquipmentLocationTrackerViewModel"
              Title="Mise à jour de position">

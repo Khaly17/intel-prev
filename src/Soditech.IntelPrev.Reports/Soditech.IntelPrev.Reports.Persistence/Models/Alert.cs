@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Sensor6ty.Domain;
 using Soditech.IntelPrev.Reports.Shared.Enums;
 
@@ -18,13 +14,13 @@ public class Alert : EntityBase
     public double? Altitude { get; set; }
 
     public Guid BuildingId { get; set; }
-    public virtual Building Building { get; set; } = default!;
+    public virtual Building Building { get; set; } = null!;
     
     public Guid? FloorId { get; set; }
     public virtual Floor? Floor { get; set; }
 
     public Guid TenantId { get; set; }
-    public virtual Tenant Tenant { get; set; } = default!;
+    public virtual Tenant Tenant { get; set; } = null!;
 
     public virtual User? Creator { get; set; }
     public Guid? CreatorId { get; set; }

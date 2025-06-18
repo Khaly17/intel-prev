@@ -1,10 +1,11 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using System.Threading.Tasks;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.Maui.Controls;
 using Soditech.IntelPrev.Mobile.Services.Account;
 using Soditech.IntelPrev.Mobile.Services.Account.Models;
 using Soditech.IntelPrev.Mobile.Services.Storage;
 using Soditech.IntelPrev.Mobile.ViewModels.Base;
-using System.Diagnostics;
 
 namespace Soditech.IntelPrev.Mobile.ViewModels.Account;
 
@@ -33,14 +34,14 @@ public partial class ProfileViewModel : MauiViewModel
 
 	public string ProfileTitle => $"{FirstName}";
 	public string ProfileSubtitle => $"Adresse e-mail : {Email}";
-	public string ChangePinText => "Modifier code pin";
-	public string LogoutText => "Déconnexion";
+	public static string ChangePinText => "Modifier code pin";
+	public static string LogoutText => "Déconnexion";
 	public IAsyncRelayCommand PageAppearingCommand { get; }
 	public IAsyncRelayCommand GoToPinVerificationCommand { get; }
 	public IAsyncRelayCommand LogoutCommand { get; }
 
  	// go home command
-    public IAsyncRelayCommand GoHomeCommand => new AsyncRelayCommand(async () =>
+    public static IAsyncRelayCommand GoHomeCommand => new AsyncRelayCommand(async () =>
     {
         await Shell.Current.GoToAsync(new ShellNavigationState(AppRoutes.MainViewPage));
     });

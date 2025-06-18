@@ -4,7 +4,6 @@
 @using Microsoft.AspNetCore.Authorization
 
 @using Soditech.IntelPrev.Users.Shared.Tenants
-@using Soditech.IntelPrev.Users.Shared.Users
 @using Soditech.IntelPrev.Web.Components.Widgets
 @using Soditech.IntelPrev.Web.Components.Widgets.Tables
 @using Soditech.IntelPrev.Web.Components.Widgets.Alerts
@@ -21,7 +20,7 @@ ToolbarItems="@ToolbarItems"
 DisplayTitle="true"
 PageCount="@PageCount"
 PageSize="@PageSize"
-addButton="@AddTenant"
+AddButton="@AddTenant"
 OnEdit="@GoToEdit"
 CustomBtnLabel="Désactiver|Activer"
 OnCustomAction="@DisableTenantTrigger"

@@ -1,6 +1,7 @@
+using System;
 using MediatR;
 
-namespace Soditech.IntelPrev.Preventions.Shared.Statistics;
+namespace Soditech.IntelPrev.Prevensions.Shared.Statistics;
 
 public record StatisticCreatedEvent : INotification
 {

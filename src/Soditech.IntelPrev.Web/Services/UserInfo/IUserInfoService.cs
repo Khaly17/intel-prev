@@ -1,4 +1,5 @@
-﻿using Sensor6ty.Results;
+﻿using System.Threading.Tasks;
+using Sensor6ty.Results;
 
 namespace Soditech.IntelPrev.Web.Services.UserInfo;
 

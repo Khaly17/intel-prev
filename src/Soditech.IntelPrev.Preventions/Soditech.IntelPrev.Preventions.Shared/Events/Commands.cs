@@ -1,7 +1,9 @@
+using System;
+using System.Collections.Generic;
 using MediatR;
 using Sensor6ty.Results;
 
-namespace Soditech.IntelPrev.Preventions.Shared.Events;
+namespace Soditech.IntelPrev.Prevensions.Shared.Events;
 
 public record EventResult
 {

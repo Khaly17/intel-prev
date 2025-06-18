@@ -1,7 +1,8 @@
+using System;
 using MediatR;
 using Sensor6ty.Results;
 
-namespace Soditech.IntelPrev.Preventions.Shared.PreventionSetting;
+namespace Soditech.IntelPrev.Prevensions.Shared.PreventionSetting;
 
 public class UpdateSensibilisationContentCommand : IRequest<Result>
 {

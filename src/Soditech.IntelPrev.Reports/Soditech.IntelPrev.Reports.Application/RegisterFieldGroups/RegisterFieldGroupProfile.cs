@@ -1,6 +1,6 @@
 using AutoMapper;
 using Soditech.IntelPrev.Reports.Persistence.Models;
-using Soditech.IntelPrev.Reports.Shared.RegisterFieldGroups;
+using Soditech.IntelPrev.Reports.Shared.RegisterFielGroups;
 
 namespace Soditech.IntelPrev.Reports.Application.RegisterFieldGroups;
 

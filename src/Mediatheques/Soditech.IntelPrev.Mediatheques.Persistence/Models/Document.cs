@@ -1,3 +1,4 @@
+using System;
 using Sensor6ty.Domain;
 using Soditech.IntelPrev.Mediatheques.Shared.Enums;
 

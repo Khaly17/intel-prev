@@ -1,6 +1,7 @@
+using System;
 using MediatR;
 
-namespace Soditech.IntelPrev.Users.Shared.Tenants.Events;
+namespace Soditech.IntelPrev.Users.Shared.Tenants;
 
 public record TenantCreatedEvent: INotification
 {

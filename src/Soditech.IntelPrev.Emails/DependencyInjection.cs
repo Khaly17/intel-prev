@@ -1,12 +1,12 @@
-﻿using Soditech.IntelPrev.Emails.Helpers;
-using Soditech.IntelPrev.Emails.Services;
-using Soditech.IntelPrev.Emails.Services.Options;
-using Microsoft.AspNetCore.Identity.UI.Services;
+﻿using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Sensor6ty.Application;
+using Soditech.IntelPrev.Emails.Helpers;
+using Soditech.IntelPrev.Emails.Services;
+using Soditech.IntelPrev.Emails.Services.Options;
 
-namespace Soditech.IntelPrev.Emails.MailService;
+namespace Soditech.IntelPrev.Emails;
 
 public static class DependencyInjection
 {

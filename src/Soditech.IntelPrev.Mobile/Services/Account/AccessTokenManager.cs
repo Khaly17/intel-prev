@@ -1,9 +1,14 @@
+using System;
+using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 using System.Text.Json;
+using System.Threading.Tasks;
 using Flurl.Http;
 using Flurl.Http.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Maui.ApplicationModel;
 using Soditech.IntelPrev.Mobile.Helpers;
 using Soditech.IntelPrev.Mobile.Services.Account.Models;
 using Soditech.IntelPrev.Mobile.Services.Storage;
@@ -64,7 +69,7 @@ public class AccessTokenManager(IServiceProvider serviceProvider) : IAccessToken
     }
     public async Task<AuthenticateResultModel?> LoginAsync(AuthenticateModel authenticateModel)
     {
-        EnsureUserNameAndPasswordProvided(authenticateModel);
+        AccessTokenManager.EnsureUserNameAndPasswordProvided(authenticateModel);
 
         authenticateModel.AppVersion = AppInfo.VersionString;
         using var client = CreateApiClient();
@@ -86,7 +91,7 @@ public class AccessTokenManager(IServiceProvider serviceProvider) : IAccessToken
         return AuthenticateResult;
     }
 
-    private void EnsureUserNameAndPasswordProvided(AuthenticateModel authenticateModel)
+    private static void EnsureUserNameAndPasswordProvided(AuthenticateModel authenticateModel)
     {
         if (authenticateModel.Email == null ||
             authenticateModel.Password == null)

@@ -3,66 +3,65 @@ using System.Windows.Input;
 using Microsoft.Maui.Controls;
 using Syncfusion.Maui.Carousel;
 
-namespace Soditech.IntelPrev.Mobile.Views.Components.Carousel
+namespace Soditech.IntelPrev.Mobile.Views.Components.Carousel;
+
+public partial class CarouselComponent : ContentView
 {
-    public partial class CarouselComponent : ContentView
+    public static readonly BindableProperty ItemsSourceProperty = 
+        BindableProperty.Create(nameof(ItemsSource), typeof(IEnumerable<SfCarouselItem>), typeof(CarouselComponent), null, 
+            propertyChanged: OnItemsSourceChanged);
+
+    public static readonly BindableProperty PositionProperty =
+        BindableProperty.Create(nameof(Position), typeof(int), typeof(CarouselComponent), 0,
+            propertyChanged: OnPositionChanged);
+
+    public static readonly BindableProperty CurrentItemChangedCommandProperty =
+        BindableProperty.Create(nameof(CurrentItemChangedCommand), typeof(ICommand), typeof(CarouselComponent), null);
+
+    public IEnumerable<SfCarouselItem> ItemsSource
     {
-        public static readonly BindableProperty ItemsSourceProperty = 
-            BindableProperty.Create(nameof(ItemsSource), typeof(IEnumerable<SfCarouselItem>), typeof(CarouselComponent), null, 
-                propertyChanged: OnItemsSourceChanged);
+        get => (IEnumerable<SfCarouselItem>)GetValue(ItemsSourceProperty);
+        set => SetValue(ItemsSourceProperty, value);
+    }
 
-        public static readonly BindableProperty PositionProperty =
-            BindableProperty.Create(nameof(Position), typeof(int), typeof(CarouselComponent), 0,
-                propertyChanged: OnPositionChanged);
+    public int Position
+    {
+        get => (int)GetValue(PositionProperty);
+        set => SetValue(PositionProperty, value);
+    }
 
-        public static readonly BindableProperty CurrentItemChangedCommandProperty =
-            BindableProperty.Create(nameof(CurrentItemChangedCommand), typeof(ICommand), typeof(CarouselComponent), null);
+    public ICommand CurrentItemChangedCommand
+    {
+        get => (ICommand)GetValue(CurrentItemChangedCommandProperty);
+        set => SetValue(CurrentItemChangedCommandProperty, value);
+    }
 
-        public IEnumerable<SfCarouselItem> ItemsSource
+    public CarouselComponent()
+    {
+        InitializeComponent();
+    }
+
+    private static void OnItemsSourceChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable is CarouselComponent carousel && newValue is IEnumerable<SfCarouselItem> items)
         {
-            get => (IEnumerable<SfCarouselItem>)GetValue(ItemsSourceProperty);
-            set => SetValue(ItemsSourceProperty, value);
+            carousel.carouselView.ItemsSource = items;
         }
+    }
 
-        public int Position
+    private static void OnPositionChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable is CarouselComponent carousel && newValue is int position)
         {
-            get => (int)GetValue(PositionProperty);
-            set => SetValue(PositionProperty, value);
+            carousel.carouselView.Position = position;
         }
+    }
 
-        public ICommand CurrentItemChangedCommand
+    private void CarouselView_OnCurrentItemChanged(object sender, CurrentItemChangedEventArgs e)
+    {
+        if (CurrentItemChangedCommand?.CanExecute(e) == true)
         {
-            get => (ICommand)GetValue(CurrentItemChangedCommandProperty);
-            set => SetValue(CurrentItemChangedCommandProperty, value);
-        }
-
-        public CarouselComponent()
-        {
-            InitializeComponent();
-        }
-
-        private static void OnItemsSourceChanged(BindableObject bindable, object oldValue, object newValue)
-        {
-            if (bindable is CarouselComponent carousel && newValue is IEnumerable<SfCarouselItem> items)
-            {
-                carousel.carouselView.ItemsSource = items;
-            }
-        }
-
-        private static void OnPositionChanged(BindableObject bindable, object oldValue, object newValue)
-        {
-            if (bindable is CarouselComponent carousel && newValue is int position)
-            {
-                carousel.carouselView.Position = position;
-            }
-        }
-
-        private void CarouselView_OnCurrentItemChanged(object sender, CurrentItemChangedEventArgs e)
-        {
-            if (CurrentItemChangedCommand?.CanExecute(e) == true)
-            {
-                CurrentItemChangedCommand.Execute(e);
-            }
+            CurrentItemChangedCommand.Execute(e);
         }
     }
 }

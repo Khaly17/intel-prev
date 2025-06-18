@@ -5,11 +5,8 @@ using Soditech.IntelPrev.Mobile.Services.Account.Models;
 using Soditech.IntelPrev.Mobile.Services.Storage;
 using Soditech.IntelPrev.Mobile.ViewModels.Base;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Maui.Controls;
 
 namespace Soditech.IntelPrev.Mobile.ViewModels.Account;
 

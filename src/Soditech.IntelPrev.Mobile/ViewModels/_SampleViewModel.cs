@@ -1,10 +1,7 @@
 ﻿using System.Threading.Tasks;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
-using Sensor6ty.Results;
 using Soditech.IntelPrev.Mobile.Core.Dependency;
-using Soditech.IntelPrev.Mobile.Core.Threading;
-using Soditech.IntelPrev.Mobile.Services.Storage;
 using Soditech.IntelPrev.Mobile.ViewModels.Base;
 using Soditech.IntelPrev.Proxy;
 using Soditech.IntelPrev.Users.Shared;

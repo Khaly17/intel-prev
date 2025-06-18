@@ -1,6 +1,9 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Linq;
 using System.Security.Claims;
 using System.Security.Cryptography;
+using System.Threading;
+using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -9,12 +12,10 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Sensor6ty.Results;
-using Sensor6ty.System.Reflection;
 using Soditech.IntelPrev.Emails.Helpers;
 using Soditech.IntelPrev.Users.Application.Helpers.Models;
 using Soditech.IntelPrev.Users.Persistence.Models;
 using Soditech.IntelPrev.Users.Shared.Users;
-using Soditech.IntelPrev.Users.Shared.Users.Events;
 
 namespace Soditech.IntelPrev.Users.Application.Users.Commands;
 
@@ -106,7 +107,7 @@ public class CreateUserCommandHandler(IServiceProvider serviceProvider) : IReque
         return Result.Failure<UserResult>(new Error("500", "Error while creating user"));
     }   
 
-    private string GenerateSecureCode(int length = 4)
+    private static string GenerateSecureCode(int length = 4)
     {
         using var rng = RandomNumberGenerator.Create();
         var bytes = new byte[length];

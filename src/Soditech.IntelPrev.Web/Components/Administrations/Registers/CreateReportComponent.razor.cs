@@ -1,3 +1,5 @@
+using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Soditech.IntelPrev.Reports.Shared;
 using Soditech.IntelPrev.Reports.Shared.RegisterTypes;

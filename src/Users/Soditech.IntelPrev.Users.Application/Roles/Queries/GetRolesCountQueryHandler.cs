@@ -1,11 +1,14 @@
-﻿using MediatR;
+﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Sensor6ty.Repositories;
 using Sensor6ty.Results;
 using Soditech.IntelPrev.Users.Persistence.Models;
 using Soditech.IntelPrev.Users.Shared.Roles;
 
-namespace Soditech.IntelPrev.Users.Application.Roles.Commands;
+namespace Soditech.IntelPrev.Users.Application.Roles.Queries;
 
 public class GetRolesCountQueryHandler(IServiceProvider serviceProvider) : IRequestHandler<GetRolesCountQuery, TResult<int>>
 {

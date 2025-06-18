@@ -1,3 +1,7 @@
+using System;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -6,7 +10,7 @@ using Sensor6ty.Repositories;
 using Sensor6ty.Results;
 using Sensor6ty.Sessions;
 using Soditech.IntelPrev.Reports.Persistence.Models;
-using Soditech.IntelPrev.Reports.Shared.RegisterFieldGroups;
+using Soditech.IntelPrev.Reports.Shared.RegisterFielGroups;
 
 namespace Soditech.IntelPrev.Reports.Application.RegisterFieldGroups.Queries;
 

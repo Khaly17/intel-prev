@@ -1,9 +1,9 @@
 using AutoMapper;
+using Soditech.IntelPrev.Prevensions.Shared.Buildings;
+using Soditech.IntelPrev.Prevensions.Shared.Floors;
 using Soditech.IntelPrev.Preventions.Persistence.Models;
-using Soditech.IntelPrev.Preventions.Shared.Buildings;
-using Soditech.IntelPrev.Preventions.Shared.Floors;
 
-namespace Soditech.IntelPrev.Preventions.Application.Buildings;
+namespace Soditech.IntelPrev.Prevensions.Application.Buildings;
 
 public class BuildingProfile : Profile
 {

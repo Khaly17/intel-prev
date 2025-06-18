@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using Controls.UserDialogs.Maui;
+using Microsoft.Maui.ApplicationModel;
 using Soditech.IntelPrev.Mobile.Core.DataStorage;
 using Soditech.IntelPrev.Mobile.Localization;
 using Soditech.IntelPrev.Mobile.Services.Storage;

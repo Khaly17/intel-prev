@@ -1,9 +1,10 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using System;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Soditech.IntelPrev.Users.Persistence.Models;
 
-namespace Soditech.IntelPrev.Users.Persistence.EfCore;
+namespace Soditech.IntelPrev.Users.Persistence;
 
 public class UserDbContext(DbContextOptions<UserDbContext> options) : IdentityDbContext<User, Role, Guid, IdentityUserClaim<Guid>, UserRole, IdentityUserLogin<Guid>, IdentityRoleClaim<Guid>, IdentityUserToken<Guid>>(options)
 {

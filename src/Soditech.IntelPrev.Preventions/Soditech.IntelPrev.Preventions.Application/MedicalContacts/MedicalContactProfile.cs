@@ -1,8 +1,8 @@
 using AutoMapper;
+using Soditech.IntelPrev.Prevensions.Shared.MedicalContacts;
 using Soditech.IntelPrev.Preventions.Persistence.Models;
-using Soditech.IntelPrev.Preventions.Shared.MedicalContacts;
 
-namespace Soditech.IntelPrev.Preventions.Application.MedicalContacts;
+namespace Soditech.IntelPrev.Prevensions.Application.MedicalContacts;
 
 public class MedicalContactProfile : Profile
 {

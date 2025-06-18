@@ -1,9 +1,13 @@
-﻿using Microsoft.AspNetCore.Components;
-using Soditech.IntelPrev.Preventions.Shared.CommitteeMembers;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Logging;
+using Soditech.IntelPrev.Prevensions.Shared;
+using Soditech.IntelPrev.Prevensions.Shared.CommitteeMembers;
 using Soditech.IntelPrev.Users.Shared.Tenants;
-using Soditech.IntelPrev.Users.Shared;
 using Syncfusion.Blazor.Grids;
-using Soditech.IntelPrev.Preventions.Shared;
 
 namespace Soditech.IntelPrev.Web.Pages.Administration.CommitteeMembers;
 
@@ -16,10 +20,10 @@ public partial class CommitteeMembersIndex : ComponentBase
 
     private static List<GridColumn> Columns =>
     [
-        new GridColumn { Field = nameof(CommitteeMemberResult.FirstName), HeaderText = "Prénom" },
-        new GridColumn { Field = nameof(CommitteeMemberResult.LastName), HeaderText = "Nom" },
-        new GridColumn { Field = nameof(CommitteeMemberResult.Email), HeaderText = "Email" },
-        new GridColumn { Field = nameof(CommitteeMemberResult.PhoneNumber), HeaderText = "Téléphone" },
+        new() { Field = nameof(CommitteeMemberResult.FirstName), HeaderText = "Prénom" },
+        new() { Field = nameof(CommitteeMemberResult.LastName), HeaderText = "Nom" },
+        new() { Field = nameof(CommitteeMemberResult.Email), HeaderText = "Email" },
+        new() { Field = nameof(CommitteeMemberResult.PhoneNumber), HeaderText = "Téléphone" },
     ];
     // toolbar items
     private static List<string> ToolbarItems => ["Search", "ExcelExport", "PdfExport", "Print"];

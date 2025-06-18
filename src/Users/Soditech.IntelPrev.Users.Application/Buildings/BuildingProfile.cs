@@ -1,6 +1,6 @@
 using AutoMapper;
-using Soditech.IntelPrev.Preventions.Shared.Buildings;
-using Soditech.IntelPrev.Preventions.Shared.Floors;
+using Soditech.IntelPrev.Prevensions.Shared.Buildings;
+using Soditech.IntelPrev.Prevensions.Shared.Floors;
 using Soditech.IntelPrev.Users.Persistence.Models;
 
 namespace Soditech.IntelPrev.Users.Application.Buildings;

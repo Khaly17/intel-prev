@@ -1,18 +1,21 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Sensor6ty.Repositories;
 using Sensor6ty.Results;
 using Sensor6ty.Sessions;
 using Soditech.IntelPrev.Mediatheques.Persistence.Models;
-using Soditech.IntelPrev.Mediatheques.Shared;
 using Soditech.IntelPrev.Mediatheques.Shared.Documents;
 using Soditech.IntelPrev.Mediatheques.Shared.Enums;
 
-namespace Soditech.IntelPrev.Documents.Application.Documents.Queries;
+namespace Soditech.IntelPrev.Mediatheques.Application.Documents.Queries;
 
 public class GetDocumentsByTypeQueryHandler(IServiceProvider serviceProvider) : IRequestHandler<GetDocumentsByTypeQuery, TResult<IEnumerable<DocumentResult>>>
 {

@@ -1,6 +1,11 @@
-﻿using Soditech.IntelPrev.Mobile.Services.Settings;
+﻿using System;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Maui;
+using Soditech.IntelPrev.Mobile.Services.Settings;
 using Soditech.IntelPrev.Mobile.Helpers;
 using Microsoft.Maui.ApplicationModel;
+using Microsoft.Maui.Controls;
 
 namespace Soditech.IntelPrev.Mobile;
 

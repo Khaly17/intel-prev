@@ -1,4 +1,4 @@
-using Soditech.IntelPrev.Mobile.ViewModels.Gps;
+using Microsoft.Maui.Controls;
 
 namespace Soditech.IntelPrev.Mobile.Views.Gps;
 

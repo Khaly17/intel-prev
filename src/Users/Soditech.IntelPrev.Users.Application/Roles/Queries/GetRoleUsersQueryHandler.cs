@@ -1,4 +1,8 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Sensor6ty.Repositories;
@@ -7,7 +11,7 @@ using Soditech.IntelPrev.Users.Persistence.Models;
 using Soditech.IntelPrev.Users.Shared.Roles;
 using Soditech.IntelPrev.Users.Shared.Users;
 
-namespace Soditech.IntelPrev.Users.Application.Roles.Commands;
+namespace Soditech.IntelPrev.Users.Application.Roles.Queries;
 
 public class GetRoleUsersQueryHandler(IServiceProvider serviceProvider) : IRequestHandler<GetRoleUsersQuery, TResult<IEnumerable<UserResult>>>
 {

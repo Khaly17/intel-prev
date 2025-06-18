@@ -1,10 +1,17 @@
+using System;
 using System.Windows.Input;
 using System.Collections.ObjectModel;
+using System.Threading;
+using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Input;
 using Controls.UserDialogs.Maui;
+using Microsoft.Maui.ApplicationModel;
+using Microsoft.Maui.Controls;
+using Microsoft.Maui.Devices;
+using Microsoft.Maui.Devices.Sensors;
 using Soditech.IntelPrev.Mobile.ViewModels.Base;
-using Soditech.IntelPrev.Preventions.Shared.Floors;
-using Soditech.IntelPrev.Preventions.Shared.Buildings;
+using Soditech.IntelPrev.Prevensions.Shared.Buildings;
+using Soditech.IntelPrev.Prevensions.Shared.Floors;
 using Soditech.IntelPrev.Reports.Shared.Alerts;
 using Soditech.IntelPrev.Reports.Shared.Enums;
 
@@ -25,7 +32,7 @@ public class AlertsListViewModel : MauiViewModel
 	public ICommand AlertCommand => new AsyncRelayCommand<AlertType>(AlertAsync);
     public ICommand SelectionChangedCommand => new AsyncRelayCommand<AlertTypeItem>(HandleSelection);
 	
-	public ObservableCollection<AlertTypeItem> AlertTypes { get; } = new ObservableCollection<AlertTypeItem>();
+	public ObservableCollection<AlertTypeItem> AlertTypes { get; } = new();
 
     public AlertTypeItem SelectedAlertType
     {
@@ -102,7 +109,7 @@ public class AlertsListViewModel : MauiViewModel
 		{
 			_isCheckingLocation = true;
 
-			var status = await CheckAndRequestLocationPermission();
+			var status = await AlertsListViewModel.CheckAndRequestLocationPermission();
 
 			if (status == PermissionStatus.Granted)
 			{
@@ -137,7 +144,7 @@ public class AlertsListViewModel : MauiViewModel
 		}
 	}
 
-	public async Task<PermissionStatus> CheckAndRequestLocationPermission()
+	public static async Task<PermissionStatus> CheckAndRequestLocationPermission()
 	{
 		var status = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>();
 

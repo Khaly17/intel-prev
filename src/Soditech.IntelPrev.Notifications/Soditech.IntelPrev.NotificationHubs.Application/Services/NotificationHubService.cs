@@ -1,4 +1,9 @@
-﻿using Microsoft.Azure.NotificationHubs;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using Microsoft.Azure.NotificationHubs;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Soditech.IntelPrev.NotificationHubs.Application.Models;
@@ -123,7 +128,7 @@ public class NotificationHubService(IOptions<NotificationHubOptions> options, IL
         }
     }
 
-    string PrepareNotificationPayload(string template,string title ,string text, string action) => template
+    static string PrepareNotificationPayload(string template,string title ,string text, string action) => template
         .Replace("$(alertTitle)", title, StringComparison.InvariantCulture)
         .Replace("$(alertMessage)", text, StringComparison.InvariantCulture)
         .Replace("$(alertAction)", action, StringComparison.InvariantCulture);

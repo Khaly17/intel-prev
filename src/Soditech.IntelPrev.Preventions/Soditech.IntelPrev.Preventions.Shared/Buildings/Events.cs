@@ -1,8 +1,10 @@
+using System;
+using System.Collections.Generic;
 using MediatR;
-using Soditech.IntelPrev.Preventions.Shared.Equipments;
-using Soditech.IntelPrev.Preventions.Shared.Floors;
+using Soditech.IntelPrev.Prevensions.Shared.Equipments;
+using Soditech.IntelPrev.Prevensions.Shared.Floors;
 
-namespace Soditech.IntelPrev.Preventions.Shared.Buildings;
+namespace Soditech.IntelPrev.Prevensions.Shared.Buildings;
 
 public record BuildingCreatedEvent : INotification
 {

@@ -1,9 +1,11 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Logging;
 using Soditech.IntelPrev.Reports.Shared;
 using Soditech.IntelPrev.Reports.Shared.RegisterTypes;
-using Soditech.IntelPrev.Web.Components.Administrations.Registers;
-using Soditech.IntelPrev.Web.Models.Utils;
 
 namespace Soditech.IntelPrev.Web.Pages.Administration.RegisterTypes;
 
@@ -16,7 +18,7 @@ public partial class RegisterTypesIndex : ComponentBase
     private RegisterTypeResult _registerTypeTest = default!;
     [Inject] 
     private ILogger<RegisterTypesIndex> Logger { get; set; } = default!;
-    private string saveBtnLabel { get; set; } = "Enregistrer";
+    private string SaveBtnLabel { get; set; } = "Enregistrer";
     public RegisterTypeResult RegisterTypeResult = new()
     {
         RegisterFieldGroups = [],
@@ -25,8 +27,8 @@ public partial class RegisterTypesIndex : ComponentBase
 
     private bool _isCreating;
 
-    public string? errorMessage { get; set; }
-    public string? successMessage { get; set; }
+    public string? ErrorMessage { get; set; }
+    public string? SuccessMessage { get; set; }
 
     private void HandleIsCreatingChanged(bool newValue)
     {
@@ -71,9 +73,9 @@ public partial class RegisterTypesIndex : ComponentBase
 
     private async Task CreateRegister()
     {
-        saveBtnLabel = "Enregistrement ...";
-        errorMessage = null;
-        successMessage = null;
+        SaveBtnLabel = "Enregistrement ...";
+        ErrorMessage = null;
+        SuccessMessage = null;
         try
         {
             var path = ReportRoutes.RegisterTypes.Create;
@@ -81,21 +83,21 @@ public partial class RegisterTypesIndex : ComponentBase
 
             if (result.IsSuccess)
             {
-                successMessage = "Le registre a �t� ajout� avec succ�s !";
+                SuccessMessage = "Le registre a été ajouté avec succès !";
                 Navigation.NavigateTo("/registers");
             }
             else
             {
-                errorMessage = result.Error?.Message ?? "Une erreur est survenue lors de la cr�ation du registre.";
+                ErrorMessage = result.Error?.Message ?? "Une erreur est survenue lors de la création du registre.";
                 Logger.LogError("{code} : {message}", result.Error?.Code, result.Error?.Message);
             }
         }
         catch (Exception ex)
         {
-            errorMessage = "Une erreur interne est survenue lors de la cr�ation du registre.";
-            Logger.LogError(ex, errorMessage);
+            ErrorMessage = "Une erreur interne est survenue lors de la création du registre.";
+            Logger.LogError(ex, ErrorMessage);
         }
-        saveBtnLabel = "Enregistrer";
+        SaveBtnLabel = "Enregistrer";
 
     }
 

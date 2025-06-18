@@ -1,11 +1,15 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components;
 using Soditech.IntelPrev.Web.Services.Authentications;
 using Soditech.IntelPrev.Web.Services.UserInfo;
 
 using Microsoft.JSInterop;
 using Syncfusion.Blazor.Buttons;
 using Microsoft.AspNetCore.SignalR.Client;
-using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 
 namespace Soditech.IntelPrev.Web.Shared.Headers;
 
@@ -27,7 +31,7 @@ public partial class Header : IDisposable
 
     private HubConnection _hubConnection;
 
-    public List<string> Notifications { get; set; } = new List<string>{};
+    public List<string> Notifications { get; set; } = new() {};
     private bool IsNotificationVisible { get; set; } = false;
 
     private DotNetObjectReference<Header>? _dotNetRef;

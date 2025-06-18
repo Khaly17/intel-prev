@@ -1,5 +1,10 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Flurl.Http;
 using Flurl.Http.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Sensor6ty.Results;
 using Soditech.IntelPrev.Mobile.Core.Threading;
@@ -88,7 +93,7 @@ public class AccountService(IServiceProvider serviceProvider): IAccountService
         try
         {
             var requestBody = new { UserName = username };
-            var client = CreateClientApi();
+            var client = AccountService.CreateClientApi();
             var response = await client.Request(UserRoutes.Users.ForgotPassword)
                 .PostJsonAsync(requestBody)
                 .GetResponseAsync();
@@ -102,7 +107,7 @@ public class AccountService(IServiceProvider serviceProvider): IAccountService
         }
     }
 
-    private IFlurlClient CreateClientApi()
+    private static IFlurlClient CreateClientApi()
     {
         var client = new FlurlClientBuilder(ApiUrlConfig.BaseUrl);
 

@@ -1,9 +1,11 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using System;
+using System.Threading.Tasks;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.Logging;
+using Microsoft.Maui.Controls;
 using Soditech.IntelPrev.Mobile.Services.Account;
 using Soditech.IntelPrev.Mobile.ViewModels.Base;
-using System.Diagnostics;
 
 namespace Soditech.IntelPrev.Mobile.ViewModels.Account;
 
@@ -20,10 +22,10 @@ public partial class ForgotPasswordViewModel : MauiViewModel
     }
 
     [ObservableProperty]
-    private string username = string.Empty;
+    private string _username = string.Empty;
 
     [ObservableProperty]
-    private string errorMessage = string.Empty;
+    private string _errorMessage = string.Empty;
 
     public IAsyncRelayCommand ForgotPasswordCommand { get; }
     public IAsyncRelayCommand NavigateToLoginCommand { get; }

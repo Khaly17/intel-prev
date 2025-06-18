@@ -1,4 +1,6 @@
-﻿using Sensor6ty.Domain;
+﻿using System;
+using System.Collections.Generic;
+using Sensor6ty.Domain;
 
 namespace Soditech.IntelPrev.Reports.Persistence.Models;
 
@@ -8,10 +10,10 @@ public class Building : EntityBase
     public string Address { get; set; } = string.Empty;
 
 
-    public virtual List<Floor> Floors { get; set; } = default!;
+    public virtual List<Floor> Floors { get; set; } = null!;
 
     public Guid TenantId { get; set; }
-    public virtual Tenant Tenant { get; set; } = default;
+    public virtual Tenant Tenant { get; set; } = null;
 
     public virtual User? Creator { get; set; }
     public Guid? CreatorId { get; set; }

@@ -1,16 +1,12 @@
 ﻿using Soditech.IntelPrev.Mobile.Core.Dependency;
 using Soditech.IntelPrev.Mobile.ViewModels.Base;
-using Soditech.IntelPrev.Preventions.Shared.PreventionSetting;
-using Soditech.IntelPrev.Preventions.Shared;
 using Soditech.IntelPrev.Proxy;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.Maui.Controls;
+using Soditech.IntelPrev.Prevensions.Shared;
+using Soditech.IntelPrev.Prevensions.Shared.PreventionSetting;
 
 
 namespace Soditech.IntelPrev.Mobile.ViewModels.ProPrev;

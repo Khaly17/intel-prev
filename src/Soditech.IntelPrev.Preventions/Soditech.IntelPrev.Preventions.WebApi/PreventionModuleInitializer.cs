@@ -1,6 +1,8 @@
 using FastEndpoints;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
 using Sensor6ty.Modules;
-using Soditech.IntelPrev.Preventions.Application;
+using Soditech.IntelPrev.Prevensions.Application;
 using Soditech.IntelPrev.Preventions.Persistence;
 
 namespace Soditech.IntelPrev.Preventions.WebApi;

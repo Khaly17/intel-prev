@@ -1,7 +1,8 @@
-﻿using MediatR;
+﻿using System;
+using System.Linq;
+using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Sensor6ty.Results;
 using Soditech.IntelPrev.Emails.Helpers;
@@ -9,6 +10,9 @@ using Soditech.IntelPrev.Users.Application.Helpers.Models;
 using Soditech.IntelPrev.Users.Persistence.Models;
 using Soditech.IntelPrev.Users.Shared.Users;
 using System.Security.Cryptography;
+using System.Threading;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Soditech.IntelPrev.Users.Application.Users.Commands;
 
@@ -94,7 +98,7 @@ public class ResetPasswordUserCommandHandler(IServiceProvider serviceProvider) :
 
     }   
 
-    private string GenerateSecureCode(int length = 4)
+    private static string GenerateSecureCode(int length = 4)
     {
         using var rng = RandomNumberGenerator.Create();
         var bytes = new byte[length];

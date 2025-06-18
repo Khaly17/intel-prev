@@ -1,4 +1,4 @@
-using System;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Components;
 using Syncfusion.Blazor.RichTextEditor;
 using ChangeEventArgs = Microsoft.AspNetCore.Components.ChangeEventArgs;
@@ -34,7 +34,7 @@ public partial class TextEditorComponent
         Value = e.Value.ToString();
     }
     
-    private List<ToolbarItemModel> Tools =
+    private List<ToolbarItemModel> _tools =
     [
         new() { Command = ToolbarCommand.Bold },
         new() { Command = ToolbarCommand.Italic },

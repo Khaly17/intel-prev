@@ -1,8 +1,8 @@
 using AutoMapper;
 using Soditech.IntelPrev.Preventions.Persistence.Models;
-using Soditech.IntelPrev.Users.Shared.Users.Events;
+using Soditech.IntelPrev.Users.Shared.Users;
 
-namespace Soditech.IntelPrev.Preventions.Application.Users;
+namespace Soditech.IntelPrev.Prevensions.Application.Users;
 
 public class UserProfile : Profile
 {

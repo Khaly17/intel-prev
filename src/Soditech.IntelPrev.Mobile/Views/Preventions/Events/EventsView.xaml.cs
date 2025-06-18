@@ -1,4 +1,5 @@
-﻿using Syncfusion.Maui.Scheduler;
+﻿using Microsoft.Maui.Controls;
+using Syncfusion.Maui.Scheduler;
 using Soditech.IntelPrev.Mobile.ViewModels.Preventions.Events;
 
 namespace Soditech.IntelPrev.Mobile.Views.Preventions.Events;

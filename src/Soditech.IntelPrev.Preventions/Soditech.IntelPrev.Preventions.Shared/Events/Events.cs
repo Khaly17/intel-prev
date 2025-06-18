@@ -1,6 +1,7 @@
+using System;
 using MediatR;
 
-namespace Soditech.IntelPrev.Preventions.Shared.Events;
+namespace Soditech.IntelPrev.Prevensions.Shared.Events;
 
 
 public record EventCreatedEvent : INotification

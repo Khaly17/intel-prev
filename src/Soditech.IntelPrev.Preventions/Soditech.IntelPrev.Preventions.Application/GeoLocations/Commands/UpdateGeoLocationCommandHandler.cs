@@ -1,3 +1,6 @@
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
@@ -8,7 +11,7 @@ using Sensor6ty.Sessions;
 using Soditech.IntelPrev.Prevensions.Shared.GeoLocations;
 using Soditech.IntelPrev.Preventions.Persistence.Models;
 
-namespace Soditech.IntelPrev.Preventions.Application.GeoLocations.Commands;
+namespace Soditech.IntelPrev.Prevensions.Application.GeoLocations.Commands;
 
 public class UpdateGeoLocationCommandHandler(IServiceProvider serviceProvider) : IRequestHandler<UpdateGeoLocationCommand, Result>
 {

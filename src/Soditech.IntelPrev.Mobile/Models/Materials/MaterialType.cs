@@ -1,4 +1,4 @@
-namespace Soditech.IntelPrev.Preventions.Shared.Materials;
+namespace Soditech.IntelPrev.Mobile.Models.Materials;
 
 public enum MaterialType
 {

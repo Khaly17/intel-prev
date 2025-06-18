@@ -1,3 +1,6 @@
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -6,7 +9,7 @@ using Sensor6ty.Results;
 using Soditech.IntelPrev.Mediatheques.Persistence.Models;
 using Soditech.IntelPrev.Mediatheques.Shared.Documents;
 
-namespace Soditech.IntelPrev.Documents.Application.Documents.Queries;
+namespace Soditech.IntelPrev.Mediatheques.Application.Documents.Queries;
 
 public class GetDocumentsCountQueryHandler(IServiceProvider serviceProvider) : IRequestHandler<GetDocumentsCountQuery, TResult<int>>
 {

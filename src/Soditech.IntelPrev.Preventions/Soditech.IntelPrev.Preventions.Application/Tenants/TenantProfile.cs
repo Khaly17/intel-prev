@@ -1,8 +1,8 @@
 using AutoMapper;
 using Soditech.IntelPrev.Preventions.Persistence.Models;
-using Soditech.IntelPrev.Users.Shared.Tenants.Events;
+using Soditech.IntelPrev.Users.Shared.Tenants;
 
-namespace Soditech.IntelPrev.Preventions.Application.Tenants;
+namespace Soditech.IntelPrev.Prevensions.Application.Tenants;
 
 public class TenantProfile : Profile
 {

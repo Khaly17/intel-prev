@@ -1,8 +1,9 @@
+using System;
+using System.Collections.Generic;
 using MediatR;
 using Sensor6ty.Results;
-using System.ComponentModel.DataAnnotations;
 
-namespace Soditech.IntelPrev.Preventions.Shared.Campaigns;
+namespace Soditech.IntelPrev.Prevensions.Shared.Campaigns;
 
 public record CampaignResult
 {

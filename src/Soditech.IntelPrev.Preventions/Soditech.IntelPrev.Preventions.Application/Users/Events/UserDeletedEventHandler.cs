@@ -1,11 +1,14 @@
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Sensor6ty.Repositories;
 using Soditech.IntelPrev.Preventions.Persistence.Models;
-using Soditech.IntelPrev.Users.Shared.Users.Events;
+using Soditech.IntelPrev.Users.Shared.Users;
 
-namespace Soditech.IntelPrev.Preventions.Application.Users.Events;
+namespace Soditech.IntelPrev.Prevensions.Application.Users.Events;
 
 public class UserDeletedEventHandler(IServiceProvider serviceProvider) : INotificationHandler<UserDeletedEvent>
 {

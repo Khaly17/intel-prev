@@ -1,3 +1,6 @@
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
@@ -7,7 +10,7 @@ using Sensor6ty.Results;
 using Soditech.IntelPrev.Mediatheques.Persistence.Models;
 using Soditech.IntelPrev.Mediatheques.Shared.Documents;
 
-namespace Soditech.IntelPrev.Users.Application.Documents.Commands;
+namespace Soditech.IntelPrev.Mediatheques.Application.Documents.Commands;
 
 public class UpdateDocumentCommandHandler(IServiceProvider serviceProvider) : IRequestHandler<UpdateDocumentCommand, TResult<DocumentResult>>
 {

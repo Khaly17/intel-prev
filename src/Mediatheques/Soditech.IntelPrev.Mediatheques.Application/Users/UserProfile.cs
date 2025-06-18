@@ -1,6 +1,6 @@
 using AutoMapper;
 using Soditech.IntelPrev.Mediatheques.Persistence.Models;
-using Soditech.IntelPrev.Users.Shared.Users.Events;
+using Soditech.IntelPrev.Users.Shared.Users;
 
 namespace Soditech.IntelPrev.Mediatheques.Application.Users;
 

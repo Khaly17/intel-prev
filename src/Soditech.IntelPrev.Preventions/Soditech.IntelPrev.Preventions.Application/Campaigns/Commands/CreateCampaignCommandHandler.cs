@@ -1,3 +1,6 @@
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
@@ -5,10 +8,10 @@ using Microsoft.Extensions.Logging;
 using Sensor6ty.Repositories;
 using Sensor6ty.Results;
 using Sensor6ty.Sessions;
-using Soditech.IntelPrev.Preventions.Shared.Campaigns;
+using Soditech.IntelPrev.Prevensions.Shared.Campaigns;
 using Soditech.IntelPrev.Preventions.Persistence.Models;
 
-namespace Soditech.IntelPrev.Preventions.Application.Campaigns.Commands;
+namespace Soditech.IntelPrev.Prevensions.Application.Campaigns.Commands;
 
 public class CreateCampaignCommandHandler(IServiceProvider serviceProvider) : IRequestHandler<CreateCampaignCommand, TResult<CampaignResult>>
 {

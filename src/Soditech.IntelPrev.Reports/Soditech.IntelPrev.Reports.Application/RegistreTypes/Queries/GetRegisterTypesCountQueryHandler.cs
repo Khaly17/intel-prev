@@ -1,3 +1,7 @@
+using System;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -8,7 +12,7 @@ using Sensor6ty.Sessions;
 using Soditech.IntelPrev.Reports.Persistence.Models;
 using Soditech.IntelPrev.Reports.Shared.RegisterTypes;
 
-namespace Soditech.IntelPrev.Reports.Application.RegisterTypes.Queries;
+namespace Soditech.IntelPrev.Reports.Application.RegistreTypes.Queries;
 
 public class GetRegisterTypesCountQueryHandler(IServiceProvider serviceProvider) : IRequestHandler<GetRegisterTypesCountQuery, TResult<int>>
 {

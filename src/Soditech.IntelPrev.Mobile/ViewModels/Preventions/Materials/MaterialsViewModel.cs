@@ -1,6 +1,6 @@
-using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Soditech.IntelPrev.Mobile.ViewModels.Base;
 
@@ -19,7 +19,7 @@ public partial class MaterialsViewModel : MauiViewModel
 
     public MaterialsViewModel()
     {
-        _materials = new ObservableCollection<MaterialItem>();
+        _materials = [];
     }
 
     public override async Task InitializeAsync()
@@ -33,27 +33,32 @@ public partial class MaterialsViewModel : MauiViewModel
 
     private void InitializeCollections()
     {
-        Materials = new ObservableCollection<MaterialItem>
-        {
-            new MaterialItem
+        Materials =
+        [
+            new()
             {
                 Title = "Les DAE",
-                Description = "Un Défibrillateur Automatisé Externe (DAE) est un dispositif médical qui aide à la réanimation de victimes d'arrêt cardiaque.",
+                Description =
+                    "Un Défibrillateur Automatisé Externe (DAE) est un dispositif médical qui aide à la réanimation de victimes d'arrêt cardiaque.",
                 ImageSource = "dae.jpg"
             },
-            new MaterialItem
+
+            new()
             {
                 Title = "Les trousses de secours",
-                Description = "Une trousse de secours ou trousse de premiers soins est un contenant où l'on retrouve des dispositifs médicaux permettant d'effectuer les premiers soins en cas de blessures, douleurs ou autres traumatismes.",
+                Description =
+                    "Une trousse de secours ou trousse de premiers soins est un contenant où l'on retrouve des dispositifs médicaux permettant d'effectuer les premiers soins en cas de blessures, douleurs ou autres traumatismes.",
                 ImageSource = "firstaid.jpg"
             },
-            new MaterialItem
+
+            new()
             {
                 Title = "Les EPI",
-                Description = "Les équipements de protection individuelle (EPI) sont destinés à protéger le travailleur contre un ou plusieurs risques professionnels. Leur utilisation ne doit être envisagée qu'en complément des autres mesures d'élimination ou de réduction des risques.",
+                Description =
+                    "Les équipements de protection individuelle (EPI) sont destinés à protéger le travailleur contre un ou plusieurs risques professionnels. Leur utilisation ne doit être envisagée qu'en complément des autres mesures d'élimination ou de réduction des risques.",
                 ImageSource = "ppe.jpg"
             }
-        };
+        ];
     }
 }
 

@@ -1,10 +1,5 @@
 ﻿using FluentValidation;
-using Soditech.IntelPrev.Preventions.Shared.Buildings;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Soditech.IntelPrev.Prevensions.Shared.Buildings;
 
 namespace Soditech.IntelPrev.Web.Validators;
 

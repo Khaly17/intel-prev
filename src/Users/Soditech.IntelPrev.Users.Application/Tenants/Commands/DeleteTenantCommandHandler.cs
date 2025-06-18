@@ -1,3 +1,6 @@
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -5,7 +8,6 @@ using Sensor6ty.Repositories;
 using Sensor6ty.Results;
 using Soditech.IntelPrev.Users.Persistence.Models;
 using Soditech.IntelPrev.Users.Shared.Tenants;
-using Soditech.IntelPrev.Users.Shared.Tenants.Events;
 
 namespace Soditech.IntelPrev.Users.Application.Tenants.Commands;
 

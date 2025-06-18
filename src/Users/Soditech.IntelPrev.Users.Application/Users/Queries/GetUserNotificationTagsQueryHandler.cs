@@ -1,4 +1,9 @@
-﻿using MediatR;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -9,7 +14,7 @@ using Soditech.IntelPrev.Notifications.Shared.Models;
 using Soditech.IntelPrev.Users.Persistence.Models;
 using Soditech.IntelPrev.Users.Shared.Users;
 
-namespace Gefco.AuthServerSoditech.IntelPrev.Users.Application.Users.Commands;
+namespace Soditech.IntelPrev.Users.Application.Users.Queries;
 
 public class GetUserNotificationTagsQueryHandler(IServiceProvider serviceProvider) : IRequestHandler<GetUserNotificationTagsQuery, TResult<IEnumerable<string>>>
 {

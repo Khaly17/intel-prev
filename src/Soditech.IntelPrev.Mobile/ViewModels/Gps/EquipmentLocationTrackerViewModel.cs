@@ -1,14 +1,19 @@
-using System.Collections.ObjectModel;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Input;
-using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.Maui.ApplicationModel;
+using Microsoft.Maui.Controls;
+using Microsoft.Maui.Devices.Sensors;
 using Soditech.IntelPrev.Mobile.Core.Dependency;
+using Soditech.IntelPrev.Mobile.Models.Materials;
 using Soditech.IntelPrev.Mobile.ViewModels.Base;
-using Soditech.IntelPrev.Prevensions.Shared.Enums;
+using Soditech.IntelPrev.Prevensions.Shared;
+using Soditech.IntelPrev.Prevensions.Shared.Equipments;
 using Soditech.IntelPrev.Prevensions.Shared.GeoLocations;
-using Soditech.IntelPrev.Preventions.Shared;
-using Soditech.IntelPrev.Preventions.Shared.Equipments;
-using Soditech.IntelPrev.Preventions.Shared.Materials;
 using Soditech.IntelPrev.Proxy;
 
 namespace Soditech.IntelPrev.Mobile.ViewModels.Gps;
@@ -19,17 +24,14 @@ public partial class EquipmentLocationTrackerViewModel : MauiViewModel, IQueryAt
 
     public ICommand PageAppearingCommand => new AsyncRelayCommand(async () => await InitializeAsync());
 
-    public IEnumerable<EquipmentResult> _equipments;
+    private IEnumerable<EquipmentResult> _equipments = null!;
     public IEnumerable<EquipmentResult> Equipments
     {
         get => _equipments;
-        set
-        {
-            SetProperty(field: ref _equipments, value);
-        }
+        set => SetProperty(field: ref _equipments, value);
     }
 
-    public EquipmentResult _selectedEquipment;
+    private EquipmentResult _selectedEquipment = null!;
 
     public EquipmentResult SelectedEquipment
     {
@@ -38,25 +40,25 @@ public partial class EquipmentLocationTrackerViewModel : MauiViewModel, IQueryAt
     }
 
 
-    public string currentLocationDisplay;
+    private string _currentLocationDisplay = string.Empty;
 
     public string CurrentLocationDisplay
     {
-        get => currentLocationDisplay;
-        set => SetProperty(ref currentLocationDisplay, value);
+        get => _currentLocationDisplay;
+        set => SetProperty(ref _currentLocationDisplay, value);
     }
 
-    private Location currentLocation;
-    private bool isCheckingLocation;
+    private Location _currentLocation;
+    private bool _isCheckingLocation;
 
-    private MaterialType materialType;
+    private MaterialType _materialType;
     public MaterialType MaterialType
     {
-        get => materialType;
-        set => SetProperty(ref materialType, value);
+        get => _materialType;
+        set => SetProperty(ref _materialType, value);
     }
 
-    private string _equipmentTypeDisplay = default;
+    private string _equipmentTypeDisplay = string.Empty;
 
     public string EquipmentTypeDisplay
     {
@@ -72,9 +74,9 @@ public partial class EquipmentLocationTrackerViewModel : MauiViewModel, IQueryAt
         await base.InitializeAsync();
         EquipmentTypeDisplay = MaterialType switch
         {
-            IntelPrev.Preventions.Shared.Materials.MaterialType.Extinguisher => "Extincteur",
-            IntelPrev.Preventions.Shared.Materials.MaterialType.Dae => "Défibrillateur",
-            IntelPrev.Preventions.Shared.Materials.MaterialType.AssemblyPoint => "Point de rassemblement",
+            MaterialType.Extinguisher => "Extincteur",
+            MaterialType.Dae => "Défibrillateur",
+            MaterialType.AssemblyPoint => "Point de rassemblement",
             _ => "Non défini"
         };
         await LoadEquipmentsByType();
@@ -87,9 +89,9 @@ public partial class EquipmentLocationTrackerViewModel : MauiViewModel, IQueryAt
             IsBusy = true;
 
             var result = await _proxyClientService.GetAsync<List<EquipmentResult>>(
-                $"{PreventionRoutes.Equipments.GetEquipmentsByType}".Replace("{type}", materialType.ToString()));
+                $"{PreventionRoutes.Equipments.GetEquipmentsByType}".Replace("{type}", _materialType.ToString()));
 
-            if (result.IsSuccess && result.Value != null)
+            if (result is { IsSuccess: true, Value: not null })
             {
                 Equipments = new List<EquipmentResult>(result.Value);
                 if (Equipments.Any())
@@ -100,7 +102,7 @@ public partial class EquipmentLocationTrackerViewModel : MauiViewModel, IQueryAt
         }
         catch (Exception ex)
         {
-            await HandleExceptionAsync(ex);
+            await MauiViewModel.HandleExceptionAsync(ex);
         }
         finally
         {
@@ -113,18 +115,18 @@ public partial class EquipmentLocationTrackerViewModel : MauiViewModel, IQueryAt
     {
         try
         {
-            isCheckingLocation = true;
-            var status = await CheckAndRequestLocationPermission();
+            _isCheckingLocation = true;
+            var status = await EquipmentLocationTrackerViewModel.CheckAndRequestLocationPermission();
 
             if (status == PermissionStatus.Granted)
             {
                 var request = new GeolocationRequest(GeolocationAccuracy.Medium, TimeSpan.FromSeconds(5));
                 var cancelTokenSource = new CancellationTokenSource();
-                currentLocation = await Geolocation.Default.GetLocationAsync(request, cancelTokenSource.Token);
+                _currentLocation = await Geolocation.Default.GetLocationAsync(request, cancelTokenSource.Token);
 
-                if (currentLocation != null)
+                if (_currentLocation != null)
                 {
-                    CurrentLocationDisplay = $"Lat: {currentLocation.Latitude:F6}, Long: {currentLocation.Longitude:F6}";
+                    CurrentLocationDisplay = $"Lat: {_currentLocation.Latitude:F6}, Long: {_currentLocation.Longitude:F6}";
                 }
             }
         }
@@ -134,11 +136,11 @@ public partial class EquipmentLocationTrackerViewModel : MauiViewModel, IQueryAt
         }
         finally
         {
-            isCheckingLocation = false;
+            _isCheckingLocation = false;
         }
     }
 
-    private async Task<PermissionStatus> CheckAndRequestLocationPermission()
+    private static async Task<PermissionStatus> CheckAndRequestLocationPermission()
     {
         var status = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>();
 
@@ -164,7 +166,7 @@ public partial class EquipmentLocationTrackerViewModel : MauiViewModel, IQueryAt
             return;
         }
 
-        if (currentLocation == null)
+        if (_currentLocation == null)
         {
             await Shell.Current.DisplayAlert("Erreur", "Veuillez définir une position", "OK");
             return;
@@ -178,9 +180,9 @@ public partial class EquipmentLocationTrackerViewModel : MauiViewModel, IQueryAt
             var result = await _proxyClientService.PostAsync(PreventionRoutes.Equipments.UpdateGeoLocation, new UpdateGeoLocationCommand
             {
                 EquipmentId = _selectedEquipment.Id,
-                Latitude = currentLocation.Latitude,
-                Longitude = currentLocation.Longitude,
-                Altitude = currentLocation.Altitude,
+                Latitude = _currentLocation.Latitude,
+                Longitude = _currentLocation.Longitude,
+                Altitude = _currentLocation.Altitude,
                 BuildingId = _selectedEquipment.BuildingId,
                 FloorId = _selectedEquipment.FloorId,
             });
@@ -197,7 +199,7 @@ public partial class EquipmentLocationTrackerViewModel : MauiViewModel, IQueryAt
         }
         catch (Exception ex)
         {
-            await HandleExceptionAsync(ex);
+            await MauiViewModel.HandleExceptionAsync(ex);
         }
         finally
         {

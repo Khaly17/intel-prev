@@ -1,16 +1,17 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
+using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Sensor6ty.Repositories;
 using Sensor6ty.Results;
 using Sensor6ty.Sessions;
-using Soditech.IntelPrev.Reports.Shared.RegisterTypes;
 using Soditech.IntelPrev.Reports.Persistence.Models;
-using Soditech.IntelPrev.Reports.Shared.RegisterFieldGroups;
-using Soditech.IntelPrev.Reports.Shared.RegisterFields;
+using Soditech.IntelPrev.Reports.Shared.RegisterTypes;
 
-namespace Soditech.IntelPrev.Reports.Application.RegisterTypes.Commands;
+namespace Soditech.IntelPrev.Reports.Application.RegistreTypes.Commands;
 
 
 public class CreateRegisterTypeCommandHandler(IServiceProvider serviceProvider) : IRequestHandler<CreateRegisterTypeCommand, TResult<RegisterTypeResult>>

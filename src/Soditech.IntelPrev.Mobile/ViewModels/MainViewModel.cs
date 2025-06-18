@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
@@ -7,11 +6,9 @@ using Controls.UserDialogs.Maui;
 using Microsoft.Maui.ApplicationModel.Communication;
 using Microsoft.Maui.Controls;
 using Soditech.IntelPrev.Mobile.Localization;
-using Soditech.IntelPrev.Mobile.Models;
 using Soditech.IntelPrev.Mobile.ViewModels.Base;
-using Soditech.IntelPrev.Mobile.Views;
 using Syncfusion.Maui.Carousel;
-using Soditech.IntelPrev.Mobile.ViewModels.Preventions;
+using Soditech.IntelPrev.Mobile.Views.DocumentLegaux;
 using Soditech.IntelPrev.Mobile.Views.Incendie;
 using Soditech.IntelPrev.Mobile.Views.Preventions;
 

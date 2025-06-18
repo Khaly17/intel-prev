@@ -1,19 +1,19 @@
-﻿using Microsoft.AspNetCore.Components;
-using Soditech.IntelPrev.Preventions.Shared.Campaigns;
-using Soditech.IntelPrev.Preventions.Shared;
-using Soditech.IntelPrev.Mediatheques.Shared;
-using Soditech.IntelPrev.Users.Shared.Users;
+﻿using System;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components;
+using Soditech.IntelPrev.Prevensions.Shared;
+using Soditech.IntelPrev.Prevensions.Shared.Campaigns;
 
 namespace Soditech.IntelPrev.Web.Pages.Administration.Campaigns;
 public partial class EditCampaign
 {
     [Parameter]
     public string CampaignId { get; set; } = string.Empty;
-    public CampaignResult currentCampaign { get; set; } = new();
-    public string title { get; set; } = "Modifier la campagne";
-    private string? successMessage;
-    private string? errorMessage;
-    private bool IsLoading = false;
+    public CampaignResult CurrentCampaign { get; set; } = new();
+    public string Title { get; set; } = "Modifier la campagne";
+    private string? _successMessage;
+    private string? _errorMessage;
+    private bool _isLoading = false;
     private const string CampaignsCacheKey = "Campaigns";
     private string GetCampaignCacheKey() => $"Campaign_{CampaignId}";
 
@@ -24,64 +24,64 @@ public partial class EditCampaign
 
     private async Task LoadCampaignsAsync()
     {
-        IsLoading = true;
+        _isLoading = true;
         var cacheKey = GetCampaignCacheKey();
         var (exists, cachedValue) = CacheService.Get(cacheKey);
 
         if (exists)
         {
-            currentCampaign = (CampaignResult)cachedValue;
+            CurrentCampaign = (CampaignResult)cachedValue;
         }
         else
         {
             await LoadCurrentCampaignFromApiAsync();
-            CacheService.Set(cacheKey, currentCampaign);
+            CacheService.Set(cacheKey, CurrentCampaign);
         }
-        IsLoading = false;
+        _isLoading = false;
     }
     private async Task LoadCurrentCampaignFromApiAsync()
     {
         try
         {
-            IsLoading = true;
+            _isLoading = true;
             var result = await ProxyService.GetAsync<CampaignResult>(PreventionRoutes.Campaigns.GetById.Replace("{id:guid}", CampaignId));
 
             if (result.IsSuccess)
             {
-                currentCampaign = result.Value;
+                CurrentCampaign = result.Value;
 
             }
             else
             {
-                errorMessage = "Erreur de récupération des informations de la campagne.";
+                _errorMessage = "Erreur de récupération des informations de la campagne.";
             }
         }
         catch (Exception ex)
         {
-            errorMessage = $"Erreur: {ex.Message}";
+            _errorMessage = $"Erreur: {ex.Message}";
         }
-        IsLoading = false;
+        _isLoading = false;
     }
     private async Task UpdateCampaign()
     {
-        if (currentCampaign.Id == Guid.Empty)
+        if (CurrentCampaign.Id == Guid.Empty)
         {
-            errorMessage = "L'ID de la campagne est invalide.";
+            _errorMessage = "L'ID de la campagne est invalide.";
             return;
         }
 
-        var updateResult = await ProxyService.PostAsync<CampaignResult>(PreventionRoutes.Campaigns.Update.Replace("{id:guid}", currentCampaign.Id.ToString()), currentCampaign);
+        var updateResult = await ProxyService.PostAsync<CampaignResult>(PreventionRoutes.Campaigns.Update.Replace("{id:guid}", CurrentCampaign.Id.ToString()), CurrentCampaign);
         if (updateResult.IsSuccess)
         {
-            successMessage = "Informations mis à jour avec succès.";
-            errorMessage = null;
-            CacheService.Set(GetCampaignCacheKey(), currentCampaign);
+            _successMessage = "Informations mis à jour avec succès.";
+            _errorMessage = null;
+            CacheService.Set(GetCampaignCacheKey(), CurrentCampaign);
             CacheService.Set(CampaignsCacheKey, null);
             Navigation.NavigateTo("/campaigns");
         }
         else
         {
-            errorMessage = "Erreur lors de la mise à jour des informations de la campagne.";
+            _errorMessage = "Erreur lors de la mise à jour des informations de la campagne.";
         }
     }
 

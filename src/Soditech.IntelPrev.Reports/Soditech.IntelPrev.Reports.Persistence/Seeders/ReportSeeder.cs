@@ -1,5 +1,8 @@
-using System.Reflection;
+using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Text.Json;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Sensor6ty.Configurations;
 using Sensor6ty.Migration;
@@ -12,7 +15,7 @@ namespace Soditech.IntelPrev.Reports.Persistence.Seeders;
 public class ReportSeeder : ISeeder
 {
     // json options for deserialization: camelCase
-    private static readonly JsonSerializerOptions JsonSerializerOptions = new JsonSerializerOptions
+    private static readonly JsonSerializerOptions JsonSerializerOptions = new()
     {
         PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
         Converters =
@@ -104,7 +107,7 @@ public class ReportSeeder : ISeeder
     }
     
 
-    private async Task CreateUserIfNotExistsAsync(ReportDbContext context, User user)
+    private static async Task CreateUserIfNotExistsAsync(ReportDbContext context, User user)
     {
         if (string.IsNullOrEmpty(user.Id.ToString()))
         {
@@ -114,7 +117,7 @@ public class ReportSeeder : ISeeder
         
         if (string.IsNullOrEmpty(user.FirstName) || string.IsNullOrEmpty(user.LastName))
         {
-            Console.WriteLine($"User Id {user.Id} does not have a username.");
+            Console.WriteLine($"User Id {user.Id} does not have a FirstName or LastName.");
             return;
         }
 
@@ -140,7 +143,7 @@ public class ReportSeeder : ISeeder
 
    
     // Implement CreateTenantIfNotExistsAsync method
-    private async Task CreateTenantIfNotExistsAsync(ReportDbContext context, Tenant tenant)
+    private static async Task CreateTenantIfNotExistsAsync(ReportDbContext context, Tenant tenant)
     {
         if (string.IsNullOrEmpty(tenant.Name))
         {
@@ -168,7 +171,7 @@ public class ReportSeeder : ISeeder
         }
     }
     
-    private async Task CreateRegisterTypeIfNotExistsAsync(ReportDbContext context, RegisterType registerType)
+    private static async Task CreateRegisterTypeIfNotExistsAsync(ReportDbContext context, RegisterType registerType)
     {
         if (string.IsNullOrEmpty(registerType.Name))
         {

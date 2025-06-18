@@ -1,3 +1,6 @@
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
@@ -8,7 +11,7 @@ using Sensor6ty.Sessions;
 using Soditech.IntelPrev.Reports.Persistence.Models;
 using Soditech.IntelPrev.Reports.Shared.RegisterTypes;
 
-namespace Soditech.IntelPrev.Reports.Application.RegisterTypes.Commands;
+namespace Soditech.IntelPrev.Reports.Application.RegistreTypes.Commands;
 
 public class UpdateRegisterTypeCommandHandler(IServiceProvider serviceProvider) : IRequestHandler<UpdateRegisterTypeCommand, TResult<RegisterTypeResult>>
 {

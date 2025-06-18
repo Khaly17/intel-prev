@@ -3,8 +3,7 @@
 @attribute [Authorize(Roles = "Admin, Super Admin")]
 
 @using Microsoft.AspNetCore.Authorization
-@using Soditech.IntelPrev.Preventions.Shared.MedicalContacts
-@using Soditech.IntelPrev.Users.Shared.Users
+@using Soditech.IntelPrev.Prevensions.Shared.MedicalContacts
 @using Soditech.IntelPrev.Web.Components.Widgets.Tables
 @using Soditech.IntelPrev.Web.Components.Widgets.Alerts
 @using Soditech.IntelPrev.Web.Components.Widgets.Dialogs
@@ -16,7 +15,7 @@
              DisplayTitle="true"
              PageCount="@PageCount"
              PageSize="@PageSize"
-             addButton="@AddMedicalContact"
+             AddButton="@AddMedicalContact"
              OnEdit="@GoToEdit"
              OnDelete="@DeleteMedicalContactTrigger"
              Columns="@Columns"

@@ -2,7 +2,7 @@
 @attribute [Authorize(Roles = "Admin, Super Admin")]
 
 @using Microsoft.AspNetCore.Authorization
-@using Soditech.IntelPrev.Preventions.Shared.CommitteeMembers
+@using Soditech.IntelPrev.Prevensions.Shared.CommitteeMembers
 @using Soditech.IntelPrev.Web.Components.Widgets.Tables
 @using Soditech.IntelPrev.Web.Components.Widgets.Alerts
 @using Soditech.IntelPrev.Web.Components.Widgets.Dialogs
@@ -14,7 +14,7 @@
              DisplayTitle="true"
              PageCount="@PageCount"
              PageSize="@PageSize"
-             addButton="@AddCommitteeMember"
+             AddButton="@AddCommitteeMember"
              OnEdit="@GoToEdit"
              CustomBtnLabel="Supprimer"
              OnCustomAction="@DeleteCommitteeMemberTrigger"

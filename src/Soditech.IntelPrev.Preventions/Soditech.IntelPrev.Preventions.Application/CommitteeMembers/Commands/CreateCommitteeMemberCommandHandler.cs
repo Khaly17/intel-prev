@@ -1,3 +1,6 @@
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
@@ -5,10 +8,10 @@ using Microsoft.Extensions.Logging;
 using Sensor6ty.Repositories;
 using Sensor6ty.Results;
 using Sensor6ty.Sessions;
-using Soditech.IntelPrev.Preventions.Shared.CommitteeMembers;
+using Soditech.IntelPrev.Prevensions.Shared.CommitteeMembers;
 using Soditech.IntelPrev.Preventions.Persistence.Models;
 
-namespace Soditech.IntelPrev.Preventions.Application.CommitteeMembers.Commands;
+namespace Soditech.IntelPrev.Prevensions.Application.CommitteeMembers.Commands;
 
 public class CreateCommitteeMemberCommandHandler(IServiceProvider serviceProvider) : IRequestHandler<CreateCommitteeMemberCommand, TResult<CommitteeMemberResult>>
 {

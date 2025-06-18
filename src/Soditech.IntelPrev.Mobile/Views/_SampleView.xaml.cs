@@ -1,6 +1,4 @@
-﻿using Microsoft.Maui.Controls;
-
-namespace Soditech.IntelPrev.Mobile.Views;
+﻿namespace Soditech.IntelPrev.Mobile.Views;
 
 public partial class _SampleView : IXamarinView
 {

@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components;
 using Syncfusion.Blazor.Grids;
 using Syncfusion.Blazor.Navigations;
 using ChangeEventArgs = Microsoft.AspNetCore.Components.ChangeEventArgs;
@@ -15,17 +18,17 @@ public partial class DetailGenericGrid<TItem> : ComponentBase
     [Parameter] public EventCallback<TItem> OnAdd { get; set; }
     [Parameter] public Action<TItem>? DetailAction { get; set; } = default!;
     [Parameter] public RenderFragment? ChildContent { get; set; }
-    [Parameter] public List<string> ToolbarItems { get; set; } = new List<string>();
-    [Parameter] public List<GridColumnDefinition<TItem>> Columns { get; set; } = new List<GridColumnDefinition<TItem>>();
+    [Parameter] public List<string> ToolbarItems { get; set; } = [];
+    [Parameter] public List<GridColumnDefinition<TItem>> Columns { get; set; } = [];
     [Parameter] public bool DisplayActionsBtn { get; set; } = true;
     [Parameter] public bool DisplayPagination { get; set; } = true;
-    [Parameter] public EventCallback addButton { get; set; }
+    [Parameter] public EventCallback AddButton { get; set; }
     [Parameter] public EventCallback<TItem> OnCustomAction { get; set; }
     [Parameter] public bool DisplayTitle { get; set; } = true;
     [Parameter] public int PageCount { get; set; } = default;
     [Parameter] public int CurrentPage { get; set; } = 1; // Current page from parent
     [Parameter] public int TotalCount { get; set; } // Total number of items from backend
-    [Parameter] public List<int> PageSizeOptions { get; set; } = new List<int> { 5, 10, 20, 50 }; // Options for page sizes
+    [Parameter] public List<int> PageSizeOptions { get; set; } = [5, 10, 20, 50]; // Options for page sizes
     [Parameter] public EventCallback<PageChangedEventArgs> OnPageChanged { get; set; }
     [Parameter] public EventCallback<QueryCellInfoEventArgs<TItem>> Callback { get; set; }
     

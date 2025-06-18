@@ -1,22 +1,22 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using System;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Logging;
 using Soditech.IntelPrev.Users.Shared;
 using Soditech.IntelPrev.Users.Shared.Tenants;
-using Soditech.IntelPrev.Users.Shared.Users;
-using Soditech.IntelPrev.Web.Models;
-using Soditech.IntelPrev.Web.Pages.Administration.Users;
 
 namespace Soditech.IntelPrev.Web.Pages.Administration.Tenants;
 
 public partial class EditTenant: ComponentBase
 {
     [Parameter]
-    public string tenantId { get; set; } = string.Empty;
-    public string title { get; set; } = "Modification de la structure";
-    private TenantResult tenant { get; set; } = new TenantResult();
+    public string TenantId { get; set; } = string.Empty;
+    public string Title { get; set; } = "Mo la structure";
+    private TenantResult Tenant { get; set; } = new TenantResult();
 
-    private string? successMessage;
+    private string? _successMessage;
 
-    private string? errorMessage;
+    private string? _errorMessage;
     [Inject] private ILogger<EditTenant> Logger { get; set; } = default!;
 
     protected override async Task OnInitializedAsync()
@@ -27,42 +27,42 @@ public partial class EditTenant: ComponentBase
     {
         try
         {
-            var result = await ProxyService.GetAsync<TenantResult>(UserRoutes.Tenants.GetById.Replace("{id:guid}", tenantId));
+            var result = await ProxyService.GetAsync<TenantResult>(UserRoutes.Tenants.GetById.Replace("{id:guid}", TenantId));
 
             if (result.IsSuccess)
             {
-                tenant = result.Value;
+                Tenant = result.Value;
 
             }
             else
             {
-                errorMessage = "Erreur de récupération de la structure.";
+                _errorMessage = "Erreur de récupération de la structure.";
             }
         }
         catch (Exception ex)
         {
-            errorMessage = $"Erreur: {ex.Message}";
+            _errorMessage = $"Erreur: {ex.Message}";
         }
     }
 
     private async Task UpdateTenant()
     {
-        if (tenant.Id == Guid.Empty)
+        if (Tenant.Id == Guid.Empty)
         {
-            errorMessage = "L'ID de la structure est invalide.";
+            _errorMessage = "L'ID de la structure est invalide.";
             return;
         }
 
-        var updateResult = await ProxyService.PostAsync<TenantResult>(UserRoutes.Tenants.Update.Replace("{id:guid}", tenant.Id.ToString()), tenant);
+        var updateResult = await ProxyService.PostAsync<TenantResult>(UserRoutes.Tenants.Update.Replace("{id:guid}", Tenant.Id.ToString()), Tenant);
         if (updateResult.IsSuccess)
         {
-            successMessage = "Structure mis à jour avec succès.";
-            errorMessage = null;
+            _successMessage = "Structure mis à jour avec succès.";
+            _errorMessage = null;
             Navigation.NavigateTo("/tenants");
         }
         else
         {
-            errorMessage = "Erreur lors de la mise à jour de la structure.";
+            _errorMessage = "Erreur lors de la mise à jour de la structure.";
         }
     }
 

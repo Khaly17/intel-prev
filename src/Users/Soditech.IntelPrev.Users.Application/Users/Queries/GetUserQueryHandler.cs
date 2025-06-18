@@ -1,4 +1,8 @@
-﻿using MediatR;
+﻿using System;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Sensor6ty.Repositories;
@@ -7,7 +11,7 @@ using Soditech.IntelPrev.Users.Persistence.Models;
 using Soditech.IntelPrev.Users.Shared.Roles;
 using Soditech.IntelPrev.Users.Shared.Users;
 
-namespace Gefco.AuthServerSoditech.IntelPrev.Users.Application.Users.Commands;
+namespace Soditech.IntelPrev.Users.Application.Users.Queries;
 
 public class GetUserQueryHandler(IServiceProvider serviceProvider)
     : IRequestHandler<GetUserQuery, TResult<UserResult>>

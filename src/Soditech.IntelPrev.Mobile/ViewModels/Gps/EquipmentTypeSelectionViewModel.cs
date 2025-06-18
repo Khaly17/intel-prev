@@ -1,11 +1,13 @@
-using CommunityToolkit.Mvvm.ComponentModel;
+using System;
+using System.Collections.Generic;
 using CommunityToolkit.Mvvm.Input;
-using Controls.UserDialogs.Maui;
 using Soditech.IntelPrev.Mobile.ViewModels.Base;
 using Soditech.IntelPrev.Mobile.Views.Gps;
-using Soditech.IntelPrev.Preventions.Shared.Materials;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using System.Windows.Input;
+using Microsoft.Maui.Controls;
+using Soditech.IntelPrev.Mobile.Models.Materials;
 
 namespace Soditech.IntelPrev.Mobile.ViewModels.Gps;
 
@@ -19,7 +21,7 @@ public partial class EquipmentTypeSelectionViewModel : MauiViewModel
 		set => SetProperty(ref _selectedEquipmentType, value);
 	}
 
-	private ObservableCollection<EquipmentTypeItem> _equipmentTypes = new ObservableCollection<EquipmentTypeItem>();
+	private ObservableCollection<EquipmentTypeItem> _equipmentTypes = new();
 
 	public ObservableCollection<EquipmentTypeItem> EquipmentTypes
 	{

@@ -1,8 +1,8 @@
 using AutoMapper;
+using Soditech.IntelPrev.Prevensions.Shared.StaticContents;
 using Soditech.IntelPrev.Preventions.Persistence.Models;
-using Soditech.IntelPrev.Preventions.Shared.StaticContents;
 
-namespace Soditech.IntelPrev.Preventions.Application.StaticContents;
+namespace Soditech.IntelPrev.Prevensions.Application.StaticContents;
 
 public class StaticContentProfile : Profile
 {

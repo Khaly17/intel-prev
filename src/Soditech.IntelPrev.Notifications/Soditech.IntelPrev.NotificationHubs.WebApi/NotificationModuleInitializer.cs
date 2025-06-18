@@ -1,4 +1,6 @@
 using FastEndpoints;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
 using Sensor6ty.Modules;
 using Soditech.IntelPrev.NotificationHubs.Application;
 

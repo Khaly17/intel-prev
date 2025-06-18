@@ -2,7 +2,7 @@ using AutoMapper;
 using Soditech.IntelPrev.Reports.Persistence.Models;
 using Soditech.IntelPrev.Reports.Shared.RegisterTypes;
 
-namespace Soditech.IntelPrev.Reports.Application.RegisterTypes;
+namespace Soditech.IntelPrev.Reports.Application.RegistreTypes;
 
 public class RegisterTypeProfile : Profile
 {

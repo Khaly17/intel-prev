@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Sensor6ty.Application;
 
-namespace Soditech.IntelPrev.Preventions.Application;
+namespace Soditech.IntelPrev.Prevensions.Application;
 
 public static class PreventionApplicationServices
 {

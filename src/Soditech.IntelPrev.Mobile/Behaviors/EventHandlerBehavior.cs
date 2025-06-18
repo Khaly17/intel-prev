@@ -1,7 +1,8 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 using Microsoft.Maui.Controls.Internals;
-using System.Diagnostics;
 using Microsoft.Extensions.Logging;
+using Microsoft.Maui.Controls;
 
 namespace Soditech.IntelPrev.Mobile.Behaviors;
 

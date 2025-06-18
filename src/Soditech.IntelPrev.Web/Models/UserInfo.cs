@@ -1,4 +1,6 @@
-﻿namespace Soditech.IntelPrev.Web.Models;
+﻿using System.Collections.Generic;
+
+namespace Soditech.IntelPrev.Web.Models;
 
 public record UserInfo
 {

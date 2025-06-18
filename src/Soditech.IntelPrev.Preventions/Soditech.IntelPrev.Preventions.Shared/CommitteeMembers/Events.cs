@@ -1,6 +1,8 @@
+using System;
+using System.Collections.Generic;
 using MediatR;
 
-namespace Soditech.IntelPrev.Preventions.Shared.CommitteeMembers;
+namespace Soditech.IntelPrev.Prevensions.Shared.CommitteeMembers;
 
 public record CommitteeMemberCreatedEvent : INotification
 {
@@ -11,7 +13,7 @@ public record CommitteeMemberCreatedEvent : INotification
     public string LastName { get; set; } = string.Empty;
     public string Email { get; set; } = string.Empty;
     public string PhoneNumber { get; set; } = string.Empty;
-    public IReadOnlyList<string> Roles { get; init; } = Array.Empty<string>();
+    public IReadOnlyList<string> Roles { get; init; } = [];
     
     public Guid? CreatorId { get; set; }
     public DateTimeOffset? CreatedAt { get; set; }
@@ -32,7 +34,7 @@ public record CommitteeMemberUpdatedEvent : INotification
     public string LastName { get; set; } = string.Empty;
     public string Email { get; set; } = string.Empty;
     public string PhoneNumber { get; set; } = string.Empty;
-    public IReadOnlyList<string> Roles { get; init; } = Array.Empty<string>();
+    public IReadOnlyList<string> Roles { get; init; } = [];
     
     public Guid? CreatorId { get; set; }
     public DateTimeOffset? CreatedAt { get; set; }

@@ -1,59 +1,58 @@
-﻿namespace SavvyTech.R2A.Mobile.MAUI.Models.Settings
+﻿namespace Soditech.IntelPrev.Mobile.Models.Settings;
+
+public class ChangePasswordModel
 {
-    public class ChangePasswordModel
+    private string _currentPassword;
+    private string _newPassword;
+
+    private string _newPasswordRepeat;
+
+    private bool _isChangePasswordDisabled = true;
+
+    public string CurrentPassword
     {
-        private string _currentPassword;
-        private string _newPassword;
-
-        private string _newPasswordRepeat;
-
-        private bool _isChangePasswordDisabled = true;
-
-        public string CurrentPassword
+        get => _currentPassword;
+        set
         {
-            get => _currentPassword;
-            set
-            {
-                _currentPassword = value;
-                SetChangePasswordButtonStatus();
-            }
+            _currentPassword = value;
+            SetChangePasswordButtonStatus();
         }
+    }
 
-        public string NewPassword
+    public string NewPassword
+    {
+        get => _newPassword;
+        set
         {
-            get => _newPassword;
-            set
-            {
-                _newPassword = value;
-                SetChangePasswordButtonStatus();
-            }
+            _newPassword = value;
+            SetChangePasswordButtonStatus();
         }
+    }
 
-        public string NewPasswordRepeat
+    public string NewPasswordRepeat
+    {
+        get => _newPasswordRepeat;
+        set
         {
-            get => _newPasswordRepeat;
-            set
-            {
-                _newPasswordRepeat = value;
-                SetChangePasswordButtonStatus();
-            }
+            _newPasswordRepeat = value;
+            SetChangePasswordButtonStatus();
         }
+    }
 
-        public bool IsChangePasswordDisabled
+    public bool IsChangePasswordDisabled
+    {
+        get => _isChangePasswordDisabled;
+        set
         {
-            get => _isChangePasswordDisabled;
-            set
-            {
-                _isChangePasswordDisabled = value;
-            }
+            _isChangePasswordDisabled = value;
         }
+    }
 
-        private void SetChangePasswordButtonStatus()
-        {
-            IsChangePasswordDisabled = string.IsNullOrWhiteSpace(CurrentPassword)
-                                      || string.IsNullOrWhiteSpace(NewPassword)
-                                      || string.IsNullOrWhiteSpace(NewPasswordRepeat)
-                                      || NewPassword != NewPasswordRepeat;
-        }
+    private void SetChangePasswordButtonStatus()
+    {
+        IsChangePasswordDisabled = string.IsNullOrWhiteSpace(CurrentPassword)
+                                   || string.IsNullOrWhiteSpace(NewPassword)
+                                   || string.IsNullOrWhiteSpace(NewPasswordRepeat)
+                                   || NewPassword != NewPasswordRepeat;
     }
 }

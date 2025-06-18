@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
-
-namespace Soditech.IntelPrev.Users.Application.Helpers.Models;
+﻿namespace Soditech.IntelPrev.Users.Application.Helpers.Models;
 
 public class WelcomeTemplateMailModel
 {

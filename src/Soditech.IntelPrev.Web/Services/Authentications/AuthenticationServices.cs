@@ -1,5 +1,10 @@
-﻿using Soditech.IntelPrev.Web.Services.Proxy;
+﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
+using Soditech.IntelPrev.Web.Services.Proxy;
 using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Sensor6ty.Results;
 using Soditech.IntelPrev.Users.Shared;
 using Soditech.IntelPrev.Users.Shared.Account;
@@ -65,7 +70,7 @@ public class AuthenticationServices(IServiceProvider serviceProvider) : IAuthent
     }
 
     /// <inheritdoc />
-    public Task<TResult<WebLoginCommandResult>> RefreshToken(string refreshToken, CancellationToken cancellationToken = default)
+    public static Task<TResult<WebLoginCommandResult>> RefreshToken(string refreshToken, CancellationToken cancellationToken = default)
     {
         return Task.FromResult(Result.Failure<WebLoginCommandResult>(new Error("400", "Failed to refresh token")));
     }

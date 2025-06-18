@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.Logging;
+using Microsoft.Maui.ApplicationModel;
 using Soditech.IntelPrev.Mobile.Core.Dependency;
 using Soditech.IntelPrev.Mobile.Services.Settings;
 using Soditech.IntelPrev.Mobile.ViewModels.Base;
@@ -122,7 +123,7 @@ public class SettingsViewModel : MauiViewModel
 		set => SetProperty(ref _nearbyDevicesLastAccessed, value);
 	}
 
-	public ObservableCollection<string> AvailableLanguages { get; } = new ObservableCollection<string>();
+	public ObservableCollection<string> AvailableLanguages { get; } = new();
 
 	// Commands
 	public ICommand ResetSettingsCommand => new AsyncRelayCommand(ResetSettingsToDefaultAsync);

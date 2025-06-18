@@ -5,11 +5,11 @@
 @using Soditech.IntelPrev.Web.Components.Administrations;
 
 
-<AddOrEditUser NewUser="user"
-               Title="@title"
-               Roles="_roles"
-               Tenants="_tenants"
-               ErrorMessage="@errorMessage"
-               SuccessMessage="@successMessage"
+<AddOrEditUser NewUser="User"
+               Title="@Title"
+               Roles="Roles"
+               Tenants="Tenants"
+               ErrorMessage="@_errorMessage"
+               SuccessMessage="@_successMessage"
                OnUserCreated="UpdateUser" />
 

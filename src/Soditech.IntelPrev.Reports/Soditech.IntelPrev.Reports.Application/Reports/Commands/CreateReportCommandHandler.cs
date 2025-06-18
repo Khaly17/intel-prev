@@ -1,3 +1,6 @@
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
@@ -47,7 +50,7 @@ public class CreateReportCommandHandler(IServiceProvider serviceProvider) : IReq
 
             await _publisher.Publish(_mapper.Map<ReportCreatedEvent>(report), cancellationToken);
 
-            await _context.Clients.All.ReceiveNotification("Un nouveau signalement a été créé avec succès !");
+            await _context.Clients.All.ReceiveNotification("Un nouveau signalement a Ã©tÃ© crÃ©Ã© avec succÃ¨s !");
             return Result.Success(_mapper.Map<ReportResult>(report));
         }
         catch (Exception ex)

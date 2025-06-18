@@ -1,8 +1,12 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using OpenIddict.Abstractions;
 
-namespace Soditech.IntelPrev.Users.Persistence.OpenIddict;
+namespace Soditech.IntelPrev.Users.Persistence.Seeders;
 
 /// <summary>
 /// Creates initial data that is needed to property run the application

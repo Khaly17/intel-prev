@@ -1,8 +1,9 @@
+using System;
+using System.Collections.Generic;
 using MediatR;
 using Sensor6ty.Results;
-using System.ComponentModel.DataAnnotations;
 
-namespace Soditech.IntelPrev.Preventions.Shared.CommitteeMembers;
+namespace Soditech.IntelPrev.Prevensions.Shared.CommitteeMembers;
 
 public record CommitteeMemberResult
 {
@@ -18,7 +19,7 @@ public record CommitteeMemberResult
 
     public string PhoneNumber { get; set; } = string.Empty;
 
-    public IReadOnlyList<string> Roles { get; init; } = Array.Empty<string>();
+    public IReadOnlyList<string> Roles { get; init; } = [];
 
     public string? CreatorFullName { get; set; }
 
@@ -45,7 +46,7 @@ public record CreateCommitteeMemberCommand : IRequest<TResult<CommitteeMemberRes
     public string LastName { get; set; } = string.Empty;
     public string Email { get; set; } = string.Empty;
     public string PhoneNumber { get; set; } = string.Empty;
-    public IReadOnlyList<string> Roles { get; init; } = Array.Empty<string>();
+    public IReadOnlyList<string> Roles { get; init; } = [];
 }
 
 public record UpdateCommitteeMemberCommand : IRequest<TResult<CommitteeMemberResult>>
@@ -55,7 +56,7 @@ public record UpdateCommitteeMemberCommand : IRequest<TResult<CommitteeMemberRes
     public string LastName { get; set; } = string.Empty;
     public string Email { get; set; } = string.Empty;
     public string PhoneNumber { get; set; } = string.Empty;
-    public IReadOnlyList<string> Roles { get; init; } = Array.Empty<string>();
+    public IReadOnlyList<string> Roles { get; init; } = [];
 }
 
 public record DeleteCommitteeMemberCommand : IRequest<Result>

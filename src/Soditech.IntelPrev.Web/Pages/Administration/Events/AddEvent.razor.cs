@@ -1,45 +1,47 @@
-﻿using Microsoft.AspNetCore.Components;
-using Soditech.IntelPrev.Preventions.Shared.Events;
-using Soditech.IntelPrev.Users.Shared.Tenants;
-using Soditech.IntelPrev.Users.Shared;
-using Soditech.IntelPrev.Preventions.Shared;
-using Soditech.IntelPrev.Preventions.Shared.CommitteeMembers;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Logging;
+using Soditech.IntelPrev.Prevensions.Shared;
+using Soditech.IntelPrev.Prevensions.Shared.CommitteeMembers;
+using Soditech.IntelPrev.Prevensions.Shared.Events;
 
 namespace Soditech.IntelPrev.Web.Pages.Administration.Events;
 
 public partial class AddEvent
 {
-    public EventResult NewEvent { get; set; } = new EventResult();
+    public EventResult NewEvent { get; set; } = new();
     public IList<CommitteeMemberResult> CommitteeMembers { get; set; } = [];
-    public string title { get; set; } = "Ajouter un événement";
-    public string? errorMessage { get; set; }
-    public string? successMessage { get; set; }
+    public string Title { get; set; } = "Ajouter un événement";
+    public string? ErrorMessage { get; set; }
+    public string? SuccessMessage { get; set; }
     [Inject] private ILogger<AddEvent> Logger { get; set; } = default!;
     private bool IsLoading { get; set; }
 
     private async Task CreateEvent()
     {
-        errorMessage = null;
-        successMessage = null;
+        ErrorMessage = null;
+        SuccessMessage = null;
         try
         {
             var result = await ProxyService.PostAsync<EventResult>(PreventionRoutes.Events.Create, NewEvent);
 
             if (result.IsSuccess)
             {
-                successMessage = "L'événement a été ajouté avec succès !";
+                SuccessMessage = "L'événement a été ajouté avec succès !";
                 Navigation.NavigateTo("/events");
             }
             else
             {
-                errorMessage = result.Error?.Message ?? "Une erreur est survenue lors de la création de l'événement";
+                ErrorMessage = result.Error?.Message ?? "Une erreur est survenue lors de la création de l'événement";
                 Logger.LogError("{code} : {message}", result.Error?.Code, result.Error?.Message);
             }
         }
         catch (Exception ex)
         {
-            errorMessage = "Une erreur interne est survenue lors de la création de l'événement.";
-            Logger.LogError(ex, errorMessage);
+            ErrorMessage = "Une erreur interne est survenue lors de la création de l'événement.";
+            Logger.LogError(ex, ErrorMessage);
         }
     }
     protected override async Task OnInitializedAsync()

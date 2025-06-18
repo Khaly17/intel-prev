@@ -1,8 +1,8 @@
 using AutoMapper;
+using Soditech.IntelPrev.Prevensions.Shared.Equipments;
 using Soditech.IntelPrev.Preventions.Persistence.Models;
-using Soditech.IntelPrev.Preventions.Shared.Equipments;
 
-namespace Soditech.IntelPrev.Preventions.Application.Equipments;
+namespace Soditech.IntelPrev.Prevensions.Application.Equipments;
 
 public class EquipmentProfile : Profile
 {

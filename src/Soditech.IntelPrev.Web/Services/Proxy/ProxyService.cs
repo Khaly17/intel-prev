@@ -1,7 +1,12 @@
-﻿using System.Text;
+﻿using System;
+using System.Net.Http;
+using System.Text;
 using System.Text.Json;
-using Soditech.IntelPrev.Web.Services.Extensions;
+using System.Threading;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using Sensor6ty.Results;
+using Soditech.IntelPrev.Web.Services.Extensions;
 
 namespace Soditech.IntelPrev.Web.Services.Proxy;
 public class ProxyService(HttpClient httpClient, ILogger<ProxyService> logger) : IProxyService

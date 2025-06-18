@@ -3,7 +3,6 @@ using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Maui.Controls;
 using Soditech.IntelPrev.Mobile.ViewModels.Base;
-using Soditech.IntelPrev.Mobile.Views.Preventions.PreventionStatisticInfos;
 
 namespace Soditech.IntelPrev.Mobile.ViewModels.Preventions;
 

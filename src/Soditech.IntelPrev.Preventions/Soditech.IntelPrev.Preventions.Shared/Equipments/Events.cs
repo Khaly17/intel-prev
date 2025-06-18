@@ -1,6 +1,7 @@
+using System;
 using MediatR;
 
-namespace Soditech.IntelPrev.Preventions.Shared.Equipments;
+namespace Soditech.IntelPrev.Prevensions.Shared.Equipments;
 
 public record EquipmentCreatedEvent : INotification
 {

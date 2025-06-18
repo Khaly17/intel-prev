@@ -1,9 +1,12 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using System;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Soditech.IntelPrev.Mobile.Services.Account;
 using Soditech.IntelPrev.Mobile.Services.Storage;
 using Soditech.IntelPrev.Mobile.ViewModels.Base;
 using System.Diagnostics;
+using System.Threading.Tasks;
+using Microsoft.Maui.Controls;
 
 namespace Soditech.IntelPrev.Mobile.ViewModels.Account;
 

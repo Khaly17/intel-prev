@@ -1,7 +1,12 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Logging;
+using Soditech.IntelPrev.Prevensions.Shared;
+using Soditech.IntelPrev.Prevensions.Shared.Events;
 using Syncfusion.Blazor.Grids;
-using Soditech.IntelPrev.Preventions.Shared.Events;
-using Soditech.IntelPrev.Preventions.Shared;
 
 namespace Soditech.IntelPrev.Web.Pages.Administration.Events;
 
@@ -14,11 +19,11 @@ public partial class EventsIndex : ComponentBase
 
     private static List<GridColumn> Columns =>
     [
-        new GridColumn { Field = nameof(EventResult.Name), HeaderText = "Nom" },
-        new GridColumn { Field = nameof(EventResult.StartDate), HeaderText = "Date de début" },
-        new GridColumn { Field = nameof(EventResult.EndDate), HeaderText = "Date de fin" },
-        new GridColumn { Field = nameof(EventResult.Location), HeaderText = "Lieu" },
-        new GridColumn { Field = nameof(EventResult.Description), HeaderText = "Description" }
+        new() { Field = nameof(EventResult.Name), HeaderText = "Nom" },
+        new() { Field = nameof(EventResult.StartDate), HeaderText = "Date de début" },
+        new() { Field = nameof(EventResult.EndDate), HeaderText = "Date de fin" },
+        new() { Field = nameof(EventResult.Location), HeaderText = "Lieu" },
+        new() { Field = nameof(EventResult.Description), HeaderText = "Description" }
     ];
     // toolbar items
     private static List<string> ToolbarItems => ["Search", "ExcelExport", "PdfExport", "Print"];

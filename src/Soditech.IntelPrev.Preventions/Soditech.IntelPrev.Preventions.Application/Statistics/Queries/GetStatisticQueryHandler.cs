@@ -1,12 +1,15 @@
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Sensor6ty.Repositories;
 using Sensor6ty.Results;
+using Soditech.IntelPrev.Prevensions.Shared.Statistics;
 using Soditech.IntelPrev.Preventions.Persistence.Models;
-using Soditech.IntelPrev.Preventions.Shared.Statistics;
 
-namespace Soditech.IntelPrev.Preventions.Application.Equipments.Queries;
+namespace Soditech.IntelPrev.Prevensions.Application.Statistics.Queries;
 
 public class GetStatisticQueryHandler(IServiceProvider serviceProvider)
     : IRequestHandler<GetStatisticQuery, TResult<StatisticResult>>

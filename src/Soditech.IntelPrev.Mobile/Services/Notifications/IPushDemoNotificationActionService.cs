@@ -1,4 +1,6 @@
-﻿namespace Soditech.IntelPrev.Mobile.Services.Notifications;
+﻿using System;
+
+namespace Soditech.IntelPrev.Mobile.Services.Notifications;
 
 public interface IPushDemoNotificationActionService : INotificationActionService
 {

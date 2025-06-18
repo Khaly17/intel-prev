@@ -1,3 +1,4 @@
+using System;
 using Sensor6ty.Domain;
 using Soditech.IntelPrev.Reports.Shared.Enums;
 
@@ -13,13 +14,13 @@ public class RegisterField: EntityBase
     public int DisplayOrder { get; set; } // Display order
     
     public Guid? RegisterFieldGroupId { get; set; } // reference to the register field group
-    public virtual RegisterFieldGroup? RegisterFieldGroup { get; set; } = default!;
+    public virtual RegisterFieldGroup? RegisterFieldGroup { get; set; } = null!;
     
     public Guid RegisterTypeId { get; set; } // reference to the register type
-    public virtual RegisterType RegisterType { get; set; } = default!;
+    public virtual RegisterType RegisterType { get; set; } = null!;
     
     public Guid TenantId { get; set; }
-    public virtual Tenant Tenant { get; set; } = default!;
+    public virtual Tenant Tenant { get; set; } = null!;
     
     public virtual User? Creator { get; set; }
     public Guid? CreatorId { get; set; }

@@ -1,10 +1,14 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Logging;
 using Syncfusion.Blazor.Grids;
 using Soditech.IntelPrev.Reports.Shared.Reports;
 using Soditech.IntelPrev.Reports.Shared;
 using Soditech.IntelPrev.Web.Services.Extensions;
 using Soditech.IntelPrev.Web.Models;
-using Soditech.IntelPrev.Users.Shared.Roles;
 
 namespace Soditech.IntelPrev.Web.Pages.Administration.Reports;
 
@@ -26,25 +30,30 @@ public partial class ReportsIndex : ComponentBase
     private const string SelectedReportCacheKey = "SelectedReportCacheKey";
 
 
-    private static List<GridColumn> Columns => new List<GridColumn>
-    {
+    private static List<GridColumn> Columns =>
+    [
         new GridColumn { Field = nameof(ReportResult.Title), HeaderText = "Titre" },
         new GridColumn { Field = nameof(ReportResult.Status), HeaderText = "Statut" },
-        new GridColumn { 
-            Field = nameof(ReportResult.CreatedAt), 
+        new GridColumn
+        {
+            Field = nameof(ReportResult.CreatedAt),
             HeaderText = "Date",
-            Format = "dd/MM/yyyy" 
+            Format = "dd/MM/yyyy"
         },
-        new GridColumn { 
-            Field = nameof(ReportResult.CreatedAt), 
+
+        new GridColumn
+        {
+            Field = nameof(ReportResult.CreatedAt),
             HeaderText = "Heure",
             Format = "HH:mm"
         },
 
-        new GridColumn { Field = nameof(ReportResult.CreatorFullName), HeaderText = "Signalé par" },
-    };
 
-    private static List<string> ToolbarItems => new List<string> { "Search", "ExcelExport", "PdfExport", "Print" };
+        new GridColumn { Field = nameof(ReportResult.CreatorFullName), HeaderText = "Signalé par" }
+
+    ];
+
+    private static List<string> ToolbarItems => ["Search", "ExcelExport", "PdfExport", "Print"];
 
     private bool _isDeleteModalVisible;
     private string _alertMessage = string.Empty;

@@ -1,3 +1,8 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -6,10 +11,10 @@ using Microsoft.Extensions.Logging;
 using Sensor6ty.Repositories;
 using Sensor6ty.Results;
 using Sensor6ty.Sessions;
+using Soditech.IntelPrev.Prevensions.Shared.Events;
 using Soditech.IntelPrev.Preventions.Persistence.Models;
-using Soditech.IntelPrev.Preventions.Shared.Events;
 
-namespace Soditech.IntelPrev.Preventions.Application.Events.Queries;
+namespace Soditech.IntelPrev.Prevensions.Application.Events.Queries;
 
 public class GetUpComingEventsQueryHandler(IServiceProvider serviceProvider) : IRequestHandler<GetUpComingEventsQuery, TResult<IEnumerable<EventResult>>>
 {

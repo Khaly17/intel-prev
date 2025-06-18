@@ -1,5 +1,8 @@
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.Maui.Controls;
 using Soditech.IntelPrev.Mobile.ViewModels.Base;
 using Soditech.IntelPrev.Reports.Shared.Reports;
 
@@ -44,10 +47,10 @@ public class ReportCreatedViewModel : MauiViewModel, IQueryAttributable
 
 	public ICommand PageAppearingCommand => new AsyncRelayCommand(async () => await InitializeAsync());
 
-	public ICommand SecondaryButtonCommand => new AsyncRelayCommand(async () =>
+	public static ICommand SecondaryButtonCommand => new AsyncRelayCommand(async () =>
 		await Shell.Current.GoToAsync($"{AppRoutes.MainViewPage}"));
 
-	public ICommand PrimaryButtonCommand => new AsyncRelayCommand(async () =>
+	public static ICommand PrimaryButtonCommand => new AsyncRelayCommand(async () =>
 		await Shell.Current.GoToAsync($"{AppRoutes.RegisterListPage}"));
 
 	public override Task InitializeAsync()

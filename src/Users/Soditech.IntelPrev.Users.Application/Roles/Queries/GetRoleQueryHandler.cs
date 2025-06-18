@@ -1,11 +1,14 @@
-﻿using MediatR;
+﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
+using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Sensor6ty.Results;
 using Soditech.IntelPrev.Users.Persistence.Models;
 using Soditech.IntelPrev.Users.Shared.Roles;
 
-namespace Soditech.IntelPrev.Users.Application.Roles.Commands;
+namespace Soditech.IntelPrev.Users.Application.Roles.Queries;
 
 public class GetRoleQueryHandler(IServiceProvider serviceProvider) : IRequestHandler<GetRoleQuery, TResult<RoleResult>>
 {

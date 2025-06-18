@@ -1,15 +1,18 @@
 ﻿using FastEndpoints;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using OpenIddict.Abstractions;
 using Sensor6ty.Modules;
 using Sensor6ty.WebApi;
-using Soditech.IntelPrev.Emails.MailService;
+using Soditech.IntelPrev.Emails;
 using Soditech.IntelPrev.Users.Application;
 using Soditech.IntelPrev.Users.Persistence;
-using Soditech.IntelPrev.Users.Persistence.EfCore;
 using Soditech.IntelPrev.Users.Persistence.Models;
-using Soditech.IntelPrev.Users.Persistence.OpenIddict;
+using Soditech.IntelPrev.Users.Persistence.Seeders;
 using Soditech.IntelPrev.Users.WebApi.Extensions.OpenIddict;
+using Soditech.IntelPrev.Users.WebApi.HostedServices;
 
 namespace Soditech.IntelPrev.Users.WebApi;
 public class UserModuleInitializer : DefaultModuleInitializer

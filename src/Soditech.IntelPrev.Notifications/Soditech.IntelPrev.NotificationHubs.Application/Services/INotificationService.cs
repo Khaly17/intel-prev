@@ -1,4 +1,5 @@
-﻿using Soditech.IntelPrev.NotificationHubs.Application.Models;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using Soditech.IntelPrev.Notifications.Shared.Models;
 
 namespace Soditech.IntelPrev.NotificationHubs.Application.Services;

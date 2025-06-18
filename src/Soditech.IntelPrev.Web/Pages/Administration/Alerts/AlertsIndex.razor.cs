@@ -1,4 +1,9 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Logging;
 using Syncfusion.Blazor.Grids;
 using Soditech.IntelPrev.Reports.Shared.Alerts;
 using Soditech.IntelPrev.Web.Services.Extensions;
@@ -23,14 +28,14 @@ public partial class AlertsIndex : ComponentBase
     private bool IsLoading { get; set; }
 
     private const string SelectedAlertCacheKey = "SelectedAlertCacheKey";
-    private static List<GridColumn> Columns => new List<GridColumn>
-    {
+    private static List<GridColumn> Columns =>
+    [
         new GridColumn { Field = nameof(AlertResult.Title), HeaderText = "Titre" },
         new GridColumn { Field = nameof(AlertResult.Description), HeaderText = "Description" },
         new GridColumn { Field = nameof(AlertResult.Type), HeaderText = "Type" }
-    };
+    ];
 
-    private static List<string> ToolbarItems => new List<string> { "Search", "ExcelExport", "PdfExport", "Print" };
+    private static List<string> ToolbarItems => ["Search", "ExcelExport", "PdfExport", "Print"];
 
     private bool _isDeleteModalVisible;
     private string _alertMessage = string.Empty;

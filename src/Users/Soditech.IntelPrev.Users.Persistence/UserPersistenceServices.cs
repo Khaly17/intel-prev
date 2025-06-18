@@ -1,5 +1,4 @@
-﻿using Soditech.IntelPrev.Users.Persistence.EfCore;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Sensor6ty.Persistence;

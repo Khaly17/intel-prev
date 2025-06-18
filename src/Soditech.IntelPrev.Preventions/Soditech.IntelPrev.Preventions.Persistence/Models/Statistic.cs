@@ -1,3 +1,4 @@
+using System;
 using Sensor6ty.Domain;
 
 namespace Soditech.IntelPrev.Preventions.Persistence.Models;

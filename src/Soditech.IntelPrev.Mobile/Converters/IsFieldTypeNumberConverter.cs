@@ -1,4 +1,6 @@
+using System;
 using System.Globalization;
+using Microsoft.Maui.Controls;
 using Soditech.IntelPrev.Reports.Shared.Enums;
 
 namespace Soditech.IntelPrev.Mobile.Converters;
@@ -10,7 +12,7 @@ public class IsFieldTypeNumberConverter : IValueConverter
     {
         if (value is string str)
         {
-            return str == FieldType.Number.ToString();
+            return str == nameof(FieldType.Number);
         }
         return false;
     }
@@ -20,7 +22,7 @@ public class IsFieldTypeNumberConverter : IValueConverter
     {
         if (value is bool b)
         {
-            return b ? FieldType.Number.ToString() : null;
+            return b ? nameof(FieldType.Number) : null;
         }
         return null;
     }

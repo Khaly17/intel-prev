@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
 namespace Soditech.IntelPrev.Mobile.Services.Account.Models;

@@ -1,9 +1,12 @@
 using Microsoft.AspNetCore.Authentication.BearerToken;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using OpenIddict.Server.AspNetCore;
 using OpenIddict.Validation.AspNetCore;
-using Soditech.IntelPrev.Users.Persistence.EfCore;
 using Soditech.IntelPrev.Users.Application.Extensions.OpenIddict;
+using Soditech.IntelPrev.Users.Persistence;
 
 namespace Soditech.IntelPrev.Users.WebApi.Extensions.OpenIddict;
 

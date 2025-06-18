@@ -2,7 +2,7 @@ using AutoMapper;
 using Soditech.IntelPrev.Prevensions.Shared.GeoLocations;
 using Soditech.IntelPrev.Preventions.Persistence.Models;
 
-namespace Soditech.IntelPrev.Preventions.Application.GeoLocations;
+namespace Soditech.IntelPrev.Prevensions.Application.GeoLocations;
 
 public class GeoLocationProfile : Profile
 {

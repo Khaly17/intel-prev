@@ -2,7 +2,7 @@
 @attribute [Authorize(Roles = "Admin, Super Admin")]
 
 @using Microsoft.AspNetCore.Authorization
-@using Soditech.IntelPrev.Preventions.Shared.Campaigns
+@using Soditech.IntelPrev.Prevensions.Shared.Campaigns
 @using Soditech.IntelPrev.Web.Components.Widgets.Alerts
 @using Soditech.IntelPrev.Web.Components.Widgets.Dialogs
 @using Soditech.IntelPrev.Web.Components.Widgets.Tables
@@ -14,7 +14,7 @@
              DisplayTitle="true"
              PageCount="@PageCount"
              PageSize="@PageSize"
-             addButton="@AddCampaign"
+             AddButton="@AddCampaign"
              OnDelete="@DeleteCampaign"
              OnEdit="@GoToEdit"
              Columns="@Columns"

@@ -1,3 +1,7 @@
+using System;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -5,10 +9,10 @@ using Microsoft.Extensions.Logging;
 using Sensor6ty.Repositories;
 using Sensor6ty.Results;
 using Sensor6ty.Sessions;
+using Soditech.IntelPrev.Prevensions.Shared.Equipments;
 using Soditech.IntelPrev.Preventions.Persistence.Models;
-using Soditech.IntelPrev.Preventions.Shared.Equipments;
 
-namespace Soditech.IntelPrev.Preventions.Application.Equipments.Queries;
+namespace Soditech.IntelPrev.Prevensions.Application.Equipments.Queries;
 
 public class GetEquipmentsCountQueryHandler(IServiceProvider serviceProvider) : IRequestHandler<GetEquipmentsCountQuery, TResult<int>>
 {

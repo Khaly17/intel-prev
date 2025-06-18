@@ -1,23 +1,26 @@
-﻿using Microsoft.AspNetCore.Components;
-using Soditech.IntelPrev.Preventions.Shared.Buildings;
-using Soditech.IntelPrev.Preventions.Shared;
+﻿using System;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Logging;
+using Soditech.IntelPrev.Prevensions.Shared;
+using Soditech.IntelPrev.Prevensions.Shared.Buildings;
 
 namespace Soditech.IntelPrev.Web.Pages.Administration.Buildings;
 
 public partial class EditBuilding
 {
     [Parameter]
-    public string buildingId { get; set; } = string.Empty;
-    public string title { get; set; } = "Modification du batiment";
-    private BuildingResult building { get; set; } = new();
+    public string BuildingId { get; set; } = string.Empty;
+    public string Title { get; set; } = "Modification du batiment";
+    private BuildingResult Building { get; set; } = new();
 
-    private string? successMessage;
+    private string? _successMessage;
 
-    private string? errorMessage;
-    private bool IsLoading = false;
+    private string? _errorMessage;
+    private bool _isLoading = false;
     [Inject] private ILogger<EditBuilding> Logger { get; set; } = default!;
     private const string BuildingsCacheKey = "Buildings";
-    private string GetBuildingCacheKey() => $"Building_{buildingId}";
+    private string GetBuildingCacheKey() => $"Building_{BuildingId}";
 
     protected override async Task OnInitializedAsync()
     {
@@ -26,65 +29,65 @@ public partial class EditBuilding
 
     private async Task LoadCampaignsAsync()
     {
-        IsLoading = true;
+        _isLoading = true;
         var cacheKey = GetBuildingCacheKey();
         var (exists, cachedValue) = CacheService.Get(cacheKey);
 
         if (exists)
         {
-            building = (BuildingResult)cachedValue;
+            Building = (BuildingResult)cachedValue;
         }
         else
         {
             await LoadBuildingFromApiAsync();
-            CacheService.Set(cacheKey, building);
+            CacheService.Set(cacheKey, Building);
         }
-        IsLoading = false;
+        _isLoading = false;
     }
     private async Task LoadBuildingFromApiAsync()
     {
         try
         {
-            IsLoading = true;
-            var result = await ProxyService.GetAsync<BuildingResult>(PreventionRoutes.Buildings.GetById.Replace("{id:guid}", buildingId));
+            _isLoading = true;
+            var result = await ProxyService.GetAsync<BuildingResult>(PreventionRoutes.Buildings.GetById.Replace("{id:guid}", BuildingId));
 
             if (result.IsSuccess)
             {
-                building = result.Value;
+                Building = result.Value;
 
             }
             else
             {
-                errorMessage = "Erreur de récupération des informations du batiment.";
+                _errorMessage = "Erreur de récupération des informations du batiment.";
             }
         }
         catch (Exception ex)
         {
-            errorMessage = $"Erreur: {ex.Message}";
+            _errorMessage = $"Erreur: {ex.Message}";
         }
-        IsLoading = false;
+        _isLoading = false;
     }
 
     private async Task UpdateBuilding()
     {
-        if (building.Id == Guid.Empty)
+        if (Building.Id == Guid.Empty)
         {
-            errorMessage = "L'ID du batiment est invalide.";
+            _errorMessage = "L'ID du batiment est invalide.";
             return;
         }
 
-        var updateResult = await ProxyService.PostAsync<BuildingResult>(PreventionRoutes.Buildings.Update.Replace("{id:guid}", building.Id.ToString()), building);
+        var updateResult = await ProxyService.PostAsync<BuildingResult>(PreventionRoutes.Buildings.Update.Replace("{id:guid}", Building.Id.ToString()), Building);
         if (updateResult.IsSuccess)
         {
-            successMessage = "Batiment mis à jour avec succès.";
-            errorMessage = null;
-            CacheService.Set(GetBuildingCacheKey(), building);
+            _successMessage = "Batiment mis à jour avec succès.";
+            _errorMessage = null;
+            CacheService.Set(GetBuildingCacheKey(), Building);
             CacheService.Set(BuildingsCacheKey, null);
             Navigation.NavigateTo("/buildings");
         }
         else
         {
-            errorMessage = "Erreur lors de la mise à jour des informations du batiment.";
+            _errorMessage = "Erreur lors de la mise à jour des informations du batiment.";
         }
     }
 

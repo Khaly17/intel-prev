@@ -2,8 +2,7 @@
 @attribute [Authorize(Roles = "Admin, Super Admin")]
 
 @using Microsoft.AspNetCore.Authorization
-
-@using Soditech.IntelPrev.Preventions.Shared.Buildings
+@using Soditech.IntelPrev.Prevensions.Shared.Buildings
 @using Soditech.IntelPrev.Web.Components.Widgets.Tables
 @using Soditech.IntelPrev.Web.Components.Widgets.Alerts
 @using Soditech.IntelPrev.Web.Components.Widgets.Dialogs
@@ -15,7 +14,7 @@
              DisplayTitle="true"
              PageCount="@PageCount"
              PageSize="@PageSize"
-             addButton="@AddBuiling"
+             AddButton="@AddBuiling"
              OnEdit="@GoToEdit"
              OnDelete="@DeleteBuildingTrigger"
              Columns="@Columns"

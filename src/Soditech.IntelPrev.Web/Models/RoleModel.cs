@@ -1,4 +1,6 @@
-﻿namespace Soditech.IntelPrev.Web.Models;
+﻿using System;
+
+namespace Soditech.IntelPrev.Web.Models;
 
 public class RoleModel
 {

@@ -1,8 +1,8 @@
 using AutoMapper;
+using Soditech.IntelPrev.Prevensions.Shared.Campaigns;
 using Soditech.IntelPrev.Preventions.Persistence.Models;
-using Soditech.IntelPrev.Preventions.Shared.Campaigns;
 
-namespace Soditech.IntelPrev.Preventions.Application.Campaigns;
+namespace Soditech.IntelPrev.Prevensions.Application.Campaigns;
 
 public class CampaignProfile : Profile
 {

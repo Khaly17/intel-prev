@@ -1,3 +1,7 @@
+using System;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
@@ -7,7 +11,7 @@ using Soditech.IntelPrev.Users.Persistence.Models;
 using Soditech.IntelPrev.Users.Shared.Roles;
 using Soditech.IntelPrev.Users.Shared.Tenants;
 
-namespace Soditech.IntelPrev.Tenants.Application.Tenants.Queries;
+namespace Soditech.IntelPrev.Users.Application.Tenants.Queries;
 
 public class GetRolesTenantQueryHandler(IServiceProvider serviceProvider)
     : IRequestHandler<GetRolesTenantQuery, TResult<IEnumerable<RoleResult>>>

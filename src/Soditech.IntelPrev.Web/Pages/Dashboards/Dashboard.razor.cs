@@ -1,14 +1,16 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.SignalR.Client;
 using Soditech.IntelPrev.Reports.Shared;
 using Soditech.IntelPrev.Reports.Shared.Alerts;
-using Soditech.IntelPrev.Reports.Shared.RegisterTypes;
-using Soditech.IntelPrev.Reports.Shared.ReportDatas;
 using Soditech.IntelPrev.Reports.Shared.Reports;
 using Soditech.IntelPrev.Web.Models;
 using Soditech.IntelPrev.Web.Services.Extensions;
-using Syncfusion.Blazor.Charts;
 using System.Web;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Soditech.IntelPrev.Web.Services.Helper;
 
 namespace Soditech.IntelPrev.Web.Pages.Dashboards;
@@ -17,18 +19,18 @@ public partial class Dashboard : IAsyncDisposable
 {
     [Inject]
     private ILogger<Dashboard> Logger { get; set; } = default!;
-    private IList<ReportResult> reports = [];
-    private IEnumerable<CountReportsGroupedByRegisterResult> ReportsGroupedByRegisterResult = [];
-    private IEnumerable<CountAlertsGroupedByTypeResult> AlertsGroupedByTypeResult = [];
+    private IList<ReportResult> _reports = [];
+    private IEnumerable<CountReportsGroupedByRegisterResult> _reportsGroupedByRegisterResult = [];
+    private IEnumerable<CountAlertsGroupedByTypeResult> _alertsGroupedByTypeResult = [];
 
-    private bool _isLoadingReports {  get; set; }
-    private bool _isLoadingAlerts {  get; set; }
-    private bool _isLoadingAssigment {  get; set; }
-    private bool _isLoadingNotConformAssigment {  get; set; }
+    private bool IsLoadingReports {  get; set; }
+    private bool IsLoadingAlerts {  get; set; }
+    private bool IsLoadingAssigment {  get; set; }
+    private bool IsLoadingNotConformAssigment {  get; set; }
 
     private DateFilter DateFilter { get; set; } = default!;
     private HubConnection _hubConnection;
-    private IList<string> messages = [];
+    private IList<string> _messages = [];
     [Inject] private IConfiguration Configuration { get; set; } = default!;
 
     protected override async Task OnInitializedAsync()
@@ -84,10 +86,10 @@ public partial class Dashboard : IAsyncDisposable
     private async Task LoadCharts()
     {
         //TODO: set boolean here
-        _isLoadingAlerts = true;
-        _isLoadingAssigment = true;
-        _isLoadingNotConformAssigment = true;
-        _isLoadingReports = true;
+        IsLoadingAlerts = true;
+        IsLoadingAssigment = true;
+        IsLoadingNotConformAssigment = true;
+        IsLoadingReports = true;
 
         StateHasChanged();
 
@@ -121,7 +123,7 @@ public partial class Dashboard : IAsyncDisposable
 
     private async Task GetAlertsGroupedByTypeResult()
     {
-        _isLoadingReports = true;
+        IsLoadingReports = true;
         var path = ReportRoutes
                     .Alerts
                     .GetCountAlertsGroupedByType
@@ -129,14 +131,14 @@ public partial class Dashboard : IAsyncDisposable
         var result = await ProxyService.GetAsync<IList<CountAlertsGroupedByTypeResult>>(path);
         if (result.IsSuccess)
         {
-            AlertsGroupedByTypeResult = result.Value;
+            _alertsGroupedByTypeResult = result.Value;
         }
         else
         {
             Logger.LogError($"Error occured while fetch alert list: {result.Error.Code}: {result.Error.Message}");
         }
 
-        _isLoadingReports = false;
+        IsLoadingReports = false;
 
         StateHasChanged();
 
@@ -145,7 +147,7 @@ public partial class Dashboard : IAsyncDisposable
 
     private async Task GetReportsGroupedByRegisterAsync()
     {
-        _isLoadingReports = true;
+        IsLoadingReports = true;
         var path = ReportRoutes
                     .Reports
                     .GetCountReportsGroupedByRegister
@@ -155,30 +157,30 @@ public partial class Dashboard : IAsyncDisposable
 
         if (result.IsSuccess)
         {
-            ReportsGroupedByRegisterResult = result.Value;
+            _reportsGroupedByRegisterResult = result.Value;
         }
         else
         {
             Logger.LogError($"Error occured while fetch report list: {result.Error.Code}: {result.Error.Message}");
         }
 
-        _isLoadingReports = false;
+        IsLoadingReports = false;
 
         StateHasChanged();
     }
-    private async Task GetAlertsAsync()
+    private static async Task GetAlertsAsync()
     {
         //TODO: Not yet implemented
         await Task.CompletedTask;
     }
 
-    private async Task GetAssigmentsAsync()
+    private static async Task GetAssigmentsAsync()
     {
         //TODO: Not yet implemented
         await Task.CompletedTask;
     }
 
-    private async Task GetNotConformAssigmentsAsync()
+    private static async Task GetNotConformAssigmentsAsync()
     {
         //TODO: Not yet implemented
         await Task.CompletedTask;

@@ -1,6 +1,7 @@
+using System;
 using MediatR;
 
-namespace Soditech.IntelPrev.Preventions.Shared.Campaigns;
+namespace Soditech.IntelPrev.Prevensions.Shared.Campaigns;
 
 public record CampaignCreatedEvent : INotification
 {

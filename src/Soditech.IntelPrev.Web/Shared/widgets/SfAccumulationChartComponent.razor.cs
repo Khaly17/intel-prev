@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Components;
 using Soditech.IntelPrev.Reports.Shared.ReportDatas;
-using Syncfusion.Blazor.Charts.Chart.Internal;
 
 namespace Soditech.IntelPrev.Web.Shared.widgets;
 

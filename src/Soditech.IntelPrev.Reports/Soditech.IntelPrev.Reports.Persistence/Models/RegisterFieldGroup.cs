@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Sensor6ty.Domain;
 
 namespace Soditech.IntelPrev.Reports.Persistence.Models;
@@ -9,12 +11,12 @@ public class RegisterFieldGroup: EntityBase
     public int DisplayOrder { get; set; } // Display order of the group
     
     public Guid RegisterTypeId { get; set; } // reference to the register type
-    public virtual RegisterType RegisterType { get; set; } = default!;
-    public virtual List<RegisterField> RegisterFields { get; set; } = default!;
+    public virtual RegisterType RegisterType { get; set; } = null!;
+    public virtual List<RegisterField> RegisterFields { get; set; } = null!;
     
     
     public Guid TenantId { get; set; }
-    public virtual Tenant Tenant { get; set; } = default!;
+    public virtual Tenant Tenant { get; set; } = null!;
     
     public virtual User? Creator { get; set; }
     public Guid? CreatorId { get; set; }

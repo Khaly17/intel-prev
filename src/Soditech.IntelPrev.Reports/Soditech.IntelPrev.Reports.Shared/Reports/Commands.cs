@@ -1,8 +1,11 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using MediatR;
 using Sensor6ty.Results;
 using Soditech.IntelPrev.Reports.Shared.Enums;
-using Soditech.IntelPrev.Reports.Shared.RegisterFieldGroups;
 using Soditech.IntelPrev.Reports.Shared.RegisterFields;
+using Soditech.IntelPrev.Reports.Shared.RegisterFielGroups;
 using Soditech.IntelPrev.Reports.Shared.RegisterTypes;
 using Soditech.IntelPrev.Reports.Shared.ReportDatas;
 
@@ -155,7 +158,7 @@ public record CreateReportCommand : IRequest<TResult<ReportResult>>
 			.ToList();
 	}
 
-	private int GetDisplayOrder(object item)
+	private static int GetDisplayOrder(object item)
 	{
 		return item switch
 		{
@@ -165,7 +168,7 @@ public record CreateReportCommand : IRequest<TResult<ReportResult>>
 		};
 	}
 
-	private object GetDefaultValue(string fieldType)
+	private static object GetDefaultValue(string fieldType)
 	{
 		if (fieldType == FieldType.Boolean.ToString())
 		{

@@ -1,7 +1,7 @@
+using System;
+using System.Collections.Generic;
 using MediatR;
 using Sensor6ty.Results;
-using Soditech.IntelPrev.Reports.Shared.Alerts;
-using Soditech.IntelPrev.Reports.Shared.Reports;
 
 namespace Soditech.IntelPrev.Reports.Shared.Alerts;
 

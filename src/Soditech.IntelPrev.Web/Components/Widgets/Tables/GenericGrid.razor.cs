@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components;
 using Syncfusion.Blazor.Grids;
 using Syncfusion.Blazor.Inputs;
 
@@ -19,7 +22,7 @@ public partial class GenericGrid<TItem> : SfGrid<TItem>
     [Parameter] public List<string> ToolbarItems { get; set; } = ["Search", "ExcelExport", "PdfExport", "Print"];
     //[Parameter] public List<GridColumnDefinition> Columns { get; set; } = new List<GridColumnDefinition>();
     [Parameter] public bool DisplayActionsBtn { get; set; } = true;
-    [Parameter] public EventCallback addButton { get; set; }
+    [Parameter] public EventCallback AddButton { get; set; }
     [Parameter] public EventCallback<TItem> OnCustomAction { get; set; }
     [Parameter] public bool DisplayTitle { get; set; } = true;
     [Parameter] public bool DisplayPagination { get; set; } = true;

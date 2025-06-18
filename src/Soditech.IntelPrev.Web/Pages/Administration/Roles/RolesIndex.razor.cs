@@ -1,4 +1,9 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Logging;
 using Soditech.IntelPrev.Users.Shared;
 using Soditech.IntelPrev.Users.Shared.Roles;
 using Soditech.IntelPrev.Users.Shared.Users;
@@ -17,8 +22,8 @@ public partial class RolesIndex : ComponentBase
     private IEnumerable<UserResult> _selectedUsers = [];
     // private IEnumerable<SiteResult> _sites = [];
 
-    private RoleResult Role { get; set; } = new RoleResult();
-    private RoleResult SelectedRoleToDelete { get; set; } = new RoleResult();
+    private RoleResult Role { get; set; } = new();
+    private RoleResult SelectedRoleToDelete { get; set; } = new();
     [Inject] private ILogger<RolesIndex> Logger { get; set; } = default!;
 
     private bool IsLoadingRoles { get; set; }
@@ -67,13 +72,13 @@ public partial class RolesIndex : ComponentBase
         private int _userCurrentPage = 1;
         private int _userPageCount = 1;
 
-        private static List<GridColumn> Columns => new()
-        {
+        private static List<GridColumn> Columns =>
+        [
             new GridColumn { Field = "Scope", HeaderText = "Type" },
             new GridColumn { Field = "Name", HeaderText = "Nom" },
             new GridColumn { Field = "Description", HeaderText = "Description" },
             new GridColumn { Field = "UsersCount", HeaderText = "Utilisateurs" }
-        };
+        ];
 
         private List<GridColumn> UsersColumns { get; set; } = [];
         
@@ -282,7 +287,7 @@ public partial class RolesIndex : ComponentBase
             StateHasChanged();
         }
 
-        private int CalculatePageCount(int totalCount, int pageSize) =>
+        private static int CalculatePageCount(int totalCount, int pageSize) =>
             pageSize > 0 ? (int)Math.Ceiling((double)totalCount / pageSize) : 1;
         
 

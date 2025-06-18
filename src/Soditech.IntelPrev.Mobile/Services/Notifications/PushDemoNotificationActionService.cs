@@ -1,8 +1,12 @@
-﻿namespace Soditech.IntelPrev.Mobile.Services.Notifications;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Soditech.IntelPrev.Mobile.Services.Notifications;
 
 public class PushDemoNotificationActionService : IPushDemoNotificationActionService
 {
-    readonly Dictionary<string, PushDemoAction> _actionMappings = new Dictionary<string, PushDemoAction>
+    readonly Dictionary<string, PushDemoAction> _actionMappings = new()
     {
         { "action_a", PushDemoAction.ActionA },
         { "action_b", PushDemoAction.ActionB }

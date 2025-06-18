@@ -1,4 +1,7 @@
-﻿namespace Soditech.IntelPrev.Web.Services.Authentications;
+﻿using System.Threading;
+using System.Threading.Tasks;
+
+namespace Soditech.IntelPrev.Web.Services.Authentications;
 
 public interface ITokenService
 {

@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Soditech.IntelPrev.Mobile.ViewModels.Sensibilisation;
 using Microsoft.Maui.Controls;
-using Syncfusion.Maui.PdfViewer;
 using System.Reflection;
 
 namespace Soditech.IntelPrev.Mobile.Views.Sensibilisation;

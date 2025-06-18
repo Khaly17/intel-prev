@@ -1,4 +1,4 @@
-using Syncfusion.Maui.Carousel;
+using Microsoft.Maui.Controls;
 
 namespace Soditech.IntelPrev.Mobile.Views;
 

@@ -4,8 +4,8 @@ namespace Soditech.IntelPrev.Mobile.Services.Notifications;
 
 public interface IDeviceInstallationService
 {
-    string Token { get; set; }
+    string? Token { get; set; }
     bool NotificationsSupported { get; }
-    string GetDeviceId();
+    string? GetDeviceId();
     DeviceInstallation GetDeviceInstallation(params string[] tags);
 }

@@ -1,3 +1,6 @@
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
@@ -5,10 +8,10 @@ using Microsoft.Extensions.Logging;
 using Sensor6ty.Repositories;
 using Sensor6ty.Results;
 using Sensor6ty.Sessions;
+using Soditech.IntelPrev.Prevensions.Shared.MedicalContacts;
 using Soditech.IntelPrev.Preventions.Persistence.Models;
-using Soditech.IntelPrev.Preventions.Shared.MedicalContacts;
 
-namespace Soditech.IntelPrev.Preventions.Application.MedicalContacts.Commands;
+namespace Soditech.IntelPrev.Prevensions.Application.MedicalContacts.Commands;
 
 public class UpdateMedicalContactCommandHandler(IServiceProvider serviceProvider) : IRequestHandler<UpdateMedicalContactCommand, TResult<MedicalContactResult>>
 {

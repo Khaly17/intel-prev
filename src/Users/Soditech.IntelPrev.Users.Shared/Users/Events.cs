@@ -1,6 +1,7 @@
+using System;
 using MediatR;
 
-namespace Soditech.IntelPrev.Users.Shared.Users.Events;
+namespace Soditech.IntelPrev.Users.Shared.Users;
 
 public record UserCreatedEvent : INotification
 {

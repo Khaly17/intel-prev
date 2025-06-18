@@ -1,4 +1,6 @@
-﻿using  Soditech.IntelPrev.Web.Models.Utils;
+﻿using System;
+using System.Threading.Tasks;
+using  Soditech.IntelPrev.Web.Models.Utils;
 
 namespace  Soditech.IntelPrev.Web.Services.Alert;
 
@@ -27,7 +29,7 @@ public class AlertService
         });
     }
 
-    public void HideAlert()
+    private void HideAlert()
     {
         IsAlertVisible = false;
         CurrentActionType = default;

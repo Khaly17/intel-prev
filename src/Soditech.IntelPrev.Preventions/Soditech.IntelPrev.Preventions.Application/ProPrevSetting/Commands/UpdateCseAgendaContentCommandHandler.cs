@@ -1,3 +1,6 @@
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -5,10 +8,10 @@ using Microsoft.Extensions.Logging;
 using Sensor6ty.Repositories;
 using Sensor6ty.Results;
 using Sensor6ty.Sessions;
+using Soditech.IntelPrev.Prevensions.Shared.ProPrevSetting;
 using Soditech.IntelPrev.Preventions.Persistence.Models;
-using Soditech.IntelPrev.Preventions.Shared.ProPrevSetting;
 
-namespace Soditech.IntelPrev.Preventions.Application.ProPrevSetting.Commands;
+namespace Soditech.IntelPrev.Prevensions.Application.ProPrevSetting.Commands;
 
 public class UpdateCseAgendaContentCommandHandler(IServiceProvider serviceProvider) : IRequestHandler<UpdateCseAgendaContentCommand, Result>
 {

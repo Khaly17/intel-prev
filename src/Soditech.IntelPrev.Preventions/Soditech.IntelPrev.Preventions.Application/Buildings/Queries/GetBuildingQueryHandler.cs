@@ -1,12 +1,15 @@
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Sensor6ty.Repositories;
 using Sensor6ty.Results;
+using Soditech.IntelPrev.Prevensions.Shared.Buildings;
 using Soditech.IntelPrev.Preventions.Persistence.Models;
-using Soditech.IntelPrev.Preventions.Shared.Buildings;
 
-namespace Soditech.IntelPrev.Preventions.Application.Buildings.Queries;
+namespace Soditech.IntelPrev.Prevensions.Application.Buildings.Queries;
 
 public class GetBuildingQueryHandler(IServiceProvider serviceProvider)
     : IRequestHandler<GetBuildingQuery, TResult<BuildingResult>>

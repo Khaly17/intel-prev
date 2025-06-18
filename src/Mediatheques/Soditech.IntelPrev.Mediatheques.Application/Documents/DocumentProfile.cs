@@ -1,9 +1,10 @@
+using System;
 using AutoMapper;
 using Soditech.IntelPrev.Mediatheques.Persistence.Models;
 using Soditech.IntelPrev.Mediatheques.Shared.Documents;
 using Soditech.IntelPrev.Mediatheques.Shared.Enums;
 
-namespace Soditech.IntelPrev.Users.Application.Documents;
+namespace Soditech.IntelPrev.Mediatheques.Application.Documents;
 
 public class DocumentProfile : Profile
 {

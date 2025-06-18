@@ -1,12 +1,15 @@
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Sensor6ty.Repositories;
 using Sensor6ty.Results;
+using Soditech.IntelPrev.Prevensions.Shared.MedicalContacts;
 using Soditech.IntelPrev.Preventions.Persistence.Models;
-using Soditech.IntelPrev.Preventions.Shared.MedicalContacts;
 
-namespace Soditech.IntelPrev.Preventions.Application.MedicalContacts.Queries;
+namespace Soditech.IntelPrev.Prevensions.Application.MedicalContacts.Queries;
 
 public class GetMedicalContactQueryHandler(IServiceProvider serviceProvider)
     : IRequestHandler<GetMedicalContactQuery, TResult<MedicalContactResult>>

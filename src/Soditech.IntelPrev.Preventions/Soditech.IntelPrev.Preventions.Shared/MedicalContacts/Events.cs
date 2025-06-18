@@ -1,6 +1,7 @@
+using System;
 using MediatR;
 
-namespace Soditech.IntelPrev.Preventions.Shared.MedicalContacts;
+namespace Soditech.IntelPrev.Prevensions.Shared.MedicalContacts;
 
 public record MedicalContactCreatedEvent : INotification
 {

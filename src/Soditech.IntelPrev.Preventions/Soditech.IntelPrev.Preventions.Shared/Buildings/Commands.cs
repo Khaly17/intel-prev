@@ -1,13 +1,11 @@
-using MediatR;
-using Sensor6ty.Results;
-using Soditech.IntelPrev.Preventions.Shared.Equipments;
-using Soditech.IntelPrev.Preventions.Shared.Floors;
-
-namespace Soditech.IntelPrev.Preventions.Shared.Buildings;
-
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+using MediatR;
+using Sensor6ty.Results;
+using Soditech.IntelPrev.Prevensions.Shared.Equipments;
+using Soditech.IntelPrev.Prevensions.Shared.Floors;
+
+namespace Soditech.IntelPrev.Prevensions.Shared.Buildings;
 
 public record BuildingResult
 {

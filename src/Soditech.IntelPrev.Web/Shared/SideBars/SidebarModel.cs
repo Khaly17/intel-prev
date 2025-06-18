@@ -1,4 +1,6 @@
-﻿namespace Soditech.IntelPrev.Web.Shared.SideBars;
+﻿using System.Collections.Generic;
+
+namespace Soditech.IntelPrev.Web.Shared.SideBars;
 
 public class SidebarSection
 {

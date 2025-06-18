@@ -1,22 +1,28 @@
-﻿using Syncfusion.Blazor.Schedule;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Syncfusion.Blazor.Schedule;
 using Microsoft.AspNetCore.Components;
-using Soditech.IntelPrev.Preventions.Shared.Events;
-using Soditech.IntelPrev.Preventions.Shared.CommitteeMembers;
-using Soditech.IntelPrev.Preventions.Shared;
+using Microsoft.Extensions.Logging;
+using Soditech.IntelPrev.Prevensions.Shared;
+using Soditech.IntelPrev.Prevensions.Shared.CommitteeMembers;
+using Soditech.IntelPrev.Prevensions.Shared.Events;
+
 namespace Soditech.IntelPrev.Web.Pages.Administration.Calendars;
 
 public partial class Calendar
 {
     [Inject] private ILogger<Calendar> Logger { get; set; } = default!;
 
-    DateTime CurrentDate = new DateTime(2025, 2, 14);
-    List<EventResult> DataSource = new List<EventResult>();
+    DateTime _currentDate = new(2025, 2, 14);
+    List<EventResult> _dataSource = new();
     public IList<CommitteeMemberResult> Organizers { get; set; } = new List<CommitteeMemberResult>();
-    public string? errorMessage { get; set; }
-    public string? successMessage { get; set; }
+    public string? ErrorMessage { get; set; }
+    public string? SuccessMessage { get; set; }
     private bool IsLoading { get; set; }
 
-    ValidationRules ValidationRules = new ValidationRules { Required = true };
+    ValidationRules _validationRules = new() { Required = true };
 
     protected override async Task OnInitializedAsync()
     {
@@ -43,8 +49,8 @@ public partial class Calendar
 
         if (eventsResult.IsSuccess)
         {
-            DataSource = eventsResult.Value;
-            foreach (var d in DataSource)
+            _dataSource = eventsResult.Value;
+            foreach (var d in _dataSource)
             {
                 d.StartTime = d.StartDate.DateTime; 
                 d.EndTime = d.EndDate.DateTime;    
@@ -72,7 +78,7 @@ public partial class Calendar
             {
                 foreach (var updatedEvent in args.ChangedRecords)
                 {
-                    var existingEvent = DataSource.FirstOrDefault(e => e.Id == updatedEvent.Id);
+                    var existingEvent = _dataSource.FirstOrDefault(e => e.Id == updatedEvent.Id);
                     if (existingEvent != null)
                     {
                         existingEvent.Name = updatedEvent.Name;
@@ -97,8 +103,8 @@ public partial class Calendar
 
     private async Task CreateEvent(EventResult newEvent)
     {
-        errorMessage = null;
-        successMessage = null;
+        ErrorMessage = null;
+        SuccessMessage = null;
         try
         {
             newEvent.StartDate = new DateTimeOffset(newEvent.StartTime);
@@ -107,18 +113,18 @@ public partial class Calendar
 
             if (result.IsSuccess)
             {
-                successMessage = "L'événement a été ajouté avec succès !";
+                SuccessMessage = "L'événement a été ajouté avec succès !";
             }
             else
             {
-                errorMessage = result.Error?.Message ?? "Une erreur est survenue lors de la création de l'événement";
+                ErrorMessage = result.Error?.Message ?? "Une erreur est survenue lors de la création de l'événement";
                 Logger.LogError("{code} : {message}", result.Error?.Code, result.Error?.Message);
             }
         }
         catch (Exception ex)
         {
-            errorMessage = "Une erreur interne est survenue lors de la création de l'événement.";
-            Logger.LogError(ex, errorMessage);
+            ErrorMessage = "Une erreur interne est survenue lors de la création de l'événement.";
+            Logger.LogError(ex, ErrorMessage);
         }
     }
 
@@ -128,12 +134,12 @@ public partial class Calendar
         var updateResult = await ProxyService.PostAsync<EventResult>(PreventionRoutes.Events.Update.Replace("{id:guid}", updatedEvent.Id.ToString()), updatedEvent);
         if (updateResult.IsSuccess)
         {
-            successMessage = "Événement mis à jour avec succès.";
-            errorMessage = null;
+            SuccessMessage = "Événement mis à jour avec succès.";
+            ErrorMessage = null;
         }
         else
         {
-            errorMessage = "Erreur lors de la mise à jour des informations de l'événement.";
+            ErrorMessage = "Erreur lors de la mise à jour des informations de l'événement.";
         }
     }
 
@@ -145,17 +151,17 @@ public partial class Calendar
 
             if (result.IsSuccess)
             {
-                successMessage = "Event deleted successfully.";
+                SuccessMessage = "Event deleted successfully.";
             }
             else
             {
-                errorMessage = "Failed to delete event.";
+                ErrorMessage = "Failed to delete event.";
             }
         }
         catch (Exception ex)
         {
             Logger.LogError(ex, "Error deleting event: {Message}", ex.Message);
-            errorMessage = "An error occurred while deleting the event. Please try again.";
+            ErrorMessage = "An error occurred while deleting the event. Please try again.";
         }
     }
 }

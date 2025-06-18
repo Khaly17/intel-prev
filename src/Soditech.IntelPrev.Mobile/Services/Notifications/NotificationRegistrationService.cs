@@ -1,4 +1,7 @@
-﻿using System.Text.Json;
+﻿using System;
+using System.Text.Json;
+using System.Threading.Tasks;
+using Microsoft.Maui.Storage;
 using Soditech.IntelPrev.Mobile.Core.Dependency;
 using Soditech.IntelPrev.Notifications.Shared.Models;
 using Soditech.IntelPrev.Notifications.Shared.NotificationHubs;

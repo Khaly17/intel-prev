@@ -1,32 +1,32 @@
+using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Logging;
-using Soditech.IntelPrev.Mediatheques.Shared;
-using Soditech.IntelPrev.Reports.Shared.RegisterFieldGroups;
 using Soditech.IntelPrev.Reports.Shared.RegisterFields;
 using Soditech.IntelPrev.Reports.Shared.RegisterTypes;
-using Soditech.IntelPrev.Web.Models.Utils;
 using Soditech.IntelPrev.Reports.Shared;
+using Soditech.IntelPrev.Reports.Shared.RegisterFielGroups;
 
 namespace Soditech.IntelPrev.Web.Components.Administrations.Registers;
 
 public partial class CreateRegisterComponent : ComponentBase
 {
 
-    public string? errorMessage { get; set; }
-    public string? successMessage { get; set; }
+    public string? ErrorMessage { get; set; }
+    public string? SuccessMessage { get; set; }
     [Inject] private ILogger<CreateRegisterComponent> Logger { get; set; } = default!;
     [Parameter]
     public RegisterTypeResult RegisterTypeResult { get; set; } = default!;
 
-    private bool isCreating = false;
+    private bool _isCreating = false;
 
     [Parameter]
     public EventCallback<bool> OnIsCreatingChanged { get; set; }
 
     private void ToggleIsCreating()
     {
-        isCreating = !isCreating;
-        OnIsCreatingChanged.InvokeAsync(isCreating);
+        _isCreating = !_isCreating;
+        OnIsCreatingChanged.InvokeAsync(_isCreating);
     }
 
     private void AddNewGroup()
@@ -37,7 +37,7 @@ public partial class CreateRegisterComponent : ComponentBase
             RegisterFields = []
         });
     }
-    private void AddNewFieldToGroup(RegisterFieldGroupResult group)
+    private static void AddNewFieldToGroup(RegisterFieldGroupResult group)
     {
         group.RegisterFields.Add(new RegisterFieldResult
         {
@@ -63,7 +63,7 @@ public partial class CreateRegisterComponent : ComponentBase
         RegisterTypeResult.RegisterFields.Remove(field);
     }
 
-    private void HandleValidSubmit()
+    private static void HandleValidSubmit()
     {
         // Handle the form submission logic
         Console.WriteLine("Form submitted successfully!");
@@ -73,8 +73,8 @@ public partial class CreateRegisterComponent : ComponentBase
 
     private async Task CreateRegister()
     {
-        errorMessage = null;
-        successMessage = null;
+        ErrorMessage = null;
+        SuccessMessage = null;
         try
         {
             var path = ReportRoutes.RegisterTypes.Create;
@@ -82,22 +82,22 @@ public partial class CreateRegisterComponent : ComponentBase
 
             if (result.IsSuccess)
             {
-                successMessage = "Le registre a �t� ajout� avec succ�s !";
-                 
+                SuccessMessage = "Le registre a été ajouté avec succès !";
+
 
 
                 Navigation.NavigateTo("/registers");
             }
             else
             {
-                errorMessage = result.Error?.Message ?? "Une erreur est survenue lors de la cr�ation du registre.";
+                ErrorMessage = result.Error?.Message ?? "Une erreur est survenue lors de la création du registre.";
                 Logger.LogError("{code} : {message}", result.Error?.Code, result.Error?.Message);
             }
         }
         catch (Exception ex)
         {
-            errorMessage = "Une erreur interne est survenue lors de la cr�ation du registre.";
-            Logger.LogError(ex, errorMessage);
+            ErrorMessage = "Une erreur interne est survenue lors de la création du registre.";
+            Logger.LogError(ex, ErrorMessage);
         }
     }
   

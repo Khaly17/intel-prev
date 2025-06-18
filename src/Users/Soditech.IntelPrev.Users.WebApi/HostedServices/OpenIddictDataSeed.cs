@@ -1,6 +1,13 @@
-﻿using Soditech.IntelPrev.Users.Persistence.EfCore;
+﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Soditech.IntelPrev.Users.Persistence;
+using Soditech.IntelPrev.Users.Persistence.Seeders;
 
-namespace Soditech.IntelPrev.Users.Persistence.OpenIddict;
+namespace Soditech.IntelPrev.Users.WebApi.HostedServices;
 
 /// <summary>
 /// Creates initial data that is needed to property run the application

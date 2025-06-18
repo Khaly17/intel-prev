@@ -1,7 +1,8 @@
+using System;
 using MediatR;
 using Sensor6ty.Results;
 
-namespace Soditech.IntelPrev.Preventions.Shared.FireSecuritySetting;
+namespace Soditech.IntelPrev.Prevensions.Shared.FireSecuritySetting;
 
 public class UpdateDefinitionContentCommand : IRequest<Result>
 {

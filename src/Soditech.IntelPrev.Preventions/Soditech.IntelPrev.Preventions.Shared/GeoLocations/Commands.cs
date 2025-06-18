@@ -1,8 +1,8 @@
-﻿using MediatR;
-using Sensor6ty.Domain;
+﻿using System;
+using System.Collections.Generic;
+using MediatR;
 using Sensor6ty.Results;
 using Soditech.IntelPrev.Prevensions.Shared.Enums;
-using static Soditech.IntelPrev.Preventions.Shared.PreventionRoutes;
 
 namespace Soditech.IntelPrev.Prevensions.Shared.GeoLocations;
 

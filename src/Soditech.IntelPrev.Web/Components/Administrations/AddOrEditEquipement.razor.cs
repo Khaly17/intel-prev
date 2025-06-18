@@ -1,5 +1,6 @@
-﻿using Microsoft.AspNetCore.Components;
-using Soditech.IntelPrev.Preventions.Shared.Equipments;
+﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components;
+using Soditech.IntelPrev.Prevensions.Shared.Equipments;
 
 namespace Soditech.IntelPrev.Web.Components.Administrations;
 

@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using MediatR;
 using Sensor6ty.Results;
@@ -24,7 +26,7 @@ public record DocumentResult
     public Guid? UpdaterId { get; set; }
     public DateTimeOffset? UpdatedAt { get; set; }
 
-    private byte[] _blobFile = Array.Empty<byte>();
+    private byte[] _blobFile = [];
 
     public byte[] BlobFile
     {
@@ -58,7 +60,7 @@ public record GetDocumentsCountQuery : IRequest<TResult<int>>;
 public record CreateFileFormByteCommand : IRequest<Result>
 {
     public string FileName { get; set; } = string.Empty;
-    private byte[] _blobFile = Array.Empty<byte>();
+    private byte[] _blobFile = [];
     public byte[] BlobFile
     {
         get => (byte[])_blobFile.Clone(); 
@@ -72,7 +74,7 @@ public record CreateDocumentCommand : IRequest<TResult<DocumentResult>>
     public string Name { get; set; } = string.Empty;
     public string Description { get; set; } = string.Empty;
 
-    private byte[] _blobFile = Array.Empty<byte>();
+    private byte[] _blobFile = [];
     public byte[] BlobFile
     {
         get => (byte[])_blobFile.Clone();

@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components;
 using Soditech.IntelPrev.Users.Shared.Roles;
 using Soditech.IntelPrev.Users.Shared;
 using Soditech.IntelPrev.Users.Shared.Users;
@@ -13,21 +17,15 @@ public partial class EditUser: ComponentBase
 
     [Parameter]
     public string UserId { get; set; } = string.Empty;
-    private IEnumerable<RoleModel> _roles { get; set; } = new List<RoleModel>();
-    private List<Guid> SelectedRoles { get; set; } = new List<Guid>();
-    public string title { get; set; } = "Modifier l'utilisateur";
-    private UserResult user { get; set; } = new UserResult();
-    public UpdateUserCommand NewUser { get; set; } = new UpdateUserCommand();
-    public IEnumerable<TenantResult> _tenants { get; set; } = new List<TenantResult>();
-    public TenantResult _selectedTenant { get; set; } = default!;
+    private IEnumerable<RoleModel> Roles { get; set; } = new List<RoleModel>();
+    private List<Guid> SelectedRoles { get; set; } = [];
+    private string Title { get; set; } = "Modifier l'utilisateur";
+    private UserResult User { get; set; } = new();
+    public IEnumerable<TenantResult> Tenants { get; set; } = new List<TenantResult>();
 
-    public string TenantIdCacheKey { get; set; } = "selectedTenant";
-
-    private string SelectedTenantId { get; set; } = string.Empty;
-
-    private string? successMessage;
-    private string? errorMessage;
-    [Inject] private ILogger<EditUser> Logger { get; set; } = default!;
+    private string? _successMessage;
+    private string? _errorMessage;
+    [Inject] private ILogger<EditUser> Logger { get; set; } = null!;
 
     protected override async Task OnInitializedAsync()
     {
@@ -44,13 +42,13 @@ public partial class EditUser: ComponentBase
 
             if (result.IsSuccess)
             {
-                user = result.Value;
+                User = result.Value;
 
                 await LoadRoles();
 
-                var assignedRoleIds = user.Roles.Select(role => role.Id).ToList();
+                var assignedRoleIds = User.Roles.Select(role => role.Id).ToList();
 
-                _roles = _roles.Select(r =>
+                Roles = Roles.Select(r =>
                 {
                     r.IsSelected = assignedRoleIds.Contains(r.Id);
                     return r;
@@ -59,12 +57,12 @@ public partial class EditUser: ComponentBase
             }
             else
             {
-                errorMessage = "Erreur de récupération d'utilisateur.";
+                _errorMessage = "Erreur de récupération d'utilisateur.";
             }
         }
         catch (Exception ex)
         {
-            errorMessage = $"Erreur: {ex.Message}";
+            _errorMessage = $"Erreur: {ex.Message}";
         }
     }
 
@@ -76,7 +74,7 @@ public partial class EditUser: ComponentBase
             var response = await ProxyService.GetAsync<IEnumerable<RoleResult>>(UserRoutes.Roles.GetAll);
             if (response.IsSuccess)
             {
-                _roles = response.Value.Select(r => new RoleModel
+                Roles = response.Value.Select(r => new RoleModel
                 {
                     Id = r.Id,
                     Name = r.Name,
@@ -87,36 +85,36 @@ public partial class EditUser: ComponentBase
         }
         catch (Exception ex)
         {
-            errorMessage = $"Error {ex.Message}";
+            _errorMessage = $"Error {ex.Message}";
         }
     }
 
     private async Task UpdateUser()
     {
         // Mettre à jour l'utilisateur
-        if (user.Id == Guid.Empty)
+        if (User.Id == Guid.Empty)
         {
-            errorMessage = "L'ID de l'utilisateur est invalide.";
+            _errorMessage = "L'ID de l'utilisateur est invalide.";
             return;
         }
 
-        var updateResult = await ProxyService.PostAsync<UserResult>(UserRoutes.Users.Update.Replace("{id:guid}", user.Id.ToString()), user);
+        var updateResult = await ProxyService.PostAsync<UserResult>(UserRoutes.Users.Update.Replace("{id:guid}", User.Id.ToString()), User);
         if (updateResult.IsSuccess)
         {
-            successMessage = "Utilisateur mis à jour avec succès.";
-            errorMessage = null;
-            await AssignRolesToUser(user.Id);
+            _successMessage = "Utilisateur mis à jour avec succès.";
+            _errorMessage = null;
+            await AssignRolesToUser(User.Id);
             Navigation.NavigateTo("/users");
         }
         else
         {
-            errorMessage = "Erreur lors de la mise à jour de l'utilisateur.";
+            _errorMessage = "Erreur lors de la mise à jour de l'utilisateur.";
         }
     }
 
     private async Task AssignRolesToUser(Guid userId)
     {
-        SelectedRoles = _roles.Where(r => r.IsSelected).Select(r => r.Id).ToList();
+        SelectedRoles = Roles.Where(r => r.IsSelected).Select(r => r.Id).ToList();
 
         foreach (var roleId in SelectedRoles)
         {
@@ -129,14 +127,14 @@ public partial class EditUser: ComponentBase
             var result = await ProxyService.PostAsync<AffectRoleToUserCommand>(UserRoutes.Roles.AffectToUser, assignRolesCommand);
             if (!result.IsSuccess)
             {
-                errorMessage = $"An error occurred while assigning the role with ID: {roleId}.";
+                _errorMessage = $"An error occurred while assigning the role with ID: {roleId}.";
                 break;
             }
         }
 
-        if (string.IsNullOrEmpty(errorMessage))
+        if (string.IsNullOrEmpty(_errorMessage))
         {
-            successMessage = "Roles assigned successfully!";
+            _successMessage = "Roles assigned successfully!";
         }
     }
 
@@ -148,13 +146,13 @@ public partial class EditUser: ComponentBase
             var response = await ProxyService.GetAsync<IEnumerable<TenantResult>>(UserRoutes.Tenants.GetAll);
             if (response.IsSuccess)
             {
-                _tenants = response.Value;
+                Tenants = response.Value;
             }
         }
         catch (Exception ex)
         {
-            errorMessage = "Error: Cannot load tenants";
-            Logger.LogError(ex, errorMessage);
+            _errorMessage = "Error: Cannot load tenants";
+            Logger.LogError(ex, _errorMessage);
         }
     }
 

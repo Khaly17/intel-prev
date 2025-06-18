@@ -1,6 +1,7 @@
-﻿using MediatR;
+﻿using System;
+using MediatR;
 
-namespace Soditech.IntelPrev.Preventions.Shared.Floors;
+namespace Soditech.IntelPrev.Prevensions.Shared.Floors;
 
 public record FloorCreatedEvent : INotification
 {

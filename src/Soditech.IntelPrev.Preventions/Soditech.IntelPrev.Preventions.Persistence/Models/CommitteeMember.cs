@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Sensor6ty.Domain;
 
 namespace Soditech.IntelPrev.Preventions.Persistence.Models;
@@ -9,7 +11,7 @@ public class CommitteeMember : EntityBase
     public string Email { get; set; } = string.Empty;
     public string PhoneNumber { get; set; } = string.Empty;
 
-    private string[] _roles = Array.Empty<string>();
+    private string[] _roles = [];
     public IReadOnlyList<string> Roles => _roles;
 
     public Guid TenantId { get; set; }

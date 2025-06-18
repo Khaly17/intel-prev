@@ -1,4 +1,4 @@
-using System.Linq.Expressions;
+using System;
 
 namespace Soditech.IntelPrev.Preventions.Persistence.Extensions.Linq;
 

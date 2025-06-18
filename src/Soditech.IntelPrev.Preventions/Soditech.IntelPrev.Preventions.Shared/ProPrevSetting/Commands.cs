@@ -1,7 +1,8 @@
+using System;
 using MediatR;
 using Sensor6ty.Results;
 
-namespace Soditech.IntelPrev.Preventions.Shared.ProPrevSetting;
+namespace Soditech.IntelPrev.Prevensions.Shared.ProPrevSetting;
 
 public class UpdateRiskAnalysisProtocolContentCommand : IRequest<Result>
 {

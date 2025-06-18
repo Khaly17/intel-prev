@@ -1,3 +1,6 @@
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -5,7 +8,7 @@ using Soditech.IntelPrev.Notifications.Shared.Models;
 using Soditech.IntelPrev.Notifications.Shared.NotificationHubs;
 using Soditech.IntelPrev.Reports.Shared.Reports;
 
-namespace Soditech.IntelPrev.Reports.Application.Reports.Events;
+namespace Soditech.IntelPrev.NotificationHubs.Application.Reports.Events;
 
 public class ReportCreatedEventHandler(IServiceProvider serviceProvider) : INotificationHandler<ReportCreatedEvent>
 {

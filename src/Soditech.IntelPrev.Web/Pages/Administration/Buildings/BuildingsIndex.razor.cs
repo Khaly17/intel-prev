@@ -1,7 +1,12 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Logging;
+using Soditech.IntelPrev.Prevensions.Shared;
+using Soditech.IntelPrev.Prevensions.Shared.Buildings;
 using Syncfusion.Blazor.Grids;
-using Soditech.IntelPrev.Preventions.Shared.Buildings;
-using Soditech.IntelPrev.Preventions.Shared;
 
 namespace Soditech.IntelPrev.Web.Pages.Administration.Buildings;
 
@@ -15,9 +20,9 @@ public partial class BuildingsIndex: ComponentBase
 
     private static List<GridColumn> Columns =>
     [
-        new GridColumn { Field =  nameof(BuildingResult.Name), HeaderText = "Nom" },
-            new GridColumn { Field = nameof(BuildingResult.Address), HeaderText = "Adresse" },
-            new GridColumn { Field = nameof(BuildingResult.Description), HeaderText = "Description" }
+        new() { Field =  nameof(BuildingResult.Name), HeaderText = "Nom" },
+            new() { Field = nameof(BuildingResult.Address), HeaderText = "Adresse" },
+            new() { Field = nameof(BuildingResult.Description), HeaderText = "Description" }
     ];
     // toolbar items
     private static List<string> ToolbarItems => ["Search", "ExcelExport", "PdfExport", "Print"];

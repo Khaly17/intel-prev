@@ -1,4 +1,4 @@
-﻿namespace Soditech.IntelPrev.Preventions.Shared;
+﻿namespace Soditech.IntelPrev.Prevensions.Shared;
 
 public static class PreventionRoutes
 {

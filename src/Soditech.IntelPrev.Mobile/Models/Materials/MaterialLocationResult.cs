@@ -1,4 +1,6 @@
-namespace Soditech.IntelPrev.Preventions.Shared.Materials;
+using System;
+
+namespace Soditech.IntelPrev.Mobile.Models.Materials;
 
 public class MaterialLocationResult
 {

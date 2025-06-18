@@ -1,6 +1,7 @@
+using System;
 using MediatR;
 
-namespace Soditech.IntelPrev.Preventions.Shared.GatheringPoints;
+namespace Soditech.IntelPrev.Prevensions.Shared.GatheringPoints;
 
 public record GatheringPointCreatedEvent : INotification
 {

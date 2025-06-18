@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components;
 using Soditech.IntelPrev.Reports.Shared.Reports;
 using Soditech.IntelPrev.Reports.Shared;
-using Soditech.IntelPrev.Web.Services.Proxy;
 
 namespace Soditech.IntelPrev.Web.Pages.Administration.Reports;
 
@@ -36,7 +36,7 @@ public partial class ReportDetails: ComponentBase
         Navigation.NavigateTo("/report-details");
     }
 
-    private string GetStatusClass(string status) => status switch
+    private static string GetStatusClass(string status) => status switch
     {
         "Open" => "status-open",
         "Closed" => "status-closed",

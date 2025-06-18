@@ -1,8 +1,8 @@
 using AutoMapper;
+using Soditech.IntelPrev.Prevensions.Shared.Statistics;
 using Soditech.IntelPrev.Preventions.Persistence.Models;
-using Soditech.IntelPrev.Preventions.Shared.Statistics;
 
-namespace Soditech.IntelPrev.Preventions.Application.Statistics;
+namespace Soditech.IntelPrev.Prevensions.Application.Statistics;
 
 public class StatisticProfile : Profile
 {

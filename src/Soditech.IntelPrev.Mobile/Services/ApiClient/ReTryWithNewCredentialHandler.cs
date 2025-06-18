@@ -1,5 +1,9 @@
 using System.Net;
+using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Threading;
+using System.Threading.Tasks;
+using Microsoft.Maui.Controls;
 using Soditech.IntelPrev.Mobile.Core.Dependency;
 using Soditech.IntelPrev.Mobile.Services.Account;
 
@@ -33,7 +37,7 @@ public class ReTryWithNewCredentialHandler : DelegatingHandler
 
             if (tokenManager.IsRefreshTokenExpired)
             {
-                await HandleSessionExpired(tokenManager);
+                await ReTryWithNewCredentialHandler.HandleSessionExpired(tokenManager);
             }
             else
             {
@@ -48,7 +52,7 @@ public class ReTryWithNewCredentialHandler : DelegatingHandler
         return response;
     }
 
-    private async Task HandleSessionExpired(IAccessTokenManager tokenManager)
+    private static async Task HandleSessionExpired(IAccessTokenManager tokenManager)
     {
         tokenManager.Logout();
 
@@ -75,7 +79,7 @@ public class ReTryWithNewCredentialHandler : DelegatingHandler
         }
         else
         {
-            await HandleSessionExpired(tokenManager);
+            await ReTryWithNewCredentialHandler.HandleSessionExpired(tokenManager);
         }
     }
 

@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNetCore.Components;
-using Soditech.IntelPrev.Preventions.Shared;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Logging;
 using Soditech.IntelPrev.Reports.Shared;
 using Soditech.IntelPrev.Reports.Shared.RegisterTypes;
-using Soditech.IntelPrev.Web.Services.Proxy;
 using Syncfusion.Blazor.Grids;
 
 namespace Soditech.IntelPrev.Web.Pages.Administration.RegisterTypes;
@@ -15,9 +18,9 @@ public partial class RegisterIndex
 
     private static List<GridColumn> Columns =>
     [
-        new GridColumn { Field = nameof(RegisterTypeResult.Name), HeaderText = "Nom" },
-        new GridColumn { Field = nameof(RegisterTypeResult.Description), HeaderText = "Description" },
-        new GridColumn { Field = nameof(RegisterTypeResult.IsActive), HeaderText = "Actif" , DisplayAsCheckBox = true}
+        new() { Field = nameof(RegisterTypeResult.Name), HeaderText = "Nom" },
+        new() { Field = nameof(RegisterTypeResult.Description), HeaderText = "Description" },
+        new() { Field = nameof(RegisterTypeResult.IsActive), HeaderText = "Actif" , DisplayAsCheckBox = true}
     ];
 
     // toolbar items

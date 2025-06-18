@@ -1,6 +1,6 @@
 ﻿using FastEndpoints;
-using Soditech.IntelPrev.Preventions.Shared.Buildings;
 using FluentValidation;
+using Soditech.IntelPrev.Prevensions.Shared.Buildings;
 
 namespace Soditech.IntelPrev.Preventions.WebApi.Endpoints.Buildings.Validators;
 

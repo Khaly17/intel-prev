@@ -1,4 +1,6 @@
-﻿using Sensor6ty.Domain;
+﻿using System;
+using System.Collections.Generic;
+using Sensor6ty.Domain;
 
 namespace Soditech.IntelPrev.Users.Persistence.Models;
 

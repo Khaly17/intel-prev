@@ -9,11 +9,11 @@ using Soditech.IntelPrev.Mobile.Services.Notifications;
 namespace Soditech.IntelPrev.Mobile;
 
 [Service(Exported = false)]
-[IntentFilter(new [] {"com.google.firebase.MESSAGING_EVENT"})]
+[IntentFilter(["com.google.firebase.MESSAGING_EVENT"])]
 public class PushNotificationFirebaseMessagingService : FirebaseMessagingService
 {
     
-    public override void OnNewToken(string token)
+    public override void OnNewToken(string? token)
     {
         DependencyResolver
             .GetRequiredService<IDeviceInstallationService>()

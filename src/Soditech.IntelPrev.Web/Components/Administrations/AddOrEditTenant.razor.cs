@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components;
 using Soditech.IntelPrev.Users.Shared.Tenants;
-using Soditech.IntelPrev.Web.Pages.Administration.Tenants;
 
 namespace Soditech.IntelPrev.Web.Components.Administrations;
 

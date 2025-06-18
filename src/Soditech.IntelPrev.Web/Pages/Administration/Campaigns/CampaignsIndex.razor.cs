@@ -1,9 +1,12 @@
-﻿using Microsoft.AspNetCore.Components;
-using Soditech.IntelPrev.Mediatheques.Shared;
-using Soditech.IntelPrev.Preventions.Shared.Campaigns;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Logging;
+using Soditech.IntelPrev.Prevensions.Shared;
+using Soditech.IntelPrev.Prevensions.Shared.Campaigns;
 using Syncfusion.Blazor.Grids;
-using Soditech.IntelPrev.Preventions.Shared;
-using Soditech.IntelPrev.Preventions.Shared.CommitteeMembers;
 
 namespace Soditech.IntelPrev.Web.Pages.Administration.Campaigns;
 
@@ -17,10 +20,10 @@ public partial class CampaignsIndex
 
     private static List<GridColumn> Columns =>
     [       
-        new GridColumn { Field =  nameof(CampaignResult.Name), HeaderText = "Nom" },
-        new GridColumn { Field = nameof(CampaignResult.Description), HeaderText = "Description" },
-        new GridColumn { Field = nameof(CampaignResult.StartDate), HeaderText = "Date de début",Format = "dd/MM/yyyy" },
-        new GridColumn { Field = nameof(CampaignResult.EndDate), HeaderText = "Date de fin",Format = "dd/MM/yyyy" }
+        new() { Field =  nameof(CampaignResult.Name), HeaderText = "Nom" },
+        new() { Field = nameof(CampaignResult.Description), HeaderText = "Description" },
+        new() { Field = nameof(CampaignResult.StartDate), HeaderText = "Date de début",Format = "dd/MM/yyyy" },
+        new() { Field = nameof(CampaignResult.EndDate), HeaderText = "Date de fin",Format = "dd/MM/yyyy" }
     ];
 
     private static List<string> ToolbarItems => ["Search", "ExcelExport", "PdfExport", "Print"];
@@ -32,7 +35,7 @@ public partial class CampaignsIndex
     private bool _isDisableCampaignModalVisible;
 
     private const string CampaignsCacheKey = "Campaigns";
-    private CampaignResult _selectedcampaign { get; set; } = default!;
+    private CampaignResult Selectedcampaign { get; set; } = default!;
 
     protected override async Task OnInitializedAsync()
     {
@@ -92,7 +95,7 @@ public partial class CampaignsIndex
 
     private void DeleteCampaign(CampaignResult campaign)
     {
-        _selectedcampaign = campaign;
+        Selectedcampaign = campaign;
         _isDeleteModalVisible = true;
     }
     private void HideDeleteModal() => _isDeleteModalVisible = false;
@@ -101,11 +104,11 @@ public partial class CampaignsIndex
     {
         try
         {
-            var result = await ProxyService.DeleteAsync(PreventionRoutes.Campaigns.Delete.Replace("{id:guid}", _selectedcampaign.Id.ToString()));
+            var result = await ProxyService.DeleteAsync(PreventionRoutes.Campaigns.Delete.Replace("{id:guid}", Selectedcampaign.Id.ToString()));
 
             if (result.IsSuccess)
             {
-                CampaignResults = CampaignResults.Where(n => n.Id != _selectedcampaign.Id).ToList();
+                CampaignResults = CampaignResults.Where(n => n.Id != Selectedcampaign.Id).ToList();
                 ShowAlert("Campagne supprimé avec succès.");
             }
             else

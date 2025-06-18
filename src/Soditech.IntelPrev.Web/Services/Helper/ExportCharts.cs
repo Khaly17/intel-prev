@@ -1,4 +1,5 @@
-﻿using Microsoft.JSInterop;
+﻿using System.Threading.Tasks;
+using Microsoft.JSInterop;
 
 namespace Soditech.IntelPrev.Web.Services.Helper;
 
