@@ -9,5 +9,5 @@ public enum AlertType
     Flood,
     Earthquake,
     Tsunami,
-    Hurricane,
+    Hurricane
 }

@@ -2,12 +2,10 @@
 
 public class ChangePasswordModel
 {
-    private string _currentPassword;
-    private string _newPassword;
+    private string _currentPassword = string.Empty;
+    private string _newPassword = string.Empty;
 
-    private string _newPasswordRepeat;
-
-    private bool _isChangePasswordDisabled = true;
+    private string _newPasswordRepeat =  string.Empty;
 
     public string CurrentPassword
     {
@@ -39,14 +37,7 @@ public class ChangePasswordModel
         }
     }
 
-    public bool IsChangePasswordDisabled
-    {
-        get => _isChangePasswordDisabled;
-        set
-        {
-            _isChangePasswordDisabled = value;
-        }
-    }
+    public bool IsChangePasswordDisabled { get; set; } = true;
 
     private void SetChangePasswordButtonStatus()
     {

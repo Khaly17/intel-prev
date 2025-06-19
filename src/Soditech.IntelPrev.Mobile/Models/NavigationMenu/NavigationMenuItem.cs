@@ -19,10 +19,7 @@ public class NavigationMenuItem
     public bool IsSelected
     {
         get => _isSelected;
-        set
-        {
-            _isSelected = value;
-        }
+        set => _isSelected = value;
     }
 
     /// <summary>

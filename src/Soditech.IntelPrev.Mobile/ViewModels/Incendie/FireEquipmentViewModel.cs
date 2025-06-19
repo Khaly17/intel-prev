@@ -13,11 +13,7 @@ public partial class FireEquipmentViewModel : MauiViewModel
     public ObservableCollection<FireEquipmentItem> EquipmentItems
     {
         get => _equipmentItems;
-        set
-        {
-            SetProperty(ref _equipmentItems, value);
-
-        }
+        set => SetProperty(ref _equipmentItems, value);
     }
 
     public static string OverviewTitle => "Le matériel incendie";

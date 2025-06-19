@@ -14,7 +14,7 @@ public enum FieldType
     Boolean,
     Select,
     MultiSelect,
-    List,
+    List
 }
 
 public class FieldTypeJsonConverter : JsonConverter<FieldType>

@@ -4,7 +4,9 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.Extensions.Logging;
 using Microsoft.Maui.Controls;
+using Soditech.IntelPrev.Mobile.Core.Dependency;
 using Soditech.IntelPrev.Mobile.ViewModels.Base;
 using Soditech.IntelPrev.Mobile.Views.Sensibilisation;
 
@@ -12,15 +14,12 @@ namespace Soditech.IntelPrev.Mobile.ViewModels;
 
 public class DocumentLegauxViewModel : MauiViewModel
 {
-	private DocumentItem _selectedDocument;
-	private bool _isBusy;
+	private DocumentItem _selectedDocument = null!;
 
-	public bool IsBusy
-	{
-		get => _isBusy;
-		set => SetProperty(ref _isBusy, value);
-	}
-
+	private readonly ILogger<DocumentLegauxViewModel> _logger =
+		DependencyResolver.GetRequiredService<ILogger<DocumentLegauxViewModel>>();
+	
+	
 	public DocumentItem SelectedDocument
 	{
 		get => _selectedDocument;
@@ -105,6 +104,7 @@ public class DocumentLegauxViewModel : MauiViewModel
 		catch (Exception ex)
 		{
 			await Shell.Current.DisplayAlert("Erreur", "Impossible d'ouvrir le document", "OK");
+			_logger.LogError(ex, "Unable to open document");
 		}
 		finally
 		{
@@ -116,8 +116,8 @@ public class DocumentLegauxViewModel : MauiViewModel
 // Model class for document items
 public class DocumentItem
 {
-	public string Title { get; set; }
-	public string Description { get; set; }
-	public string Icon { get; set; }
-	public string FilePath { get; set; }
+	public string Title { get; set; } = string.Empty;
+	public string Description { get; set; } = string.Empty;
+	public string Icon { get; set; } = string.Empty;
+	public string FilePath { get; set; } = string.Empty;
 }

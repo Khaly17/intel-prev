@@ -15,11 +15,7 @@ public partial class FireInstructionsViewModel : MauiViewModel
     public string CustomInstructions
     {
         get => _customInstructions;
-        set
-        {
-            SetProperty(ref _customInstructions, value);
-
-        }
+        set => SetProperty(ref _customInstructions, value);
     }
 
     public ICommand PageAppearingCommand => new AsyncRelayCommand(async () => await InitializeAsync());

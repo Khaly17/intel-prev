@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Foundation;
 using Microsoft.Maui;
@@ -56,6 +57,7 @@ public class AppDelegate : MauiUIApplicationDelegate
         catch (Exception ex)
         {
             // _logger.LogError(ex, "Error processing notification actions");
+            Debug.Write(ex);
         }
     }
 

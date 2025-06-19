@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.Extensions.Logging;
 using Microsoft.Maui.ApplicationModel;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Controls.Maps;
@@ -26,6 +27,8 @@ namespace Soditech.IntelPrev.Mobile.ViewModels.Gps;
 
 public partial class MaterialLocationViewModel : MauiViewModel, IQueryAttributable
 {
+    private readonly ILogger<MaterialLocationViewModel> _logger =
+        DependencyResolver.GetRequiredService<ILogger<MaterialLocationViewModel>>();
     private readonly IProxyService _proxyClientService = DependencyResolver.GetRequiredService<IProxyService>();
     private CancellationTokenSource? _cancelTokenSource;
     private bool _isCheckingLocation;
@@ -105,6 +108,7 @@ public partial class MaterialLocationViewModel : MauiViewModel, IQueryAttributab
         catch (Exception ex)
         {
             await Shell.Current.DisplayAlert("Erreur", "Impossible d'obtenir votre position", "OK");
+            _logger.LogError(ex, "Cannot get user current location");
         }
         finally
         {
@@ -150,6 +154,7 @@ public partial class MaterialLocationViewModel : MauiViewModel, IQueryAttributab
         catch (Exception ex)
         {
             await Shell.Current.DisplayAlert("Erreur", "Impossible de charger les emplacements", "OK");
+            _logger.LogError(ex, "Unable to load locations");
         }
     }
 

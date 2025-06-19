@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.Extensions.Logging;
 using Microsoft.Maui.Controls;
 using Sensor6ty.Results;
 using Soditech.IntelPrev.Mobile.Core.Dependency;
@@ -19,6 +20,7 @@ namespace Soditech.IntelPrev.Mobile.ViewModels.Alerts;
 public partial class AlertSummaryCreationViewModel : MauiViewModel, IQueryAttributable
 {
 	private readonly IProxyService _proxyClientService = DependencyResolver.GetRequiredService<IProxyService>();
+	private readonly ILogger<AlertSummaryCreationViewModel> _logger = DependencyResolver.GetRequiredService<ILogger<AlertSummaryCreationViewModel>>();
 
 	private CreateAlertCommand _createAlertCommand = default!;
 	private BuildingResult _building = default!;
@@ -83,6 +85,7 @@ public partial class AlertSummaryCreationViewModel : MauiViewModel, IQueryAttrib
 		}
 		catch (Exception ex)
 		{
+			_logger.LogError(ex, "Unable to create this alert");
 			await Shell.Current.DisplayAlert(
 				"Erreur",
 				"Une erreur s'est produite. Veuillez réessayer.",

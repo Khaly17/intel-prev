@@ -1,7 +1,4 @@
-﻿
-
-
-using System;
+﻿using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Logging;
@@ -26,7 +23,7 @@ public partial class ActionsOrganizerIndex
 
     protected override async Task OnInitializedAsync()
     {
-        await GetContent();
+        await GetContentAsync();
     }
 
     private void OnValueChanged(string newValue)
@@ -34,7 +31,7 @@ public partial class ActionsOrganizerIndex
         _value = newValue;
     }
 
-    private async Task SaveContent()
+    private async Task SaveContentAsync()
     {
         if (IsSaving)
             return;
@@ -59,7 +56,7 @@ public partial class ActionsOrganizerIndex
                 HandleResult(result, "Le protocol d'analyse des risques a été modifié avec succès !");
             }
 
-            await GetContent();
+            await GetContentAsync();
         }
         catch (Exception ex)
         {
@@ -94,7 +91,7 @@ public partial class ActionsOrganizerIndex
         }
     }
 
-    private async Task GetContent()
+    private async Task GetContentAsync()
     {
         var result = await ProxyService.GetAsync<ProPrevContentResult>(PreventionRoutes.ProPrevSettings.GetActionsOrganizerContent);
         if (result.IsSuccess)

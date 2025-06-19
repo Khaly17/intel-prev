@@ -49,7 +49,7 @@ public class AccessTokenManager(IServiceProvider serviceProvider) : IAccessToken
         }
 
         AuthenticateResult = response.Value;
-        AuthenticateResult.RefreshTokenExpireDate = DateTime.Now.Add(AppConsts.RefreshTokenExpiration);
+        AuthenticateResult.RefreshTokenExpireDate = DateTime.UtcNow.Add(AppConsts.RefreshTokenExpiration);
         
         await _dataStorageService.StoreAuthenticateResultAsync(AuthenticateResult);
 
@@ -61,7 +61,7 @@ public class AccessTokenManager(IServiceProvider serviceProvider) : IAccessToken
     public bool IsUserLoggedIn => AuthenticateResult?.AccessToken != null;
 
     public bool IsRefreshTokenExpired =>
-        AuthenticateResult == null || DateTime.Now >= AuthenticateResult.RefreshTokenExpireDate;
+        AuthenticateResult == null || DateTime.UtcNow >= AuthenticateResult.RefreshTokenExpireDate;
 
     public void Logout()
     {
@@ -86,7 +86,7 @@ public class AccessTokenManager(IServiceProvider serviceProvider) : IAccessToken
         }
 
         AuthenticateResult = response.Value;
-        AuthenticateResult.RefreshTokenExpireDate = DateTime.Now.Add(AppConsts.RefreshTokenExpiration);
+        AuthenticateResult.RefreshTokenExpireDate = DateTime.UtcNow.Add(AppConsts.RefreshTokenExpiration);
 
         return AuthenticateResult;
     }

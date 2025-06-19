@@ -6,7 +6,9 @@ using Soditech.IntelPrev.Mobile.Services.Storage;
 using Soditech.IntelPrev.Mobile.ViewModels.Base;
 using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using Microsoft.Maui.Controls;
+using Soditech.IntelPrev.Mobile.Core.Dependency;
 
 namespace Soditech.IntelPrev.Mobile.ViewModels.Account;
 
@@ -14,6 +16,8 @@ public partial class ChangePasswordViewModel : MauiViewModel
 {
     private readonly IAccountService _accountService;
     private readonly IDataStorageService _dataStorageService;
+	private readonly ILogger<ChangePasswordViewModel> _logger = DependencyResolver.GetRequiredService<ILogger<ChangePasswordViewModel>>();
+    
 
 
     public ChangePasswordViewModel()
@@ -74,6 +78,7 @@ public partial class ChangePasswordViewModel : MauiViewModel
         catch (Exception ex)
         {
             ErrorMessage = "Une erreur est survenue.";
+            _logger.LogError(ex, "Error occured");
         }
         finally
         {

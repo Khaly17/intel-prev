@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Controls.UserDialogs.Maui;
@@ -60,6 +61,7 @@ public abstract class MauiViewModel  : ObservableObject, ITransientDependency
 
     public static async Task HandleExceptionAsync(Exception ex)
     {
+        Debug.Write(ex);
         // Handle exception by showing a dialog 
         await Shell.Current.DisplayAlert("Erreur", "Impossible d'obtenir votre position", "OK");
     }

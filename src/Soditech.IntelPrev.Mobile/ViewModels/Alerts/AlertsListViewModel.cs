@@ -144,21 +144,16 @@ public class AlertsListViewModel : MauiViewModel
 		}
 	}
 
-	public static async Task<PermissionStatus> CheckAndRequestLocationPermission()
+	private static async Task<PermissionStatus> CheckAndRequestLocationPermission()
 	{
 		var status = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>();
 
-		switch (status)
-		{
-			case PermissionStatus.Granted:
-				return status;
-			case PermissionStatus.Denied when DeviceInfo.Platform == DevicePlatform.iOS:
-				// Prompt the user to turn on in settings
-				// On iOS once a permission has been denied it may not be requested again from the application
-				return status;
-		    default:
-				throw new ArgumentOutOfRangeException(nameof(status), $"Unhandled permission status: {status}");
-		}
+		if (status == PermissionStatus.Granted) return status;
+
+		if (status == PermissionStatus.Denied && DeviceInfo.Platform == DevicePlatform.iOS)
+			// Prompt the user to turn on in settings
+			// On iOS once a permission has been denied it may not be requested again from the application
+			return status;
 
 		if (Permissions.ShouldShowRationale<Permissions.LocationWhenInUse>())
 		{

@@ -15,7 +15,7 @@ public enum EquipmentType
 {
     Dae,
     Extinguisher,
-    Epi,
+    Epi
 }
 
 // use EquipmentType to extend the GeoLocationType

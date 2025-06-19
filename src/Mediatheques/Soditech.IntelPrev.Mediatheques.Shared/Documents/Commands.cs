@@ -27,7 +27,6 @@ public record DocumentResult
     public DateTimeOffset? UpdatedAt { get; set; }
 
     private byte[] _blobFile = [];
-
     public byte[] BlobFile
     {
         get => (byte[])_blobFile.Clone(); 
@@ -36,11 +35,11 @@ public record DocumentResult
 
     public string Path { get; set; } = string.Empty;
     public string Extension { get; set; } = string.Empty;
-    public string Type { get; set; } = DocumentType.Tutos.ToString();
-    public string FileType { get; set; } = FileTypeEnum.Video.ToString();
+    public string Type { get; set; } = nameof(DocumentType.Tutos);
+    public string FileType { get; set; } = nameof(FileTypeEnum.Video);
     public bool IsDownloadable { get; set; }
     public Guid TenantId { get; set; }
-    public string TenantName { get; set; } = default!;
+    public string TenantName { get; set; } = string.Empty;
 }
 
 
@@ -48,7 +47,7 @@ public record GetDocumentsQuery : IRequest<TResult<IEnumerable<DocumentResult>>>
 
 public record GetDocumentsByTypeQuery : IRequest<TResult<IEnumerable<DocumentResult>>>
 {
-    public string Type { get; set; } = DocumentType.Tutos.ToString();
+    public string Type { get; set; } = nameof(DocumentType.Tutos);
 }
 
 public record GetDocumentQuery(Guid Id) : IRequest<TResult<DocumentResult>>;
@@ -85,13 +84,13 @@ public record CreateDocumentCommand : IRequest<TResult<DocumentResult>>
     public string Extension { get; set; } = string.Empty;
 
     [AllowedValues("DUERP", "InternalRules", "Tutos")]
-    public string Type { get; set; } = DocumentType.Tutos.ToString();
+    public string Type { get; set; } = nameof(DocumentType.Tutos);
 
     /// <summary>
     /// It will be used to display the file on the UI
     /// </summary>
     [AllowedValues("Video", "Image", "Document", "Pdf", "Audio", "Other")]
-    public string FileType { get; set; } = FileTypeEnum.Video.ToString();
+    public string FileType { get; set; } = nameof(FileTypeEnum.Video);
 
     public bool IsDownloadable { get; set; }
 }
@@ -108,13 +107,13 @@ public record UpdateDocumentCommand : IRequest<TResult<DocumentResult>>
     public string? Path { get; set; } = string.Empty;
 
     [AllowedValues("DUERP", "InternalRules", "Tutos")]
-    public string Type { get; set; } = DocumentType.Tutos.ToString();
+    public string Type { get; set; } = nameof(DocumentType.Tutos);
 
     /// <summary>
     /// It will be used to display the file on the UI
     /// </summary>
     [AllowedValues("Video", "Image", "Document", "Pdf", "Audio", "Other")]
-    public string FileType { get; set; } = FileTypeEnum.Video.ToString();
+    public string FileType { get; set; } = nameof(FileTypeEnum.Video);
 
     public bool? IsDownloadable { get; set; }
 }

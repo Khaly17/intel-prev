@@ -63,7 +63,7 @@ public record CreateReportCommand : IRequest<TResult<ReportResult>>
 					ReportDatas.Add(new CreateReportDataCommand
 					{
 						FieldId = field.RegisterFieldId,
-						Value = field.Value?.ToString() ?? string.Empty,
+						Value = field.Value?.ToString() ?? string.Empty
 					});
 					break;
 				case CreateReportFieldGroupCommand groupCommand:
@@ -73,7 +73,7 @@ public record CreateReportCommand : IRequest<TResult<ReportResult>>
 							ReportDatas.Add(new CreateReportDataCommand
 							{
 								FieldId = field.RegisterFieldId,
-								Value = field.Value?.ToString() ?? string.Empty,
+								Value = field.Value?.ToString() ?? string.Empty
 							});
 						}
 
@@ -104,7 +104,7 @@ public record CreateReportCommand : IRequest<TResult<ReportResult>>
 			{
 				Value = string.Empty,
 				//ReportId = report.Id,
-				FieldId = field.Id,
+				FieldId = field.Id
 			});
 		}
 

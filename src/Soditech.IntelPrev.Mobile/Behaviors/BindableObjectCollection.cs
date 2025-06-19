@@ -33,10 +33,7 @@ public class BindableObjectCollection : BindableObject, IList<BindableObject>, I
 
     public BindableObject this[int index]
     {
-        get
-        {
-            return this[index];
-        }
+        get => this[index];
         set
         {
             var oldItem = this[index];

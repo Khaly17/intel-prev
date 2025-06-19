@@ -128,12 +128,12 @@ public class NotificationHubService(IOptions<NotificationHubOptions> options, IL
         }
     }
 
-    static string PrepareNotificationPayload(string template,string title ,string text, string action) => template
+    private static string PrepareNotificationPayload(string template,string title ,string text, string action) => template
         .Replace("$(alertTitle)", title, StringComparison.InvariantCulture)
         .Replace("$(alertMessage)", text, StringComparison.InvariantCulture)
         .Replace("$(alertAction)", action, StringComparison.InvariantCulture);
 
-    Task SendPlatformNotificationsAsync(string androidPayload, string iOSPayload, CancellationToken token)
+    private Task SendPlatformNotificationsAsync(string androidPayload, string iOSPayload, CancellationToken token)
     {
         var sendTasks = new Task[]
         {
@@ -145,7 +145,7 @@ public class NotificationHubService(IOptions<NotificationHubOptions> options, IL
         return Task.WhenAll(sendTasks);
     }
 
-    Task SendPlatformNotificationsAsync(string androidPayload, string iOSPayload, IEnumerable<string> tags, CancellationToken token)
+    private Task SendPlatformNotificationsAsync(string androidPayload, string iOSPayload, IEnumerable<string> tags, CancellationToken token)
     {
         var sendTasks = new Task[]
         {

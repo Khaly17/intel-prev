@@ -5,16 +5,19 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.Extensions.Logging;
 using Microsoft.Maui.Controls;
+using Soditech.IntelPrev.Mobile.Core.Dependency;
 using Soditech.IntelPrev.Mobile.Models;
 using Soditech.IntelPrev.Mobile.ViewModels.Base;
 using Soditech.IntelPrev.Mobile.Views.Sensibilisation;
 
 namespace Soditech.IntelPrev.Mobile.ViewModels.Sensibilisation;
 
-public partial class RiskPreventionViewModel : MauiViewModel
+public class RiskPreventionViewModel : MauiViewModel
 {
 	private Stream? _pdfDocumentStream;
+	private readonly ILogger<RiskPreventionViewModel> _logger = DependencyResolver.GetRequiredService<ILogger<RiskPreventionViewModel>>();
 
 	public Stream? PdfDocumentStream
 	{
@@ -24,42 +27,42 @@ public partial class RiskPreventionViewModel : MauiViewModel
 
 	public ObservableCollection<PreventionTopic> PreventionTopics { get; } =
 	[
-		new PreventionTopic
+		new()
 		{
 			Title = "La chaleur et l'été",
 			DocumentPath = "prevention_chaleur.pdf",
 			DocumentTitle = "Guide Chaleur"
 		},
 
-		new PreventionTopic
+		new()
 		{
 			Title = "Les chutes",
 			DocumentPath = "doc1.pdf",
 			DocumentTitle = "Guide Chutes"
 		},
 
-		new PreventionTopic
+		new()
 		{
 			Title = "Les accidents chimiques",
 			DocumentPath = "prevention_chimique.pdf",
 			DocumentTitle = "Guide Risques Chimiques"
 		},
 
-		new PreventionTopic
+		new()
 		{
 			Title = "Les risques de glissade",
 			DocumentPath = "risque_glissade.pdf",
 			DocumentTitle = "Glissades"
 		},
 
-		new PreventionTopic
+		new()
 		{
 			Title = "Les EPI",
 			DocumentPath = "epi.pdf",
 			DocumentTitle = "les epis"
 		},
 
-		new PreventionTopic
+		new()
 		{
 			Title = "Les risques psychosociaux",
 			DocumentPath = "risk_ps.pdf",
@@ -69,10 +72,6 @@ public partial class RiskPreventionViewModel : MauiViewModel
 
 	public ICommand OpenDocumentCommand => new AsyncRelayCommand<string>(OpenDocumentAsync);
 	public ICommand PageAppearingCommand => new AsyncRelayCommand(async () => await InitializeAsync());
-
-	public RiskPreventionViewModel()
-	{
-	}
 
 
 	private async Task OpenDocumentAsync(string? documentPath)
@@ -89,7 +88,8 @@ public partial class RiskPreventionViewModel : MauiViewModel
 		}
 		catch (Exception ex)
 		{
-			await Shell.Current.DisplayAlert("Error", "Unable to open document", "OK");
+			await Shell.Current.DisplayAlert("Erreur", "Error d'ouverture du document.", "OK");
+			_logger.LogError(ex, "Unable to open document");
 		}
 	}
 }

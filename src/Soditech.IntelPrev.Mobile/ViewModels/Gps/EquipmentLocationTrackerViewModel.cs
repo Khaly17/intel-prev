@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.Extensions.Logging;
 using Microsoft.Maui.ApplicationModel;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Devices.Sensors;
@@ -21,6 +22,7 @@ namespace Soditech.IntelPrev.Mobile.ViewModels.Gps;
 public partial class EquipmentLocationTrackerViewModel : MauiViewModel, IQueryAttributable
 {
     private readonly IProxyService _proxyClientService = DependencyResolver.GetRequiredService<IProxyService>();
+    private readonly ILogger<EquipmentLocationTrackerViewModel> _logger = DependencyResolver.GetRequiredService<ILogger<EquipmentLocationTrackerViewModel>>();
 
     public ICommand PageAppearingCommand => new AsyncRelayCommand(async () => await InitializeAsync());
 
@@ -133,6 +135,7 @@ public partial class EquipmentLocationTrackerViewModel : MauiViewModel, IQueryAt
         catch (Exception ex)
         {
             await Shell.Current.DisplayAlert("Erreur", "Impossible d'obtenir votre position", "OK");
+            _logger.LogError(ex, "Unable to get user location");
         }
         finally
         {

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Flurl.Http;
@@ -48,10 +49,12 @@ public static class FlurlResponseExtensions
                 return Result.Failure<T>(new Error("401", e.Message));
             }
 
+            Debug.WriteLine(e);
             return Result.Failure<T>(new Error(e.StatusCode.ToString() ?? "DeserializationError", $"Cannot deserialize {typeof(T).Name}"));
         }
         catch (Exception e)
         {
+            Debug.Write(e);
             return Result.Failure<T>(new Error("DeserializationError", $"Cannot deserialize {typeof(T).Name}"));
         }
     }
@@ -94,6 +97,8 @@ public static class FlurlResponseExtensions
         }
         catch (Exception e)
         {
+            //TODO: use ILogger
+            Debug.Write(e);
            return Result.Failure(new Error("DeserializationError",$"Cannot deserialize {nameof(Result)}"));
         }
     }
