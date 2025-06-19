@@ -56,14 +56,7 @@ class ActionTrackingViewModel : MauiViewModel
     {
         var result = await _proxyClientService.GetAsync<PreventionContentResult>(PreventionRoutes.ProPrevSettings.GetActionsOrganizerContent);
 
-        if (result.IsSuccess)
-        {
-            DefinitionText = result.Value.Content;
-        }
-        else
-        {
-            DefinitionText = "Aucune donnée disponible.";
-        }
+        DefinitionText = result.IsSuccess ? result.Value.Content : "Aucune donnée disponible.";
     }
 
 }

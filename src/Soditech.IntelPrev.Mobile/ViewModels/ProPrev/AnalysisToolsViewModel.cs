@@ -57,13 +57,6 @@ public class AnalysisToolsViewModel : MauiViewModel
     private async Task GetContentAsync()
     {
         var result = await _proxyClientService.GetAsync<PreventionContentResult>(PreventionRoutes.ProPrevSettings.GetAnalysisToolsContent);
-        if (result.IsSuccess)
-        {
-            DefinitionText = result.Value.Content;
-        }
-        else
-        {
-            DefinitionText = "Aucune donnée disponible.";
-        }
+        DefinitionText = result.IsSuccess ? result.Value.Content : "Aucune donnée disponible.";
     }
 }

@@ -8,1177 +8,1176 @@ using Soditech.IntelPrev.Reports.Persistence;
 
 #nullable disable
 
-namespace Soditech.IntelPrev.Reports.Persistence.Migrations
+namespace Soditech.IntelPrev.Reports.Persistence.Migrations;
+
+[DbContext(typeof(ReportDbContext))]
+partial class ReportDbContextModelSnapshot : ModelSnapshot
 {
-    [DbContext(typeof(ReportDbContext))]
-    partial class ReportDbContextModelSnapshot : ModelSnapshot
+    protected override void BuildModel(ModelBuilder modelBuilder)
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
-        {
 #pragma warning disable 612, 618
-            modelBuilder
-                .HasDefaultSchema("reports")
-                .HasAnnotation("ProductVersion", "8.0.8")
-                .HasAnnotation("Proxies:ChangeTracking", false)
-                .HasAnnotation("Proxies:CheckEquality", false)
-                .HasAnnotation("Proxies:LazyLoading", true)
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+        modelBuilder
+            .HasDefaultSchema("reports")
+            .HasAnnotation("ProductVersion", "8.0.8")
+            .HasAnnotation("Proxies:ChangeTracking", false)
+            .HasAnnotation("Proxies:CheckEquality", false)
+            .HasAnnotation("Proxies:LazyLoading", true)
+            .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+        SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Soditech.IntelPrev.Reports.Persistence.Models.Alert", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+        modelBuilder.Entity("Soditech.IntelPrev.Reports.Persistence.Models.Alert", b =>
+            {
+                b.Property<Guid>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<double?>("Altitude")
-                        .HasColumnType("float");
+                b.Property<double?>("Altitude")
+                    .HasColumnType("float");
 
-                    b.Property<Guid>("BuildingId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid>("BuildingId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTimeOffset?>("CreatedAt")
-                        .HasColumnType("datetimeoffset");
+                b.Property<DateTimeOffset?>("CreatedAt")
+                    .HasColumnType("datetimeoffset");
 
-                    b.Property<Guid?>("CreatorId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid?>("CreatorId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTimeOffset?>("DeletedAt")
-                        .HasColumnType("datetimeoffset");
+                b.Property<DateTimeOffset?>("DeletedAt")
+                    .HasColumnType("datetimeoffset");
 
-                    b.Property<Guid?>("DeleterId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid?>("DeleterId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(512)
-                        .HasColumnType("nvarchar(512)");
+                b.Property<string>("Description")
+                    .IsRequired()
+                    .HasMaxLength(512)
+                    .HasColumnType("nvarchar(512)");
 
-                    b.Property<Guid?>("FloorId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid?>("FloorId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<bool>("IsDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
+                b.Property<bool>("IsDeleted")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("bit")
+                    .HasDefaultValue(false);
 
-                    b.Property<double>("Latitude")
-                        .HasColumnType("float");
+                b.Property<double>("Latitude")
+                    .HasColumnType("float");
 
-                    b.Property<double>("Longitude")
-                        .HasColumnType("float");
+                b.Property<double>("Longitude")
+                    .HasColumnType("float");
 
-                    b.Property<Guid>("TenantId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid>("TenantId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(64)
-                        .HasColumnType("nvarchar(64)");
+                b.Property<string>("Title")
+                    .IsRequired()
+                    .HasMaxLength(64)
+                    .HasColumnType("nvarchar(64)");
 
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Type")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTimeOffset?>("UpdatedAt")
-                        .HasColumnType("datetimeoffset");
+                b.Property<DateTimeOffset?>("UpdatedAt")
+                    .HasColumnType("datetimeoffset");
 
-                    b.Property<Guid?>("UpdaterId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid?>("UpdaterId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("BuildingId");
+                b.HasIndex("BuildingId");
 
-                    b.HasIndex("CreatorId");
+                b.HasIndex("CreatorId");
 
-                    b.HasIndex("DeleterId");
+                b.HasIndex("DeleterId");
 
-                    b.HasIndex("FloorId");
+                b.HasIndex("FloorId");
 
-                    b.HasIndex("TenantId");
+                b.HasIndex("TenantId");
 
-                    b.HasIndex("UpdaterId");
+                b.HasIndex("UpdaterId");
 
-                    b.ToTable("Alerts", "reports");
-                });
+                b.ToTable("Alerts", "reports");
+            });
 
-            modelBuilder.Entity("Soditech.IntelPrev.Reports.Persistence.Models.Building", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+        modelBuilder.Entity("Soditech.IntelPrev.Reports.Persistence.Models.Building", b =>
+            {
+                b.Property<Guid>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                b.Property<string>("Address")
+                    .IsRequired()
+                    .HasMaxLength(500)
+                    .HasColumnType("nvarchar(500)");
 
-                    b.Property<DateTimeOffset?>("CreatedAt")
-                        .HasColumnType("datetimeoffset");
+                b.Property<DateTimeOffset?>("CreatedAt")
+                    .HasColumnType("datetimeoffset");
 
-                    b.Property<Guid?>("CreatorId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid?>("CreatorId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTimeOffset?>("DeletedAt")
-                        .HasColumnType("datetimeoffset");
+                b.Property<DateTimeOffset?>("DeletedAt")
+                    .HasColumnType("datetimeoffset");
 
-                    b.Property<Guid?>("DeleterId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid?>("DeleterId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<bool>("IsDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
+                b.Property<bool>("IsDeleted")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("bit")
+                    .HasDefaultValue(false);
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                b.Property<string>("Name")
+                    .IsRequired()
+                    .HasMaxLength(100)
+                    .HasColumnType("nvarchar(100)");
 
-                    b.Property<Guid>("TenantId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid>("TenantId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTimeOffset?>("UpdatedAt")
-                        .HasColumnType("datetimeoffset");
+                b.Property<DateTimeOffset?>("UpdatedAt")
+                    .HasColumnType("datetimeoffset");
 
-                    b.Property<Guid?>("UpdaterId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid?>("UpdaterId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("CreatorId");
+                b.HasIndex("CreatorId");
 
-                    b.HasIndex("DeleterId");
+                b.HasIndex("DeleterId");
 
-                    b.HasIndex("TenantId");
+                b.HasIndex("TenantId");
 
-                    b.HasIndex("UpdaterId");
+                b.HasIndex("UpdaterId");
 
-                    b.ToTable("Buildings", "reports");
-                });
+                b.ToTable("Buildings", "reports");
+            });
 
-            modelBuilder.Entity("Soditech.IntelPrev.Reports.Persistence.Models.Floor", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+        modelBuilder.Entity("Soditech.IntelPrev.Reports.Persistence.Models.Floor", b =>
+            {
+                b.Property<Guid>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("BuildingId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid>("BuildingId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTimeOffset?>("CreatedAt")
-                        .HasColumnType("datetimeoffset");
+                b.Property<DateTimeOffset?>("CreatedAt")
+                    .HasColumnType("datetimeoffset");
 
-                    b.Property<Guid?>("CreatorId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid?>("CreatorId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTimeOffset?>("DeletedAt")
-                        .HasColumnType("datetimeoffset");
+                b.Property<DateTimeOffset?>("DeletedAt")
+                    .HasColumnType("datetimeoffset");
 
-                    b.Property<Guid?>("DeleterId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid?>("DeleterId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<bool>("IsDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
+                b.Property<bool>("IsDeleted")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("bit")
+                    .HasDefaultValue(false);
 
-                    b.Property<int>("Number")
-                        .HasMaxLength(100)
-                        .HasColumnType("int");
+                b.Property<int>("Number")
+                    .HasMaxLength(100)
+                    .HasColumnType("int");
 
-                    b.Property<Guid>("TenantId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid>("TenantId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTimeOffset?>("UpdatedAt")
-                        .HasColumnType("datetimeoffset");
+                b.Property<DateTimeOffset?>("UpdatedAt")
+                    .HasColumnType("datetimeoffset");
 
-                    b.Property<Guid?>("UpdaterId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid?>("UpdaterId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("BuildingId");
+                b.HasIndex("BuildingId");
 
-                    b.HasIndex("CreatorId");
+                b.HasIndex("CreatorId");
 
-                    b.HasIndex("DeleterId");
+                b.HasIndex("DeleterId");
 
-                    b.HasIndex("TenantId");
+                b.HasIndex("TenantId");
 
-                    b.HasIndex("UpdaterId");
+                b.HasIndex("UpdaterId");
 
-                    b.ToTable("Floors", "reports");
-                });
+                b.ToTable("Floors", "reports");
+            });
 
-            modelBuilder.Entity("Soditech.IntelPrev.Reports.Persistence.Models.RegisterField", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+        modelBuilder.Entity("Soditech.IntelPrev.Reports.Persistence.Models.RegisterField", b =>
+            {
+                b.Property<Guid>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTimeOffset?>("CreatedAt")
-                        .HasColumnType("datetimeoffset");
+                b.Property<DateTimeOffset?>("CreatedAt")
+                    .HasColumnType("datetimeoffset");
 
-                    b.Property<Guid?>("CreatorId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid?>("CreatorId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTimeOffset?>("DeletedAt")
-                        .HasColumnType("datetimeoffset");
+                b.Property<DateTimeOffset?>("DeletedAt")
+                    .HasColumnType("datetimeoffset");
 
-                    b.Property<Guid?>("DeleterId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid?>("DeleterId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Description")
-                        .HasMaxLength(512)
-                        .HasColumnType("nvarchar(512)");
+                b.Property<string>("Description")
+                    .HasMaxLength(512)
+                    .HasColumnType("nvarchar(512)");
 
-                    b.Property<int>("DisplayOrder")
-                        .HasColumnType("int");
+                b.Property<int>("DisplayOrder")
+                    .HasColumnType("int");
 
-                    b.Property<string>("FieldType")
-                        .IsRequired()
-                        .HasMaxLength(512)
-                        .HasColumnType("nvarchar(512)");
+                b.Property<string>("FieldType")
+                    .IsRequired()
+                    .HasMaxLength(512)
+                    .HasColumnType("nvarchar(512)");
 
-                    b.Property<bool>("IsDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
+                b.Property<bool>("IsDeleted")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("bit")
+                    .HasDefaultValue(false);
 
-                    b.Property<bool>("IsRequired")
-                        .HasColumnType("bit");
+                b.Property<bool>("IsRequired")
+                    .HasColumnType("bit");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                b.Property<string>("Name")
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .HasColumnType("nvarchar(255)");
 
-                    b.Property<Guid?>("RegisterFieldGroupId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid?>("RegisterFieldGroupId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("RegisterTypeId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid>("RegisterTypeId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("TenantId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid>("TenantId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTimeOffset?>("UpdatedAt")
-                        .HasColumnType("datetimeoffset");
+                b.Property<DateTimeOffset?>("UpdatedAt")
+                    .HasColumnType("datetimeoffset");
 
-                    b.Property<Guid?>("UpdaterId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid?>("UpdaterId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("CreatorId");
+                b.HasIndex("CreatorId");
 
-                    b.HasIndex("DeleterId");
+                b.HasIndex("DeleterId");
 
-                    b.HasIndex("RegisterFieldGroupId");
+                b.HasIndex("RegisterFieldGroupId");
 
-                    b.HasIndex("RegisterTypeId");
+                b.HasIndex("RegisterTypeId");
 
-                    b.HasIndex("TenantId");
+                b.HasIndex("TenantId");
 
-                    b.HasIndex("UpdaterId");
+                b.HasIndex("UpdaterId");
 
-                    b.ToTable("RegisterFields", "reports");
-                });
+                b.ToTable("RegisterFields", "reports");
+            });
 
-            modelBuilder.Entity("Soditech.IntelPrev.Reports.Persistence.Models.RegisterFieldGroup", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+        modelBuilder.Entity("Soditech.IntelPrev.Reports.Persistence.Models.RegisterFieldGroup", b =>
+            {
+                b.Property<Guid>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTimeOffset?>("CreatedAt")
-                        .HasColumnType("datetimeoffset");
+                b.Property<DateTimeOffset?>("CreatedAt")
+                    .HasColumnType("datetimeoffset");
 
-                    b.Property<Guid?>("CreatorId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid?>("CreatorId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTimeOffset?>("DeletedAt")
-                        .HasColumnType("datetimeoffset");
+                b.Property<DateTimeOffset?>("DeletedAt")
+                    .HasColumnType("datetimeoffset");
 
-                    b.Property<Guid?>("DeleterId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid?>("DeleterId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Description")
-                        .HasMaxLength(512)
-                        .HasColumnType("nvarchar(512)");
+                b.Property<string>("Description")
+                    .HasMaxLength(512)
+                    .HasColumnType("nvarchar(512)");
 
-                    b.Property<int>("DisplayOrder")
-                        .HasColumnType("int");
+                b.Property<int>("DisplayOrder")
+                    .HasColumnType("int");
 
-                    b.Property<bool>("IsDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
+                b.Property<bool>("IsDeleted")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("bit")
+                    .HasDefaultValue(false);
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                b.Property<string>("Name")
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .HasColumnType("nvarchar(255)");
 
-                    b.Property<Guid>("RegisterTypeId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid>("RegisterTypeId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("TenantId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid>("TenantId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTimeOffset?>("UpdatedAt")
-                        .HasColumnType("datetimeoffset");
+                b.Property<DateTimeOffset?>("UpdatedAt")
+                    .HasColumnType("datetimeoffset");
 
-                    b.Property<Guid?>("UpdaterId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid?>("UpdaterId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("CreatorId");
+                b.HasIndex("CreatorId");
 
-                    b.HasIndex("DeleterId");
+                b.HasIndex("DeleterId");
 
-                    b.HasIndex("RegisterTypeId");
+                b.HasIndex("RegisterTypeId");
 
-                    b.HasIndex("TenantId");
+                b.HasIndex("TenantId");
 
-                    b.HasIndex("UpdaterId");
+                b.HasIndex("UpdaterId");
 
-                    b.ToTable("RegisterFieldGroups", "reports");
-                });
+                b.ToTable("RegisterFieldGroups", "reports");
+            });
 
-            modelBuilder.Entity("Soditech.IntelPrev.Reports.Persistence.Models.RegisterType", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+        modelBuilder.Entity("Soditech.IntelPrev.Reports.Persistence.Models.RegisterType", b =>
+            {
+                b.Property<Guid>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTimeOffset?>("CreatedAt")
-                        .HasColumnType("datetimeoffset");
+                b.Property<DateTimeOffset?>("CreatedAt")
+                    .HasColumnType("datetimeoffset");
 
-                    b.Property<Guid?>("CreatorId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid?>("CreatorId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTimeOffset?>("DeletedAt")
-                        .HasColumnType("datetimeoffset");
+                b.Property<DateTimeOffset?>("DeletedAt")
+                    .HasColumnType("datetimeoffset");
 
-                    b.Property<Guid?>("DeleterId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid?>("DeleterId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(512)
-                        .HasColumnType("nvarchar(512)");
+                b.Property<string>("Description")
+                    .IsRequired()
+                    .HasMaxLength(512)
+                    .HasColumnType("nvarchar(512)");
 
-                    b.Property<string>("DisplayName")
-                        .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)")
-                        .HasDefaultValue("Set the default value.");
+                b.Property<string>("DisplayName")
+                    .IsRequired()
+                    .ValueGeneratedOnAdd()
+                    .HasMaxLength(255)
+                    .HasColumnType("nvarchar(255)")
+                    .HasDefaultValue("Set the default value.");
 
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
+                b.Property<bool>("IsActive")
+                    .HasColumnType("bit");
 
-                    b.Property<bool>("IsDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
+                b.Property<bool>("IsDeleted")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("bit")
+                    .HasDefaultValue(false);
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                b.Property<string>("Name")
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .HasColumnType("nvarchar(255)");
 
-                    b.Property<Guid>("TenantId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid>("TenantId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTimeOffset?>("UpdatedAt")
-                        .HasColumnType("datetimeoffset");
+                b.Property<DateTimeOffset?>("UpdatedAt")
+                    .HasColumnType("datetimeoffset");
 
-                    b.Property<Guid?>("UpdaterId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid?>("UpdaterId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("CreatorId");
+                b.HasIndex("CreatorId");
 
-                    b.HasIndex("DeleterId");
+                b.HasIndex("DeleterId");
 
-                    b.HasIndex("TenantId");
+                b.HasIndex("TenantId");
 
-                    b.HasIndex("UpdaterId");
+                b.HasIndex("UpdaterId");
 
-                    b.ToTable("RegisterTypes", "reports");
-                });
+                b.ToTable("RegisterTypes", "reports");
+            });
 
-            modelBuilder.Entity("Soditech.IntelPrev.Reports.Persistence.Models.Report", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+        modelBuilder.Entity("Soditech.IntelPrev.Reports.Persistence.Models.Report", b =>
+            {
+                b.Property<Guid>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTimeOffset?>("CreatedAt")
-                        .HasColumnType("datetimeoffset");
+                b.Property<DateTimeOffset?>("CreatedAt")
+                    .HasColumnType("datetimeoffset");
 
-                    b.Property<Guid?>("CreatorId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid?>("CreatorId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTimeOffset?>("DeletedAt")
-                        .HasColumnType("datetimeoffset");
+                b.Property<DateTimeOffset?>("DeletedAt")
+                    .HasColumnType("datetimeoffset");
 
-                    b.Property<Guid?>("DeleterId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid?>("DeleterId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(512)
-                        .HasColumnType("nvarchar(512)");
+                b.Property<string>("Description")
+                    .IsRequired()
+                    .HasMaxLength(512)
+                    .HasColumnType("nvarchar(512)");
 
-                    b.Property<string>("DisplayName")
-                        .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)")
-                        .HasDefaultValue("Set the default value.");
+                b.Property<string>("DisplayName")
+                    .IsRequired()
+                    .ValueGeneratedOnAdd()
+                    .HasMaxLength(255)
+                    .HasColumnType("nvarchar(255)")
+                    .HasDefaultValue("Set the default value.");
 
-                    b.Property<bool>("IsDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
+                b.Property<bool>("IsDeleted")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("bit")
+                    .HasDefaultValue(false);
 
-                    b.Property<Guid>("RegisterTypeId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid>("RegisterTypeId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Status")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("TenantId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid>("TenantId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                b.Property<string>("Title")
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .HasColumnType("nvarchar(255)");
 
-                    b.Property<DateTimeOffset?>("UpdatedAt")
-                        .HasColumnType("datetimeoffset");
+                b.Property<DateTimeOffset?>("UpdatedAt")
+                    .HasColumnType("datetimeoffset");
 
-                    b.Property<Guid?>("UpdaterId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid?>("UpdaterId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("CreatorId");
+                b.HasIndex("CreatorId");
 
-                    b.HasIndex("DeleterId");
+                b.HasIndex("DeleterId");
 
-                    b.HasIndex("RegisterTypeId");
+                b.HasIndex("RegisterTypeId");
 
-                    b.HasIndex("TenantId");
+                b.HasIndex("TenantId");
 
-                    b.HasIndex("UpdaterId");
+                b.HasIndex("UpdaterId");
 
-                    b.ToTable("Reports", "reports");
-                });
+                b.ToTable("Reports", "reports");
+            });
 
-            modelBuilder.Entity("Soditech.IntelPrev.Reports.Persistence.Models.ReportAttachment", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+        modelBuilder.Entity("Soditech.IntelPrev.Reports.Persistence.Models.ReportAttachment", b =>
+            {
+                b.Property<Guid>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTimeOffset?>("CreatedAt")
-                        .HasColumnType("datetimeoffset");
+                b.Property<DateTimeOffset?>("CreatedAt")
+                    .HasColumnType("datetimeoffset");
 
-                    b.Property<Guid?>("CreatorId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid?>("CreatorId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTimeOffset?>("DeletedAt")
-                        .HasColumnType("datetimeoffset");
+                b.Property<DateTimeOffset?>("DeletedAt")
+                    .HasColumnType("datetimeoffset");
 
-                    b.Property<Guid?>("DeleterId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid?>("DeleterId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("FileName")
-                        .IsRequired()
-                        .HasMaxLength(64)
-                        .HasColumnType("nvarchar(64)");
+                b.Property<string>("FileName")
+                    .IsRequired()
+                    .HasMaxLength(64)
+                    .HasColumnType("nvarchar(64)");
 
-                    b.Property<string>("FilePath")
-                        .IsRequired()
-                        .HasMaxLength(64)
-                        .HasColumnType("nvarchar(64)");
+                b.Property<string>("FilePath")
+                    .IsRequired()
+                    .HasMaxLength(64)
+                    .HasColumnType("nvarchar(64)");
 
-                    b.Property<string>("FileType")
-                        .IsRequired()
-                        .HasMaxLength(32)
-                        .HasColumnType("nvarchar(32)");
+                b.Property<string>("FileType")
+                    .IsRequired()
+                    .HasMaxLength(32)
+                    .HasColumnType("nvarchar(32)");
 
-                    b.Property<bool>("IsDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
+                b.Property<bool>("IsDeleted")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("bit")
+                    .HasDefaultValue(false);
 
-                    b.Property<Guid>("ReportId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid>("ReportId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("TenantId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid>("TenantId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTimeOffset?>("UpdatedAt")
-                        .HasColumnType("datetimeoffset");
+                b.Property<DateTimeOffset?>("UpdatedAt")
+                    .HasColumnType("datetimeoffset");
 
-                    b.Property<Guid?>("UpdaterId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid?>("UpdaterId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("CreatorId");
+                b.HasIndex("CreatorId");
 
-                    b.HasIndex("DeleterId");
+                b.HasIndex("DeleterId");
 
-                    b.HasIndex("ReportId");
+                b.HasIndex("ReportId");
 
-                    b.HasIndex("TenantId");
+                b.HasIndex("TenantId");
 
-                    b.HasIndex("UpdaterId");
+                b.HasIndex("UpdaterId");
 
-                    b.ToTable("ReportAttachments", "reports");
-                });
+                b.ToTable("ReportAttachments", "reports");
+            });
 
-            modelBuilder.Entity("Soditech.IntelPrev.Reports.Persistence.Models.ReportComment", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+        modelBuilder.Entity("Soditech.IntelPrev.Reports.Persistence.Models.ReportComment", b =>
+            {
+                b.Property<Guid>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasMaxLength(1024)
-                        .HasColumnType("nvarchar(1024)");
+                b.Property<string>("Content")
+                    .IsRequired()
+                    .HasMaxLength(1024)
+                    .HasColumnType("nvarchar(1024)");
 
-                    b.Property<DateTimeOffset?>("CreatedAt")
-                        .HasColumnType("datetimeoffset");
+                b.Property<DateTimeOffset?>("CreatedAt")
+                    .HasColumnType("datetimeoffset");
 
-                    b.Property<Guid?>("CreatorId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid?>("CreatorId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTimeOffset?>("DeletedAt")
-                        .HasColumnType("datetimeoffset");
+                b.Property<DateTimeOffset?>("DeletedAt")
+                    .HasColumnType("datetimeoffset");
 
-                    b.Property<Guid?>("DeleterId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid?>("DeleterId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<bool>("IsDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
+                b.Property<bool>("IsDeleted")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("bit")
+                    .HasDefaultValue(false);
 
-                    b.Property<Guid>("ReportId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid>("ReportId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("TenantId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid>("TenantId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Title")
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                b.Property<string>("Title")
+                    .HasMaxLength(255)
+                    .HasColumnType("nvarchar(255)");
 
-                    b.Property<DateTimeOffset?>("UpdatedAt")
-                        .HasColumnType("datetimeoffset");
+                b.Property<DateTimeOffset?>("UpdatedAt")
+                    .HasColumnType("datetimeoffset");
 
-                    b.Property<Guid?>("UpdaterId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid?>("UpdaterId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("CreatorId");
+                b.HasIndex("CreatorId");
 
-                    b.HasIndex("DeleterId");
+                b.HasIndex("DeleterId");
 
-                    b.HasIndex("ReportId");
+                b.HasIndex("ReportId");
 
-                    b.HasIndex("TenantId");
+                b.HasIndex("TenantId");
 
-                    b.HasIndex("UpdaterId");
+                b.HasIndex("UpdaterId");
 
-                    b.ToTable("ReportComments", "reports");
-                });
+                b.ToTable("ReportComments", "reports");
+            });
 
-            modelBuilder.Entity("Soditech.IntelPrev.Reports.Persistence.Models.ReportData", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+        modelBuilder.Entity("Soditech.IntelPrev.Reports.Persistence.Models.ReportData", b =>
+            {
+                b.Property<Guid>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTimeOffset?>("CreatedAt")
-                        .HasColumnType("datetimeoffset");
+                b.Property<DateTimeOffset?>("CreatedAt")
+                    .HasColumnType("datetimeoffset");
 
-                    b.Property<Guid?>("CreatorId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid?>("CreatorId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTimeOffset?>("DeletedAt")
-                        .HasColumnType("datetimeoffset");
+                b.Property<DateTimeOffset?>("DeletedAt")
+                    .HasColumnType("datetimeoffset");
 
-                    b.Property<Guid?>("DeleterId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid?>("DeleterId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("FieldId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid>("FieldId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<bool>("IsDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
+                b.Property<bool>("IsDeleted")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("bit")
+                    .HasDefaultValue(false);
 
-                    b.Property<Guid>("ReportId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid>("ReportId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("TenantId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid>("TenantId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTimeOffset?>("UpdatedAt")
-                        .HasColumnType("datetimeoffset");
+                b.Property<DateTimeOffset?>("UpdatedAt")
+                    .HasColumnType("datetimeoffset");
 
-                    b.Property<Guid?>("UpdaterId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid?>("UpdaterId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Value")
-                        .IsRequired()
-                        .HasMaxLength(1024)
-                        .HasColumnType("nvarchar(1024)");
+                b.Property<string>("Value")
+                    .IsRequired()
+                    .HasMaxLength(1024)
+                    .HasColumnType("nvarchar(1024)");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("CreatorId");
+                b.HasIndex("CreatorId");
 
-                    b.HasIndex("DeleterId");
+                b.HasIndex("DeleterId");
 
-                    b.HasIndex("FieldId");
+                b.HasIndex("FieldId");
 
-                    b.HasIndex("ReportId");
+                b.HasIndex("ReportId");
 
-                    b.HasIndex("TenantId");
+                b.HasIndex("TenantId");
 
-                    b.HasIndex("UpdaterId");
+                b.HasIndex("UpdaterId");
 
-                    b.ToTable("ReportDatas", "reports");
-                });
+                b.ToTable("ReportDatas", "reports");
+            });
 
-            modelBuilder.Entity("Soditech.IntelPrev.Reports.Persistence.Models.Tenant", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+        modelBuilder.Entity("Soditech.IntelPrev.Reports.Persistence.Models.Tenant", b =>
+            {
+                b.Property<Guid>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("DisplayName")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
+                b.Property<string>("DisplayName")
+                    .IsRequired()
+                    .HasMaxLength(150)
+                    .HasColumnType("nvarchar(150)");
 
-                    b.Property<bool>("IsActive")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(true);
+                b.Property<bool>("IsActive")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("bit")
+                    .HasDefaultValue(true);
 
-                    b.Property<bool>("IsDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
+                b.Property<bool>("IsDeleted")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("bit")
+                    .HasDefaultValue(false);
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                b.Property<string>("Name")
+                    .IsRequired()
+                    .HasMaxLength(100)
+                    .HasColumnType("nvarchar(100)");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.ToTable("Tenants", "reports");
-                });
+                b.ToTable("Tenants", "reports");
+            });
 
-            modelBuilder.Entity("Soditech.IntelPrev.Reports.Persistence.Models.User", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+        modelBuilder.Entity("Soditech.IntelPrev.Reports.Persistence.Models.User", b =>
+            {
+                b.Property<Guid>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
+                b.Property<string>("Email")
+                    .IsRequired()
+                    .HasMaxLength(150)
+                    .HasColumnType("nvarchar(150)");
 
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                b.Property<string>("FirstName")
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .HasColumnType("nvarchar(50)");
 
-                    b.Property<bool>("IsDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
+                b.Property<bool>("IsDeleted")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("bit")
+                    .HasDefaultValue(false);
 
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                b.Property<string>("LastName")
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .HasColumnType("nvarchar(50)");
 
-                    b.Property<Guid?>("TenantId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid?>("TenantId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Username")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
+                b.Property<string>("Username")
+                    .IsRequired()
+                    .HasMaxLength(150)
+                    .HasColumnType("nvarchar(150)");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("TenantId");
+                b.HasIndex("TenantId");
 
-                    b.ToTable("Users", "reports");
-                });
+                b.ToTable("Users", "reports");
+            });
 
-            modelBuilder.Entity("Soditech.IntelPrev.Reports.Persistence.Models.Alert", b =>
-                {
-                    b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.Building", "Building")
-                        .WithMany()
-                        .HasForeignKey("BuildingId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+        modelBuilder.Entity("Soditech.IntelPrev.Reports.Persistence.Models.Alert", b =>
+            {
+                b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.Building", "Building")
+                    .WithMany()
+                    .HasForeignKey("BuildingId")
+                    .OnDelete(DeleteBehavior.NoAction)
+                    .IsRequired();
 
-                    b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.User", "Creator")
-                        .WithMany()
-                        .HasForeignKey("CreatorId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.User", "Creator")
+                    .WithMany()
+                    .HasForeignKey("CreatorId")
+                    .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.User", "Deleter")
-                        .WithMany()
-                        .HasForeignKey("DeleterId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.User", "Deleter")
+                    .WithMany()
+                    .HasForeignKey("DeleterId")
+                    .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.Floor", "Floor")
-                        .WithMany()
-                        .HasForeignKey("FloorId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.Floor", "Floor")
+                    .WithMany()
+                    .HasForeignKey("FloorId")
+                    .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.Tenant", "Tenant")
-                        .WithMany()
-                        .HasForeignKey("TenantId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.Tenant", "Tenant")
+                    .WithMany()
+                    .HasForeignKey("TenantId")
+                    .OnDelete(DeleteBehavior.NoAction)
+                    .IsRequired();
 
-                    b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.User", "Updater")
-                        .WithMany()
-                        .HasForeignKey("UpdaterId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.User", "Updater")
+                    .WithMany()
+                    .HasForeignKey("UpdaterId")
+                    .OnDelete(DeleteBehavior.NoAction);
 
-                    b.Navigation("Building");
+                b.Navigation("Building");
 
-                    b.Navigation("Creator");
+                b.Navigation("Creator");
 
-                    b.Navigation("Deleter");
+                b.Navigation("Deleter");
 
-                    b.Navigation("Floor");
+                b.Navigation("Floor");
 
-                    b.Navigation("Tenant");
+                b.Navigation("Tenant");
 
-                    b.Navigation("Updater");
-                });
+                b.Navigation("Updater");
+            });
 
-            modelBuilder.Entity("Soditech.IntelPrev.Reports.Persistence.Models.Building", b =>
-                {
-                    b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.User", "Creator")
-                        .WithMany()
-                        .HasForeignKey("CreatorId")
-                        .OnDelete(DeleteBehavior.NoAction);
+        modelBuilder.Entity("Soditech.IntelPrev.Reports.Persistence.Models.Building", b =>
+            {
+                b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.User", "Creator")
+                    .WithMany()
+                    .HasForeignKey("CreatorId")
+                    .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.User", "Deleter")
-                        .WithMany()
-                        .HasForeignKey("DeleterId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.User", "Deleter")
+                    .WithMany()
+                    .HasForeignKey("DeleterId")
+                    .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.Tenant", "Tenant")
-                        .WithMany()
-                        .HasForeignKey("TenantId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.Tenant", "Tenant")
+                    .WithMany()
+                    .HasForeignKey("TenantId")
+                    .OnDelete(DeleteBehavior.NoAction)
+                    .IsRequired();
 
-                    b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.User", "Updater")
-                        .WithMany()
-                        .HasForeignKey("UpdaterId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.User", "Updater")
+                    .WithMany()
+                    .HasForeignKey("UpdaterId")
+                    .OnDelete(DeleteBehavior.NoAction);
 
-                    b.Navigation("Creator");
+                b.Navigation("Creator");
 
-                    b.Navigation("Deleter");
+                b.Navigation("Deleter");
 
-                    b.Navigation("Tenant");
+                b.Navigation("Tenant");
 
-                    b.Navigation("Updater");
-                });
+                b.Navigation("Updater");
+            });
 
-            modelBuilder.Entity("Soditech.IntelPrev.Reports.Persistence.Models.Floor", b =>
-                {
-                    b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.Building", "Building")
-                        .WithMany("Floors")
-                        .HasForeignKey("BuildingId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+        modelBuilder.Entity("Soditech.IntelPrev.Reports.Persistence.Models.Floor", b =>
+            {
+                b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.Building", "Building")
+                    .WithMany("Floors")
+                    .HasForeignKey("BuildingId")
+                    .OnDelete(DeleteBehavior.NoAction)
+                    .IsRequired();
 
-                    b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.User", "Creator")
-                        .WithMany()
-                        .HasForeignKey("CreatorId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.User", "Creator")
+                    .WithMany()
+                    .HasForeignKey("CreatorId")
+                    .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.User", "Deleter")
-                        .WithMany()
-                        .HasForeignKey("DeleterId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.User", "Deleter")
+                    .WithMany()
+                    .HasForeignKey("DeleterId")
+                    .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.Tenant", "Tenant")
-                        .WithMany()
-                        .HasForeignKey("TenantId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.Tenant", "Tenant")
+                    .WithMany()
+                    .HasForeignKey("TenantId")
+                    .OnDelete(DeleteBehavior.NoAction)
+                    .IsRequired();
 
-                    b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.User", "Updater")
-                        .WithMany()
-                        .HasForeignKey("UpdaterId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.User", "Updater")
+                    .WithMany()
+                    .HasForeignKey("UpdaterId")
+                    .OnDelete(DeleteBehavior.NoAction);
 
-                    b.Navigation("Building");
+                b.Navigation("Building");
 
-                    b.Navigation("Creator");
+                b.Navigation("Creator");
 
-                    b.Navigation("Deleter");
+                b.Navigation("Deleter");
 
-                    b.Navigation("Tenant");
+                b.Navigation("Tenant");
 
-                    b.Navigation("Updater");
-                });
+                b.Navigation("Updater");
+            });
 
-            modelBuilder.Entity("Soditech.IntelPrev.Reports.Persistence.Models.RegisterField", b =>
-                {
-                    b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.User", "Creator")
-                        .WithMany()
-                        .HasForeignKey("CreatorId")
-                        .OnDelete(DeleteBehavior.NoAction);
+        modelBuilder.Entity("Soditech.IntelPrev.Reports.Persistence.Models.RegisterField", b =>
+            {
+                b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.User", "Creator")
+                    .WithMany()
+                    .HasForeignKey("CreatorId")
+                    .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.User", "Deleter")
-                        .WithMany()
-                        .HasForeignKey("DeleterId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.User", "Deleter")
+                    .WithMany()
+                    .HasForeignKey("DeleterId")
+                    .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.RegisterFieldGroup", "RegisterFieldGroup")
-                        .WithMany("RegisterFields")
-                        .HasForeignKey("RegisterFieldGroupId");
+                b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.RegisterFieldGroup", "RegisterFieldGroup")
+                    .WithMany("RegisterFields")
+                    .HasForeignKey("RegisterFieldGroupId");
 
-                    b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.RegisterType", "RegisterType")
-                        .WithMany("RegisterFields")
-                        .HasForeignKey("RegisterTypeId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.RegisterType", "RegisterType")
+                    .WithMany("RegisterFields")
+                    .HasForeignKey("RegisterTypeId")
+                    .OnDelete(DeleteBehavior.NoAction)
+                    .IsRequired();
 
-                    b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.Tenant", "Tenant")
-                        .WithMany()
-                        .HasForeignKey("TenantId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.Tenant", "Tenant")
+                    .WithMany()
+                    .HasForeignKey("TenantId")
+                    .OnDelete(DeleteBehavior.NoAction)
+                    .IsRequired();
 
-                    b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.User", "Updater")
-                        .WithMany()
-                        .HasForeignKey("UpdaterId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.User", "Updater")
+                    .WithMany()
+                    .HasForeignKey("UpdaterId")
+                    .OnDelete(DeleteBehavior.NoAction);
 
-                    b.Navigation("Creator");
+                b.Navigation("Creator");
 
-                    b.Navigation("Deleter");
+                b.Navigation("Deleter");
 
-                    b.Navigation("RegisterFieldGroup");
+                b.Navigation("RegisterFieldGroup");
 
-                    b.Navigation("RegisterType");
+                b.Navigation("RegisterType");
 
-                    b.Navigation("Tenant");
+                b.Navigation("Tenant");
 
-                    b.Navigation("Updater");
-                });
+                b.Navigation("Updater");
+            });
 
-            modelBuilder.Entity("Soditech.IntelPrev.Reports.Persistence.Models.RegisterFieldGroup", b =>
-                {
-                    b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.User", "Creator")
-                        .WithMany()
-                        .HasForeignKey("CreatorId")
-                        .OnDelete(DeleteBehavior.NoAction);
+        modelBuilder.Entity("Soditech.IntelPrev.Reports.Persistence.Models.RegisterFieldGroup", b =>
+            {
+                b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.User", "Creator")
+                    .WithMany()
+                    .HasForeignKey("CreatorId")
+                    .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.User", "Deleter")
-                        .WithMany()
-                        .HasForeignKey("DeleterId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.User", "Deleter")
+                    .WithMany()
+                    .HasForeignKey("DeleterId")
+                    .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.RegisterType", "RegisterType")
-                        .WithMany("RegisterFieldGroups")
-                        .HasForeignKey("RegisterTypeId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.RegisterType", "RegisterType")
+                    .WithMany("RegisterFieldGroups")
+                    .HasForeignKey("RegisterTypeId")
+                    .OnDelete(DeleteBehavior.NoAction)
+                    .IsRequired();
 
-                    b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.Tenant", "Tenant")
-                        .WithMany()
-                        .HasForeignKey("TenantId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.Tenant", "Tenant")
+                    .WithMany()
+                    .HasForeignKey("TenantId")
+                    .OnDelete(DeleteBehavior.NoAction)
+                    .IsRequired();
 
-                    b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.User", "Updater")
-                        .WithMany()
-                        .HasForeignKey("UpdaterId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.User", "Updater")
+                    .WithMany()
+                    .HasForeignKey("UpdaterId")
+                    .OnDelete(DeleteBehavior.NoAction);
 
-                    b.Navigation("Creator");
+                b.Navigation("Creator");
 
-                    b.Navigation("Deleter");
+                b.Navigation("Deleter");
 
-                    b.Navigation("RegisterType");
+                b.Navigation("RegisterType");
 
-                    b.Navigation("Tenant");
+                b.Navigation("Tenant");
 
-                    b.Navigation("Updater");
-                });
+                b.Navigation("Updater");
+            });
 
-            modelBuilder.Entity("Soditech.IntelPrev.Reports.Persistence.Models.RegisterType", b =>
-                {
-                    b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.User", "Creator")
-                        .WithMany()
-                        .HasForeignKey("CreatorId")
-                        .OnDelete(DeleteBehavior.NoAction);
+        modelBuilder.Entity("Soditech.IntelPrev.Reports.Persistence.Models.RegisterType", b =>
+            {
+                b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.User", "Creator")
+                    .WithMany()
+                    .HasForeignKey("CreatorId")
+                    .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.User", "Deleter")
-                        .WithMany()
-                        .HasForeignKey("DeleterId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.User", "Deleter")
+                    .WithMany()
+                    .HasForeignKey("DeleterId")
+                    .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.Tenant", "Tenant")
-                        .WithMany()
-                        .HasForeignKey("TenantId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.Tenant", "Tenant")
+                    .WithMany()
+                    .HasForeignKey("TenantId")
+                    .OnDelete(DeleteBehavior.NoAction)
+                    .IsRequired();
 
-                    b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.User", "Updater")
-                        .WithMany()
-                        .HasForeignKey("UpdaterId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.User", "Updater")
+                    .WithMany()
+                    .HasForeignKey("UpdaterId")
+                    .OnDelete(DeleteBehavior.NoAction);
 
-                    b.Navigation("Creator");
+                b.Navigation("Creator");
 
-                    b.Navigation("Deleter");
+                b.Navigation("Deleter");
 
-                    b.Navigation("Tenant");
+                b.Navigation("Tenant");
 
-                    b.Navigation("Updater");
-                });
+                b.Navigation("Updater");
+            });
 
-            modelBuilder.Entity("Soditech.IntelPrev.Reports.Persistence.Models.Report", b =>
-                {
-                    b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.User", "Creator")
-                        .WithMany()
-                        .HasForeignKey("CreatorId")
-                        .OnDelete(DeleteBehavior.NoAction);
+        modelBuilder.Entity("Soditech.IntelPrev.Reports.Persistence.Models.Report", b =>
+            {
+                b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.User", "Creator")
+                    .WithMany()
+                    .HasForeignKey("CreatorId")
+                    .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.User", "Deleter")
-                        .WithMany()
-                        .HasForeignKey("DeleterId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.User", "Deleter")
+                    .WithMany()
+                    .HasForeignKey("DeleterId")
+                    .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.RegisterType", "RegisterType")
-                        .WithMany()
-                        .HasForeignKey("RegisterTypeId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.RegisterType", "RegisterType")
+                    .WithMany()
+                    .HasForeignKey("RegisterTypeId")
+                    .OnDelete(DeleteBehavior.NoAction)
+                    .IsRequired();
 
-                    b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.Tenant", "Tenant")
-                        .WithMany()
-                        .HasForeignKey("TenantId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.Tenant", "Tenant")
+                    .WithMany()
+                    .HasForeignKey("TenantId")
+                    .OnDelete(DeleteBehavior.NoAction)
+                    .IsRequired();
 
-                    b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.User", "Updater")
-                        .WithMany()
-                        .HasForeignKey("UpdaterId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.User", "Updater")
+                    .WithMany()
+                    .HasForeignKey("UpdaterId")
+                    .OnDelete(DeleteBehavior.NoAction);
 
-                    b.Navigation("Creator");
+                b.Navigation("Creator");
 
-                    b.Navigation("Deleter");
+                b.Navigation("Deleter");
 
-                    b.Navigation("RegisterType");
+                b.Navigation("RegisterType");
 
-                    b.Navigation("Tenant");
+                b.Navigation("Tenant");
 
-                    b.Navigation("Updater");
-                });
+                b.Navigation("Updater");
+            });
 
-            modelBuilder.Entity("Soditech.IntelPrev.Reports.Persistence.Models.ReportAttachment", b =>
-                {
-                    b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.User", "Creator")
-                        .WithMany()
-                        .HasForeignKey("CreatorId")
-                        .OnDelete(DeleteBehavior.NoAction);
+        modelBuilder.Entity("Soditech.IntelPrev.Reports.Persistence.Models.ReportAttachment", b =>
+            {
+                b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.User", "Creator")
+                    .WithMany()
+                    .HasForeignKey("CreatorId")
+                    .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.User", "Deleter")
-                        .WithMany()
-                        .HasForeignKey("DeleterId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.User", "Deleter")
+                    .WithMany()
+                    .HasForeignKey("DeleterId")
+                    .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.Report", "Report")
-                        .WithMany()
-                        .HasForeignKey("ReportId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.Report", "Report")
+                    .WithMany()
+                    .HasForeignKey("ReportId")
+                    .OnDelete(DeleteBehavior.NoAction)
+                    .IsRequired();
 
-                    b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.Tenant", "Tenant")
-                        .WithMany()
-                        .HasForeignKey("TenantId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.Tenant", "Tenant")
+                    .WithMany()
+                    .HasForeignKey("TenantId")
+                    .OnDelete(DeleteBehavior.NoAction)
+                    .IsRequired();
 
-                    b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.User", "Updater")
-                        .WithMany()
-                        .HasForeignKey("UpdaterId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.User", "Updater")
+                    .WithMany()
+                    .HasForeignKey("UpdaterId")
+                    .OnDelete(DeleteBehavior.NoAction);
 
-                    b.Navigation("Creator");
+                b.Navigation("Creator");
 
-                    b.Navigation("Deleter");
+                b.Navigation("Deleter");
 
-                    b.Navigation("Report");
+                b.Navigation("Report");
 
-                    b.Navigation("Tenant");
+                b.Navigation("Tenant");
 
-                    b.Navigation("Updater");
-                });
+                b.Navigation("Updater");
+            });
 
-            modelBuilder.Entity("Soditech.IntelPrev.Reports.Persistence.Models.ReportComment", b =>
-                {
-                    b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.User", "Creator")
-                        .WithMany()
-                        .HasForeignKey("CreatorId")
-                        .OnDelete(DeleteBehavior.NoAction);
+        modelBuilder.Entity("Soditech.IntelPrev.Reports.Persistence.Models.ReportComment", b =>
+            {
+                b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.User", "Creator")
+                    .WithMany()
+                    .HasForeignKey("CreatorId")
+                    .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.User", "Deleter")
-                        .WithMany()
-                        .HasForeignKey("DeleterId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.User", "Deleter")
+                    .WithMany()
+                    .HasForeignKey("DeleterId")
+                    .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.Report", "Report")
-                        .WithMany()
-                        .HasForeignKey("ReportId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.Report", "Report")
+                    .WithMany()
+                    .HasForeignKey("ReportId")
+                    .OnDelete(DeleteBehavior.NoAction)
+                    .IsRequired();
 
-                    b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.Tenant", "Tenant")
-                        .WithMany()
-                        .HasForeignKey("TenantId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.Tenant", "Tenant")
+                    .WithMany()
+                    .HasForeignKey("TenantId")
+                    .OnDelete(DeleteBehavior.NoAction)
+                    .IsRequired();
 
-                    b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.User", "Updater")
-                        .WithMany()
-                        .HasForeignKey("UpdaterId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.User", "Updater")
+                    .WithMany()
+                    .HasForeignKey("UpdaterId")
+                    .OnDelete(DeleteBehavior.NoAction);
 
-                    b.Navigation("Creator");
+                b.Navigation("Creator");
 
-                    b.Navigation("Deleter");
+                b.Navigation("Deleter");
 
-                    b.Navigation("Report");
+                b.Navigation("Report");
 
-                    b.Navigation("Tenant");
+                b.Navigation("Tenant");
 
-                    b.Navigation("Updater");
-                });
+                b.Navigation("Updater");
+            });
 
-            modelBuilder.Entity("Soditech.IntelPrev.Reports.Persistence.Models.ReportData", b =>
-                {
-                    b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.User", "Creator")
-                        .WithMany()
-                        .HasForeignKey("CreatorId")
-                        .OnDelete(DeleteBehavior.NoAction);
+        modelBuilder.Entity("Soditech.IntelPrev.Reports.Persistence.Models.ReportData", b =>
+            {
+                b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.User", "Creator")
+                    .WithMany()
+                    .HasForeignKey("CreatorId")
+                    .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.User", "Deleter")
-                        .WithMany()
-                        .HasForeignKey("DeleterId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.User", "Deleter")
+                    .WithMany()
+                    .HasForeignKey("DeleterId")
+                    .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.RegisterField", "Field")
-                        .WithMany()
-                        .HasForeignKey("FieldId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.RegisterField", "Field")
+                    .WithMany()
+                    .HasForeignKey("FieldId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.Report", "Report")
-                        .WithMany("ReportDatas")
-                        .HasForeignKey("ReportId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.Report", "Report")
+                    .WithMany("ReportDatas")
+                    .HasForeignKey("ReportId")
+                    .OnDelete(DeleteBehavior.NoAction)
+                    .IsRequired();
 
-                    b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.Tenant", "Tenant")
-                        .WithMany()
-                        .HasForeignKey("TenantId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.Tenant", "Tenant")
+                    .WithMany()
+                    .HasForeignKey("TenantId")
+                    .OnDelete(DeleteBehavior.NoAction)
+                    .IsRequired();
 
-                    b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.User", "Updater")
-                        .WithMany()
-                        .HasForeignKey("UpdaterId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.User", "Updater")
+                    .WithMany()
+                    .HasForeignKey("UpdaterId")
+                    .OnDelete(DeleteBehavior.NoAction);
 
-                    b.Navigation("Creator");
+                b.Navigation("Creator");
 
-                    b.Navigation("Deleter");
+                b.Navigation("Deleter");
 
-                    b.Navigation("Field");
+                b.Navigation("Field");
 
-                    b.Navigation("Report");
+                b.Navigation("Report");
 
-                    b.Navigation("Tenant");
+                b.Navigation("Tenant");
 
-                    b.Navigation("Updater");
-                });
+                b.Navigation("Updater");
+            });
 
-            modelBuilder.Entity("Soditech.IntelPrev.Reports.Persistence.Models.User", b =>
-                {
-                    b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.Tenant", "Tenant")
-                        .WithMany()
-                        .HasForeignKey("TenantId")
-                        .OnDelete(DeleteBehavior.NoAction);
+        modelBuilder.Entity("Soditech.IntelPrev.Reports.Persistence.Models.User", b =>
+            {
+                b.HasOne("Soditech.IntelPrev.Reports.Persistence.Models.Tenant", "Tenant")
+                    .WithMany()
+                    .HasForeignKey("TenantId")
+                    .OnDelete(DeleteBehavior.NoAction);
 
-                    b.Navigation("Tenant");
-                });
+                b.Navigation("Tenant");
+            });
 
-            modelBuilder.Entity("Soditech.IntelPrev.Reports.Persistence.Models.Building", b =>
-                {
-                    b.Navigation("Floors");
-                });
+        modelBuilder.Entity("Soditech.IntelPrev.Reports.Persistence.Models.Building", b =>
+            {
+                b.Navigation("Floors");
+            });
 
-            modelBuilder.Entity("Soditech.IntelPrev.Reports.Persistence.Models.RegisterFieldGroup", b =>
-                {
-                    b.Navigation("RegisterFields");
-                });
+        modelBuilder.Entity("Soditech.IntelPrev.Reports.Persistence.Models.RegisterFieldGroup", b =>
+            {
+                b.Navigation("RegisterFields");
+            });
 
-            modelBuilder.Entity("Soditech.IntelPrev.Reports.Persistence.Models.RegisterType", b =>
-                {
-                    b.Navigation("RegisterFieldGroups");
+        modelBuilder.Entity("Soditech.IntelPrev.Reports.Persistence.Models.RegisterType", b =>
+            {
+                b.Navigation("RegisterFieldGroups");
 
-                    b.Navigation("RegisterFields");
-                });
+                b.Navigation("RegisterFields");
+            });
 
-            modelBuilder.Entity("Soditech.IntelPrev.Reports.Persistence.Models.Report", b =>
-                {
-                    b.Navigation("ReportDatas");
-                });
+        modelBuilder.Entity("Soditech.IntelPrev.Reports.Persistence.Models.Report", b =>
+            {
+                b.Navigation("ReportDatas");
+            });
 #pragma warning restore 612, 618
-        }
     }
 }

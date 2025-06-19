@@ -56,13 +56,6 @@ public class RiskAnalysisProtocolViewModel : MauiViewModel
     private async Task GetContentAsync()
     {
         var result = await _proxyClientService.GetAsync<PreventionContentResult>(PreventionRoutes.ProPrevSettings.GetRiskAnalysisProtocolContent);
-        if (result.IsSuccess)
-        {
-            DefinitionText = result.Value.Content;
-        }
-        else
-        {
-            DefinitionText = "Aucune donnée disponible.";
-        }
+        DefinitionText = result.IsSuccess ? result.Value.Content : "Aucune donnée disponible.";
     }
 }

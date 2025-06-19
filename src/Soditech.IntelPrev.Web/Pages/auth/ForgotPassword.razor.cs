@@ -67,14 +67,7 @@ public partial class ForgotPassword
 
     private void ValidateUsername(ChangeEventArgs e)
     {
-        if (string.IsNullOrWhiteSpace(e.Value?.ToString()))
-        {
-            ForgotPasswordMessage = "Le nom d'utilisateur est requis.";
-        }
-        else
-        {
-            ForgotPasswordMessage = string.Empty;
-        }
+        ForgotPasswordMessage = string.IsNullOrWhiteSpace(e.Value?.ToString()) ? "Le nom d'utilisateur est requis." : string.Empty;
         StateHasChanged();
     }
 }

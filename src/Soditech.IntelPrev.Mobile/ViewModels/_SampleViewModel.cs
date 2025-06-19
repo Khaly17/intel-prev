@@ -29,13 +29,8 @@ public class _SampleViewModel : MauiViewModel
 	public override async Task InitializeAsync()
 	{
 		var countResult = await _proxyClientService.GetAsync<int>(UserRoutes.Users.Count);
-		if (countResult.IsSuccess)
-		{
-			Text = $"Hello World! there is {countResult.Value} user(s) in the system";
-		}
-		else
-		{
-			Text = $"Hello World! [{countResult.Error.Code}] Failed to get the count of users : {countResult.Error.Message}";
-		}
-	}
+		Text = countResult.IsSuccess
+            ? $"Hello World! there is {countResult.Value} user(s) in the system"
+            : $"Hello World! [{countResult.Error.Code}] Failed to get the count of users : {countResult.Error.Message}";
+    }
 }

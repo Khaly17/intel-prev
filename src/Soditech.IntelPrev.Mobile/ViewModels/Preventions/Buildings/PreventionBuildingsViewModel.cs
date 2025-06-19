@@ -55,10 +55,7 @@ public class PreventionBuildingsViewModel : MauiViewModel
         }
     });
 
-    public IAsyncRelayCommand RefreshCommand => new AsyncRelayCommand(async () =>
-    {
-        await InitializeAsync();
-    });
+    public IAsyncRelayCommand RefreshCommand => new AsyncRelayCommand(async () => await InitializeAsync());
 
     public override async Task InitializeAsync()
     {

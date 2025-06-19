@@ -48,22 +48,19 @@ public class SettingsManager : ISettingsManager
 			else
 			{
 				// If permission not granted, suggest going to settings
-				MainThread.BeginInvokeOnMainThread(() =>
-				{
-					UserDialogs.Instance.Confirm(new ConfirmConfig
-					{
-						Message = L.Localize("LocationPermissionRequired"),
-						OkText = L.Localize("OpenSettings"),
-						CancelText = L.Localize("Cancel"),
-						Action = (confirmed) =>
-						{
-							if (confirmed)
-							{
-								AppInfo.Current.ShowSettingsUI();
-							}
-						}
-					});
-				});
+				MainThread.BeginInvokeOnMainThread(() => UserDialogs.Instance.Confirm(new ConfirmConfig
+                {
+                    Message = L.Localize("LocationPermissionRequired"),
+                    OkText = L.Localize("OpenSettings"),
+                    CancelText = L.Localize("Cancel"),
+                    Action = (confirmed) =>
+                    {
+                        if (confirmed)
+                        {
+                            AppInfo.Current.ShowSettingsUI();
+                        }
+                    }
+                }));
 			}
 		}
 	}
@@ -79,22 +76,19 @@ public class SettingsManager : ISettingsManager
 			var status = await Permissions.RequestAsync<Permissions.PostNotifications>();
 			if (status != PermissionStatus.Granted)
 			{
-				MainThread.BeginInvokeOnMainThread(() =>
-				{
-					UserDialogs.Instance.Confirm(new ConfirmConfig
-					{
-						Message = L.Localize("NotificationPermissionRequired"),
-						OkText = L.Localize("OpenSettings"),
-						CancelText = L.Localize("Cancel"),
-						Action = (confirmed) =>
-						{
-							if (confirmed)
-							{
-								AppInfo.Current.ShowSettingsUI();
-							}
-						}
-					});
-				});
+				MainThread.BeginInvokeOnMainThread(() => UserDialogs.Instance.Confirm(new ConfirmConfig
+                {
+                    Message = L.Localize("NotificationPermissionRequired"),
+                    OkText = L.Localize("OpenSettings"),
+                    CancelText = L.Localize("Cancel"),
+                    Action = (confirmed) =>
+                    {
+                        if (confirmed)
+                        {
+                            AppInfo.Current.ShowSettingsUI();
+                        }
+                    }
+                }));
 			}
 		}
 	}

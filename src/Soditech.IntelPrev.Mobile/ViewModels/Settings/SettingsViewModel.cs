@@ -78,11 +78,8 @@ public class SettingsViewModel : MauiViewModel
 		{
 			if (SetProperty(ref _selectedLanguage, value))
 			{
-				MainThread.BeginInvokeOnMainThread(async () =>
-				{
-					await _settingsManager.SetSelectedLanguage(value);
-				});
-			}
+				MainThread.BeginInvokeOnMainThread(async () => await _settingsManager.SetSelectedLanguage(value));
+            }
 		}
 	}
 

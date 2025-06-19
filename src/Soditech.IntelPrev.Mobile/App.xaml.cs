@@ -43,12 +43,7 @@ public partial class App : Application
 		
 		// Appliquer les paramètres de thème après la création de la fenêtre
 		// pour s'assurer que Shell.Current est disponible
-		window.Created += (sender, args) => {
-			MainThread.BeginInvokeOnMainThread(() => {
-				// Réappliquer le thème pour s'assurer que Shell.Current est mis à jour
-				ApplicationThemeHelper.ApplyIntelPrevTheme();
-			});
-		};
+		window.Created += (sender, args) => MainThread.BeginInvokeOnMainThread(() => ApplicationThemeHelper.ApplyIntelPrevTheme());
 		
 		return window;
 	}

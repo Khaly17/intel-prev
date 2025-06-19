@@ -111,15 +111,8 @@ public partial class FloorSelectionViewModel : MauiViewModel, IQueryAttributable
 		if (query.TryGetValue("Building", out var building))
 		{
 			_building = (BuildingResult)building;
-			if (_building.Floors.Count > 0)
-			{
-				FloorList = _building.Floors;
-			}
-			else
-			{
-				FloorList = [];
-			}
-		}
+			FloorList = _building.Floors.Count > 0 ? _building.Floors : (IEnumerable<FloorResult>)([]);
+        }
 		else
 		{
 			//TODO: handle error

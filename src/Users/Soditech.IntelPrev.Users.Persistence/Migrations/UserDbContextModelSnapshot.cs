@@ -7,927 +7,926 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Soditech.IntelPrev.Users.Persistence.Migrations
+namespace Soditech.IntelPrev.Users.Persistence.Migrations;
+
+[DbContext(typeof(UserDbContext))]
+partial class UserDbContextModelSnapshot : ModelSnapshot
 {
-    [DbContext(typeof(UserDbContext))]
-    partial class UserDbContextModelSnapshot : ModelSnapshot
+    protected override void BuildModel(ModelBuilder modelBuilder)
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
-        {
 #pragma warning disable 612, 618
-            modelBuilder
-                .HasDefaultSchema("users")
-                .HasAnnotation("ProductVersion", "8.0.11")
-                .HasAnnotation("Proxies:ChangeTracking", false)
-                .HasAnnotation("Proxies:CheckEquality", false)
-                .HasAnnotation("Proxies:LazyLoading", true)
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+        modelBuilder
+            .HasDefaultSchema("users")
+            .HasAnnotation("ProductVersion", "8.0.11")
+            .HasAnnotation("Proxies:ChangeTracking", false)
+            .HasAnnotation("Proxies:CheckEquality", false)
+            .HasAnnotation("Proxies:LazyLoading", true)
+            .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+        SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+        modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("ClaimType")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("ClaimType")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ClaimValue")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("ClaimValue")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("RoleId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid>("RoleId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("RoleId");
+                b.HasIndex("RoleId");
 
-                    b.ToTable("AspNetRoleClaims", "users");
-                });
+                b.ToTable("AspNetRoleClaims", "users");
+            });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+        modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("ClaimType")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("ClaimType")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ClaimValue")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("ClaimValue")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid>("UserId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                b.HasIndex("UserId");
 
-                    b.ToTable("AspNetUserClaims", "users");
-                });
+                b.ToTable("AspNetUserClaims", "users");
+            });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
-                {
-                    b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+        modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
+            {
+                b.Property<string>("LoginProvider")
+                    .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("ProviderKey")
-                        .HasColumnType("nvarchar(450)");
+                b.Property<string>("ProviderKey")
+                    .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("ProviderDisplayName")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("ProviderDisplayName")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid>("UserId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("LoginProvider", "ProviderKey");
+                b.HasKey("LoginProvider", "ProviderKey");
 
-                    b.HasIndex("UserId");
+                b.HasIndex("UserId");
 
-                    b.ToTable("AspNetUserLogins", "users");
-                });
+                b.ToTable("AspNetUserLogins", "users");
+            });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
-                {
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
+        modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
+            {
+                b.Property<Guid>("UserId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                b.Property<string>("LoginProvider")
+                    .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(450)");
+                b.Property<string>("Name")
+                    .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Value")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Value")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("UserId", "LoginProvider", "Name");
+                b.HasKey("UserId", "LoginProvider", "Name");
 
-                    b.ToTable("AspNetUserTokens", "users");
-                });
+                b.ToTable("AspNetUserTokens", "users");
+            });
 
-            modelBuilder.Entity("OpenIddict.EntityFrameworkCore.Models.OpenIddictEntityFrameworkCoreApplication", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("nvarchar(450)");
+        modelBuilder.Entity("OpenIddict.EntityFrameworkCore.Models.OpenIddictEntityFrameworkCoreApplication", b =>
+            {
+                b.Property<string>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("ApplicationType")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                b.Property<string>("ApplicationType")
+                    .HasMaxLength(50)
+                    .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("ClientId")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                b.Property<string>("ClientId")
+                    .HasMaxLength(100)
+                    .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("ClientSecret")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("ClientSecret")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ClientType")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                b.Property<string>("ClientType")
+                    .HasMaxLength(50)
+                    .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("ConcurrencyToken")
-                        .IsConcurrencyToken()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                b.Property<string>("ConcurrencyToken")
+                    .IsConcurrencyToken()
+                    .HasMaxLength(50)
+                    .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("ConsentType")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                b.Property<string>("ConsentType")
+                    .HasMaxLength(50)
+                    .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("DisplayName")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("DisplayName")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("DisplayNames")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("DisplayNames")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("JsonWebKeySet")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("JsonWebKeySet")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Permissions")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Permissions")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PostLogoutRedirectUris")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("PostLogoutRedirectUris")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Properties")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Properties")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("RedirectUris")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("RedirectUris")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Requirements")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Requirements")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Settings")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Settings")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("ClientId")
-                        .IsUnique()
-                        .HasFilter("[ClientId] IS NOT NULL");
+                b.HasIndex("ClientId")
+                    .IsUnique()
+                    .HasFilter("[ClientId] IS NOT NULL");
 
-                    b.ToTable("OpenIddictApplications", "users");
-                });
+                b.ToTable("OpenIddictApplications", "users");
+            });
 
-            modelBuilder.Entity("OpenIddict.EntityFrameworkCore.Models.OpenIddictEntityFrameworkCoreAuthorization", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("nvarchar(450)");
+        modelBuilder.Entity("OpenIddict.EntityFrameworkCore.Models.OpenIddictEntityFrameworkCoreAuthorization", b =>
+            {
+                b.Property<string>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("ApplicationId")
-                        .HasColumnType("nvarchar(450)");
+                b.Property<string>("ApplicationId")
+                    .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("ConcurrencyToken")
-                        .IsConcurrencyToken()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                b.Property<string>("ConcurrencyToken")
+                    .IsConcurrencyToken()
+                    .HasMaxLength(50)
+                    .HasColumnType("nvarchar(50)");
 
-                    b.Property<DateTime?>("CreationDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("CreationDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<string>("Properties")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Properties")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Scopes")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Scopes")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Status")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                b.Property<string>("Status")
+                    .HasMaxLength(50)
+                    .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("Subject")
-                        .HasMaxLength(400)
-                        .HasColumnType("nvarchar(400)");
+                b.Property<string>("Subject")
+                    .HasMaxLength(400)
+                    .HasColumnType("nvarchar(400)");
 
-                    b.Property<string>("Type")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                b.Property<string>("Type")
+                    .HasMaxLength(50)
+                    .HasColumnType("nvarchar(50)");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("ApplicationId", "Status", "Subject", "Type");
+                b.HasIndex("ApplicationId", "Status", "Subject", "Type");
 
-                    b.ToTable("OpenIddictAuthorizations", "users");
-                });
+                b.ToTable("OpenIddictAuthorizations", "users");
+            });
 
-            modelBuilder.Entity("OpenIddict.EntityFrameworkCore.Models.OpenIddictEntityFrameworkCoreScope", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("nvarchar(450)");
+        modelBuilder.Entity("OpenIddict.EntityFrameworkCore.Models.OpenIddictEntityFrameworkCoreScope", b =>
+            {
+                b.Property<string>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("ConcurrencyToken")
-                        .IsConcurrencyToken()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                b.Property<string>("ConcurrencyToken")
+                    .IsConcurrencyToken()
+                    .HasMaxLength(50)
+                    .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Description")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Descriptions")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Descriptions")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("DisplayName")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("DisplayName")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("DisplayNames")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("DisplayNames")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                b.Property<string>("Name")
+                    .HasMaxLength(200)
+                    .HasColumnType("nvarchar(200)");
 
-                    b.Property<string>("Properties")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Properties")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Resources")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Resources")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("Name")
-                        .IsUnique()
-                        .HasFilter("[Name] IS NOT NULL");
+                b.HasIndex("Name")
+                    .IsUnique()
+                    .HasFilter("[Name] IS NOT NULL");
 
-                    b.ToTable("OpenIddictScopes", "users");
-                });
+                b.ToTable("OpenIddictScopes", "users");
+            });
 
-            modelBuilder.Entity("OpenIddict.EntityFrameworkCore.Models.OpenIddictEntityFrameworkCoreToken", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("nvarchar(450)");
+        modelBuilder.Entity("OpenIddict.EntityFrameworkCore.Models.OpenIddictEntityFrameworkCoreToken", b =>
+            {
+                b.Property<string>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("ApplicationId")
-                        .HasColumnType("nvarchar(450)");
+                b.Property<string>("ApplicationId")
+                    .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("AuthorizationId")
-                        .HasColumnType("nvarchar(450)");
+                b.Property<string>("AuthorizationId")
+                    .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("ConcurrencyToken")
-                        .IsConcurrencyToken()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                b.Property<string>("ConcurrencyToken")
+                    .IsConcurrencyToken()
+                    .HasMaxLength(50)
+                    .HasColumnType("nvarchar(50)");
 
-                    b.Property<DateTime?>("CreationDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("CreationDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("ExpirationDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("ExpirationDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<string>("Payload")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Payload")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Properties")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Properties")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("RedemptionDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("RedemptionDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<string>("ReferenceId")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                b.Property<string>("ReferenceId")
+                    .HasMaxLength(100)
+                    .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("Status")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                b.Property<string>("Status")
+                    .HasMaxLength(50)
+                    .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("Subject")
-                        .HasMaxLength(400)
-                        .HasColumnType("nvarchar(400)");
+                b.Property<string>("Subject")
+                    .HasMaxLength(400)
+                    .HasColumnType("nvarchar(400)");
 
-                    b.Property<string>("Type")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                b.Property<string>("Type")
+                    .HasMaxLength(50)
+                    .HasColumnType("nvarchar(50)");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("AuthorizationId");
+                b.HasIndex("AuthorizationId");
 
-                    b.HasIndex("ReferenceId")
-                        .IsUnique()
-                        .HasFilter("[ReferenceId] IS NOT NULL");
+                b.HasIndex("ReferenceId")
+                    .IsUnique()
+                    .HasFilter("[ReferenceId] IS NOT NULL");
 
-                    b.HasIndex("ApplicationId", "Status", "Subject", "Type");
+                b.HasIndex("ApplicationId", "Status", "Subject", "Type");
 
-                    b.ToTable("OpenIddictTokens", "users");
-                });
+                b.ToTable("OpenIddictTokens", "users");
+            });
 
-            modelBuilder.Entity("Soditech.IntelPrev.Users.Persistence.Models.Building", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+        modelBuilder.Entity("Soditech.IntelPrev.Users.Persistence.Models.Building", b =>
+            {
+                b.Property<Guid>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                b.Property<string>("Address")
+                    .IsRequired()
+                    .HasMaxLength(500)
+                    .HasColumnType("nvarchar(500)");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                b.Property<string>("Description")
+                    .IsRequired()
+                    .HasMaxLength(500)
+                    .HasColumnType("nvarchar(500)");
 
-                    b.Property<bool>("IsDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
+                b.Property<bool>("IsDeleted")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("bit")
+                    .HasDefaultValue(false);
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                b.Property<string>("Name")
+                    .IsRequired()
+                    .HasMaxLength(100)
+                    .HasColumnType("nvarchar(100)");
 
-                    b.Property<Guid>("TenantId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid>("TenantId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("TenantId");
+                b.HasIndex("TenantId");
 
-                    b.ToTable("Buildings", "users");
-                });
+                b.ToTable("Buildings", "users");
+            });
 
-            modelBuilder.Entity("Soditech.IntelPrev.Users.Persistence.Models.Floor", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+        modelBuilder.Entity("Soditech.IntelPrev.Users.Persistence.Models.Floor", b =>
+            {
+                b.Property<Guid>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("BuildingId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid>("BuildingId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<bool>("IsDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
+                b.Property<bool>("IsDeleted")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("bit")
+                    .HasDefaultValue(false);
 
-                    b.Property<int>("Number")
-                        .HasMaxLength(100)
-                        .HasColumnType("int");
+                b.Property<int>("Number")
+                    .HasMaxLength(100)
+                    .HasColumnType("int");
 
-                    b.Property<Guid>("TenantId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid>("TenantId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("BuildingId");
+                b.HasIndex("BuildingId");
 
-                    b.HasIndex("TenantId");
+                b.HasIndex("TenantId");
 
-                    b.ToTable("Floors", "users");
-                });
+                b.ToTable("Floors", "users");
+            });
 
-            modelBuilder.Entity("Soditech.IntelPrev.Users.Persistence.Models.Role", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+        modelBuilder.Entity("Soditech.IntelPrev.Users.Persistence.Models.Role", b =>
+            {
+                b.Property<Guid>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("ConcurrencyStamp")
+                    .IsConcurrencyToken()
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTimeOffset?>("CreatedAt")
-                        .HasColumnType("datetimeoffset");
+                b.Property<DateTimeOffset?>("CreatedAt")
+                    .HasColumnType("datetimeoffset");
 
-                    b.Property<Guid?>("CreatorId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid?>("CreatorId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTimeOffset?>("DeletedAt")
-                        .HasColumnType("datetimeoffset");
+                b.Property<DateTimeOffset?>("DeletedAt")
+                    .HasColumnType("datetimeoffset");
 
-                    b.Property<Guid?>("DeleterId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid?>("DeleterId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                b.Property<string>("Description")
+                    .IsRequired()
+                    .HasMaxLength(100)
+                    .HasColumnType("nvarchar(100)");
 
-                    b.Property<bool>("IsDefault")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
+                b.Property<bool>("IsDefault")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("bit")
+                    .HasDefaultValue(false);
 
-                    b.Property<bool>("IsDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
+                b.Property<bool>("IsDeleted")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("bit")
+                    .HasDefaultValue(false);
 
-                    b.Property<bool>("IsStatic")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
+                b.Property<bool>("IsStatic")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("bit")
+                    .HasDefaultValue(false);
 
-                    b.Property<string>("Name")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                b.Property<string>("Name")
+                    .HasMaxLength(256)
+                    .HasColumnType("nvarchar(256)");
 
-                    b.Property<string>("NormalizedName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                b.Property<string>("NormalizedName")
+                    .HasMaxLength(256)
+                    .HasColumnType("nvarchar(256)");
 
-                    b.Property<Guid?>("TenantId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid?>("TenantId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTimeOffset?>("UpdatedAt")
-                        .HasColumnType("datetimeoffset");
+                b.Property<DateTimeOffset?>("UpdatedAt")
+                    .HasColumnType("datetimeoffset");
 
-                    b.Property<Guid?>("UpdaterId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid?>("UpdaterId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("CreatorId");
+                b.HasIndex("CreatorId");
 
-                    b.HasIndex("DeleterId");
+                b.HasIndex("DeleterId");
 
-                    b.HasIndex("NormalizedName")
-                        .IsUnique()
-                        .HasDatabaseName("RoleNameIndex")
-                        .HasFilter("[NormalizedName] IS NOT NULL");
+                b.HasIndex("NormalizedName")
+                    .IsUnique()
+                    .HasDatabaseName("RoleNameIndex")
+                    .HasFilter("[NormalizedName] IS NOT NULL");
 
-                    b.HasIndex("TenantId");
+                b.HasIndex("TenantId");
 
-                    b.HasIndex("UpdaterId");
+                b.HasIndex("UpdaterId");
 
-                    b.ToTable("Roles", "users");
-                });
+                b.ToTable("Roles", "users");
+            });
 
-            modelBuilder.Entity("Soditech.IntelPrev.Users.Persistence.Models.Tenant", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+        modelBuilder.Entity("Soditech.IntelPrev.Users.Persistence.Models.Tenant", b =>
+            {
+                b.Property<Guid>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTimeOffset?>("CreatedAt")
-                        .HasColumnType("datetimeoffset");
+                b.Property<DateTimeOffset?>("CreatedAt")
+                    .HasColumnType("datetimeoffset");
 
-                    b.Property<Guid?>("CreatorId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid?>("CreatorId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTimeOffset?>("DeletedAt")
-                        .HasColumnType("datetimeoffset");
+                b.Property<DateTimeOffset?>("DeletedAt")
+                    .HasColumnType("datetimeoffset");
 
-                    b.Property<Guid?>("DeleterId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid?>("DeleterId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("DisplayName")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
+                b.Property<string>("DisplayName")
+                    .IsRequired()
+                    .HasMaxLength(150)
+                    .HasColumnType("nvarchar(150)");
 
-                    b.Property<bool>("IsActive")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(true);
+                b.Property<bool>("IsActive")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("bit")
+                    .HasDefaultValue(true);
 
-                    b.Property<bool>("IsDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
+                b.Property<bool>("IsDeleted")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("bit")
+                    .HasDefaultValue(false);
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                b.Property<string>("Name")
+                    .IsRequired()
+                    .HasMaxLength(100)
+                    .HasColumnType("nvarchar(100)");
 
-                    b.Property<DateTimeOffset?>("UpdatedAt")
-                        .HasColumnType("datetimeoffset");
+                b.Property<DateTimeOffset?>("UpdatedAt")
+                    .HasColumnType("datetimeoffset");
 
-                    b.Property<Guid?>("UpdaterId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid?>("UpdaterId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("CreatorId");
+                b.HasIndex("CreatorId");
 
-                    b.HasIndex("DeleterId");
+                b.HasIndex("DeleterId");
 
-                    b.HasIndex("UpdaterId");
+                b.HasIndex("UpdaterId");
 
-                    b.ToTable("Tenants", "users");
-                });
+                b.ToTable("Tenants", "users");
+            });
 
-            modelBuilder.Entity("Soditech.IntelPrev.Users.Persistence.Models.User", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+        modelBuilder.Entity("Soditech.IntelPrev.Users.Persistence.Models.User", b =>
+            {
+                b.Property<Guid>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
+                b.Property<int>("AccessFailedCount")
+                    .HasColumnType("int");
 
-                    b.Property<string>("AppVersion")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                b.Property<string>("AppVersion")
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .HasColumnType("nvarchar(50)");
 
-                    b.Property<Guid?>("BuildingId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid?>("BuildingId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("ConcurrencyStamp")
+                    .IsConcurrencyToken()
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTimeOffset?>("CreatedAt")
-                        .HasColumnType("datetimeoffset");
+                b.Property<DateTimeOffset?>("CreatedAt")
+                    .HasColumnType("datetimeoffset");
 
-                    b.Property<Guid?>("CreatorId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid?>("CreatorId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTimeOffset?>("DeletedAt")
-                        .HasColumnType("datetimeoffset");
+                b.Property<DateTimeOffset?>("DeletedAt")
+                    .HasColumnType("datetimeoffset");
 
-                    b.Property<Guid?>("DeleterId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid?>("DeleterId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Email")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                b.Property<string>("Email")
+                    .HasMaxLength(256)
+                    .HasColumnType("nvarchar(256)");
 
-                    b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("bit");
+                b.Property<bool>("EmailConfirmed")
+                    .HasColumnType("bit");
 
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                b.Property<string>("FirstName")
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .HasColumnType("nvarchar(50)");
 
-                    b.Property<Guid?>("FloorId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid?>("FloorId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<bool>("IsDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
+                b.Property<bool>("IsDeleted")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("bit")
+                    .HasDefaultValue(false);
 
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                b.Property<string>("LastName")
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .HasColumnType("nvarchar(50)");
 
-                    b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("bit");
+                b.Property<bool>("LockoutEnabled")
+                    .HasColumnType("bit");
 
-                    b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetimeoffset");
+                b.Property<DateTimeOffset?>("LockoutEnd")
+                    .HasColumnType("datetimeoffset");
 
-                    b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                b.Property<string>("NormalizedEmail")
+                    .HasMaxLength(256)
+                    .HasColumnType("nvarchar(256)");
 
-                    b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                b.Property<string>("NormalizedUserName")
+                    .HasMaxLength(256)
+                    .HasColumnType("nvarchar(256)");
 
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("PasswordHash")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("PhoneNumber")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("bit");
+                b.Property<bool>("PhoneNumberConfirmed")
+                    .HasColumnType("bit");
 
-                    b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("SecurityStamp")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("TenantId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid?>("TenantId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("bit");
+                b.Property<bool>("TwoFactorEnabled")
+                    .HasColumnType("bit");
 
-                    b.Property<DateTimeOffset?>("UpdatedAt")
-                        .HasColumnType("datetimeoffset");
+                b.Property<DateTimeOffset?>("UpdatedAt")
+                    .HasColumnType("datetimeoffset");
 
-                    b.Property<Guid?>("UpdaterId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid?>("UpdaterId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("UserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                b.Property<string>("UserName")
+                    .HasMaxLength(256)
+                    .HasColumnType("nvarchar(256)");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("BuildingId");
+                b.HasIndex("BuildingId");
 
-                    b.HasIndex("CreatorId");
+                b.HasIndex("CreatorId");
 
-                    b.HasIndex("DeleterId");
+                b.HasIndex("DeleterId");
 
-                    b.HasIndex("FloorId");
+                b.HasIndex("FloorId");
 
-                    b.HasIndex("NormalizedEmail")
-                        .HasDatabaseName("EmailIndex");
+                b.HasIndex("NormalizedEmail")
+                    .HasDatabaseName("EmailIndex");
 
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasDatabaseName("UserNameIndex")
-                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+                b.HasIndex("NormalizedUserName")
+                    .IsUnique()
+                    .HasDatabaseName("UserNameIndex")
+                    .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.HasIndex("TenantId");
+                b.HasIndex("TenantId");
 
-                    b.HasIndex("UpdaterId");
+                b.HasIndex("UpdaterId");
 
-                    b.ToTable("Users", "users");
-                });
+                b.ToTable("Users", "users");
+            });
 
-            modelBuilder.Entity("Soditech.IntelPrev.Users.Persistence.Models.UserRole", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+        modelBuilder.Entity("Soditech.IntelPrev.Users.Persistence.Models.UserRole", b =>
+            {
+                b.Property<Guid>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<bool>("IsDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
+                b.Property<bool>("IsDeleted")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("bit")
+                    .HasDefaultValue(false);
 
-                    b.Property<Guid>("RoleId")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("RoleId");
+                b.Property<Guid>("RoleId")
+                    .HasColumnType("uniqueidentifier")
+                    .HasColumnName("RoleId");
 
-                    b.Property<Guid?>("TenantId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid?>("TenantId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid>("UserId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("RoleId");
+                b.HasIndex("RoleId");
 
-                    b.HasIndex("TenantId");
+                b.HasIndex("TenantId");
 
-                    b.HasIndex("UserId", "RoleId", "TenantId")
-                        .IsUnique()
-                        .HasFilter("[TenantId] IS NOT NULL");
+                b.HasIndex("UserId", "RoleId", "TenantId")
+                    .IsUnique()
+                    .HasFilter("[TenantId] IS NOT NULL");
 
-                    b.ToTable("UserRoles", "users");
-                });
+                b.ToTable("UserRoles", "users");
+            });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
-                {
-                    b.HasOne("Soditech.IntelPrev.Users.Persistence.Models.Role", null)
-                        .WithMany()
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
+        modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
+            {
+                b.HasOne("Soditech.IntelPrev.Users.Persistence.Models.Role", null)
+                    .WithMany()
+                    .HasForeignKey("RoleId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
+            });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
-                {
-                    b.HasOne("Soditech.IntelPrev.Users.Persistence.Models.User", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
+        modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
+            {
+                b.HasOne("Soditech.IntelPrev.Users.Persistence.Models.User", null)
+                    .WithMany()
+                    .HasForeignKey("UserId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
+            });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
-                {
-                    b.HasOne("Soditech.IntelPrev.Users.Persistence.Models.User", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
+        modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
+            {
+                b.HasOne("Soditech.IntelPrev.Users.Persistence.Models.User", null)
+                    .WithMany()
+                    .HasForeignKey("UserId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
+            });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
-                {
-                    b.HasOne("Soditech.IntelPrev.Users.Persistence.Models.User", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
+        modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
+            {
+                b.HasOne("Soditech.IntelPrev.Users.Persistence.Models.User", null)
+                    .WithMany()
+                    .HasForeignKey("UserId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
+            });
 
-            modelBuilder.Entity("OpenIddict.EntityFrameworkCore.Models.OpenIddictEntityFrameworkCoreAuthorization", b =>
-                {
-                    b.HasOne("OpenIddict.EntityFrameworkCore.Models.OpenIddictEntityFrameworkCoreApplication", "Application")
-                        .WithMany("Authorizations")
-                        .HasForeignKey("ApplicationId");
+        modelBuilder.Entity("OpenIddict.EntityFrameworkCore.Models.OpenIddictEntityFrameworkCoreAuthorization", b =>
+            {
+                b.HasOne("OpenIddict.EntityFrameworkCore.Models.OpenIddictEntityFrameworkCoreApplication", "Application")
+                    .WithMany("Authorizations")
+                    .HasForeignKey("ApplicationId");
 
-                    b.Navigation("Application");
-                });
+                b.Navigation("Application");
+            });
 
-            modelBuilder.Entity("OpenIddict.EntityFrameworkCore.Models.OpenIddictEntityFrameworkCoreToken", b =>
-                {
-                    b.HasOne("OpenIddict.EntityFrameworkCore.Models.OpenIddictEntityFrameworkCoreApplication", "Application")
-                        .WithMany("Tokens")
-                        .HasForeignKey("ApplicationId");
+        modelBuilder.Entity("OpenIddict.EntityFrameworkCore.Models.OpenIddictEntityFrameworkCoreToken", b =>
+            {
+                b.HasOne("OpenIddict.EntityFrameworkCore.Models.OpenIddictEntityFrameworkCoreApplication", "Application")
+                    .WithMany("Tokens")
+                    .HasForeignKey("ApplicationId");
 
-                    b.HasOne("OpenIddict.EntityFrameworkCore.Models.OpenIddictEntityFrameworkCoreAuthorization", "Authorization")
-                        .WithMany("Tokens")
-                        .HasForeignKey("AuthorizationId");
+                b.HasOne("OpenIddict.EntityFrameworkCore.Models.OpenIddictEntityFrameworkCoreAuthorization", "Authorization")
+                    .WithMany("Tokens")
+                    .HasForeignKey("AuthorizationId");
 
-                    b.Navigation("Application");
+                b.Navigation("Application");
 
-                    b.Navigation("Authorization");
-                });
+                b.Navigation("Authorization");
+            });
 
-            modelBuilder.Entity("Soditech.IntelPrev.Users.Persistence.Models.Building", b =>
-                {
-                    b.HasOne("Soditech.IntelPrev.Users.Persistence.Models.Tenant", "Tenant")
-                        .WithMany()
-                        .HasForeignKey("TenantId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+        modelBuilder.Entity("Soditech.IntelPrev.Users.Persistence.Models.Building", b =>
+            {
+                b.HasOne("Soditech.IntelPrev.Users.Persistence.Models.Tenant", "Tenant")
+                    .WithMany()
+                    .HasForeignKey("TenantId")
+                    .OnDelete(DeleteBehavior.NoAction)
+                    .IsRequired();
 
-                    b.Navigation("Tenant");
-                });
+                b.Navigation("Tenant");
+            });
 
-            modelBuilder.Entity("Soditech.IntelPrev.Users.Persistence.Models.Floor", b =>
-                {
-                    b.HasOne("Soditech.IntelPrev.Users.Persistence.Models.Building", "Building")
-                        .WithMany("Floors")
-                        .HasForeignKey("BuildingId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+        modelBuilder.Entity("Soditech.IntelPrev.Users.Persistence.Models.Floor", b =>
+            {
+                b.HasOne("Soditech.IntelPrev.Users.Persistence.Models.Building", "Building")
+                    .WithMany("Floors")
+                    .HasForeignKey("BuildingId")
+                    .OnDelete(DeleteBehavior.NoAction)
+                    .IsRequired();
 
-                    b.HasOne("Soditech.IntelPrev.Users.Persistence.Models.Tenant", "Tenant")
-                        .WithMany()
-                        .HasForeignKey("TenantId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                b.HasOne("Soditech.IntelPrev.Users.Persistence.Models.Tenant", "Tenant")
+                    .WithMany()
+                    .HasForeignKey("TenantId")
+                    .OnDelete(DeleteBehavior.NoAction)
+                    .IsRequired();
 
-                    b.Navigation("Building");
+                b.Navigation("Building");
 
-                    b.Navigation("Tenant");
-                });
+                b.Navigation("Tenant");
+            });
 
-            modelBuilder.Entity("Soditech.IntelPrev.Users.Persistence.Models.Role", b =>
-                {
-                    b.HasOne("Soditech.IntelPrev.Users.Persistence.Models.User", "Creator")
-                        .WithMany()
-                        .HasForeignKey("CreatorId")
-                        .OnDelete(DeleteBehavior.NoAction);
+        modelBuilder.Entity("Soditech.IntelPrev.Users.Persistence.Models.Role", b =>
+            {
+                b.HasOne("Soditech.IntelPrev.Users.Persistence.Models.User", "Creator")
+                    .WithMany()
+                    .HasForeignKey("CreatorId")
+                    .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("Soditech.IntelPrev.Users.Persistence.Models.User", "Deleter")
-                        .WithMany()
-                        .HasForeignKey("DeleterId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                b.HasOne("Soditech.IntelPrev.Users.Persistence.Models.User", "Deleter")
+                    .WithMany()
+                    .HasForeignKey("DeleterId")
+                    .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("Soditech.IntelPrev.Users.Persistence.Models.Tenant", "Tenant")
-                        .WithMany("Roles")
-                        .HasForeignKey("TenantId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                b.HasOne("Soditech.IntelPrev.Users.Persistence.Models.Tenant", "Tenant")
+                    .WithMany("Roles")
+                    .HasForeignKey("TenantId")
+                    .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("Soditech.IntelPrev.Users.Persistence.Models.User", "Updater")
-                        .WithMany()
-                        .HasForeignKey("UpdaterId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                b.HasOne("Soditech.IntelPrev.Users.Persistence.Models.User", "Updater")
+                    .WithMany()
+                    .HasForeignKey("UpdaterId")
+                    .OnDelete(DeleteBehavior.NoAction);
 
-                    b.Navigation("Creator");
+                b.Navigation("Creator");
 
-                    b.Navigation("Deleter");
+                b.Navigation("Deleter");
 
-                    b.Navigation("Tenant");
+                b.Navigation("Tenant");
 
-                    b.Navigation("Updater");
-                });
+                b.Navigation("Updater");
+            });
 
-            modelBuilder.Entity("Soditech.IntelPrev.Users.Persistence.Models.Tenant", b =>
-                {
-                    b.HasOne("Soditech.IntelPrev.Users.Persistence.Models.User", "Creator")
-                        .WithMany()
-                        .HasForeignKey("CreatorId")
-                        .OnDelete(DeleteBehavior.NoAction);
+        modelBuilder.Entity("Soditech.IntelPrev.Users.Persistence.Models.Tenant", b =>
+            {
+                b.HasOne("Soditech.IntelPrev.Users.Persistence.Models.User", "Creator")
+                    .WithMany()
+                    .HasForeignKey("CreatorId")
+                    .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("Soditech.IntelPrev.Users.Persistence.Models.User", "Deleter")
-                        .WithMany()
-                        .HasForeignKey("DeleterId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                b.HasOne("Soditech.IntelPrev.Users.Persistence.Models.User", "Deleter")
+                    .WithMany()
+                    .HasForeignKey("DeleterId")
+                    .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("Soditech.IntelPrev.Users.Persistence.Models.User", "Updater")
-                        .WithMany()
-                        .HasForeignKey("UpdaterId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                b.HasOne("Soditech.IntelPrev.Users.Persistence.Models.User", "Updater")
+                    .WithMany()
+                    .HasForeignKey("UpdaterId")
+                    .OnDelete(DeleteBehavior.NoAction);
 
-                    b.Navigation("Creator");
+                b.Navigation("Creator");
 
-                    b.Navigation("Deleter");
+                b.Navigation("Deleter");
 
-                    b.Navigation("Updater");
-                });
+                b.Navigation("Updater");
+            });
 
-            modelBuilder.Entity("Soditech.IntelPrev.Users.Persistence.Models.User", b =>
-                {
-                    b.HasOne("Soditech.IntelPrev.Users.Persistence.Models.Building", "Building")
-                        .WithMany("Users")
-                        .HasForeignKey("BuildingId")
-                        .OnDelete(DeleteBehavior.NoAction);
+        modelBuilder.Entity("Soditech.IntelPrev.Users.Persistence.Models.User", b =>
+            {
+                b.HasOne("Soditech.IntelPrev.Users.Persistence.Models.Building", "Building")
+                    .WithMany("Users")
+                    .HasForeignKey("BuildingId")
+                    .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("Soditech.IntelPrev.Users.Persistence.Models.User", "Creator")
-                        .WithMany()
-                        .HasForeignKey("CreatorId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                b.HasOne("Soditech.IntelPrev.Users.Persistence.Models.User", "Creator")
+                    .WithMany()
+                    .HasForeignKey("CreatorId")
+                    .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("Soditech.IntelPrev.Users.Persistence.Models.User", "Deleter")
-                        .WithMany()
-                        .HasForeignKey("DeleterId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                b.HasOne("Soditech.IntelPrev.Users.Persistence.Models.User", "Deleter")
+                    .WithMany()
+                    .HasForeignKey("DeleterId")
+                    .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("Soditech.IntelPrev.Users.Persistence.Models.Floor", "Floor")
-                        .WithMany("Users")
-                        .HasForeignKey("FloorId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                b.HasOne("Soditech.IntelPrev.Users.Persistence.Models.Floor", "Floor")
+                    .WithMany("Users")
+                    .HasForeignKey("FloorId")
+                    .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("Soditech.IntelPrev.Users.Persistence.Models.Tenant", "Tenant")
-                        .WithMany("Users")
-                        .HasForeignKey("TenantId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                b.HasOne("Soditech.IntelPrev.Users.Persistence.Models.Tenant", "Tenant")
+                    .WithMany("Users")
+                    .HasForeignKey("TenantId")
+                    .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("Soditech.IntelPrev.Users.Persistence.Models.User", "Updater")
-                        .WithMany()
-                        .HasForeignKey("UpdaterId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                b.HasOne("Soditech.IntelPrev.Users.Persistence.Models.User", "Updater")
+                    .WithMany()
+                    .HasForeignKey("UpdaterId")
+                    .OnDelete(DeleteBehavior.NoAction);
 
-                    b.Navigation("Building");
+                b.Navigation("Building");
 
-                    b.Navigation("Creator");
+                b.Navigation("Creator");
 
-                    b.Navigation("Deleter");
+                b.Navigation("Deleter");
 
-                    b.Navigation("Floor");
+                b.Navigation("Floor");
 
-                    b.Navigation("Tenant");
+                b.Navigation("Tenant");
 
-                    b.Navigation("Updater");
-                });
+                b.Navigation("Updater");
+            });
 
-            modelBuilder.Entity("Soditech.IntelPrev.Users.Persistence.Models.UserRole", b =>
-                {
-                    b.HasOne("Soditech.IntelPrev.Users.Persistence.Models.Role", "Role")
-                        .WithMany()
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+        modelBuilder.Entity("Soditech.IntelPrev.Users.Persistence.Models.UserRole", b =>
+            {
+                b.HasOne("Soditech.IntelPrev.Users.Persistence.Models.Role", "Role")
+                    .WithMany()
+                    .HasForeignKey("RoleId")
+                    .OnDelete(DeleteBehavior.NoAction)
+                    .IsRequired();
 
-                    b.HasOne("Soditech.IntelPrev.Users.Persistence.Models.Tenant", "Tenant")
-                        .WithMany()
-                        .HasForeignKey("TenantId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                b.HasOne("Soditech.IntelPrev.Users.Persistence.Models.Tenant", "Tenant")
+                    .WithMany()
+                    .HasForeignKey("TenantId")
+                    .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("Soditech.IntelPrev.Users.Persistence.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                b.HasOne("Soditech.IntelPrev.Users.Persistence.Models.User", "User")
+                    .WithMany()
+                    .HasForeignKey("UserId")
+                    .OnDelete(DeleteBehavior.NoAction)
+                    .IsRequired();
 
-                    b.Navigation("Role");
+                b.Navigation("Role");
 
-                    b.Navigation("Tenant");
+                b.Navigation("Tenant");
 
-                    b.Navigation("User");
-                });
+                b.Navigation("User");
+            });
 
-            modelBuilder.Entity("OpenIddict.EntityFrameworkCore.Models.OpenIddictEntityFrameworkCoreApplication", b =>
-                {
-                    b.Navigation("Authorizations");
+        modelBuilder.Entity("OpenIddict.EntityFrameworkCore.Models.OpenIddictEntityFrameworkCoreApplication", b =>
+            {
+                b.Navigation("Authorizations");
 
-                    b.Navigation("Tokens");
-                });
+                b.Navigation("Tokens");
+            });
 
-            modelBuilder.Entity("OpenIddict.EntityFrameworkCore.Models.OpenIddictEntityFrameworkCoreAuthorization", b =>
-                {
-                    b.Navigation("Tokens");
-                });
+        modelBuilder.Entity("OpenIddict.EntityFrameworkCore.Models.OpenIddictEntityFrameworkCoreAuthorization", b =>
+            {
+                b.Navigation("Tokens");
+            });
 
-            modelBuilder.Entity("Soditech.IntelPrev.Users.Persistence.Models.Building", b =>
-                {
-                    b.Navigation("Floors");
+        modelBuilder.Entity("Soditech.IntelPrev.Users.Persistence.Models.Building", b =>
+            {
+                b.Navigation("Floors");
 
-                    b.Navigation("Users");
-                });
+                b.Navigation("Users");
+            });
 
-            modelBuilder.Entity("Soditech.IntelPrev.Users.Persistence.Models.Floor", b =>
-                {
-                    b.Navigation("Users");
-                });
+        modelBuilder.Entity("Soditech.IntelPrev.Users.Persistence.Models.Floor", b =>
+            {
+                b.Navigation("Users");
+            });
 
-            modelBuilder.Entity("Soditech.IntelPrev.Users.Persistence.Models.Tenant", b =>
-                {
-                    b.Navigation("Roles");
+        modelBuilder.Entity("Soditech.IntelPrev.Users.Persistence.Models.Tenant", b =>
+            {
+                b.Navigation("Roles");
 
-                    b.Navigation("Users");
-                });
+                b.Navigation("Users");
+            });
 #pragma warning restore 612, 618
-        }
     }
 }

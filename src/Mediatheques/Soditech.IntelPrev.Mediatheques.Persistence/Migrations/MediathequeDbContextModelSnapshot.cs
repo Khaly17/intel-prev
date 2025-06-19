@@ -8,226 +8,225 @@ using Soditech.IntelPrev.Mediatheques.Persistence;
 
 #nullable disable
 
-namespace Soditech.IntelPrev.Mediatheques.Persistence.Migrations
+namespace Soditech.IntelPrev.Mediatheques.Persistence.Migrations;
+
+[DbContext(typeof(MediathequeDbContext))]
+partial class MediathequeDbContextModelSnapshot : ModelSnapshot
 {
-    [DbContext(typeof(MediathequeDbContext))]
-    partial class MediathequeDbContextModelSnapshot : ModelSnapshot
+    protected override void BuildModel(ModelBuilder modelBuilder)
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
-        {
 #pragma warning disable 612, 618
-            modelBuilder
-                .HasDefaultSchema("mediatheques")
-                .HasAnnotation("ProductVersion", "8.0.8")
-                .HasAnnotation("Proxies:ChangeTracking", false)
-                .HasAnnotation("Proxies:CheckEquality", false)
-                .HasAnnotation("Proxies:LazyLoading", true)
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+        modelBuilder
+            .HasDefaultSchema("mediatheques")
+            .HasAnnotation("ProductVersion", "8.0.8")
+            .HasAnnotation("Proxies:ChangeTracking", false)
+            .HasAnnotation("Proxies:CheckEquality", false)
+            .HasAnnotation("Proxies:LazyLoading", true)
+            .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+        SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Soditech.IntelPrev.Mediatheques.Persistence.Models.Document", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+        modelBuilder.Entity("Soditech.IntelPrev.Mediatheques.Persistence.Models.Document", b =>
+            {
+                b.Property<Guid>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTimeOffset?>("CreatedAt")
-                        .IsRequired()
-                        .HasColumnType("datetimeoffset");
+                b.Property<DateTimeOffset?>("CreatedAt")
+                    .IsRequired()
+                    .HasColumnType("datetimeoffset");
 
-                    b.Property<Guid?>("CreatorId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid?>("CreatorId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTimeOffset?>("DeletedAt")
-                        .HasColumnType("datetimeoffset");
+                b.Property<DateTimeOffset?>("DeletedAt")
+                    .HasColumnType("datetimeoffset");
 
-                    b.Property<Guid?>("DeleterId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid?>("DeleterId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                b.Property<string>("Description")
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .HasColumnType("nvarchar(255)");
 
-                    b.Property<string>("FileType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("FileType")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
+                b.Property<bool>("IsDeleted")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("bit")
+                    .HasDefaultValue(false);
 
-                    b.Property<bool>("IsDownloadable")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(true);
+                b.Property<bool>("IsDownloadable")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("bit")
+                    .HasDefaultValue(true);
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                b.Property<string>("Name")
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("Path")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                b.Property<string>("Path")
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .HasColumnType("nvarchar(255)");
 
-                    b.Property<Guid>("TenantId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid>("TenantId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Type")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTimeOffset?>("UpdatedAt")
-                        .HasColumnType("datetimeoffset");
+                b.Property<DateTimeOffset?>("UpdatedAt")
+                    .HasColumnType("datetimeoffset");
 
-                    b.Property<Guid?>("UpdaterId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid?>("UpdaterId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("UserId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid?>("UserId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("CreatorId");
+                b.HasIndex("CreatorId");
 
-                    b.HasIndex("DeleterId");
+                b.HasIndex("DeleterId");
 
-                    b.HasIndex("TenantId");
+                b.HasIndex("TenantId");
 
-                    b.HasIndex("UpdaterId");
+                b.HasIndex("UpdaterId");
 
-                    b.HasIndex("UserId");
+                b.HasIndex("UserId");
 
-                    b.ToTable("Documents", "mediatheques");
-                });
+                b.ToTable("Documents", "mediatheques");
+            });
 
-            modelBuilder.Entity("Soditech.IntelPrev.Mediatheques.Persistence.Models.Tenant", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+        modelBuilder.Entity("Soditech.IntelPrev.Mediatheques.Persistence.Models.Tenant", b =>
+            {
+                b.Property<Guid>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("DisplayName")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
+                b.Property<string>("DisplayName")
+                    .IsRequired()
+                    .HasMaxLength(150)
+                    .HasColumnType("nvarchar(150)");
 
-                    b.Property<bool>("IsActive")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(true);
+                b.Property<bool>("IsActive")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("bit")
+                    .HasDefaultValue(true);
 
-                    b.Property<bool>("IsDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
+                b.Property<bool>("IsDeleted")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("bit")
+                    .HasDefaultValue(false);
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                b.Property<string>("Name")
+                    .IsRequired()
+                    .HasMaxLength(100)
+                    .HasColumnType("nvarchar(100)");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.ToTable("Tenants", "mediatheques");
-                });
+                b.ToTable("Tenants", "mediatheques");
+            });
 
-            modelBuilder.Entity("Soditech.IntelPrev.Mediatheques.Persistence.Models.User", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+        modelBuilder.Entity("Soditech.IntelPrev.Mediatheques.Persistence.Models.User", b =>
+            {
+                b.Property<Guid>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
+                b.Property<string>("Email")
+                    .IsRequired()
+                    .HasMaxLength(150)
+                    .HasColumnType("nvarchar(150)");
 
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                b.Property<string>("FirstName")
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .HasColumnType("nvarchar(50)");
 
-                    b.Property<bool>("IsDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
+                b.Property<bool>("IsDeleted")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("bit")
+                    .HasDefaultValue(false);
 
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                b.Property<string>("LastName")
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .HasColumnType("nvarchar(50)");
 
-                    b.Property<Guid?>("TenantId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid?>("TenantId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Username")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
+                b.Property<string>("Username")
+                    .IsRequired()
+                    .HasMaxLength(150)
+                    .HasColumnType("nvarchar(150)");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("TenantId");
+                b.HasIndex("TenantId");
 
-                    b.ToTable("Users", "mediatheques");
-                });
+                b.ToTable("Users", "mediatheques");
+            });
 
-            modelBuilder.Entity("Soditech.IntelPrev.Mediatheques.Persistence.Models.Document", b =>
-                {
-                    b.HasOne("Soditech.IntelPrev.Mediatheques.Persistence.Models.User", "Creator")
-                        .WithMany()
-                        .HasForeignKey("CreatorId")
-                        .OnDelete(DeleteBehavior.NoAction);
+        modelBuilder.Entity("Soditech.IntelPrev.Mediatheques.Persistence.Models.Document", b =>
+            {
+                b.HasOne("Soditech.IntelPrev.Mediatheques.Persistence.Models.User", "Creator")
+                    .WithMany()
+                    .HasForeignKey("CreatorId")
+                    .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("Soditech.IntelPrev.Mediatheques.Persistence.Models.User", "Deleter")
-                        .WithMany()
-                        .HasForeignKey("DeleterId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                b.HasOne("Soditech.IntelPrev.Mediatheques.Persistence.Models.User", "Deleter")
+                    .WithMany()
+                    .HasForeignKey("DeleterId")
+                    .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("Soditech.IntelPrev.Mediatheques.Persistence.Models.Tenant", "Tenant")
-                        .WithMany()
-                        .HasForeignKey("TenantId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                b.HasOne("Soditech.IntelPrev.Mediatheques.Persistence.Models.Tenant", "Tenant")
+                    .WithMany()
+                    .HasForeignKey("TenantId")
+                    .OnDelete(DeleteBehavior.NoAction)
+                    .IsRequired();
 
-                    b.HasOne("Soditech.IntelPrev.Mediatheques.Persistence.Models.User", "Updater")
-                        .WithMany()
-                        .HasForeignKey("UpdaterId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                b.HasOne("Soditech.IntelPrev.Mediatheques.Persistence.Models.User", "Updater")
+                    .WithMany()
+                    .HasForeignKey("UpdaterId")
+                    .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("Soditech.IntelPrev.Mediatheques.Persistence.Models.User", null)
-                        .WithMany("Documents")
-                        .HasForeignKey("UserId");
+                b.HasOne("Soditech.IntelPrev.Mediatheques.Persistence.Models.User", null)
+                    .WithMany("Documents")
+                    .HasForeignKey("UserId");
 
-                    b.Navigation("Creator");
+                b.Navigation("Creator");
 
-                    b.Navigation("Deleter");
+                b.Navigation("Deleter");
 
-                    b.Navigation("Tenant");
+                b.Navigation("Tenant");
 
-                    b.Navigation("Updater");
-                });
+                b.Navigation("Updater");
+            });
 
-            modelBuilder.Entity("Soditech.IntelPrev.Mediatheques.Persistence.Models.User", b =>
-                {
-                    b.HasOne("Soditech.IntelPrev.Mediatheques.Persistence.Models.Tenant", "Tenant")
-                        .WithMany()
-                        .HasForeignKey("TenantId")
-                        .OnDelete(DeleteBehavior.NoAction);
+        modelBuilder.Entity("Soditech.IntelPrev.Mediatheques.Persistence.Models.User", b =>
+            {
+                b.HasOne("Soditech.IntelPrev.Mediatheques.Persistence.Models.Tenant", "Tenant")
+                    .WithMany()
+                    .HasForeignKey("TenantId")
+                    .OnDelete(DeleteBehavior.NoAction);
 
-                    b.Navigation("Tenant");
-                });
+                b.Navigation("Tenant");
+            });
 
-            modelBuilder.Entity("Soditech.IntelPrev.Mediatheques.Persistence.Models.User", b =>
-                {
-                    b.Navigation("Documents");
-                });
+        modelBuilder.Entity("Soditech.IntelPrev.Mediatheques.Persistence.Models.User", b =>
+            {
+                b.Navigation("Documents");
+            });
 #pragma warning restore 612, 618
-        }
     }
 }

@@ -55,10 +55,7 @@ public class PreventionActorsViewModel : MauiViewModel
         }
     });
 
-    public IAsyncRelayCommand RefreshCommand => new AsyncRelayCommand(async () =>
-    {
-        await InitializeAsync();
-    });
+    public IAsyncRelayCommand RefreshCommand => new AsyncRelayCommand(async () => await InitializeAsync());
 
     /// <inheritdoc />
     public override async Task InitializeAsync()

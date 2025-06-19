@@ -75,10 +75,7 @@ public class EventsViewModel : MauiViewModel
 		}
 	});
 
-	public IAsyncRelayCommand RefreshCommand => new AsyncRelayCommand(async () =>
-	{
-		await InitializeAsync();
-	});
+	public IAsyncRelayCommand RefreshCommand => new AsyncRelayCommand(async () => await InitializeAsync());
 
 	public ICommand EventTappedCommand { get; set; }
 

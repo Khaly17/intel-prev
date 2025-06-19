@@ -23,16 +23,12 @@ public partial class FireInstructionsViewModel : MauiViewModel
     {
         try
         {
-            await SetBusyAsync(async () =>
-            {
-                // TODO: Replace with actual API call
-                // Mock API response
-                CustomInstructions = "Instructions personnalisées pour le site:\n\n" +
+            await SetBusyAsync(async () => CustomInstructions = "Instructions personnalisées pour le site:\n\n" +
                                      "• En cas d'incendie, utiliser l'escalier B pour l'évacuation\n" +
                                      "• Point de rassemblement: Parking Nord\n" +
                                      "• Numéro d'urgence interne: 555\n" +
-                                     "• Responsable sécurité: M. Durant - Poste 123";
-            }, "Chargement des consignes personnalisées...");
+                                     "• Responsable sécurité: M. Durant - Poste 123", 
+            "Chargement des consignes personnalisées...");
         }
         catch (Exception ex)
         {

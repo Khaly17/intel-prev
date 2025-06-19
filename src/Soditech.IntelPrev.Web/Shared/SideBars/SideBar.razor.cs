@@ -95,11 +95,7 @@ public partial class SideBar
     {
         if (firstRender)
         {
-            SiteEventService.OnSiteChanged += async () =>
-            {
-                //await LoadSitesAsync();
-                await InvokeAsync(StateHasChanged);
-            };
+            SiteEventService.OnSiteChanged += async () => await InvokeAsync(StateHasChanged);
         }
 
         return Task.CompletedTask;
@@ -184,14 +180,7 @@ public partial class SideBar
             {
                 var tenantId = userResult.Value.TenantId;
     
-                if (!string.IsNullOrEmpty(tenantId))
-                {
-                    items = items.Where(i => i.IsTenant).ToList();
-                }
-                else
-                {
-                    items = items.Where(i => i.IsHost).ToList();
-                }
+                items = !string.IsNullOrEmpty(tenantId) ? items.Where(i => i.IsTenant).ToList() : items.Where(i => i.IsHost).ToList();
             }
                 
             Sections.Add(new SidebarSection(name: "Administration",

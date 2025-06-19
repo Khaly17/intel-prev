@@ -41,10 +41,7 @@ public partial class ProfileViewModel : MauiViewModel
 	public IAsyncRelayCommand LogoutCommand { get; }
 
  	// go home command
-    public static IAsyncRelayCommand GoHomeCommand => new AsyncRelayCommand(async () =>
-    {
-        await Shell.Current.GoToAsync(new ShellNavigationState(AppRoutes.MainViewPage));
-    });
+    public static IAsyncRelayCommand GoHomeCommand => new AsyncRelayCommand(async () => await Shell.Current.GoToAsync(new ShellNavigationState(AppRoutes.MainViewPage)));
 	private async Task NavigateToPinVerificationAsync()
 	{
 		await Shell.Current.GoToAsync(AppRoutes.PinVerificationPage);
