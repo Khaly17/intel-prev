@@ -25,12 +25,12 @@ public partial class AddOrEditDocument
     [Parameter]
     public EventCallback<InputFileChangeEventArgs> OnSeletectedFileChange { get; set; }
 
-    public async Task CreateDocument() 
+    public async Task CreateDocumentAsync() 
     {
         await OnCreateDocument.InvokeAsync(null);
     }
 
-    public async Task SelectedFileChange(InputFileChangeEventArgs e)
+    public async Task SelectedFileChangeAsync(InputFileChangeEventArgs e)
     {
         await OnSeletectedFileChange.InvokeAsync(e);
     }

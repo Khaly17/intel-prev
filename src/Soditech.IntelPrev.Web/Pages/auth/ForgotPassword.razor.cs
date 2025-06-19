@@ -13,7 +13,7 @@ public partial class ForgotPassword
     private string ForgotPasswordMessage { get; set; } = string.Empty;
     private bool IsSendingReset { get; set; } = false;
 
-    private async Task HandleForgotPassword()
+    private async Task HandleForgotPasswordAsync()
     {
         ForgotPasswordMessage = string.Empty;
             

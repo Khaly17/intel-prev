@@ -78,8 +78,8 @@ public partial class SideBar
     protected override void OnInitialized()
     {
         _activeUrl = Navigation.Uri.Replace(Navigation.BaseUri, "/");
-        _ = GetUserInfo();
-        _ = InitializeSections();
+        _ = GetUserInfoAsync();
+        _ = InitializeSectionsAsync();
 
         StateHasChanged();
     }
@@ -106,7 +106,7 @@ public partial class SideBar
         return Task.CompletedTask;
     }
 
-    private async Task InitializeSections()
+    private async Task InitializeSectionsAsync()
     {
         Sections =
         [
@@ -267,7 +267,7 @@ public partial class SideBar
         return char.ToUpper(input[0]) + input[1..].ToLower();
     }
 
-    private async Task GetUserInfo()
+    private async Task GetUserInfoAsync()
     {
 
         var userResult = await UserInfoService.GetUserInfoAsync();

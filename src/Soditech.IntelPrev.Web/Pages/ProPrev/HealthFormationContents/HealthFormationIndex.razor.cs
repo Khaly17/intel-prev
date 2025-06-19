@@ -24,7 +24,7 @@ public partial class HealthFormationIndex
 
     protected override async Task OnInitializedAsync()
     {
-        await GetContent();
+        await GetContentAsync();
     }
 
     private void OnValueChanged(string newValue)
@@ -32,7 +32,7 @@ public partial class HealthFormationIndex
         _value = newValue;
     }
 
-    private async Task SaveContent()
+    private async Task SaveContentAsync()
     {
         if (IsSaving)
             return;
@@ -57,7 +57,7 @@ public partial class HealthFormationIndex
                 HandleResult(result, "Le protocol d'analyse des risques a été modifié avec succès !");
             }
 
-            await GetContent();
+            await GetContentAsync();
         }
         catch (Exception ex)
         {
@@ -92,7 +92,7 @@ public partial class HealthFormationIndex
         }
     }
 
-    private async Task GetContent()
+    private async Task GetContentAsync()
     {
         var result = await ProxyService.GetAsync<ProPrevContentResult>(PreventionRoutes.ProPrevSettings.GetHealthFormationContent);
         if (result.IsSuccess)

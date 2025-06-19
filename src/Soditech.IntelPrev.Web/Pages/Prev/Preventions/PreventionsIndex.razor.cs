@@ -34,7 +34,7 @@ public partial class PreventionsIndex
         _value = newValue;
     }
 
-    private async Task SaveContent()
+    private async Task SaveContentAsync()
     {
         if (IsSaving)
             return;

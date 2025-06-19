@@ -66,7 +66,7 @@ public partial class EditDocument
         }
     }
 
-    private async Task UpdateDocument()
+    private async Task UpdateDocumentAsync()
     {
         if (CurrentDocument.Id == Guid.Empty)
         {
@@ -91,7 +91,7 @@ public partial class EditDocument
         }
     }
 
-    private async Task HandleFileSelected(InputFileChangeEventArgs e)
+    private async Task HandleFileSelectedAsync(InputFileChangeEventArgs e)
     {
         var file = e.File;
         if (file != null)

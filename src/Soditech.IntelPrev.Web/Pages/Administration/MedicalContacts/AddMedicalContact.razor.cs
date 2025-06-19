@@ -15,7 +15,7 @@ public partial class AddMedicalContact
     public string? SuccessMessage { get; set; }
     [Inject] private ILogger<AddMedicalContact> Logger { get; set; } = default!;
 
-    private async Task CreateMedicalContact()
+    private async Task CreateMedicalContactAsync()
     {
         ErrorMessage = null;
         SuccessMessage = null;

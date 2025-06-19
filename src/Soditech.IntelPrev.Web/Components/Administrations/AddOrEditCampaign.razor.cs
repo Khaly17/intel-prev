@@ -21,7 +21,7 @@ public partial class AddOrEditCampaign
     [Parameter]
     public EventCallback OnCampaignCreated { get; set; }
 
-    public async Task CreateCampaign()
+    public async Task CreateCampaignAsync()
     {
         await OnCampaignCreated.InvokeAsync(null);
     }

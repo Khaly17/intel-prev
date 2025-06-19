@@ -23,7 +23,7 @@ public partial class FireSecurityDefinitionIndex
 
     protected override async Task OnInitializedAsync()
     {
-        await GetContent();
+        await GetContentAsync();
     }
 
     private void OnValueChanged(string newValue)
@@ -31,7 +31,7 @@ public partial class FireSecurityDefinitionIndex
         _value = newValue;
     }
 
-    private async Task SaveContent()
+    private async Task SaveContentAsync()
     {
         if (IsSaving)
             return;
@@ -56,7 +56,7 @@ public partial class FireSecurityDefinitionIndex
                 HandleResult(result, "La definition a été modifié avec succès !");
             }
 
-            await GetContent();
+            await GetContentAsync();
         }
         catch (Exception ex)
         {
@@ -91,7 +91,7 @@ public partial class FireSecurityDefinitionIndex
         }
     }
 
-    private async Task GetContent()
+    private async Task GetContentAsync()
     {
         var result = await ProxyService.GetAsync<FireSecuritySettingContentResult>(PreventionRoutes.FireSecuritySettings.GetDefinitionContent);
         if (result.IsSuccess)

@@ -28,7 +28,7 @@ public partial class Login
         IsLoading = false;
     }
 
-    private async Task HandleLogin()
+    private async Task HandleLoginAsync()
     {
         IsConnecting = true;
         StateHasChanged();

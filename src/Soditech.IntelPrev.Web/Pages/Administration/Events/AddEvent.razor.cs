@@ -19,7 +19,7 @@ public partial class AddEvent
     [Inject] private ILogger<AddEvent> Logger { get; set; } = default!;
     private bool IsLoading { get; set; }
 
-    private async Task CreateEvent()
+    private async Task CreateEventAsync()
     {
         ErrorMessage = null;
         SuccessMessage = null;
@@ -46,10 +46,10 @@ public partial class AddEvent
     }
     protected override async Task OnInitializedAsync()
     {
-        await GetCommitteeMembers();
+        await GetCommitteeMembersAsync();
     }
 
-    public async Task GetCommitteeMembers()
+    public async Task GetCommitteeMembersAsync()
     {
         IsLoading = true;
         var committeeMembersResult = await ProxyService.GetAsync<IList<CommitteeMemberResult>>(PreventionRoutes.CommitteeMembers.GetAll);

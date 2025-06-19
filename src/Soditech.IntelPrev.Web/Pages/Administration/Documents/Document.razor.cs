@@ -44,7 +44,7 @@
             }
         }
 
-        private async Task HandleFileSelected(InputFileChangeEventArgs e)
+        private async Task HandleFileSelectedAsync(InputFileChangeEventArgs e)
         {
             var file = e.File;
             if (file.Size != 0)

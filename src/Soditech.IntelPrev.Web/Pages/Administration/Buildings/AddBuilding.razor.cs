@@ -19,7 +19,7 @@ public partial class AddBuilding
     private List<FloorResult> NewFloors { get; set; } = new();
     private FloorResult NewFloor { get; set; } = new();
 
-    private async Task CreateBuilding()
+    private async Task CreateBuildingAsync()
     {
         ErrorMessage = null;
         SuccessMessage = null;

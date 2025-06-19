@@ -20,7 +20,7 @@ public class NavigationService(IServiceProvider serviceProvider)
     /// Navigates to the specified URL in a new browser tab.
     /// </summary>
     /// <param name="url">The URL to navigate to.</param>
-    public async Task NavigateToNewTab(string url)
+    public async Task NavigateToNewTabAsync(string url)
     {
         try
         {

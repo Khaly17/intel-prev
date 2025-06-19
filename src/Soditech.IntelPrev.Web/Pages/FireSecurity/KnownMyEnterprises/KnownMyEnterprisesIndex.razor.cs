@@ -23,7 +23,7 @@ public partial class KnownMyEnterprisesIndex
 
     protected override async Task OnInitializedAsync()
     {
-        await GetContent();
+        await GetContentAsync();
     }
 
     private void OnValueChanged(string newValue)
@@ -31,7 +31,7 @@ public partial class KnownMyEnterprisesIndex
         _value = newValue;
     }
 
-    private async Task SaveContent()
+    private async Task SaveContentAsync()
     {
         if (IsSaving)
             return;
@@ -56,7 +56,7 @@ public partial class KnownMyEnterprisesIndex
                 HandleResult(result, "Modifié avec succès !");
             }
 
-            await GetContent();
+            await GetContentAsync();
         }
         catch (Exception ex)
         {
@@ -91,7 +91,7 @@ public partial class KnownMyEnterprisesIndex
         }
     }
 
-    private async Task GetContent()
+    private async Task GetContentAsync()
     {
         var result = await ProxyService.GetAsync<FireSecuritySettingContentResult>(PreventionRoutes.FireSecuritySettings.GetKnownMyEnterpriseContent);
         if (result.IsSuccess)

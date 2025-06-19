@@ -44,7 +44,7 @@ public partial class EditEvent
         }
     }
 
-    private async Task UpdateEvent()
+    private async Task UpdateEventAsync()
     {
         if (EventItem.Id == Guid.Empty)
         {

@@ -15,7 +15,7 @@ public partial class AddCampaign
 
     public string? SuccessMessage { get; set; }
     [Inject] private ILogger<AddCampaign> Logger { get; set; } = default!;
-    private async Task CreateCampaign()
+    private async Task CreateCampaignAsync()
     {
         ErrorMessage = null;
         SuccessMessage = null;

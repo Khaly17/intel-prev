@@ -26,11 +26,11 @@ public partial class Calendar
 
     protected override async Task OnInitializedAsync()
     {
-        await GetEvents();
-        await GetCommitteeMembers();
+        await GetEventsAsync();
+        await GetCommitteeMembersAsync();
     }
 
-    public async Task GetCommitteeMembers()
+    public async Task GetCommitteeMembersAsync()
     {
         IsLoading = true;
         var committeeMembersResult = await ProxyService.GetAsync<IList<CommitteeMemberResult>>(PreventionRoutes.CommitteeMembers.GetAll);
@@ -42,7 +42,7 @@ public partial class Calendar
         IsLoading = false;
     }
 
-    private async Task GetEvents()
+    private async Task GetEventsAsync()
     {
         IsLoading = true;
         var eventsResult = await ProxyService.GetAsync<List<EventResult>>(PreventionRoutes.Events.GetAll);
@@ -68,7 +68,7 @@ public partial class Calendar
             {
                 foreach (var newEvent in args.AddedRecords)
                 {
-                    _ = CreateEvent(newEvent);
+                    _ = CreateEventAsync(newEvent);
                 }
             }
         }
@@ -85,7 +85,7 @@ public partial class Calendar
                         existingEvent.StartDate = new DateTimeOffset(updatedEvent.StartTime); 
                         existingEvent.EndDate = new DateTimeOffset(updatedEvent.EndTime);   
                     }
-                    _ = UpdateEvent(updatedEvent);
+                    _ = UpdateEventAsync(updatedEvent);
                 }
             }
         }
@@ -95,13 +95,13 @@ public partial class Calendar
             {
                 foreach (var deletedEvent in args.DeletedRecords)
                 {
-                    _ = DeleteEvent(deletedEvent);
+                    _ = DeleteEventAsync(deletedEvent);
                 }
             }
         }
     }
 
-    private async Task CreateEvent(EventResult newEvent)
+    private async Task CreateEventAsync(EventResult newEvent)
     {
         ErrorMessage = null;
         SuccessMessage = null;
@@ -128,7 +128,7 @@ public partial class Calendar
         }
     }
 
-    private async Task UpdateEvent(EventResult updatedEvent)
+    private async Task UpdateEventAsync(EventResult updatedEvent)
     {
 
         var updateResult = await ProxyService.PostAsync<EventResult>(PreventionRoutes.Events.Update.Replace("{id:guid}", updatedEvent.Id.ToString()), updatedEvent);
@@ -143,7 +143,7 @@ public partial class Calendar
         }
     }
 
-    private async Task DeleteEvent(EventResult deletedEvent)
+    private async Task DeleteEventAsync(EventResult deletedEvent)
     {
         try
         {

@@ -39,7 +39,7 @@ public class AccountService(IServiceProvider serviceProvider): IAccountService
 
     public async Task LoginUserAsync()
     {
-        await WebRequestExecutorWithParam.Execute(_accessTokenManager.LoginAsync, AuthenticateModel, AuthenticateSucceed, ex => Task.CompletedTask);
+        await WebRequestExecutorWithParam.ExecuteAsync(_accessTokenManager.LoginAsync, AuthenticateModel, AuthenticateSucceed, ex => Task.CompletedTask);
     }
     
     private async Task AuthenticateSucceed(AuthenticateResultModel result)

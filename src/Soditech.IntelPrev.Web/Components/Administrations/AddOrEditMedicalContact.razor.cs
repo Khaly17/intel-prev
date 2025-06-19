@@ -19,7 +19,7 @@ public partial class AddOrEditMedicalContact
 
     [Parameter]
     public EventCallback OnMedicalContactCreated { get; set; }
-    public async Task CreateMedicalContact()
+    public async Task CreateMedicalContactAsync()
     {
         await OnMedicalContactCreated.InvokeAsync(null);
     }

@@ -80,7 +80,7 @@ public partial class EditRegisterType
         }
     }
 
-    private async Task UpdateRegister()
+    private async Task UpdateRegisterAsync()
     {
         SaveBtnLabel = "Enregistrement ...";
         ErrorMessage = null;

@@ -21,7 +21,7 @@ public static class WebRequestExecutor
     /// <param name="successCallback">The callback to be executed if the web request is successful.</param>
     /// <param name="failCallback">The callback to be executed if the web request fails.</param>
     /// <param name="finallyCallback">The callback to be executed after the web request completes, regardless of success or failure.</param>
-    public static async Task Execute<TResult>(
+    public static async Task ExecuteAsync<TResult>(
         Func<Task<TResult>> func,
         Func<TResult, Task> successCallback,
         Func<Exception, Task> failCallback = null,
@@ -47,7 +47,7 @@ public static class WebRequestExecutor
 
                     if (accepted)
                     {
-                        await Execute(func, successCallback, failCallback);
+                        await ExecuteAsync(func, successCallback, failCallback);
                     }
                     else
                     {
@@ -61,7 +61,7 @@ public static class WebRequestExecutor
             }
             catch (Exception exception)
             {
-                await HandleException(exception, func, successCallback, failCallback);
+                await HandleExceptionAsync(exception, func, successCallback, failCallback);
             }
             finally
             {
@@ -69,7 +69,7 @@ public static class WebRequestExecutor
             }
     }
 
-        public static async Task Execute(
+        public static async Task ExecuteAsync(
             Func<Task> func,
             Func<Task> successCallback = null,
             Func<Exception, Task> failCallback = null,
@@ -93,7 +93,7 @@ public static class WebRequestExecutor
 
                     if (accepted)
                     {
-                        await Execute(func, successCallback, failCallback);
+                        await ExecuteAsync(func, successCallback, failCallback);
                     }
                     else
                     {
@@ -108,7 +108,7 @@ public static class WebRequestExecutor
             }
             catch (Exception ex)
             {
-                await HandleException(ex, func, successCallback, failCallback);
+                await HandleExceptionAsync(ex, func, successCallback, failCallback);
             }
             finally
             {
@@ -116,7 +116,7 @@ public static class WebRequestExecutor
             }
         }
 
-        private static async Task HandleException<TResult>(Exception exception,
+        private static async Task HandleExceptionAsync<TResult>(Exception exception,
             Func<Task<TResult>> func,
             Func<TResult, Task> successCallback,
             Func<Exception, Task> failCallback)
@@ -124,18 +124,18 @@ public static class WebRequestExecutor
             switch (exception)
             {
                 case FlurlHttpTimeoutException httpTimeoutException:
-                    await HandleFlurlHttpTimeoutException(httpTimeoutException, func, successCallback, failCallback);
+                    await HandleFlurlHttpTimeoutExceptionAsync(httpTimeoutException, func, successCallback, failCallback);
                     break;
                 case FlurlHttpException httpException:
-                    await HandleFlurlHttpException(httpException, func, successCallback, failCallback);
+                    await HandleFlurlHttpExceptionAsync(httpException, func, successCallback, failCallback);
                     break;
                 default:
-                    await HandleDefaultException(exception, func, successCallback, failCallback);
+                    await HandleDefaultExceptionAsync(exception, func, successCallback, failCallback);
                     break;
             }
         }
 
-        private static async Task HandleException(Exception exception,
+        private static async Task HandleExceptionAsync(Exception exception,
             Func<Task> func,
             Func<Task> successCallback,
             Func<Exception, Task> failCallback)
@@ -144,18 +144,18 @@ public static class WebRequestExecutor
             switch (exception)
             {
                 case FlurlHttpTimeoutException httpTimeoutException:
-                    await HandleFlurlHttpTimeoutException(httpTimeoutException, func, successCallback, failCallback);
+                    await HandleFlurlHttpTimeoutExceptionAsync(httpTimeoutException, func, successCallback, failCallback);
                     break;
                 case FlurlHttpException httpException:
-                    await HandleFlurlHttpException(httpException, func, successCallback, failCallback);
+                    await HandleFlurlHttpExceptionAsync(httpException, func, successCallback, failCallback);
                     break;
                 default:
-                    await HandleDefaultException(exception, func, successCallback, failCallback);
+                    await HandleDefaultExceptionAsync(exception, func, successCallback, failCallback);
                     break;
             }
         }
         
-        private static async Task HandleFlurlHttpTimeoutException<TResult>(
+        private static async Task HandleFlurlHttpTimeoutExceptionAsync<TResult>(
             FlurlHttpTimeoutException httpTimeoutException,
             Func<Task<TResult>> func,
             Func<TResult, Task> successCallback,
@@ -165,7 +165,7 @@ public static class WebRequestExecutor
 
             if (accepted)
             {
-                await Execute(func, successCallback, failCallback);
+                await ExecuteAsync(func, successCallback, failCallback);
             }
             else
             {
@@ -173,7 +173,7 @@ public static class WebRequestExecutor
             }
         }
 
-        private static async Task HandleFlurlHttpTimeoutException(FlurlHttpTimeoutException httpTimeoutException,
+        private static async Task HandleFlurlHttpTimeoutExceptionAsync(FlurlHttpTimeoutException httpTimeoutException,
             Func<Task> func,
             Func<Task> successCallback,
             Func<Exception, Task> failCallback)
@@ -182,7 +182,7 @@ public static class WebRequestExecutor
 
             if (accepted)
             {
-                await Execute(func, successCallback, failCallback);
+                await ExecuteAsync(func, successCallback, failCallback);
             }
             else
             {
@@ -190,7 +190,7 @@ public static class WebRequestExecutor
             }
         }
 
-        private static async Task HandleFlurlHttpException(FlurlHttpException httpException,
+        private static async Task HandleFlurlHttpExceptionAsync(FlurlHttpException httpException,
             Func<Task> func,
             Func<Task> successCallback,
             Func<Exception, Task> failCallback)
@@ -205,7 +205,7 @@ public static class WebRequestExecutor
 
             if (accepted)
             {
-                await Execute(func, successCallback, failCallback);
+                await ExecuteAsync(func, successCallback, failCallback);
             }
             else
             {
@@ -213,7 +213,7 @@ public static class WebRequestExecutor
             }
         }
 
-        private static async Task HandleFlurlHttpException<TResult>(FlurlHttpException httpException,
+        private static async Task HandleFlurlHttpExceptionAsync<TResult>(FlurlHttpException httpException,
             Func<Task<TResult>> func,
             Func<TResult, Task> successCallback,
             Func<Exception, Task> failCallback)
@@ -228,7 +228,7 @@ public static class WebRequestExecutor
 
             if (accepted)
             {
-                await Execute(func, successCallback, failCallback);
+                await ExecuteAsync(func, successCallback, failCallback);
             }
             else
             {
@@ -236,7 +236,7 @@ public static class WebRequestExecutor
             }
         }
         
-        private static async Task HandleDefaultException(Exception exception,
+        private static async Task HandleDefaultExceptionAsync(Exception exception,
             Func<Task> func,
             Func<Task> successCallback,
             Func<Exception, Task> failCallback)
@@ -246,7 +246,7 @@ public static class WebRequestExecutor
 
         if (accepted)
         {
-            await Execute(func, successCallback, failCallback);
+            await ExecuteAsync(func, successCallback, failCallback);
         }
         else
         {
@@ -254,7 +254,7 @@ public static class WebRequestExecutor
         }
     }
 
-        private static async Task HandleDefaultException<TResult>(Exception exception,
+        private static async Task HandleDefaultExceptionAsync<TResult>(Exception exception,
             Func<Task<TResult>> func,
             Func<TResult, Task> successCallback,
             Func<Exception, Task> failCallback)
@@ -263,7 +263,7 @@ public static class WebRequestExecutor
 
             if (accepted)
             {
-                await Execute(func, successCallback, failCallback);
+                await ExecuteAsync(func, successCallback, failCallback);
             }
             else
             {
@@ -274,7 +274,7 @@ public static class WebRequestExecutor
 
 public static class WebRequestExecutorWithParam
 {
-    public static async Task Execute<TParam>(
+    public static async Task ExecuteAsync<TParam>(
         Func<TParam, Task> func,
         TParam param,
         Func<Task> successCallback = null,
@@ -301,7 +301,7 @@ public static class WebRequestExecutorWithParam
 
                 if (accepted)
                 {
-                    await Execute(func, param, successCallback, failCallback);
+                    await ExecuteAsync(func, param, successCallback, failCallback);
                 }
                 else
                 {
@@ -316,7 +316,7 @@ public static class WebRequestExecutorWithParam
         }
         catch (Exception ex)
         {
-            await HandleException(ex, func, param, successCallback, failCallback);
+            await HandleExceptionAsync(ex, func, param, successCallback, failCallback);
         }
         finally
         {
@@ -324,7 +324,7 @@ public static class WebRequestExecutorWithParam
         }
     }
     
-    public static async Task Execute<TParam, TResult>(
+    public static async Task ExecuteAsync<TParam, TResult>(
         Func<TParam, Task<TResult>> func,
         TParam param,
         Func<TResult, Task> successCallback,
@@ -349,7 +349,7 @@ public static class WebRequestExecutorWithParam
 
                 if (accepted)
                 {
-                    await Execute(func, param, successCallback, failCallback);
+                    await ExecuteAsync(func, param, successCallback, failCallback);
                 }
                 else
                 {
@@ -363,7 +363,7 @@ public static class WebRequestExecutorWithParam
         }
         catch (Exception exception)
         {
-            await HandleException(exception, func, param, successCallback, failCallback);
+            await HandleExceptionAsync(exception, func, param, successCallback, failCallback);
         }
         finally
         {
@@ -371,7 +371,7 @@ public static class WebRequestExecutorWithParam
         }
     }
     
-    private static async Task HandleException<TParam, TResult>(
+    private static async Task HandleExceptionAsync<TParam, TResult>(
         Exception exception,
         Func<TParam, Task<TResult>> func,
         TParam param,
@@ -381,20 +381,20 @@ public static class WebRequestExecutorWithParam
         switch (exception)
         {
             case FlurlHttpTimeoutException httpTimeoutException:
-                await HandleFlurlHttpTimeoutException(httpTimeoutException, func, param, successCallback, failCallback);
+                await HandleFlurlHttpTimeoutExceptionAsync(httpTimeoutException, func, param, successCallback, failCallback);
                 break;
             case FlurlHttpException httpException:
-                await HandleFlurlHttpException(httpException, func, param, successCallback, failCallback);
+                await HandleFlurlHttpExceptionAsync(httpException, func, param, successCallback, failCallback);
                 break;
             default:
-                await HandleDefaultException(exception, func, param, successCallback, failCallback);
+                await HandleDefaultExceptionAsync(exception, func, param, successCallback, failCallback);
                 break;
         }
     }
     
     
 
-    private static async Task HandleException<TParam>(
+    private static async Task HandleExceptionAsync<TParam>(
         Exception exception,
         Func<TParam, Task> func,
         TParam param,
@@ -404,18 +404,18 @@ public static class WebRequestExecutorWithParam
         switch (exception)
         {
             case FlurlHttpTimeoutException httpTimeoutException:
-                await HandleFlurlHttpTimeoutException(httpTimeoutException, func, param, successCallback, failCallback);
+                await HandleFlurlHttpTimeoutExceptionAsync(httpTimeoutException, func, param, successCallback, failCallback);
                 break;
             case FlurlHttpException httpException:
-                await HandleFlurlHttpException(httpException, func, param, successCallback, failCallback);
+                await HandleFlurlHttpExceptionAsync(httpException, func, param, successCallback, failCallback);
                 break;
             default:
-                await HandleDefaultException(exception, func, param, successCallback, failCallback);
+                await HandleDefaultExceptionAsync(exception, func, param, successCallback, failCallback);
                 break;
         }
     }
 
-    private static async Task HandleFlurlHttpTimeoutException<TParam, TResult>(
+    private static async Task HandleFlurlHttpTimeoutExceptionAsync<TParam, TResult>(
         FlurlHttpTimeoutException httpTimeoutException,
         Func<TParam, Task<TResult>> func,
         TParam param,
@@ -427,7 +427,7 @@ public static class WebRequestExecutorWithParam
 
         if (accepted)
         {
-            await Execute(func, param, successCallback, failCallback);
+            await ExecuteAsync(func, param, successCallback, failCallback);
         }
         else
         {
@@ -436,7 +436,7 @@ public static class WebRequestExecutorWithParam
         
     }
     
-    private static async Task HandleFlurlHttpTimeoutException<TParam>(
+    private static async Task HandleFlurlHttpTimeoutExceptionAsync<TParam>(
         FlurlHttpTimeoutException httpTimeoutException,
         Func<TParam, Task> func,
         TParam param,
@@ -448,7 +448,7 @@ public static class WebRequestExecutorWithParam
 
         if (accepted)
         {
-            await Execute(func, param, successCallback, failCallback);
+            await ExecuteAsync(func, param, successCallback, failCallback);
         }
         else
         {
@@ -457,7 +457,7 @@ public static class WebRequestExecutorWithParam
         
     }
     
-    private static async Task HandleFlurlHttpException<TParam>(
+    private static async Task HandleFlurlHttpExceptionAsync<TParam>(
         FlurlHttpException httpException,
         Func<TParam, Task> func,
         TParam param,
@@ -474,7 +474,7 @@ public static class WebRequestExecutorWithParam
 
         if (accepted)
         {
-            await Execute(func, param, successCallback, failCallback);
+            await ExecuteAsync(func, param, successCallback, failCallback);
         }
         else
         {
@@ -482,7 +482,7 @@ public static class WebRequestExecutorWithParam
         }
     }
     
-    private static async Task HandleFlurlHttpException<TParam, TResult>(
+    private static async Task HandleFlurlHttpExceptionAsync<TParam, TResult>(
         FlurlHttpException httpException,
         Func<TParam, Task<TResult>> func,
         TParam param,
@@ -499,7 +499,7 @@ public static class WebRequestExecutorWithParam
 
     }
 
-    private static async Task HandleDefaultException<TParam>(
+    private static async Task HandleDefaultExceptionAsync<TParam>(
         Exception exception,
         Func<TParam, Task> func,
         TParam param,
@@ -509,7 +509,7 @@ public static class WebRequestExecutorWithParam
         await failCallback(exception);
     }
 
-    private static async Task HandleDefaultException<TParam, TResult>(
+    private static async Task HandleDefaultExceptionAsync<TParam, TResult>(
         Exception exception,
         Func<TParam, Task<TResult>> func,
         TParam param,

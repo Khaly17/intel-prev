@@ -62,7 +62,7 @@ public partial class EditCampaign
         }
         _isLoading = false;
     }
-    private async Task UpdateCampaign()
+    private async Task UpdateCampaignAsync()
     {
         if (CurrentCampaign.Id == Guid.Empty)
         {

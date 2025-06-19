@@ -68,7 +68,7 @@ public partial class EditBuilding
         _isLoading = false;
     }
 
-    private async Task UpdateBuilding()
+    private async Task UpdateBuildingAsync()
     {
         if (Building.Id == Guid.Empty)
         {

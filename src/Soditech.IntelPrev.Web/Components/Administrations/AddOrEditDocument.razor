@@ -11,7 +11,7 @@
                         <h5 style="margin: 0;"> @Title </h5>
                     </div>
 
-                    <EditForm Model="@DocumentCommand" OnValidSubmit="CreateDocument">
+                    <EditForm Model="@DocumentCommand" OnValidSubmit="CreateDocumentAsync">
                         <DataAnnotationsValidator />
                         <ValidationSummary />
 
@@ -68,7 +68,7 @@
                         <div class="form-group row mb-8 mt-4" style="margin-left: 15px;">
                             <label class="control-label col-md-2 mb-1">Fichier</label>
                             <div class="col-md-10" style="border-radius: 0;">
-                                <InputFile OnChange="SelectedFileChange" style="border: 1px solid #007BFF; padding: 5px; border-radius: 3px;"/>
+                                <InputFile OnChange="SelectedFileChangeAsync" style="border: 1px solid #007BFF; padding: 5px; border-radius: 3px;"/>
                                 <ValidationMessage For="@(() => DocumentCommand.BlobFile)" style="color: red;" />
                                 @if (!string.IsNullOrEmpty(DocumentCommand.Path))
                                 {

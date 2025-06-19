@@ -23,7 +23,7 @@ public partial class AddOrEditEvent
 
     [Parameter]
     public EventCallback OnEventCreated { get; set; }
-    public async Task CreateEvent()
+    public async Task CreateEventAsync()
     {
         await OnEventCreated.InvokeAsync(null);
     }

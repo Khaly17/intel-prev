@@ -71,7 +71,7 @@ public partial class EditMedicalContact
         _isLoading = false;
     }
 
-    private async Task UpdateMedicalContact()
+    private async Task UpdateMedicalContactAsync()
     {
         if (MedicalContact.Id == Guid.Empty)
         {

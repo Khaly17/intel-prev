@@ -20,7 +20,7 @@
             </div>
         }
         <TextEditorComponent Value="@_value" ValueChanged="OnValueChanged" />
-        <button @onclick="SaveContent" class="btn btn-primary btn-add" disabled="@IsSaving">
+        <button @onclick="SaveContentAsync" class="btn btn-primary btn-add" disabled="@IsSaving">
             @AddBtnLabel
         </button>
     </div>
