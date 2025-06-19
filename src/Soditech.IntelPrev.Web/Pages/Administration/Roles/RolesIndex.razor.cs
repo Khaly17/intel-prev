@@ -47,14 +47,14 @@ public partial class RolesIndex : ComponentBase
     private const string AllUsersCacheKey = "Users";
     // private const string SitesCacheKey = "Sites";
 
-        private string _headerConfirmLabel = "Confirmer la désaffectation";
-        private string _confirmMessage = "Êtes-vous sûr de vouloir désaffecter l'utilisateur";
-        private string _confirmLabel = "Confirmer";
+        private readonly string _headerConfirmLabel = "Confirmer la désaffectation";
+        private readonly string _confirmMessage = "Êtes-vous sûr de vouloir désaffecter l'utilisateur";
+        private readonly string _confirmLabel = "Confirmer";
         private bool _isConfirmModalVisible = false;
 
-        private string _headerDeleteLabel = "Confirmer la suppression";
-        private string _deleteMessage = "Êtes-vous sûr de vouloir supprimer ce rôle";
-        private string _deleteLabel = "Confirmer";
+        private readonly string _headerDeleteLabel = "Confirmer la suppression";
+        private readonly string _deleteMessage = "Êtes-vous sûr de vouloir supprimer ce rôle";
+        private readonly string _deleteLabel = "Confirmer";
         private bool _isDeleteModalVisible = false;
 
         private string _alertMessage = string.Empty;
@@ -64,13 +64,13 @@ public partial class RolesIndex : ComponentBase
 
         private int _totalCount;
         private int _pageSize = 30;
-        private int _currentPage = 1;
+        private readonly int _currentPage = 1;
         private int _pageCount = 1;
 
-        private int _userTotalCount;
-        private int _userPageSize = 10;
-        private int _userCurrentPage = 1;
-        private int _userPageCount = 1;
+        private readonly int _userTotalCount;
+        private readonly int _userPageSize = 10;
+        private readonly int _userCurrentPage = 1;
+        private readonly int _userPageCount = 1;
 
         private static List<GridColumn> Columns =>
         [

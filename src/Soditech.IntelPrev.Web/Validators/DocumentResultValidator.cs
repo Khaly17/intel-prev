@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using Soditech.IntelPrev.Mediatheques.Shared.Documents;
+using System.Collections.Generic;
 
 namespace Soditech.IntelPrev.Web.Validators;
 
@@ -36,8 +37,8 @@ public class DocumentResultValidator : AbstractValidator<DocumentResult>
 
     }
 
-    private bool BeAValidBlobFile(byte[] blobFile)
+    private bool BeAValidBlobFile(ICollection<byte> blobFile)
     {
-        return blobFile != null && blobFile.Length > 0;
+        return blobFile != null && blobFile.Count > 0;
     }
 }

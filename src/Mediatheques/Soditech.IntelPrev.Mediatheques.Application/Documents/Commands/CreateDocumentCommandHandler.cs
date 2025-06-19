@@ -31,7 +31,7 @@ public class CreateDocumentCommandHandler(IServiceProvider serviceProvider) : IR
                 return Result.Failure<DocumentResult>(new Error("400", "cannot create document without a tenant"));
             }
 
-            if (request.BlobFile is not { Length: > 0 })
+            if (request.BlobFile is not { Count: > 0 })
             {
                 return Result.Failure<DocumentResult>(new Error("400", "cannot create document without a file"));
             }

@@ -34,8 +34,8 @@ public partial class DocumentsIndex
     private string _alertMessage = string.Empty;
     private string _alertType = "success";
     private bool _isAlertVisible;
-    private bool _isResetPasswordModalVisible;
-    private bool _isDisableDocumentModalVisible;
+    private readonly bool _isResetPasswordModalVisible;
+    private readonly bool _isDisableDocumentModalVisible;
     private const string DocumentsCacheKey = "Documents";
 
     private DocumentResult SelectedDocument { get; set; } = default!;

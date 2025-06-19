@@ -1,5 +1,7 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using MediatR;
 using Sensor6ty.Results;
@@ -26,11 +28,11 @@ public record DocumentResult
     public Guid? UpdaterId { get; set; }
     public DateTimeOffset? UpdatedAt { get; set; }
 
-    private byte[] _blobFile = [];
-    public byte[] BlobFile
+    private ICollection<byte> _blobFile = [];
+    public ICollection<byte> BlobFile
     {
-        get => (byte[])_blobFile.Clone(); 
-        set => _blobFile = (byte[])value.Clone();
+        get => _blobFile;
+        set => _blobFile = value;
     }
 
     public string Path { get; set; } = string.Empty;
@@ -59,11 +61,11 @@ public record GetDocumentsCountQuery : IRequest<TResult<int>>;
 public record CreateFileFormByteCommand : IRequest<Result>
 {
     public string FileName { get; set; } = string.Empty;
-    private byte[] _blobFile = [];
-    public byte[] BlobFile
+    private ICollection<byte> _blobFile = [];
+    public ICollection<byte> BlobFile
     {
-        get => (byte[])_blobFile.Clone(); 
-        set => _blobFile = (byte[])value.Clone();
+        get => _blobFile; 
+        set => _blobFile = value;
     }
 
 }
@@ -73,11 +75,11 @@ public record CreateDocumentCommand : IRequest<TResult<DocumentResult>>
     public string Name { get; set; } = string.Empty;
     public string Description { get; set; } = string.Empty;
 
-    private byte[] _blobFile = [];
-    public byte[] BlobFile
+    private ICollection<byte> _blobFile = [];
+    public ICollection<byte> BlobFile
     {
-        get => (byte[])_blobFile.Clone();
-        set => _blobFile = (byte[])value.Clone();
+        get => _blobFile;
+        set => _blobFile = value;
     }
 
 

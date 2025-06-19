@@ -27,14 +27,14 @@ public partial class GenericGrid<TItem> : SfGrid<TItem>
     [Parameter] public bool DisplayTitle { get; set; } = true;
     [Parameter] public bool DisplayPagination { get; set; } = true;
     [Parameter] public bool DisplayPageSize { get; set; } = true;
-    private string[] _pagerDropdown = ["All", "5", "10", "15", "20"];
+    private readonly string[] _pagerDropdown = ["All", "5", "10", "15", "20"];
     [Parameter] public int PageCount { get; set; } = default;
     [Parameter] public int CurrentPage { get; set; } = 1; // Current page from parent
     [Parameter] public int TotalCount { get; set; } // Total number of items from backend
    
     public SfGrid<TItem> GenGrid { get; set; }
 
-    private SfTextBox _textBox;
+    private readonly SfTextBox _textBox;
     [Parameter] public string TextValue { get; set; }
     [Parameter] public string DetailBtnLabel { get; set; } = "Detail"; 
     [Parameter] public string CustomBtnLabel { get; set; } = "Custom"; 

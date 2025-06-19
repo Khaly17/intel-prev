@@ -24,7 +24,6 @@ public partial class SideBar
     private bool _isLoading = true;
     private List<SidebarSection> Sections { get; set; } = [];
 
-    private SfSidebar _sidebarObj;
     [Parameter] public bool SidebarToggle { get; set; } = true;
     [Parameter] public EventCallback<bool> SidebarToggleChanged { get; set; }
     private string _activeUrl;

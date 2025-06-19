@@ -22,7 +22,7 @@ public class AlertsListViewModel : MauiViewModel
 	private Location? _location = default!;
 	private CancellationTokenSource? _cancelTokenSource;
 	private bool _isCheckingLocation;
-	private bool _isCheckLocationFailled = true;
+	private readonly bool _isCheckLocationFailled = true;
 	private BuildingResult _building { get; set; } = default!;
 	private FloorResult _floor { get; set; } = default!;
 	private CreateAlertCommand _alert = default!;

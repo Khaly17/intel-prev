@@ -32,7 +32,7 @@ public partial class CampaignsIndex
     private string _alertMessage = string.Empty;
     private string _alertType = "success";
     private bool _isAlertVisible;
-    private bool _isDisableCampaignModalVisible;
+    private readonly bool _isDisableCampaignModalVisible;
 
     private const string CampaignsCacheKey = "Campaigns";
     private CampaignResult Selectedcampaign { get; set; } = default!;

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
@@ -24,8 +25,8 @@ public class CreateFileFormByteCommandHandler(IServiceProvider serviceProvider) 
             return Result.Failure(new Error("400", "File name is required"));
         }
 
-        if (req.BlobFile.Length != 0)
-            return await _fileService.CreateFileAsync(req.FileName, req.BlobFile, cancellationToken);
+        if (req.BlobFile.Count != 0)
+            return await _fileService.CreateFileAsync(req.FileName, [.. req.BlobFile], cancellationToken);
         
         _logger.LogError("File content is required: \n User x try to upload file without a content.");
         return Result.Failure(new Error("400", "File content is empty"));

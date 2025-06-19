@@ -6,8 +6,9 @@
     using Microsoft.Extensions.Logging;
     using Soditech.IntelPrev.Mediatheques.Shared.Documents;
     using Soditech.IntelPrev.Mediatheques.Shared;
+using System.Linq;
 
-    namespace Soditech.IntelPrev.Web.Pages.Administration.Documents;
+namespace Soditech.IntelPrev.Web.Pages.Administration.Documents;
 
     public partial class Document: ComponentBase
     {
@@ -53,7 +54,7 @@
                 await using var stream = file.OpenReadStream(); //maxAllowedSize: 5242880
                 var buffer = new byte[file.Size];
                 await stream.ReadExactlyAsync(buffer, 0, (int)file.Size);
-                _documentCommand.BlobFile = buffer;
+                _documentCommand.BlobFile = [.. buffer];
             }
         }
 

@@ -11,7 +11,7 @@ public class CommitteeMember : EntityBase
     public string Email { get; set; } = string.Empty;
     public string PhoneNumber { get; set; } = string.Empty;
 
-    private string[] _roles = [];
+    private readonly string[] _roles = [];
     public IReadOnlyList<string> Roles => _roles;
 
     public Guid TenantId { get; set; }

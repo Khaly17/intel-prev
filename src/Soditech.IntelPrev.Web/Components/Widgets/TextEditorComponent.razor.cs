@@ -34,7 +34,7 @@ public partial class TextEditorComponent
         Value = e.Value.ToString();
     }
     
-    private List<ToolbarItemModel> _tools =
+    private readonly List<ToolbarItemModel> _tools =
     [
         new() { Command = ToolbarCommand.Bold },
         new() { Command = ToolbarCommand.Italic },

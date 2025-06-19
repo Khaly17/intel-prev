@@ -19,7 +19,7 @@ public partial class Dashboard : IAsyncDisposable
 {
     [Inject]
     private ILogger<Dashboard> Logger { get; set; } = default!;
-    private IList<ReportResult> _reports = [];
+    private readonly IList<ReportResult> _reports = [];
     private IEnumerable<CountReportsGroupedByRegisterResult> _reportsGroupedByRegisterResult = [];
     private IEnumerable<CountAlertsGroupedByTypeResult> _alertsGroupedByTypeResult = [];
 
@@ -30,7 +30,7 @@ public partial class Dashboard : IAsyncDisposable
 
     private DateFilter DateFilter { get; set; } = default!;
     private HubConnection _hubConnection;
-    private IList<string> _messages = [];
+    private readonly IList<string> _messages = [];
     [Inject] private IConfiguration Configuration { get; set; } = default!;
 
     protected override async Task OnInitializedAsync()

@@ -31,8 +31,8 @@ public partial class MaterialLocationViewModel : MauiViewModel, IQueryAttributab
         DependencyResolver.GetRequiredService<ILogger<MaterialLocationViewModel>>();
     private readonly IProxyService _proxyClientService = DependencyResolver.GetRequiredService<IProxyService>();
     private CancellationTokenSource? _cancelTokenSource;
-    private bool _isCheckingLocation;
-    private Location? _currentLocation;
+    private  bool _isCheckingLocation;
+    private  Location? _currentLocation;
     private MaterialType _materialType;
     private IMap? _map;
 
