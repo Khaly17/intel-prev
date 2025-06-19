@@ -15,7 +15,7 @@ class EquipmentDetailViewModel : MauiViewModel, IQueryAttributable
     }
 
     /// <inheritdoc />
-    public void ApplyQueryAttributes(IDictionary<string, object> query)
+    public void ApplyQueryAttributesAsync(IDictionary<string, object> query)
     {
         if (query.TryGetValue("Equipment", out var equipment))
         {

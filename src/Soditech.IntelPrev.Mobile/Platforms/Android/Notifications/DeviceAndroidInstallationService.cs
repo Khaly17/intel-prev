@@ -20,10 +20,10 @@ public class DeviceAndroidInstallationService : IDeviceInstallationService
     public DeviceInstallation GetDeviceInstallation(params string[] tags)
     {
         if (!NotificationsSupported)
-            throw new Exception(GetPlayServicesError());
+            throw new ArgumentException(GetPlayServicesError());
 
         if (string.IsNullOrWhiteSpace(Token))
-            throw new Exception("Unable to resolve token for FCMv1.");
+            throw new ArgumentException("Unable to resolve token for FCMv1.");
 
         var installation = new DeviceInstallation
         {

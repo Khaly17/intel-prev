@@ -19,16 +19,19 @@ public class FieldTemplateSelector : DataTemplateSelector, IValueConverter
         if (field == null) return null;
 
         // Using the FieldType enum values from Shared library
-        if (field.FieldType == nameof(FieldType.Text))
-            return TextFieldTemplate;
-        else if (field.FieldType == nameof(FieldType.Boolean))
-            return BooleanFieldTemplate;
-        else if (field.FieldType == nameof(FieldType.Date))
-            return DateFieldTemplate;
-        else if (field.FieldType == nameof(FieldType.Number))
-            return NumberFieldTemplate;
-        else
-            return TextFieldTemplate;
+        switch (field.FieldType)
+        {
+            case nameof(FieldType.Text):
+                return TextFieldTemplate;
+            case nameof(FieldType.Boolean):
+                return BooleanFieldTemplate;
+            case nameof(FieldType.Date):
+                return DateFieldTemplate;
+            case nameof(FieldType.Number):
+                return NumberFieldTemplate;
+            default:
+                return TextFieldTemplate;
+        }
     }
 
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

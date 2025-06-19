@@ -62,42 +62,50 @@ public partial class Calendar
 
     public void OnActionCompleted(ActionEventArgs<EventResult> args)
     {
-        if (args.ActionType == ActionType.EventCreate)
+        switch (args.ActionType)
         {
-            if (args.AddedRecords != null)
-            {
-                foreach (var newEvent in args.AddedRecords)
+            case ActionType.EventCreate:
                 {
-                    _ = CreateEventAsync(newEvent);
-                }
-            }
-        }
-        else if (args.ActionType == ActionType.EventChange)
-        {
-            if (args.ChangedRecords != null)
-            {
-                foreach (var updatedEvent in args.ChangedRecords)
-                {
-                    var existingEvent = _dataSource.FirstOrDefault(e => e.Id == updatedEvent.Id);
-                    if (existingEvent != null)
+                    if (args.AddedRecords != null)
                     {
-                        existingEvent.Name = updatedEvent.Name;
-                        existingEvent.StartDate = new DateTimeOffset(updatedEvent.StartTime); 
-                        existingEvent.EndDate = new DateTimeOffset(updatedEvent.EndTime);   
+                        foreach (var newEvent in args.AddedRecords)
+                        {
+                            _ = CreateEventAsync(newEvent);
+                        }
                     }
-                    _ = UpdateEventAsync(updatedEvent);
+
+                    break;
                 }
-            }
-        }
-        else if (args.ActionType == ActionType.EventRemove) 
-        {
-            if (args.DeletedRecords != null)
-            {
-                foreach (var deletedEvent in args.DeletedRecords)
+
+            case ActionType.EventChange:
                 {
-                    _ = DeleteEventAsync(deletedEvent);
+                    if (args.ChangedRecords != null)
+                    {
+                        foreach (var updatedEvent in args.ChangedRecords)
+                        {
+                            var existingEvent = _dataSource.FirstOrDefault(e => e.Id == updatedEvent.Id);
+                            if (existingEvent != null)
+                            {
+                                existingEvent.Name = updatedEvent.Name;
+                                existingEvent.StartDate = new DateTimeOffset(updatedEvent.StartTime);
+                                existingEvent.EndDate = new DateTimeOffset(updatedEvent.EndTime);
+                            }
+                            _ = UpdateEventAsync(updatedEvent);
+                        }
+                    }
+
+                    break;
                 }
-            }
+
+            case ActionType.EventRemove when args.DeletedRecords != null:
+                {
+                    foreach (var deletedEvent in args.DeletedRecords)
+                    {
+                        _ = DeleteEventAsync(deletedEvent);
+                    }
+
+                    break;
+                }
         }
     }
 

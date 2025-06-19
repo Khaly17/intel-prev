@@ -76,7 +76,7 @@ public class VideoPlayerViewModel : MauiViewModel, IQueryAttributable
 		}
 	}
 
-	public async void ApplyQueryAttributes(IDictionary<string, object> query)
+	public async Task ApplyQueryAttributesAsync(IDictionary<string, object> query)
 	{
 		IsBusy = true;
 		if (query.TryGetValue("videoUrl", out var videoUrl))

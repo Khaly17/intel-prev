@@ -13,16 +13,13 @@ public partial class PdfViewerView : ContentPage, IQueryAttributable
         BindingContext = new RiskPreventionViewModel();
     }
 
-    public void ApplyQueryAttributes(IDictionary<string, object> query)
+    public void ApplyQueryAttributesAsync(IDictionary<string, object> query)
     {
-        if (query.TryGetValue("DocumentPath", out var documentPath) && documentPath is string path)
+        if (query.TryGetValue("DocumentPath", out var documentPath) && documentPath is string path && BindingContext is RiskPreventionViewModel viewModel)
         {
-            if (BindingContext is RiskPreventionViewModel viewModel)
-            {
-                var assembly = typeof(App).GetTypeInfo().Assembly;
-                viewModel.PdfDocumentStream = assembly.GetManifestResourceStream($"Soditech.IntelPrev.Mobile.Assets.{path}");
-                pdfviewer.DocumentSource = viewModel.PdfDocumentStream;
-            }
+            var assembly = typeof(App).GetTypeInfo().Assembly;
+            viewModel.PdfDocumentStream = assembly.GetManifestResourceStream($"Soditech.IntelPrev.Mobile.Assets.{path}");
+            pdfviewer.DocumentSource = viewModel.PdfDocumentStream;
         }
     }
 }

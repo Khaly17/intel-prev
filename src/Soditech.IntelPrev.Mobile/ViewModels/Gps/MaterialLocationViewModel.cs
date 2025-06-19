@@ -175,7 +175,7 @@ public partial class MaterialLocationViewModel : MauiViewModel, IQueryAttributab
         return status;
     }
 
-    public void ApplyQueryAttributes(IDictionary<string, object> query)
+    public void ApplyQueryAttributesAsync(IDictionary<string, object> query)
     {
         if (query.TryGetValue("MaterialType", out var type))
         {

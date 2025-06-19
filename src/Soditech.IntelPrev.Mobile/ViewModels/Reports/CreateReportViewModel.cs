@@ -106,7 +106,7 @@ public partial class CreateReportViewModel : MauiViewModel, IQueryAttributable
 		{
 			// If we already have a register type from the navigation parameters,
 			// we can continue with that instead of showing an error
-			if (_registerType != null && _registerType.Id != Guid.Empty)
+			if (_registerType.Id != Guid.Empty)
 			{
 				// Initialize form with the existing report type data
 				CreateReport = new CreateReportCommand(_registerType);
@@ -147,7 +147,7 @@ public partial class CreateReportViewModel : MauiViewModel, IQueryAttributable
 	private void UpdateVisibleSection()
 	{
 		VisibleSections.Clear();
-		if (Sections != null && Sections.Count > 0 && _currentSectionIndex >= 0 && _currentSectionIndex < Sections.Count)
+		if (Sections.Count > 0 && _currentSectionIndex >= 0 && _currentSectionIndex < Sections.Count)
 		{
 			VisibleSections.Add(Sections[_currentSectionIndex]);
 		}
@@ -341,7 +341,7 @@ public partial class CreateReportViewModel : MauiViewModel, IQueryAttributable
 		}
 	}
 
-	public void ApplyQueryAttributes(IDictionary<string, object> query)
+	public void ApplyQueryAttributesAsync(IDictionary<string, object> query)
 	{
 		if (query.TryGetValue("Register", out var register))
 		{

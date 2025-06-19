@@ -36,7 +36,7 @@ public class NotificationRegistrationService : INotificationRegistrationService
         var deviceId = DeviceInstallationService?.GetDeviceId();
 
         if (string.IsNullOrWhiteSpace(deviceId))
-            throw new Exception("Unable to resolve an ID for the device.");
+            throw new ArgumentException("Unable to resolve an ID for the device.");
 
         await ProxyService.DeleteAsync( $"{RequestUrl}/{deviceId}")
             .ConfigureAwait(false);

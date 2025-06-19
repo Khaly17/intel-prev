@@ -10,6 +10,7 @@ using Syncfusion.Blazor.Buttons;
 using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using System.Globalization;
 
 namespace Soditech.IntelPrev.Web.Shared.Headers;
 
@@ -130,10 +131,7 @@ public partial class Header : IDisposable
         if (string.IsNullOrWhiteSpace(FullName)) return "";
 
         var names = FullName.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-        if (names.Length == 1)
-            return names[0].Substring(0, 1).ToUpper();
-        else
-            return (names[0].Substring(0, 1) + names[^1].Substring(0, 1)).ToUpper();
+        return names.Length == 1 ? names[0][..1].ToUpper(new CultureInfo("fr-FR", false)) : (string.Concat(names[0].AsSpan(0, 1), names[^1].AsSpan(0, 1))).ToUpper(new CultureInfo("fr-FR", false));
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)

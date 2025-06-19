@@ -41,10 +41,8 @@ public class GetDocumentsByTypeQueryHandler(IServiceProvider serviceProvider) : 
 
                 return Result.Success(documentResults);
             }
-            else
-            {
-                return Result.Failure<IEnumerable<DocumentResult>>(new Error("400", "Invalid document type"));
-            }
+            
+            return Result.Failure<IEnumerable<DocumentResult>>(new Error("400", "Invalid document type"));
         }
         catch (Exception e)
         {

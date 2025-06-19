@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -32,7 +33,7 @@ public class UpdateTenantCommandHandler(IServiceProvider serviceProvider) : IReq
 
             if (!string.IsNullOrEmpty(request.Name))
             {
-                request.Name = request.Name.ToUpper();
+                request.Name = request.Name.ToUpper(new CultureInfo("fr-FR", false));
                             
                 if (tenant.Name != request.Name)
                 {

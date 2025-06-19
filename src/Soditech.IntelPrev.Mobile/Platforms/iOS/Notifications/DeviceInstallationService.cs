@@ -23,10 +23,10 @@ public class DeviceiOsInstallationService : IDeviceInstallationService
     public DeviceInstallation GetDeviceInstallation(params string[] tags)
     {
         if (!NotificationsSupported)
-            throw new Exception(GetNotificationsSupportError());
+            throw new ArgumentException(GetNotificationsSupportError());
 
         if (string.IsNullOrWhiteSpace(Token))
-            throw new Exception("Unable to resolve token for APNS");
+            throw new ArgumentException("Unable to resolve token for APNS");
 
         var installation = new DeviceInstallation
         {

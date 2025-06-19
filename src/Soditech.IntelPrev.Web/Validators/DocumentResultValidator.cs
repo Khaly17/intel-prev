@@ -39,6 +39,6 @@ public class DocumentResultValidator : AbstractValidator<DocumentResult>
 
     private bool BeAValidBlobFile(ICollection<byte> blobFile)
     {
-        return blobFile != null && blobFile.Count > 0;
+        return blobFile.Count > 0;
     }
 }

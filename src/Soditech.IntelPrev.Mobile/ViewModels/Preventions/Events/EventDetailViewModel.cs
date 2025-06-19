@@ -39,7 +39,7 @@ public class EventDetailViewModel : MauiViewModel, IQueryAttributable
 		await Shell.Current.GoToAsync("..");
 	}
 
-	public void ApplyQueryAttributes(IDictionary<string, object> query)
+	public void ApplyQueryAttributesAsync(IDictionary<string, object> query)
 	{
 		if (query.TryGetValue("Appointment", out var appointment) && appointment is SchedulerAppointment schedulerAppointment)
 		{

@@ -37,12 +37,9 @@ public partial class SelectableListView : ContentView
 
     private static void OnSelectedItemChanged(BindableObject bindable, object oldValue, object newValue)
     {
-        if (bindable is SelectableListView view && view.SelectionChangedCommand != null && newValue != null)
+        if (bindable is SelectableListView view && view.SelectionChangedCommand != null && newValue != null && view.SelectionChangedCommand.CanExecute(newValue))
         {
-            if (view.SelectionChangedCommand.CanExecute(newValue))
-            {
                 view.SelectionChangedCommand.Execute(newValue);
-            }
         }
     }
 
@@ -130,13 +127,10 @@ public partial class SelectableListView : ContentView
         if (propertyName == nameof(IsBusy))
             OnPropertyChanged(nameof(IsNotBusy));
 
-        if (propertyName == nameof(IsSelectable))
+        if (propertyName == nameof(IsSelectable) && !IsSelectable)
         {
-            if (!IsSelectable)
-            {
-                ItemsCollectionView.SelectionChangedCommand = null;
-                ItemsCollectionView.SelectedItem = null;
-            }
+            ItemsCollectionView.SelectionChangedCommand = null;
+            ItemsCollectionView.SelectedItem = null;
         }
     }
 }

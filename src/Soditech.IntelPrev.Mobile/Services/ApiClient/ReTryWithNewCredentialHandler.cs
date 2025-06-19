@@ -41,7 +41,7 @@ public class ReTryWithNewCredentialHandler : DelegatingHandler
             }
             else
             {
-                response = await RefreshAccessTokenAndSendRequestAgain(request, cancellationToken, tokenManager);
+                response = await RefreshAccessTokenAndSendRequestAgain(request, tokenManager, cancellationToken);
             }
         }
         finally
@@ -61,9 +61,8 @@ public class ReTryWithNewCredentialHandler : DelegatingHandler
         await Shell.Current.GoToAsync(new ShellNavigationState(AppRoutes.LoginPage));
     }
  
-    private async Task<HttpResponseMessage> RefreshAccessTokenAndSendRequestAgain(HttpRequestMessage request,
-        CancellationToken cancellationToken, 
-        IAccessTokenManager tokenManager)
+    private async Task<HttpResponseMessage> RefreshAccessTokenAndSendRequestAgain(HttpRequestMessage request, 
+        IAccessTokenManager tokenManager, CancellationToken cancellationToken)
     {
         await RefreshToken(tokenManager, request);
         return await base.SendAsync(request, cancellationToken);

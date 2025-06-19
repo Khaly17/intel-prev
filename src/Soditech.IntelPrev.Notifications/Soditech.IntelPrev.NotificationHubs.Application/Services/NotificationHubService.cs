@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -18,8 +19,8 @@ public class NotificationHubService(IOptions<NotificationHubOptions> options, IL
 
     private readonly Dictionary<string, NotificationPlatform> _installationPlatform = new()
     {
-        { nameof(NotificationPlatform.Apns).ToLower(), NotificationPlatform.Apns },
-        { nameof(NotificationPlatform.FcmV1).ToLower(), NotificationPlatform.FcmV1 }
+        { nameof(NotificationPlatform.Apns).ToLower(new CultureInfo("fr-FR", false)), NotificationPlatform.Apns },
+        { nameof(NotificationPlatform.FcmV1).ToLower(new CultureInfo("fr-FR", false)), NotificationPlatform.FcmV1 }
     };
 
     public async Task<bool> CreateOrUpdateInstallationAsync(DeviceInstallation deviceInstallation, CancellationToken cancellationToken)

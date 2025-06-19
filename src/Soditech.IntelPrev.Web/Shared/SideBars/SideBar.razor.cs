@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Components;
 using Syncfusion.Blazor.Navigations;
 using Soditech.IntelPrev.Web.Events;
 using Soditech.IntelPrev.Web.Services.UserInfo;
+using System.Globalization;
 
 namespace Soditech.IntelPrev.Web.Shared.SideBars;
 
@@ -77,7 +78,7 @@ public partial class SideBar
     protected override void OnInitialized()
     {
         _activeUrl = Navigation.Uri.Replace(Navigation.BaseUri, "/");
-        _ = GetUserInfoAsync();
+ 
         _ = InitializeSectionsAsync();
 
         StateHasChanged();
@@ -103,6 +104,12 @@ public partial class SideBar
 
     private async Task InitializeSectionsAsync()
     {
+        var userResult = await UserInfoService.GetUserInfoAsync();
+
+        if (userResult.IsSuccess && !string.IsNullOrEmpty(userResult.Value.TenantId))
+        {
+            IsTenant = true;
+        }
         Sections =
         [
             new SidebarSection
@@ -252,21 +259,9 @@ public partial class SideBar
         if (string.IsNullOrEmpty(input))
             return input;
 
-        return char.ToUpper(input[0]) + input[1..].ToLower();
+        return char.ToUpper(input[0]) + input[1..].ToLower(new CultureInfo("fr-FR", false));
     }
 
-    private async Task GetUserInfoAsync()
-    {
-
-        var userResult = await UserInfoService.GetUserInfoAsync();
-
-        if (userResult.IsSuccess)
-        {
-            if (!string.IsNullOrEmpty(userResult.Value.TenantId))
-            {
-                IsTenant = true;
-            }
-        }
-    }
+  
 
 }

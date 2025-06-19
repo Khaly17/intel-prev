@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -27,7 +28,7 @@ public class CreateTenantCommandHandler(IServiceProvider serviceProvider) : IReq
     {
         try
         {
-            request.Name = request.Name.ToUpper();
+            request.Name = request.Name.ToUpper(new CultureInfo("fr-FR", false));
             
             //Check if the tenant already exists
             var tenant = await _tenantRepository.GetAll.FirstOrDefaultAsync(t => t.Name == request.Name, cancellationToken: cancellationToken);

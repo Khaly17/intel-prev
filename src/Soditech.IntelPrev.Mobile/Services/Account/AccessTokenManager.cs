@@ -96,7 +96,7 @@ public class AccessTokenManager(IServiceProvider serviceProvider) : IAccessToken
         if (authenticateModel.Email == null ||
             authenticateModel.Password == null)
         {
-            throw new Exception("Username or password fields cannot be empty!");
+            throw new ArgumentException("Username or password fields cannot be empty!");
         }
     }
 

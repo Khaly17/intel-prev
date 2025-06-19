@@ -37,7 +37,7 @@ public class TokenEndpoint : Endpoint<RefreshRequest>
 
                 return;
             }
-            else if (authenticateResult.Failure is not null)
+            if (authenticateResult.Failure is not null)
             {
                 var failureMessage = authenticateResult.Failure.Message;
                 var failureException = authenticateResult.Failure.InnerException;
