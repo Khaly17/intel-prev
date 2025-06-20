@@ -14,7 +14,6 @@ public partial class RegisterPreviewComponent : ComponentBase
     private string _textTest = string.Empty;
     private int _numberTest ;
     private bool _booleanTest;
-    private bool _isCreating = false;
     [Parameter]
     public string SaveBtnLabel { get; set; } = "Enregistrer";
 

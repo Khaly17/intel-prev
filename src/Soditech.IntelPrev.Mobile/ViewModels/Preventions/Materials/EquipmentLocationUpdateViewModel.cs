@@ -9,10 +9,7 @@ namespace Soditech.IntelPrev.Mobile.ViewModels.Preventions.Materials;
 
 class EquipmentLocationUpdateViewModel : MauiViewModel, IQueryAttributable
 {
-    private bool _isCheckingLocation;
-    private Location? _currentLocation;
-
-    private EquipmentResult _equipment ;
+    private EquipmentResult _equipment = null!;
     public EquipmentResult Equipment
     {
         get => _equipment;

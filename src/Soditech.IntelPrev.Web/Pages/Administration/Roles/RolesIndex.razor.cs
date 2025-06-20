@@ -63,7 +63,7 @@ public partial class RolesIndex : ComponentBase
         private bool _isAddRoleVisible = false;
 
         private int _totalCount;
-        private int _pageSize = 30;
+        private const int _pageSize = 30;
         private readonly int _currentPage = 1;
         private int _pageCount = 1;
 

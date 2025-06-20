@@ -13,7 +13,7 @@ namespace Soditech.IntelPrev.Web.Pages.Administration.Documents;
     public partial class Document: ComponentBase
     {
 
-        private DocumentResult _documentCommand = new();
+        private readonly DocumentResult _documentCommand = new(); // "readonly" to fix CS-R1137
         private string? ErrorMessage { get; set; }
 
         private string? SuccessMessage { get; set; }
