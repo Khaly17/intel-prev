@@ -236,7 +236,7 @@ public partial class RolesIndex : ComponentBase
         {
             var data = new
             {
-                userId = userId,
+                userId,
                 roleId = SelectedRoleId
             };
             var result = await ProxyService

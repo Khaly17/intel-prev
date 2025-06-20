@@ -104,6 +104,7 @@ public partial class Calendar
                 }
                 break;
             default:
+                Logger.LogInformation($"Unhandled action type: {args.ActionType}");
                 break;
         }
     }

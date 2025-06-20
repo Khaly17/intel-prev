@@ -161,25 +161,27 @@ public partial class AppShell : Shell
 		await button.ScaleTo(1.0, 100);
 	}
 
-	protected override async void OnAppearing()
-	{
-		base.OnAppearing();
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        _ = OnPageAppearedAsync(); 
+    }
 
-		ApplyVisualConfiguration();
+    private async Task OnPageAppearedAsync()
+    {
+        ApplyVisualConfiguration();
 
-		// Request necessary permissions
-		var permissions = new List<Func<Task<PermissionStatus>>>
-		{
-			Permissions.RequestAsync<Permissions.LocationWhenInUse>,
-			Permissions.RequestAsync<Permissions.PostNotifications>,
-			//Permissions.RequestAsync<Permissions.Phone>,
-		};
+        var permissions = new List<Func<Task<PermissionStatus>>>
+    {
+        Permissions.RequestAsync<Permissions.LocationWhenInUse>,
+        Permissions.RequestAsync<Permissions.PostNotifications>,
+    };
 
-		foreach (var permissionRequest in permissions)
-		{
-			await permissionRequest();
-		}
-	}
+        foreach (var permissionRequest in permissions)
+        {
+            await permissionRequest();
+        }
+    }
 }
 
 // User model class to represent the user returned from the API
