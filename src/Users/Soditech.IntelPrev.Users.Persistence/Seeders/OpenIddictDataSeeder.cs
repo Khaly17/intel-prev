@@ -80,193 +80,171 @@ public class OpenIddictDataSeeder (IServiceProvider serviceProvider)
 
 	}
 
-	private async Task CreateApplicationAsync(
-		string name,
-		string type,
-		string consentType,
-		string displayName,
-		string? secret,
-		List<string> grantTypes,
-		List<string> scopes,
-		string? redirectUri = null,
-		string? postLogoutRedirectUri = null)
-	{
-		if (!string.IsNullOrEmpty(secret) && string.Equals(type, OpenIddictConstants.ClientTypes.Public, StringComparison.OrdinalIgnoreCase))
-		{
-			//No Client Secret Can Be Set For Public Applications
-			throw new ArgumentException("NoClientSecretCanBeSetForPublicApplications");
-		}
+    private async Task CreateApplicationAsync(
+    string name,
+    string type,
+    string consentType,
+    string displayName,
+    string? secret,
+    List<string> grantTypes,
+    List<string> scopes,
+    string? redirectUri = null,
+    string? postLogoutRedirectUri = null)
+    {
+        ValidateClientSecrets(type, secret);
+        if (await IsClientIdTaken(name)) return;
 
-		if (string.IsNullOrEmpty(secret) && string.Equals(type, OpenIddictConstants.ClientTypes.Confidential, StringComparison.OrdinalIgnoreCase))
-		{
-			//The Client Secret Is Required For Confidential Applications
-			throw new ArgumentException("TheClientSecretIsRequiredForConfidentialApplications");
-		}
+        var descriptor = CreateDescriptor(name, type, consentType, displayName, secret);
+        AddRedirectUris(descriptor, redirectUri, postLogoutRedirectUri);
+        AddGrantTypesAndPermissions(descriptor, grantTypes, type);
+        AddScopes(descriptor, scopes);
 
-		if (!string.IsNullOrEmpty(name) && await _applicationManager.FindByClientIdAsync(name) != null)
-		{
-			//The Client Identifier Is Already Taken By Another Application
-			return;
-		}
+        await _applicationManager.CreateAsync(descriptor);
+    }
 
-		var client = await _applicationManager.FindByClientIdAsync(name);
-		if (client == null)
-		{
-			OpenIddictApplicationDescriptor application;
+    private void ValidateClientSecrets(string type, string? secret)
+    {
+        if (!string.IsNullOrEmpty(secret) && type.Equals(OpenIddictConstants.ClientTypes.Public, StringComparison.OrdinalIgnoreCase))
+            throw new ArgumentException("NoClientSecretCanBeSetForPublicApplications");
 
-			if (consentType == OpenIddictConstants.ConsentTypes.Explicit)
-			{
-				application = new OpenIddictApplicationDescriptor
-				{
-					ClientId = name,
-					ClientType = type,
-					ClientSecret = secret,
-					ConsentType = consentType,
-					DisplayName = displayName,
-					Requirements = {
-                        OpenIddictConstants.Requirements.Features.ProofKeyForCodeExchange,
-					}
-				};
-				application.Permissions.Add(OpenIddictConstants.Permissions.ResponseTypes.CodeIdToken);
-				application.Permissions.Add(OpenIddictConstants.Permissions.ResponseTypes.CodeIdTokenToken);
-				application.Permissions.Add(OpenIddictConstants.Permissions.ResponseTypes.Token);
-			}
-			else
-			{
-				application = new OpenIddictApplicationDescriptor
-				{
-					ClientId = name,
-					ClientType = type,
-					ClientSecret = secret,
-					ConsentType = consentType,
-					DisplayName = displayName
-				};
-			}
+        if (string.IsNullOrEmpty(secret) && type.Equals(OpenIddictConstants.ClientTypes.Confidential, StringComparison.OrdinalIgnoreCase))
+            throw new ArgumentException("TheClientSecretIsRequiredForConfidentialApplications");
+    }
 
-			ArgumentNullException.ThrowIfNull(grantTypes);
-			ArgumentNullException.ThrowIfNull(scopes);
+    private async Task<bool> IsClientIdTaken(string name)
+    {
+        return await _applicationManager.FindByClientIdAsync(name) is not null;
+    }
 
+    private OpenIddictApplicationDescriptor CreateDescriptor(string name, string type, string consentType, string displayName, string? secret)
+    {
+        var descriptor = new OpenIddictApplicationDescriptor
+        {
+            ClientId = name,
+            ClientType = type,
+            ClientSecret = secret,
+            ConsentType = consentType,
+            DisplayName = displayName
+        };
 
-			if (new[] { OpenIddictConstants.GrantTypes.AuthorizationCode, OpenIddictConstants.GrantTypes.Implicit }.All(grantTypes.Contains))
-			{
-				application.Permissions.Add(OpenIddictConstants.Permissions.ResponseTypes.CodeIdToken);
+        if (consentType == OpenIddictConstants.ConsentTypes.Explicit)
+        {
+            descriptor.Requirements.Add(OpenIddictConstants.Requirements.Features.ProofKeyForCodeExchange);
+            descriptor.Permissions.Add(OpenIddictConstants.Permissions.ResponseTypes.CodeIdToken);
+            descriptor.Permissions.Add(OpenIddictConstants.Permissions.ResponseTypes.CodeIdTokenToken);
+            descriptor.Permissions.Add(OpenIddictConstants.Permissions.ResponseTypes.Token);
+        }
 
-				if (string.Equals(type, OpenIddictConstants.ClientTypes.Public, StringComparison.OrdinalIgnoreCase))
-				{
-					application.Permissions.Add(OpenIddictConstants.Permissions.ResponseTypes.CodeIdTokenToken);
-					application.Permissions.Add(OpenIddictConstants.Permissions.ResponseTypes.CodeToken);
-				}
-			}
+        return descriptor;
+    }
 
-			if (!string.IsNullOrWhiteSpace(redirectUri) || !string.IsNullOrWhiteSpace(postLogoutRedirectUri))
-			{
-				application.Permissions.Add(OpenIddictConstants.Permissions.Endpoints.EndSession);
-			}
+    private void AddRedirectUris(OpenIddictApplicationDescriptor descriptor, string? redirectUri, string? postLogoutRedirectUri)
+    {
+        if (!string.IsNullOrEmpty(redirectUri))
+        {
+            if (!Uri.TryCreate(redirectUri, UriKind.Absolute, out var uri) || !uri.IsWellFormedOriginalString())
+                throw new ArgumentException("InvalidRedirectUri");
 
-			var buildInGrantTypes = new[]
-			{
-                OpenIddictConstants.GrantTypes.Implicit,
-                OpenIddictConstants.GrantTypes.Password,
-                OpenIddictConstants.GrantTypes.AuthorizationCode,
-                OpenIddictConstants.GrantTypes.ClientCredentials,
-                OpenIddictConstants.GrantTypes.DeviceCode,
-                OpenIddictConstants.GrantTypes.RefreshToken
-			};
+            if (!descriptor.RedirectUris.Contains(uri))
+                descriptor.RedirectUris.Add(uri);
+        }
 
-			foreach (var grantType in grantTypes)
-			{
-				if (grantType == OpenIddictConstants.GrantTypes.AuthorizationCode)
-				{
-					application.Permissions.Add(OpenIddictConstants.Permissions.GrantTypes.AuthorizationCode);
-					application.Permissions.Add(OpenIddictConstants.Permissions.ResponseTypes.Code);
-				}
+        if (!string.IsNullOrEmpty(postLogoutRedirectUri))
+        {
+            if (!Uri.TryCreate(postLogoutRedirectUri, UriKind.Absolute, out var uri) || !uri.IsWellFormedOriginalString())
+                throw new ArgumentException("InvalidPostLogoutRedirectUri");
 
-				if (grantType == OpenIddictConstants.GrantTypes.AuthorizationCode || grantType == OpenIddictConstants.GrantTypes.Implicit)
-				{
-					application.Permissions.Add(OpenIddictConstants.Permissions.Endpoints.Authorization);
-				}
+            if (!descriptor.PostLogoutRedirectUris.Contains(uri))
+                descriptor.PostLogoutRedirectUris.Add(uri);
+        }
 
-				if (grantType == OpenIddictConstants.GrantTypes.AuthorizationCode ||
-					grantType == OpenIddictConstants.GrantTypes.ClientCredentials ||
-					grantType == OpenIddictConstants.GrantTypes.Password ||
-					grantType == OpenIddictConstants.GrantTypes.RefreshToken ||
-					grantType == OpenIddictConstants.GrantTypes.DeviceCode)
-				{
-					application.Permissions.Add(OpenIddictConstants.Permissions.Endpoints.Token);
-					application.Permissions.Add(OpenIddictConstants.Permissions.Endpoints.Revocation);
-					application.Permissions.Add(OpenIddictConstants.Permissions.Endpoints.Introspection);
-				}
+        if (redirectUri != null || postLogoutRedirectUri != null)
+        {
+            descriptor.Permissions.Add(OpenIddictConstants.Permissions.Endpoints.EndSession);
+        }
+    }
 
-				switch (grantType)
-				{
-					case OpenIddictConstants.GrantTypes.ClientCredentials:
-						application.Permissions.Add(OpenIddictConstants.Permissions.GrantTypes.ClientCredentials);
-						break;
-					case OpenIddictConstants.GrantTypes.Implicit:
-						application.Permissions.Add(OpenIddictConstants.Permissions.GrantTypes.Implicit);
-						break;
-					case OpenIddictConstants.GrantTypes.Password:
-						application.Permissions.Add(OpenIddictConstants.Permissions.GrantTypes.Password);
-						break;
-					case OpenIddictConstants.GrantTypes.RefreshToken:
-						application.Permissions.Add(OpenIddictConstants.Permissions.GrantTypes.RefreshToken);
-						break;
-					case OpenIddictConstants.GrantTypes.DeviceCode:
-						application.Permissions.Add(OpenIddictConstants.Permissions.GrantTypes.DeviceCode);
-						application.Permissions.Add(OpenIddictConstants.Permissions.Endpoints.DeviceAuthorization);
-						break;
-					default:
-						throw new ArgumentOutOfRangeException(nameof(grantType), $"Unsupported grant type: {grantType}");
-				}
-				if (grantType == OpenIddictConstants.GrantTypes.Implicit)
-				{
-					application.Permissions.Add(OpenIddictConstants.Permissions.ResponseTypes.IdToken);
-					if (string.Equals(type, OpenIddictConstants.ClientTypes.Public, StringComparison.OrdinalIgnoreCase))
-					{
-						application.Permissions.Add(OpenIddictConstants.Permissions.ResponseTypes.IdTokenToken);
-						application.Permissions.Add(OpenIddictConstants.Permissions.ResponseTypes.Token);
-					}
-				}
+    private void AddGrantTypesAndPermissions(OpenIddictApplicationDescriptor descriptor, List<string> grantTypes, string clientType)
+    {
+        ArgumentNullException.ThrowIfNull(grantTypes);
 
-				if (!buildInGrantTypes.Contains(grantType))
-				{
-					application.Permissions.Add(OpenIddictConstants.Permissions.Prefixes.GrantType + grantType);
-				}
-			}
+        var builtIn = new[]
+        {
+        OpenIddictConstants.GrantTypes.Implicit,
+        OpenIddictConstants.GrantTypes.Password,
+        OpenIddictConstants.GrantTypes.AuthorizationCode,
+        OpenIddictConstants.GrantTypes.ClientCredentials,
+        OpenIddictConstants.GrantTypes.DeviceCode,
+        OpenIddictConstants.GrantTypes.RefreshToken
+    };
 
-			foreach (var scope in scopes)
-			{
-				application.Permissions.Add(scope);
-			}
+        foreach (var grant in grantTypes)
+        {
+            switch (grant)
+            {
+                case OpenIddictConstants.GrantTypes.AuthorizationCode:
+                    descriptor.Permissions.Add(OpenIddictConstants.Permissions.GrantTypes.AuthorizationCode);
+                    descriptor.Permissions.Add(OpenIddictConstants.Permissions.ResponseTypes.Code);
+                    descriptor.Permissions.Add(OpenIddictConstants.Permissions.Endpoints.Authorization);
+                    descriptor.Permissions.Add(OpenIddictConstants.Permissions.Endpoints.Token);
+                    descriptor.Permissions.Add(OpenIddictConstants.Permissions.Endpoints.Revocation);
+                    descriptor.Permissions.Add(OpenIddictConstants.Permissions.Endpoints.Introspection);
+                    break;
 
-			if (!string.IsNullOrEmpty(redirectUri))
-			{
-				if (!Uri.TryCreate(redirectUri, UriKind.Absolute, out var uri) || !uri.IsWellFormedOriginalString())
-				{
-					throw new ArgumentException("InvalidRedirectUri");
-				}
+                case OpenIddictConstants.GrantTypes.Implicit:
+                    descriptor.Permissions.Add(OpenIddictConstants.Permissions.GrantTypes.Implicit);
+                    descriptor.Permissions.Add(OpenIddictConstants.Permissions.Endpoints.Authorization);
+                    descriptor.Permissions.Add(OpenIddictConstants.Permissions.ResponseTypes.IdToken);
 
-				if (application.RedirectUris.All(x => x != uri))
-				{
-					application.RedirectUris.Add(uri);
-				}
-			}
+                    if (clientType.Equals(OpenIddictConstants.ClientTypes.Public, StringComparison.OrdinalIgnoreCase))
+                    {
+                        descriptor.Permissions.Add(OpenIddictConstants.Permissions.ResponseTypes.IdTokenToken);
+                        descriptor.Permissions.Add(OpenIddictConstants.Permissions.ResponseTypes.Token);
+                    }
+                    break;
 
-			if (!string.IsNullOrEmpty(postLogoutRedirectUri))
-			{
-				if (!Uri.TryCreate(postLogoutRedirectUri, UriKind.Absolute, out var uri) || !uri.IsWellFormedOriginalString())
-				{
-					throw new ArgumentException("InvalidPostLogoutRedirectUri");
-				}
+                case OpenIddictConstants.GrantTypes.Password:
+                    descriptor.Permissions.Add(OpenIddictConstants.Permissions.GrantTypes.Password);
+                    descriptor.Permissions.Add(OpenIddictConstants.Permissions.Endpoints.Token);
+                    descriptor.Permissions.Add(OpenIddictConstants.Permissions.Endpoints.Revocation);
+                    descriptor.Permissions.Add(OpenIddictConstants.Permissions.Endpoints.Introspection);
+                    break;
 
-				if (application.PostLogoutRedirectUris.All(x => x != uri))
-				{
-					application.PostLogoutRedirectUris.Add(uri);
-				}
-			}
+                case OpenIddictConstants.GrantTypes.ClientCredentials:
+                    descriptor.Permissions.Add(OpenIddictConstants.Permissions.GrantTypes.ClientCredentials);
+                    descriptor.Permissions.Add(OpenIddictConstants.Permissions.Endpoints.Token);
+                    descriptor.Permissions.Add(OpenIddictConstants.Permissions.Endpoints.Revocation);
+                    descriptor.Permissions.Add(OpenIddictConstants.Permissions.Endpoints.Introspection);
+                    break;
 
+                case OpenIddictConstants.GrantTypes.RefreshToken:
+                    descriptor.Permissions.Add(OpenIddictConstants.Permissions.GrantTypes.RefreshToken);
+                    descriptor.Permissions.Add(OpenIddictConstants.Permissions.Endpoints.Token);
+                    descriptor.Permissions.Add(OpenIddictConstants.Permissions.Endpoints.Revocation);
+                    descriptor.Permissions.Add(OpenIddictConstants.Permissions.Endpoints.Introspection);
+                    break;
 
-			await _applicationManager.CreateAsync(application);
-		}
-	}
+                case OpenIddictConstants.GrantTypes.DeviceCode:
+                    descriptor.Permissions.Add(OpenIddictConstants.Permissions.GrantTypes.DeviceCode);
+                    descriptor.Permissions.Add(OpenIddictConstants.Permissions.Endpoints.DeviceAuthorization);
+                    descriptor.Permissions.Add(OpenIddictConstants.Permissions.Endpoints.Token);
+                    descriptor.Permissions.Add(OpenIddictConstants.Permissions.Endpoints.Revocation);
+                    descriptor.Permissions.Add(OpenIddictConstants.Permissions.Endpoints.Introspection);
+                    break;
+
+                default:
+                    // Ajout dynamique pour grantType personnalisé
+                    descriptor.Permissions.Add(OpenIddictConstants.Permissions.Prefixes.GrantType + grant);
+                    break;
+            }
+        }
+    }
+
+    private void AddScopes(OpenIddictApplicationDescriptor descriptor, List<string> scopes)
+    {
+        ArgumentNullException.ThrowIfNull(scopes);
+        foreach (var scope in scopes)
+            descriptor.Permissions.Add(scope);
+    }
+
 }
