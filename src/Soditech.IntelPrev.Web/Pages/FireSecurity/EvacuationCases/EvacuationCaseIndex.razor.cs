@@ -91,7 +91,7 @@ public partial class EvacuationCaseIndex
         }
     }
 
-    private async Task GetContent()
+    private async Task GetContentAsync()
     {
         var result = await ProxyService.GetAsync<FireSecuritySettingContentResult>(PreventionRoutes.FireSecuritySettings.GetEvacuationCaseContent);
         if (result.IsSuccess)

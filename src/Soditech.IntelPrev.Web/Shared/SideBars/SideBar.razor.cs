@@ -254,14 +254,14 @@ public partial class SideBar
         await Task.WhenAll(loadTasks);
 
     }
-    private static string ConvertToTitleCase(string input)
+
+    public static string ConvertToTitleCase(string input)
     {
-        if (string.IsNullOrEmpty(input))
+        if (string.IsNullOrWhiteSpace(input))
             return input;
 
-        return char.ToUpper(input[0]) + input[1..].ToLower(new CultureInfo("fr-FR", false));
+        var cultureInfo = new CultureInfo("fr-FR", false);
+        return cultureInfo.TextInfo.ToTitleCase(input.ToLower(cultureInfo));
     }
-
-  
 
 }

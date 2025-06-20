@@ -98,14 +98,13 @@ public partial class Calendar
                 }
 
             case ActionType.EventRemove when args.DeletedRecords != null:
+                foreach (var deletedEvent in args.DeletedRecords)
                 {
-                    foreach (var deletedEvent in args.DeletedRecords)
-                    {
-                        _ = DeleteEventAsync(deletedEvent);
-                    }
-
-                    break;
+                    _ = DeleteEventAsync(deletedEvent);
                 }
+                break;
+            default:
+                break;
         }
     }
 

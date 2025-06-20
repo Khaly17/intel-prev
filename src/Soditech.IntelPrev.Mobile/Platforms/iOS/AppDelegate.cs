@@ -99,10 +99,7 @@ public class AppDelegate : MauiUIApplicationDelegate
                 {
                     if (approvalGranted && error == null)
                     {
-                        MainThread.BeginInvokeOnMainThread(() =>
-                        {
-                            UIApplication.SharedApplication.RegisterForRemoteNotifications();
-                        });
+                        MainThread.BeginInvokeOnMainThread(() => UIApplication.SharedApplication.RegisterForRemoteNotifications());
                     }
                 });
         }

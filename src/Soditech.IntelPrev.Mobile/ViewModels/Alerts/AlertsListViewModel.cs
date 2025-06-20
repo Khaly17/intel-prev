@@ -134,7 +134,7 @@ public class AlertsListViewModel : MauiViewModel
 		//   FeatureNotSupportedException
 		//   FeatureNotEnabledException
 		//   PermissionException
-		catch (Exception ex)
+		catch (ArgumentException)
 		{
 			// Unable to get location
 		}
