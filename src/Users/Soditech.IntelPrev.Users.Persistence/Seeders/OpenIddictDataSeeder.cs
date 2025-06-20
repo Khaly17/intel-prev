@@ -92,7 +92,7 @@ public class OpenIddictDataSeeder (IServiceProvider serviceProvider)
     string? postLogoutRedirectUri = null)
     {
         ValidateClientSecrets(type, secret);
-        if (await IsClientIdTaken(name)) return;
+        if (await IsClientIdTakenAsync(name)) return;
 
         var descriptor = CreateDescriptor(name, type, consentType, displayName, secret);
         AddRedirectUris(descriptor, redirectUri, postLogoutRedirectUri);
@@ -111,12 +111,12 @@ public class OpenIddictDataSeeder (IServiceProvider serviceProvider)
             throw new ArgumentException("TheClientSecretIsRequiredForConfidentialApplications");
     }
 
-    private async Task<bool> IsClientIdTaken(string name)
+    private async Task<bool> IsClientIdTakenAsync(string name)
     {
         return await _applicationManager.FindByClientIdAsync(name) is not null;
     }
 
-    private OpenIddictApplicationDescriptor CreateDescriptor(string name, string type, string consentType, string displayName, string? secret)
+    private static OpenIddictApplicationDescriptor CreateDescriptor(string name, string type, string consentType, string displayName, string? secret)
     {
         var descriptor = new OpenIddictApplicationDescriptor
         {
@@ -164,11 +164,10 @@ public class OpenIddictDataSeeder (IServiceProvider serviceProvider)
         }
     }
 
-    private void AddGrantTypesAndPermissions(OpenIddictApplicationDescriptor descriptor, List<string> grantTypes, string clientType)
+    private static void AddGrantTypesAndPermissions(OpenIddictApplicationDescriptor descriptor, List<string> grantTypes, string clientType)
     {
         ArgumentNullException.ThrowIfNull(grantTypes);
-
-        var builtIn = new[]
+        _ = new[]
         {
         OpenIddictConstants.GrantTypes.Implicit,
         OpenIddictConstants.GrantTypes.Password,
