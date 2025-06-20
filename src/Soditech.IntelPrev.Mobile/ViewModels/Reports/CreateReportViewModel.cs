@@ -341,7 +341,7 @@ public partial class CreateReportViewModel : MauiViewModel, IQueryAttributable
 		}
 	}
 
-	public void ApplyQueryAttributesAsync(IDictionary<string, object> query)
+	public void ApplyQueryAttributes(IDictionary<string, object> query)
 	{
 		if (query.TryGetValue("Register", out var register))
 		{

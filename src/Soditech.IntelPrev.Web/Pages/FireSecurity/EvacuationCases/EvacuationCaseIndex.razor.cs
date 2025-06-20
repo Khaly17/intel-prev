@@ -23,7 +23,7 @@ public partial class EvacuationCaseIndex
 
     protected override async Task OnInitializedAsync()
     {
-        await GetContent();
+        await GetContentAsync();
     }
 
     private void OnValueChanged(string newValue)
@@ -56,7 +56,7 @@ public partial class EvacuationCaseIndex
                 HandleResult(result, "L'évaluation' a été modifié avec succès !");
             }
 
-            await GetContent();
+            await GetContentAsync();
         }
         catch (Exception ex)
         {

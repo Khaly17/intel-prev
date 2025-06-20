@@ -13,7 +13,7 @@ public partial class PdfViewerView : ContentPage, IQueryAttributable
         BindingContext = new RiskPreventionViewModel();
     }
 
-    public void ApplyQueryAttributesAsync(IDictionary<string, object> query)
+    public void ApplyQueryAttributes(IDictionary<string, object> query)
     {
         if (query.TryGetValue("DocumentPath", out var documentPath) && documentPath is string path && BindingContext is RiskPreventionViewModel viewModel)
         {

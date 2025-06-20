@@ -182,7 +182,7 @@ public partial class BuildingSelectionViewModel : MauiViewModel, IQueryAttributa
         }
     }
 
-    void IQueryAttributable.ApplyQueryAttributesAsync(IDictionary<string, object> query)
+    public void ApplyQueryAttributes(IDictionary<string, object> query)
     {
         if (query.TryGetValue("Alert", out var alert))
         {

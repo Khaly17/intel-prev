@@ -102,7 +102,7 @@ public partial class AlertSummaryCreationViewModel : MauiViewModel, IQueryAttrib
 		await Shell.Current.GoToAsync(new ShellNavigationState(AppRoutes.MainViewPage));
 	}
 
-	void IQueryAttributable.ApplyQueryAttributesAsync(IDictionary<string, object> query)
+	public void ApplyQueryAttributes(IDictionary<string, object> query)
 	{
 		if (query.TryGetValue("Alert", out var alert))
 		{

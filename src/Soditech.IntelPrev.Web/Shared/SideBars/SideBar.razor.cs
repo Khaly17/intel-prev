@@ -182,10 +182,10 @@ public partial class SideBar
                 },
             ];
                 
-            var userResult = await UserInfoService.GetUserInfoAsync();
-            if (userResult.IsSuccess)
+            var userInfoResult = await UserInfoService.GetUserInfoAsync();
+            if (userInfoResult.IsSuccess)
             {
-                var tenantId = userResult.Value.TenantId;
+                var tenantId = userInfoResult.Value.TenantId;
     
                 items = !string.IsNullOrEmpty(tenantId) ? items.Where(i => i.IsTenant).ToList() : items.Where(i => i.IsHost).ToList();
             }

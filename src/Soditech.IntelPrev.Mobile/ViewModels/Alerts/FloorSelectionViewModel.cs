@@ -97,7 +97,7 @@ public partial class FloorSelectionViewModel : MauiViewModel, IQueryAttributable
 		});
 	}
 
-	void IQueryAttributable.ApplyQueryAttributesAsync(IDictionary<string, object> query)
+	public void ApplyQueryAttributes(IDictionary<string, object> query)
 	{
 		if (query.TryGetValue("Alert", out var alert))
 		{
